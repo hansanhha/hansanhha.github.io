@@ -6,4 +6,4 @@ title: Code
 [Java](./java/list.md)
 
 Spring Framework
-- [Spring Data JPA](spring/spring%20data%20jpa/list.md)
+- [Spring Data JPA](spring/spring-data-jpa/list.md)
