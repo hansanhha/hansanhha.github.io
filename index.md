@@ -9,4 +9,6 @@ title: HANSANHHA
 
 [기록](./record/list.md)
 
+[아카이브](./archives/index.md)
+
 ![after hours](./images/after hours.jpg)
