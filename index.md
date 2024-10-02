@@ -3,11 +3,11 @@ layout: default
 title: HANSANHHA
 ---
 
-[코드](./code/list.md)
+[코드](./code/index.md)
 
-[프로젝트](./project/list.md)
+[프로젝트](./projects/index.md)
 
-[기록](./record/list.md)
+[기록](./records/index.md)
 
 [아카이브](./archives/index.md)
 

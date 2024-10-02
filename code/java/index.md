@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Java
+title: Code/Java
 ---
 
 [Welcome](./welcome.md)
