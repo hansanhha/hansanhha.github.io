@@ -1,6 +1,6 @@
 ---
 layout: default
-title: [hansanhha](https://hansanhha.github.io)/Code
+title: Code
 ---
 
 [Java](./java/index.md)

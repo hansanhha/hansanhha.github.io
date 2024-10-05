@@ -1,6 +1,6 @@
 ---
 layout: default
-title: [hansanhha/](https://hansanhha.github.io)[Code](https://hansanhha.github.io/code)/Java
+title: Java
 ---
 
 [Welcome](./welcome.md)
