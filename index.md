@@ -11,4 +11,4 @@ title: HANSANHHA
 
 [아카이브](./archives/index.md)
 
-![after hours](./images/after hours.jpg)
+<img src="./images/after%20hours.jpg" alt="after hours" style="width: 35%; height: 35%;"/>
