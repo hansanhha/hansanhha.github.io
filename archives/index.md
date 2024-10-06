@@ -3,10 +3,8 @@ layout: default
 title: 
 ---
 
-[out](/) [next](./1.md)
 
-<div>
-<div>ipod classic 1st generation (2001).jpeg</div>
 
-<img src="./Ipod 1st Generation (2001).jpeg" alt="Ipod 1st generation (2001).jpeg" style="width: 35%; height: 35%;"/>
-</div>
+|                                                                                                                                                                                |                                                                                                                                           |                                                                                                                                            |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| <img src="./Ipod 1st Generation (2001).jpeg" alt="Ipod%201st%20generation%20(2001).jpeg" style="width: 50%; height: 50%;"/> <div>ipod classic 1st generation (2001).jpeg</div> | <img src="the light phone 2.webp" alt="the%20light%20phone%202.webp" style="width: 60%; height: 60%;"/> <div>the light phone 2.webp</div> | <img src="after hours poster.jpeg" alt="after%20hours%20poster.jpeg" style="width: 50%; height: 50%;"/> <div>after hours poster.jpeg</div> |
