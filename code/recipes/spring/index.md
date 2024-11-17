@@ -1,6 +1,8 @@
 ---
 layout: default
-title: /code/recipe/spring
+title: /code/recipes/spring
 ---
+
+[prev](../index.md)
 
 [spring data jpa](./spring-data-jpa/index.md)

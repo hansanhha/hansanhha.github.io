@@ -1,4 +1,6 @@
 ---
 layout: default
-title: 프로젝트
+title: /code/projects
 ---
+
+empty

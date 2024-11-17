@@ -1,6 +1,6 @@
 ---
 layout: default
-title: /code/recipe/spring/spring data jpa/ecosystem
+title: /code/recipes/spring/spring data jpa/ecosystem
 ---
 
 ### 영속화
