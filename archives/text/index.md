@@ -3,7 +3,7 @@ layout: default
 title: archives/text
 ---
 
-[prev](../index.md)
+[out](../index.md)
 
 the weeknd - after hours
 

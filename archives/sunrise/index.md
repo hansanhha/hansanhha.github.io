@@ -3,7 +3,7 @@ layout: default
 title: archives/sunrise
 ---
 
-[prev](../index.md)
+[out](../index.md)
 
 24
 - [1](./24/2401.md)

@@ -3,7 +3,7 @@ layout: default
 title: code/recipes
 ---
 
-[prev](../index.md)
+[out](../index.md)
 
 [java](./java/index.md)
 

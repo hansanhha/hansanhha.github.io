@@ -3,7 +3,7 @@ layout: default
 title: 
 ---
 
-[prev](../index.md) [next](./1.md)
+[out](../index.md) [next](./1.md)
 
 <img src="./Ipod 1st Generation (2001).jpeg" alt="Ipod%201st%20generation%20(2001).jpeg" />
 

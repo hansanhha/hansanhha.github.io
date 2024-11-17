@@ -1,6 +1,8 @@
 ---
 layout: default
-title: /code/projects
+title: code/projects
 ---
+
+[out](../index.md)
 
 empty
