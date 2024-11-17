@@ -1,9 +1,15 @@
 ---
 layout: default
-title: Code
+title: /code
 ---
 
-[Java](./java/index.md)
+[out](https://hansanhha.github.io)
 
-Spring Framework
-- [Spring Data JPA](spring/spring-data-jpa/index.md)
+**projects**
+
+
+**recipes**
+
+[java](recipes/java/index.md)
+
+[spring framework](recipes/spring/index.md)

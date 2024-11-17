@@ -1,3 +1,8 @@
+---
+layout: default
+title: /code/recipe/java/hello world
+---
+
 ```java
 public class Welcome {
     

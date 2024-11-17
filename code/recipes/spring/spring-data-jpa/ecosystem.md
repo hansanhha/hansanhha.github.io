@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 자바-스프링의 영속성 생태계
+title: /code/recipe/spring/spring data jpa/ecosystem
 ---
 
 ### 영속화
