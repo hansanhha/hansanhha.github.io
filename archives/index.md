@@ -1,6 +1,6 @@
 ---
 layout: default
-title: /archives
+title: archives
 ---
 
 [out](https://hansanhha.github.io)

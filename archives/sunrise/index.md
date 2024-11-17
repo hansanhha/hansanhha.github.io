@@ -1,7 +1,9 @@
 ---
 layout: default
-title: 
+title: archives/sunrise
 ---
+
+[prev](../index.md)
 
 24
 - [1](./24/2401.md)

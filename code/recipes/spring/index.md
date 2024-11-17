@@ -1,6 +1,6 @@
 ---
 layout: default
-title: /code/recipes/spring
+title: code/recipes/spring
 ---
 
 [prev](../index.md)

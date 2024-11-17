@@ -1,6 +1,6 @@
 ---
 layout: default
-title: /code/recipes
+title: code/recipes
 ---
 
 [prev](../index.md)

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: /code
+title: code
 ---
 
 [out](https://hansanhha.github.io)
