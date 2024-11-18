@@ -43,12 +43,15 @@
                 {% if depth == maxDepth %}
                   <a href="/">home/</a><a href="{{ relative_path }}">{{ dir }}/</a>
                 {% else %}
-                  <a href="{{ relative_path }}">{{ dir }}/</a>
+                  {% if depth == 0 %}
+                    <a href="./">{{ dir }}</a>
+                  {% else %}
+                    <a href="{{ relative_path }}">{{ dir }}/</a>
+                  {% endif %}
                 {% endif %}
                 {% assign depth = depth | minus: 1 %}
               {% endif %}
             {% endfor %}
-            <a href="./">{{ dirs.last }}/</a>
           {% endif %}
           {% if page.name != "index.md" %}
             {{ page.name | split: '.' | first }}
