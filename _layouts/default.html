@@ -27,30 +27,32 @@
 <header>
   <div>
     {% unless page.dir == "/" %}
-      {% assign dirs = page.dir | split: '/' %}
-      {% assign depth = dirs.size | minus: 1 %}
-      {% assign maxDepth = depth %}
-      {% for dir in dirs %}
-        {% if dir != "" %}
-          {% if depth == 1 %}
-            <a href="./">{{ dir }}/</a>
-          {% else %}
-            {% assign relative_path = "" %}
-            {% for i in (1..depth) %}
-              {% assign relative_path = relative_path | append: "../" %}
-            {% endfor %}
-            {% if depth == maxDepth %}
-              <a href="{{ relative_path }}">/{{ dir }}/</a>
-            {% else %}
-              <a href="{{ relative_path }}">{{ dir }}/</a>
+      <div style="display: flex;">
+          {% assign dirs = page.dir | split: '/' %}
+          {% assign depth = dirs.size | minus: 2 %}
+          {% assign maxDepth = depth %}
+          {% for dir in dirs %}
+            {% if dir != "" %}
+              {% if depth == 1 %}
+                <a href="./">{{ dir }}/</a>
+              {% else %}
+                {% assign relative_path = "" %}
+                {% for i in (1..depth) %}
+                  {% assign relative_path = relative_path | append: "../" %}
+                {% endfor %}
+                {% if depth == maxDepth %}
+                  <a href="{{ relative_path }}">/{{ dir }}/</a>
+                {% else %}
+                  <a href="{{ relative_path }}">{{ dir }}/</a>
+                {% endif %}
+              {% endif %}
+              {% assign depth = depth | minus: 1 %}
             {% endif %}
+          {% endfor %}
+          {% if page.name != "index.md" %}
+            {{ page.name | split: '.' | first }}
           {% endif %}
-          {% assign depth = depth | minus: 1 %}
-        {% endif %}
-      {% endfor %}
-      {% if page.name != "index.md" %}
-        {{ page.name | split: '.' | first }}
-      {% endif %}
+      </div>
     {% endunless %}
   </div>
   <h2>{{ page.title }}</h2>
