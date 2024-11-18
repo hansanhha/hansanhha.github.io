@@ -27,10 +27,11 @@
   <header>
     <div>
       {% unless page.dir == "/" %}
-        {{ page.dir }}
-      {% endunless %}
-      {% unless page.name == "index.md" %}
-        {{ page.name | split: '.' | first }}
+        {% if page.name == "index.md" %}
+          {{ page.dir }}
+        {% else %}
+          {{ page.path | split: '.' | first }}
+        {% endif %}
       {% endunless %}
     </div>
     <h2>{{ page.title }}</h2>
