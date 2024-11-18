@@ -29,7 +29,7 @@
     {% unless page.dir == "/" %}
       <div style="display: flex;">
           {% assign dirs = page.dir | split: '/' %}
-          {% assign depth = dirs.size | minus: 2 %}
+          {% assign depth = dirs.size | minus: 1%}
           {% assign maxDepth = depth %}
           {% for dir in dirs %}
             {% if dir != "" %}
