@@ -26,17 +26,21 @@
 <body>
   <header>
     <div>
-      {{ page.dir }}
-      {% unless page.name == "index" %}
+      {% unless page.dir == "/" %}
+        {{ page.dir }}
+      {% endunless %}
+      {% unless page.name == "index.md" %}
         {{ page.name | split: '.' | first }}
       {% endunless %}
     </div>
     <h2>{{ page.title }}</h2>
   </header>
   <main>
-    <div>
-      <a href="{{ page.dir | replace: page.name, '' }}">out</a>
-    </div>
+    {% unless page.dir == "/" %}
+      <div>
+        <a href="{{ page.dir | split: '/' | slice: 0, -1 | join: '/' | prepend: '/' }}">out</a>
+      </div>
+    {% endunless %}
 
     {{ content }}
   </main>
