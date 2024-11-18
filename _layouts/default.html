@@ -25,12 +25,17 @@
 </head>
 <body>
   <header>
-    <div> {{ page.dir }} {{ page.name}} </div>
+    <div>
+      {{ page.dir }}
+      {% unless page.name == "index" %}
+        {{ page.name | split: '.' | first }}
+      {% endunless %}
+    </div>
     <h2>{{ page.title }}</h2>
   </header>
   <main>
     <div>
-      <a href="{{ page.dir }}">out</a>
+      <a href="{{ page.dir | replace: page.name, '' }}">out</a>
     </div>
 
     {{ content }}
