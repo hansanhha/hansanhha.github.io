@@ -38,7 +38,7 @@
   <main>
     {% unless page.dir == "/" %}
       <div>
-        <a href="{{ page.dir | split: '/' | slice: 0, -1 | join: '/' | prepend: '/' }}">out</a>
+        <a href="../">out</a>
       </div>
     {% endunless %}
 
