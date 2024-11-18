@@ -29,17 +29,20 @@
     {% unless page.dir == "/" %}
       {% assign dirs = page.dir | split: '/' %}
       {% assign depth = dirs.size | minus: 1 %}
-      /
       {% for dir in dirs %}
         {% if dir != "" %}
           {% if depth == 1 %}
+            <a href="{{ ./ }}">{{ dir }}/</a>
+          {% else %}
             {% assign relative_path = "" %}
             {% for i in (1..depth) %}
               {% assign relative_path = relative_path | append: "../" %}
             {% endfor %}
-            <a href="{{ relative_path }}">{{ dir }}</a>/
-          {% else %}
-            <a href="{{ ./ }}">{{ dir }}</a>/
+            {% if depth == dirs.size | minus: 1 %}
+              <a href="{{ relative_path }}">/{{ dir }}/</a>
+            {% else %}
+              <a href="{{ relative_path }}">{{ dir }}/</a>
+            {% endif %}
           {% endif %}
           {% assign depth = depth | minus: 1 %}
         {% endif %}
