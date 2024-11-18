@@ -24,18 +24,29 @@
   </style>
 </head>
 <body>
-  <header>
-    <div>
-      {% unless page.dir == "/" %}
-        {% if page.name == "index.md" %}
-          {{ page.dir }}
-        {% else %}
-          {{ page.dir }}{{ page.name | split: '.' | first }}
+<header>
+  <div>
+    {% unless page.dir == "/" %}
+      {% assign dirs = page.dir | split: '/' %}
+      {% assign depth = dirs.size %}
+      /
+      {% for dir in dirs %}
+        {% if dir != "" %}
+          {% assign relative_path = "" %}
+          {% for i in (1..depth) %}
+            {% assign relative_path = relative_path | append: "../" %}
+          {% endfor %}
+          <a href="{{ relative_path }}">{{ dir }}</a>/
+          {% assign depth = depth | minus: 1 %}
         {% endif %}
-      {% endunless %}
-    </div>
-    <h2>{{ page.title }}</h2>
-  </header>
+      {% endfor %}
+      {% if page.name == "index.md" %}
+        {{ page.name | split: '.' | first }}
+      {% endif %}
+    {% endunless %}
+  </div>
+  <h2>{{ page.title }}</h2>
+</header>
   <main>
     {% unless page.dir == "/" %}
       <div>
