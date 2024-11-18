@@ -30,7 +30,7 @@
         {% if page.name == "index.md" %}
           {{ page.dir }}
         {% else %}
-          {{ page.path | split: '.' | first }}
+          {{ page.dir }}{{ page.name | split: '.' | first }}
         {% endif %}
       {% endunless %}
     </div>
