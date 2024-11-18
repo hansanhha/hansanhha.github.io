@@ -32,7 +32,7 @@
           {% assign depth = dirs.size | minus: 2 %}
           {% assign maxDepth = depth %}
           {% if depth == 0 and depth == maxDepth %}
-            <a href="/">home/</a><a href="./">{{ dirs.first }}/</a>
+            <a href="/">home/</a><a href="./">{{ dirs.last }}/</a>
           {% else %}
             {% for dir in dirs %}
               {% if dir != "" %}
