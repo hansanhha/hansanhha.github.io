@@ -34,7 +34,11 @@
           {% for dir in dirs %}
             {% if dir != "" %}
               {% if depth == 1 %}
-                <a href="./">{{ dir }}/</a>
+                {% if depth == maxDepth %}
+                  <a href="/">home/</a><a href="./">{{ dir }}/</a>
+                {% else %}
+                  <a href="./">{{ dir }}/</a>
+                {% endif %}
               {% else %}
                 {% assign relative_path = "" %}
                 {% for i in (1..depth) %}
