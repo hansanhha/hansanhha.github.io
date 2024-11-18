@@ -39,7 +39,11 @@
   <main>
     {% unless page.dir == "/" %}
       <div>
-        <a href="../">out</a>
+        {% if page.name == "index.md" %}
+          <a href="../">out</a>
+        {% else %}
+          <a href="./">out</a>
+        {% endif %}
       </div>
     {% endunless %}
 
