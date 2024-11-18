@@ -7,10 +7,14 @@
     <style>
         #status-box {
             display: flex;
+            border-bottom: 1px solid black;
         }
 
         .player-box {
+            margin-top: 10px;
             display: flex;
+            flex-direction: column;
+            gap: 2px;
         }
 
         .operation-btn {
@@ -22,11 +26,11 @@
 <body>
 
     <div id="status-box"></div>
-    <div>
-        <div class="player-box">
-            <span>the weeknd - after hours</span>
-            <div class="operation-btn" onclick="play('./data/the_weeknd_after_hours.mp3', 'the weeknd - after hours')">play</div>
-        </div>
+    <div class="player-box">
+        <div class="operation-btn" onclick="play('./data/the_weeknd_after_hours.mp3', 'the weeknd - after hours')">the weeknd - after hours.mp3</div>
+        <div class="operation-btn" onclick="play('./data/emotional_oranges_sundays.mp3', 'emotional oranges - sundays')">emotional oranges - sundays.mp3</div>
+        <div class="operation-btn" onclick="play('./data/local_natives_april.mp3', 'local natives - april')">local natives - april.mp3</div>
+        <div class="operation-btn" onclick="play('./data/lauv_reforget.mp3', 'lauv - reforget')">lauv - reforget.mp3</div>
     </div>
 
     <script>
