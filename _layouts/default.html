@@ -47,7 +47,7 @@
       </div>
     {% endunless %}
 
-    {{ content }}
+    {{ content | default: "empty" }}
   </main>
 </body>
 </html>
