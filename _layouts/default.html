@@ -62,16 +62,6 @@
   <h2>{{ page.title }}</h2>
 </header>
   <main>
-    {% unless page.dir == "/" %}
-      <div>
-        {% if page.name == "index.md" %}
-          <a href="../">out</a>
-        {% else %}
-          <a href="./">out</a>
-        {% endif %}
-      </div>
-    {% endunless %}
-
     {{ content | default: "empty" }}
   </main>
 </body>
