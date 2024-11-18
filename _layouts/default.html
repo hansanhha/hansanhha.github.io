@@ -31,7 +31,7 @@
           {% assign dirs = page.dir | split: '/' %}
           {% assign depth = dirs.size | minus: 2 %}
           {% assign maxDepth = depth %}
-          {% if depth == 1 and depth == maxDepth %}
+          {% if depth == 0 and depth == maxDepth %}
             <a href="/">home/</a><a href="./">{{ dirs.first }}/</a>
           {% else %}
             {% for dir in dirs %}
