@@ -3,11 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="/images/favicon.png" type="image/x-icon">
-  <title>{{ site.title }}</title>
+  <title>노량진 수산시장</title>
+    <style>
+        #status-box {
+            display: flex;
+        }
+
+        .player-box {
+            display: flex;
+        }
+
+        .operation-btn {
+            background-color: transparent;
+            border: 1px solid #007BFF;
+            color: #007BFF;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 
-    the weeknd - after hours <audio src="./data/the_weeknd_after_hours.mp3" controls></audio>
+    <div id="status-box"></div>
+    <div>
+        <div class="player-box">
+            <span>the weeknd - after hours</span>
+            <div class="operation-btn" onclick="play('./data/the_weeknd_after_hours.mp3', 'the weeknd - after hours')">play</div>
+        </div>
+    </div>
+
+    <script>
+        let currentMusic;
+        let isPaused = false;
+        let statusBox = document.getElementById("status-box");
+
+        const play = (source, title) => {
+            if (currentMusic != null) {
+                currentMusic.src = source;
+                currentMusic.load();
+                currentMusic.play();
+            } else {
+                currentMusic = new Audio(source);
+                currentMusic.volume = 0.5;
+                currentMusic.loop = false;
+                currentMusic.play();
+            }
+
+            const titleBox = document.createElement('span');
+            const OperationBox = document.createElement('div');
+            titleBox.textContent = title + '(playing)';
+            OperationBox.textContent = 'pause';
+            OperationBox.className = 'operation-btn';
+            OperationBox.addEventListener('click', () => {
+                controlPlay(title)
+            });
+
+            statusBox.appendChild(titleBox);
+            statusBox.appendChild(OperationBox);
+        }
+
+        const controlPlay = (title) => {
+            if (currentMusic != null) {
+                if (isPaused) {
+                    currentMusic.play();
+                    statusBox.firstChild.textContent = title + '(playing)';
+                    statusBox.lastChild.textContent = 'pause';
+                    isPaused = false;
+                    return;
+                }
+                currentMusic.pause();
+                statusBox.firstChild.textContent = title + '(paused)';
+                statusBox.lastChild.textContent = 'resume';
+                isPaused = true;
+            }
+        }
+    </script>
 </body>
 </html>
