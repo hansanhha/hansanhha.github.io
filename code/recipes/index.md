@@ -1,9 +1,7 @@
 ---
 layout: default
-title: code/recipes
+title: 
 ---
-
-[out](../index.md)
 
 [java](./java/index.md)
 

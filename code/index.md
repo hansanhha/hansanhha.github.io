@@ -1,9 +1,7 @@
 ---
 layout: default
-title: code
+title:
 ---
-
-[out](https://hansanhha.github.io)
 
 [**projects**](./projects/index.md)
 

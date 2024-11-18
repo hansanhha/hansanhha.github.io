@@ -1,8 +1,6 @@
 ---
 layout: default
-title: code/recipes/java
+title:
 ---
-
-[out](../index.md)
 
 [hello world](./hello world.md)

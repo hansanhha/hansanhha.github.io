@@ -1,6 +1,6 @@
 ---
 layout: default
-title: code/recipes/spring/spring data jpa/JpaRepository
+title: 
 ---
 
 JpaRepository는 기본 CRUD 작업을 정의한 ListCrudRepository와 페이징 작업을 정의한 ListPagingAndSortingRepository를 확장한 spring data jpa 인터페이스로, 배치 작업과 지연 로딩 참조 메서드 등을 추가적으로 정의함

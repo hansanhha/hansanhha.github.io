@@ -1,6 +1,6 @@
 ---
 layout: default
-title: code/recipe/java/hello world
+title: 
 ---
 
 ```java

@@ -3,7 +3,7 @@ layout: default
 title: 
 ---
 
-[out](../index.md) 01/01/2024 [next](./2403.md)
+01/01/2024 [next](./march)
 
 Seoul Mongchontoseong Earthen Fortification
 
