@@ -41,7 +41,7 @@
                   {% assign relative_path = relative_path | append: "../" %}
                 {% endfor %}
                 {% if depth == maxDepth %}
-                  <a href="{{ relative_path }}"><a href="/">home</a>{{ dir }}/</a>
+                  <a href="{{ relative_path }}"><a href="/">home/</a>{{ dir }}/</a>
                 {% else %}
                   <a href="{{ relative_path }}">{{ dir }}/</a>
                 {% endif %}
