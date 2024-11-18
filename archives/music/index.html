@@ -7,7 +7,7 @@
     <style>
         #status-box {
             display: flex;
-            border-bottom: 1px solid black;
+            width: fit-content;
         }
 
         .player-box {
@@ -15,6 +15,7 @@
             display: flex;
             flex-direction: column;
             gap: 2px;
+            width: fit-content;
         }
 
         .operation-btn {
@@ -36,48 +37,63 @@
     <script>
         let currentMusic;
         let isPaused = false;
-        let statusBox = document.getElementById("status-box");
+        const statusBox = document.getElementById("status-box");
 
         const play = (source, title) => {
             if (currentMusic != null) {
+                if (currentMusic.src === source) {
+                    togglePlay(title, true);
+                    return;
+                }
+
                 currentMusic.src = source;
                 currentMusic.load();
                 currentMusic.play();
+
+                statusBox.firstChild.textContent = title + ' (playing)';
+                statusBox.lastChild.remove();
+                const operationBox = document.createElement('div');
+                operationBox.textContent = ' pause';
+                operationBox.className = 'operation-btn';
+                operationBox.addEventListener('click', () => {
+                    togglePlay(title);
+                });
+                statusBox.appendChild(operationBox);
             } else {
                 currentMusic = new Audio(source);
                 currentMusic.volume = 0.5;
                 currentMusic.loop = false;
                 currentMusic.play();
-            }
 
-            if (!statusBox.hasChildNodes()) {
                 const titleBox = document.createElement('span');
-                const OperationBox = document.createElement('div');
+                const operationBox = document.createElement('div');
                 titleBox.textContent = title + ' (playing)';
-                OperationBox.textContent = ' pause';
-                OperationBox.className = 'operation-btn';
-                OperationBox.addEventListener('click', () => {
-                    controlPlay(title)
+                operationBox.textContent = ' pause';
+                operationBox.className = 'operation-btn';
+                operationBox.addEventListener('click', () => {
+                    togglePlay(title);
                 });
 
+                statusBox.style.borderBottom = "1px solid black";
                 statusBox.appendChild(titleBox);
-                statusBox.appendChild(OperationBox);
+                statusBox.appendChild(operationBox);
             }
         }
 
-        const controlPlay = (title) => {
+        const togglePlay = (title, forcePause) => {
             if (currentMusic != null) {
-                if (isPaused) {
-                    currentMusic.play();
-                    statusBox.firstChild.textContent = title + ' (playing)';
-                    statusBox.lastChild.textContent = ' pause';
-                    isPaused = false;
+                if (!isPaused || forcePause) {
+                    currentMusic.pause();
+                    statusBox.firstChild.textContent = title + ' (paused)';
+                    statusBox.lastChild.textContent = ' resume';
+                    isPaused = true;
                     return;
                 }
-                currentMusic.pause();
-                statusBox.firstChild.textContent = title + ' (paused)';
-                statusBox.lastChild.textContent = ' resume';
-                isPaused = true;
+
+                currentMusic.play();
+                statusBox.firstChild.textContent = title + ' (playing)';
+                statusBox.lastChild.textContent = ' pause';
+                isPaused = false;
             }
         }
     </script>
