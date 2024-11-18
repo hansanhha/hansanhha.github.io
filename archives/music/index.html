@@ -14,9 +14,7 @@
         }
 
         .operation-btn {
-            background-color: transparent;
             margin-left: 3px;
-            color: transparent;
             cursor: pointer;
         }
     </style>
@@ -48,31 +46,33 @@
                 currentMusic.play();
             }
 
-            const titleBox = document.createElement('span');
-            const OperationBox = document.createElement('div');
-            titleBox.textContent = title + '(playing)';
-            OperationBox.textContent = 'pause';
-            OperationBox.className = 'operation-btn';
-            OperationBox.addEventListener('click', () => {
-                controlPlay(title)
-            });
+            if (!statusBox.hasChildNodes()) {
+                const titleBox = document.createElement('span');
+                const OperationBox = document.createElement('div');
+                titleBox.textContent = title + ' (playing)';
+                OperationBox.textContent = ' pause';
+                OperationBox.className = 'operation-btn';
+                OperationBox.addEventListener('click', () => {
+                    controlPlay(title)
+                });
 
-            statusBox.appendChild(titleBox);
-            statusBox.appendChild(OperationBox);
+                statusBox.appendChild(titleBox);
+                statusBox.appendChild(OperationBox);
+            }
         }
 
         const controlPlay = (title) => {
             if (currentMusic != null) {
                 if (isPaused) {
                     currentMusic.play();
-                    statusBox.firstChild.textContent = title + '(playing)';
-                    statusBox.lastChild.textContent = 'pause';
+                    statusBox.firstChild.textContent = title + ' (playing)';
+                    statusBox.lastChild.textContent = ' pause';
                     isPaused = false;
                     return;
                 }
                 currentMusic.pause();
-                statusBox.firstChild.textContent = title + '(paused)';
-                statusBox.lastChild.textContent = 'resume';
+                statusBox.firstChild.textContent = title + ' (paused)';
+                statusBox.lastChild.textContent = ' resume';
                 isPaused = true;
             }
         }
