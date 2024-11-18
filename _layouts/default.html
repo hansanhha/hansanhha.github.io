@@ -25,9 +25,14 @@
 </head>
 <body>
   <header>
+    <div> {{ page.dir }} {{ page.name}} </div>
     <h2>{{ page.title }}</h2>
   </header>
   <main>
+    <div>
+      <a href="{{ page.dir }}">out</a>
+    </div>
+
     {{ content }}
   </main>
 </body>
