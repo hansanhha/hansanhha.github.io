@@ -121,8 +121,12 @@
                 return currentMusic.src === 'https://hansanhha.github.io/archives/music/data/' + this.source;
             }
 
+            isPaused() {
+                return this.paused;
+            }
+
             play() {
-                if  (this.paused) {
+                if  (this.isPaused()) {
                     this.resume();
                     return;
                 }
@@ -175,7 +179,10 @@
                 const utilBtn = document.createElement('div');
 
                 utilBtn.addEventListener('click', () => {
-                    if (this.isPlaying()) {
+                    if (this.isPaused()) {
+                        this.resume();
+                    }
+                    else if (this.isPlaying()) {
                         this.pause();
                     } else {
                         this.play();
