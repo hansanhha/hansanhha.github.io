@@ -48,7 +48,7 @@
 
         const play = (source, title) => {
             if (currentMusic != null) {
-                if (currentMusic.src === source) {
+                if (currentMusic.src === 'https://hansanhha.github.io/archives/music/data/' + source.split('/')[2]) {
                     togglePlay(title, true);
                     return;
                 }
@@ -62,7 +62,9 @@
                 const operationBox = document.createElement('div');
                 operationBox.textContent = ' pause';
                 operationBox.className = 'operation-btn';
-                operationBox.onclick(togglePlay(title));
+                operationBox.addEventListener('click', () => {
+                    togglePlay(title);
+                });
                 statusBox.appendChild(operationBox);
             } else {
                 currentMusic = new Audio(source);
@@ -75,7 +77,9 @@
                 titleBox.textContent = title + ' (playing)';
                 operationBox.textContent = ' pause';
                 operationBox.className = 'operation-btn';
-                operationBox.onclick(togglePlay(title));
+                operationBox.addEventListener('click', () => {
+                    togglePlay(title);
+                });
 
                 statusBox.style.borderBottom = "1px solid black";
                 statusBox.appendChild(titleBox);
