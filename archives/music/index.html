@@ -24,6 +24,13 @@
         }
     </style>
 </head>
+<header>
+    <div style="display: flex;">
+        <a href="/">home/</a>
+        <a href="../">archives/</a>
+        <a href="./">music/</a>
+    </div>
+</header>
 <body>
 
     <div id="status-box"></div>
@@ -55,9 +62,7 @@
                 const operationBox = document.createElement('div');
                 operationBox.textContent = ' pause';
                 operationBox.className = 'operation-btn';
-                operationBox.addEventListener('click', () => {
-                    togglePlay(title);
-                });
+                operationBox.onclick(togglePlay(title));
                 statusBox.appendChild(operationBox);
             } else {
                 currentMusic = new Audio(source);
@@ -70,9 +75,7 @@
                 titleBox.textContent = title + ' (playing)';
                 operationBox.textContent = ' pause';
                 operationBox.className = 'operation-btn';
-                operationBox.addEventListener('click', () => {
-                    togglePlay(title);
-                });
+                operationBox.onclick(togglePlay(title));
 
                 statusBox.style.borderBottom = "1px solid black";
                 statusBox.appendChild(titleBox);
