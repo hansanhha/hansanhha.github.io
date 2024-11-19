@@ -69,6 +69,16 @@
                 return -1;
             }
 
+            nextPlay() {
+                if (this.currentIndex - 1 === currentPlaylist.length) {
+                    currentMusic.removeEventListener('ended', this.nextPlay);
+                    return;
+                }
+
+                const nextMusic = currentPlaylist[++this.currentIndex];
+                nextMusic.play();
+            }
+
             play(music) {
                 if (music.isPlaying()) {
                     music.pause();
@@ -76,7 +86,6 @@
                 }
 
                 this.startIndex = this.indexOf(music);
-                this.currentIndex = this.startIndex;
 
                 if (this.startIndex !== -1) {
                     const entirePlaylist = [];
@@ -93,11 +102,9 @@
                 }
 
                 currentMusic.removeAttribute('src');
-                currentMusic.addEventListener('ended', () => {
-                    const nextMusic = currentPlaylist[++this.currentIndex];
-                    currentMusic.addTrack(nextMusic);
-                    nextMusic.play();
-                });
+
+                this.currentIndex = 0;
+                currentMusic.addEventListener('ended', this.nextPlay);
 
                 music.play();
             }
