@@ -49,6 +49,7 @@
 
         const currentMusic = createAudio();
         let currentPlaylist;
+        let playIndex;
         const playlistSet = [];
         const statusBox = document.getElementById("status-box");
         const playlistBox = document.getElementById("playlist-box");
@@ -57,7 +58,6 @@
             constructor(musicList) {
                 this.musicList = musicList;
                 this.startIndex = 0;
-                this.currentIndex = 0;
             }
 
             indexOf(music) {
@@ -70,12 +70,12 @@
             }
 
             nextPlay() {
-                if (this.currentIndex - 1 === currentPlaylist.length) {
+                if (playIndex - 1 === currentPlaylist.length) {
                     currentMusic.removeEventListener('ended', this.nextPlay);
                     return;
                 }
 
-                const nextMusic = currentPlaylist[++this.currentIndex];
+                const nextMusic = currentPlaylist[++playIndex];
                 nextMusic.play();
             }
 
@@ -86,6 +86,7 @@
                 }
 
                 this.startIndex = this.indexOf(music);
+                playIndex = 0;
 
                 if (this.startIndex !== -1) {
                     const entirePlaylist = [];
@@ -102,8 +103,6 @@
                 }
 
                 currentMusic.removeAttribute('src');
-
-                this.currentIndex = 0;
                 currentMusic.addEventListener('ended', this.nextPlay);
 
                 music.play();
@@ -132,8 +131,7 @@
                 }
 
                 if (this.isPlaying()) {
-                    currentMusic.pause();
-                    this.updateHtmlToPausedStatus();
+                    this.pause();
                     return;
                 }
 
