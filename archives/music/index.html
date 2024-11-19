@@ -92,6 +92,7 @@
                     currentPlaylist = entirePlaylist;
                 }
 
+                currentMusic.removeAttribute('src');
                 currentMusic.addEventListener('ended', () => {
                     const nextMusic = currentPlaylist[++this.currentIndex];
                     currentMusic.addTrack(nextMusic);
@@ -206,7 +207,9 @@
             await defaultPlaylistSetup();
         }
 
-        document.addEventListener('DOMContentLoaded', await playlistSetup);
+        document.addEventListener('DOMContentLoaded', async () => {
+            await playlistSetup();
+        });
     </script>
 </body>
 </html>
