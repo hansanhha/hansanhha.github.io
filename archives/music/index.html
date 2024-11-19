@@ -107,6 +107,7 @@
             constructor(source, title) {
                 this.source = source;
                 this.title = title;
+                this.paused = false;
             }
 
             isPlaying() {
@@ -114,6 +115,11 @@
             }
 
             play() {
+                if  (this.paused) {
+                    this.resume();
+                    return;
+                }
+
                 if (this.isPlaying()) {
                     currentMusic.pause();
                     this.updateHtmlToPausedStatus();
@@ -131,20 +137,29 @@
                 this.updateHtmlToPlayStatus();
             }
 
+            resume() {
+                if (this.isPlaying()) {
+                    currentMusic.play();
+                    this.updateHtmlToPlayStatus();
+                    this.paused = false;
+                }
+            }
+
             pause() {
                 if (this.isPlaying()) {
                     currentMusic.pause();
                     this.updateHtmlToPausedStatus();
+                    this.paused = true;
                 }
             }
 
             updateHtmlToPlayStatus() {
-                statusBox.firstChild.textContent = this.title + ' (playing)';
+                statusBox.firstChild.textContent = this.title + ' (playing) ';
                 statusBox.lastChild.textContent = ' pause';
             }
 
             updateHtmlToPausedStatus() {
-                statusBox.firstChild.textContent = this.title + ' (paused)';
+                statusBox.firstChild.textContent = this.title + ' (paused) ';
                 statusBox.lastChild.textContent = ' resume';
             }
 
