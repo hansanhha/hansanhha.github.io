@@ -16,12 +16,12 @@
             display: flex;
             flex-direction: column;
             gap: 2px;
-            width: fit-content;
         }
 
         .operation-btn {
             margin-left: 3px;
             cursor: pointer;
+            width: fit-content;
         }
     </style>
 </head>
@@ -72,6 +72,7 @@
             nextPlay() {
                 if (playIndex - 1 === currentPlaylist.length) {
                     currentMusic.removeEventListener('ended', this.nextPlay);
+                    this.updateHtmlToEndPlaylistStatus();
                     return;
                 }
 
@@ -111,6 +112,12 @@
                 currentMusic.addEventListener('ended', this.nextPlay);
 
                 music.play();
+            }
+
+
+            updateHtmlToEndPlaylistStatus() {
+                statusBox.firstChild.textContent = 'end playlist';
+                statusBox.lastChild.textContent = '';
             }
         }
 
