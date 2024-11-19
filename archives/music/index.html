@@ -38,8 +38,6 @@
     <div id="playlist-box"></div>
 
     <script>
-        let isPaused = false;
-
         const createAudio = () => {
             const audio = new Audio();
             audio.volume = 0.5;
@@ -50,19 +48,57 @@
         }
 
         const currentMusic = createAudio();
+        let currentPlaylist;
         const playlistSet = [];
-        const currentPlaylist;
         const statusBox = document.getElementById("status-box");
         const playlistBox = document.getElementById("playlist-box");
 
         class Playlist {
-            constructor(musicList, currentIndex) {
+            constructor(musicList) {
                 this.musicList = musicList;
-                this.currentIndex = currentIndex;
+                this.startIndex = 0;
+                this.currentIndex = 0;
             }
 
-            set add(music) {
-                this.musicList.push(music);
+            indexOf(music) {
+                for (let i = 0; i < this.musicList.length; i++) {
+                    if (this.musicList[i].title === music.title) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+
+            play(music) {
+                if (music.isPlaying()) {
+                    music.pause();
+                    return;
+                }
+
+                this.startIndex = this.indexOf(music);
+                this.currentIndex = this.startIndex;
+
+                if (this.startIndex !== -1) {
+                    const entirePlaylist = [];
+
+                    for (let i = this.startIndex; i < this.musicList.length; i++) {
+                        entirePlaylist.push(this.musicList[i]);
+                    }
+
+                    for (let i = 0; i < this.startIndex; i++) {
+                        entirePlaylist.push(this.musicList[i]);
+                    }
+
+                    currentPlaylist = entirePlaylist;
+                }
+
+                currentMusic.addEventListener('ended', () => {
+                    const nextMusic = currentPlaylist[++this.currentIndex];
+                    currentMusic.addTrack(nextMusic);
+                    nextMusic.play();
+                });
+
+                music.play();
             }
         }
 
@@ -70,6 +106,61 @@
             constructor(source, title) {
                 this.source = source;
                 this.title = title;
+            }
+
+            isPlaying() {
+                return currentMusic.src === 'https://hansanhha.github.io/archives/music/data/' + this.source;
+            }
+
+            play() {
+                if (this.isPlaying()) {
+                    currentMusic.pause();
+                    this.updateHtmlToPausedStatus();
+                    return;
+                }
+
+                currentMusic.src = './data/' + this.source;
+                currentMusic.load();
+                currentMusic.play();
+
+                if (!statusBox.hasChildNodes()) {
+                    this.createStatusElement();
+                }
+
+                this.updateHtmlToPlayStatus();
+            }
+
+            pause() {
+                if (this.isPlaying()) {
+                    currentMusic.pause();
+                    this.updateHtmlToPausedStatus();
+                }
+            }
+
+            updateHtmlToPlayStatus() {
+                statusBox.firstChild.textContent = this.title + ' (playing)';
+                statusBox.lastChild.textContent = ' pause';
+            }
+
+            updateHtmlToPausedStatus() {
+                statusBox.firstChild.textContent = this.title + ' (paused)';
+                statusBox.lastChild.textContent = ' resume';
+            }
+
+            createStatusElement() {
+                const status = document.createElement('span');
+                const utilBtn = document.createElement('div');
+
+                utilBtn.addEventListener('click', () => {
+                    if (this.isPlaying()) {
+                        this.pause();
+                    } else {
+                        this.play();
+                    }
+                });
+
+                statusBox.appendChild(status);
+                statusBox.appendChild(utilBtn);
             }
         }
 
@@ -84,17 +175,22 @@
                     return new Music(info + 'mp3', artist + ' - ' + title);
                 });
 
-                return new Playlist(musicList, 0);
+                const playlist = new Playlist(musicList);
+                playlistSet.push(playlist);
+                return playlist;
             }
 
-            const addMusicHtmlElementInPlaylistBox = (music) => {
-                const musicDiv = document.createElement('div');
-                musicDiv.className = 'operation-btn';
-                musicDiv.textContent = music.title + 'mp3';
-                musicDiv.addEventListener('click', () => {
-                    play(music);
-                })
-                playlistBox.appendChild(musicDiv);
+            const createPlaylistElement = (playlist) => {
+                playlist.musicList.forEach(music => {
+                    const musicDiv = document.createElement('div');
+                    musicDiv.className = 'operation-btn';
+                    musicDiv.textContent = music.title + 'mp3';
+                    musicDiv.addEventListener('click', () => {
+                        playlist.play(music);
+                    });
+
+                    playlistBox.appendChild(musicDiv);
+                });
             }
 
             const defaultPlaylistSetup = async () => {
@@ -103,8 +199,7 @@
                     .then(data => {
                         const defaultPlaylistInfo = data.default;
                         const defaultPlaylist = createPlaylist(defaultPlaylistInfo);
-                        playlistSet.push(defaultPlaylist);
-                        defaultPlaylist.musicList.forEach((music) => addMusicHtmlElementInPlaylistBox(music));
+                        createPlaylistElement(defaultPlaylist);
                     });
             }
 
@@ -112,61 +207,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', await playlistSetup);
-
-        const play = (music) => {
-
-            const updateStatus = () => {
-                const operationBox = document.createElement('div');
-                operationBox.textContent = ' pause';
-                operationBox.className = 'operation-btn';
-                operationBox.addEventListener('click', () => {
-                    togglePlay(music);
-                });
-
-                if (!statusBox.hasChildNodes()) {
-                    const titleBox = document.createElement('span');
-                    titleBox.textContent = music.title + ' (playing)';
-
-                    statusBox.style.borderBottom = "1px solid black";
-
-                    statusBox.appendChild(titleBox);
-                    statusBox.appendChild(operationBox);
-                } else {
-                    statusBox.firstChild.textContent = music.title + ' (playing)';
-                    statusBox.lastChild.remove();
-                    statusBox.appendChild(operationBox);
-                }
-
-            }
-
-            if (currentMusic.src === 'https://hansanhha.github.io/archives/music/data/' + music.source) {
-                togglePlay(music);
-                return;
-            }
-
-            currentMusic.src = './data/' + music.source;
-            currentMusic.load();
-            currentMusic.play();
-
-            updateStatus();
-        }
-
-        const togglePlay = (music) => {
-            if (currentMusic != null) {
-                if (!isPaused) {
-                    currentMusic.pause();
-                    statusBox.firstChild.textContent = music.title + ' (paused)';
-                    statusBox.lastChild.textContent = ' resume';
-                    isPaused = true;
-                    return;
-                }
-
-                currentMusic.play();
-                statusBox.firstChild.textContent = music.title + ' (playing)';
-                statusBox.lastChild.textContent = ' pause';
-                isPaused = false;
-            }
-        }
     </script>
 </body>
 </html>
