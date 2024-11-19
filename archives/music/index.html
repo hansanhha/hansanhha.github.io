@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>노량진 수산시장</title>
+  <title>노량진 수산시장 플레이리스트</title>
     <style>
         #status-box {
             display: flex;
             width: fit-content;
+            margin-top: 10px;
         }
 
-        .player-box {
+        #playlist-box {
             margin-top: 10px;
             display: flex;
             flex-direction: column;
@@ -34,71 +35,134 @@
 <body>
 
     <div id="status-box"></div>
-    <div class="player-box">
-        <div class="operation-btn" onclick="play('./data/the_weeknd_after_hours.mp3', 'the weeknd - after hours')">the weeknd - after hours.mp3</div>
-        <div class="operation-btn" onclick="play('./data/emotional_oranges_sundays.mp3', 'emotional oranges - sundays')">emotional oranges - sundays.mp3</div>
-        <div class="operation-btn" onclick="play('./data/local_natives_april.mp3', 'local natives - april')">local natives - april.mp3</div>
-        <div class="operation-btn" onclick="play('./data/lauv_reforget.mp3', 'lauv - reforget')">lauv - reforget.mp3</div>
-    </div>
+    <div id="playlist-box"></div>
 
     <script>
-        let currentMusic;
         let isPaused = false;
+
+        const createAudio = () => {
+            const audio = new Audio();
+            audio.volume = 0.5;
+            audio.loop = false;
+            audio.addEventListener('ended', () => {
+            });
+            return audio;
+        }
+
+        const currentMusic = createAudio();
+        const playlistSet = [];
+        const currentPlaylist;
         const statusBox = document.getElementById("status-box");
+        const playlistBox = document.getElementById("playlist-box");
 
-        const play = (source, title) => {
-            if (currentMusic != null) {
-                if (currentMusic.src === 'https://hansanhha.github.io/archives/music/data/' + source.split('/')[2]) {
-                    togglePlay(title, true);
-                    return;
-                }
+        class Playlist {
+            constructor(musicList, currentIndex) {
+                this.musicList = musicList;
+                this.currentIndex = currentIndex;
+            }
 
-                currentMusic.src = source;
-                currentMusic.load();
-                currentMusic.play();
-
-                statusBox.firstChild.textContent = title + ' (playing)';
-                statusBox.lastChild.remove();
-                const operationBox = document.createElement('div');
-                operationBox.textContent = ' pause';
-                operationBox.className = 'operation-btn';
-                operationBox.addEventListener('click', () => {
-                    togglePlay(title);
-                });
-                statusBox.appendChild(operationBox);
-            } else {
-                currentMusic = new Audio(source);
-                currentMusic.volume = 0.5;
-                currentMusic.loop = false;
-                currentMusic.play();
-
-                const titleBox = document.createElement('span');
-                const operationBox = document.createElement('div');
-                titleBox.textContent = title + ' (playing)';
-                operationBox.textContent = ' pause';
-                operationBox.className = 'operation-btn';
-                operationBox.addEventListener('click', () => {
-                    togglePlay(title);
-                });
-
-                statusBox.style.borderBottom = "1px solid black";
-                statusBox.appendChild(titleBox);
-                statusBox.appendChild(operationBox);
+            set add(music) {
+                this.musicList.push(music);
             }
         }
 
-        const togglePlay = (title, forcePause) => {
+        class Music {
+            constructor(source, title) {
+                this.source = source;
+                this.title = title;
+            }
+        }
+
+        const playlistSetup = async () => {
+
+            const createPlaylist = (playlistInfo) => {
+                const musicList = playlistInfo.map(info => {
+                    const split = info.split('-');
+                    const artist = split[0].replace('_', ' ');
+                    const title = split[1].replace('_', ' ');
+
+                    return new Music(info + 'mp3', artist + ' - ' + title);
+                });
+
+                return new Playlist(musicList, 0);
+            }
+
+            const addMusicHtmlElementInPlaylistBox = (music) => {
+                const musicDiv = document.createElement('div');
+                musicDiv.className = 'operation-btn';
+                musicDiv.textContent = music.title + 'mp3';
+                musicDiv.addEventListener('click', () => {
+                    play(music);
+                })
+                playlistBox.appendChild(musicDiv);
+            }
+
+            const defaultPlaylistSetup = async () => {
+                await fetch("https://hansanhha.github.io/archives/music/data/playlist.json")
+                    .then(response => response.json())
+                    .then(data => {
+                        const defaultPlaylistInfo = data.default;
+                        const defaultPlaylist = createPlaylist(defaultPlaylistInfo);
+                        playlistSet.push(defaultPlaylist);
+                        defaultPlaylist.musicList.forEach((music) => addMusicHtmlElementInPlaylistBox(music));
+                    });
+            }
+
+            await defaultPlaylistSetup();
+        }
+
+        document.addEventListener('DOMContentLoaded', await playlistSetup);
+
+        const play = (music) => {
+
+            const updateStatus = () => {
+                const operationBox = document.createElement('div');
+                operationBox.textContent = ' pause';
+                operationBox.className = 'operation-btn';
+                operationBox.addEventListener('click', () => {
+                    togglePlay(music);
+                });
+
+                if (!statusBox.hasChildNodes()) {
+                    const titleBox = document.createElement('span');
+                    titleBox.textContent = music.title + ' (playing)';
+
+                    statusBox.style.borderBottom = "1px solid black";
+
+                    statusBox.appendChild(titleBox);
+                    statusBox.appendChild(operationBox);
+                } else {
+                    statusBox.firstChild.textContent = music.title + ' (playing)';
+                    statusBox.lastChild.remove();
+                    statusBox.appendChild(operationBox);
+                }
+
+            }
+
+            if (currentMusic.src === 'https://hansanhha.github.io/archives/music/data/' + music.source) {
+                togglePlay(music);
+                return;
+            }
+
+            currentMusic.src = './data/' + music.source;
+            currentMusic.load();
+            currentMusic.play();
+
+            updateStatus();
+        }
+
+        const togglePlay = (music) => {
             if (currentMusic != null) {
-                if (!isPaused || forcePause) {
+                if (!isPaused) {
                     currentMusic.pause();
-                    statusBox.firstChild.textContent = title + ' (paused)';
+                    statusBox.firstChild.textContent = music.title + ' (paused)';
                     statusBox.lastChild.textContent = ' resume';
                     isPaused = true;
                     return;
                 }
 
                 currentMusic.play();
-                statusBox.firstChild.textContent = title + ' (playing)';
+                statusBox.firstChild.textContent = music.title + ' (playing)';
                 statusBox.lastChild.textContent = ' pause';
                 isPaused = false;
             }
