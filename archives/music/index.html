@@ -173,7 +173,7 @@
                     const artist = split[0].replace('_', ' ');
                     const title = split[1].replace('_', ' ');
 
-                    return new Music(info + 'mp3', artist + ' - ' + title);
+                    return new Music(info + '.mp3', artist + ' - ' + title);
                 });
 
                 const playlist = new Playlist(musicList);
@@ -185,7 +185,7 @@
                 playlist.musicList.forEach(music => {
                     const musicDiv = document.createElement('div');
                     musicDiv.className = 'operation-btn';
-                    musicDiv.textContent = music.title + 'mp3';
+                    musicDiv.textContent = music.title + '.mp3';
                     musicDiv.addEventListener('click', () => {
                         playlist.play(music);
                     });
