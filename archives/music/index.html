@@ -80,6 +80,11 @@
             }
 
             play(music) {
+                if (music.isPaused()) {
+                    music.resume();
+                    return;
+                }
+
                 if (music.isPlaying()) {
                     music.pause();
                     return;
@@ -175,6 +180,7 @@
             createStatusElement() {
                 const status = document.createElement('span');
                 const utilBtn = document.createElement('div');
+                utilBtn.className = 'operation-btn';
 
                 utilBtn.addEventListener('click', () => {
                     if (this.isPaused()) {
