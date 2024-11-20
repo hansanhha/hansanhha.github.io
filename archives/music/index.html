@@ -7,8 +7,14 @@
     <style>
         #status-box {
             display: flex;
+            flex-direction: column;
             width: fit-content;
             margin-top: 10px;
+        }
+
+        .util-box {
+            display: flex;
+            margin-top: 3px;
         }
 
         #playlist-box {
@@ -43,22 +49,23 @@
             const audio = new Audio();
             audio.volume = 0.5;
             audio.loop = false;
-            audio.addEventListener('ended', () => {
-            });
             return audio;
         }
 
-        const currentMusic = createAudio();
+        const musicAudio = createAudio();
         let currentPlaylist;
-        let playIndex;
         const playlistSet = [];
         const statusBox = document.getElementById("status-box");
         const playlistBox = document.getElementById("playlist-box");
 
         class Playlist {
+            currentMusic;
+            loop;
+            startIndex;
+            playIndex;
+
             constructor(musicList) {
                 this.musicList = musicList;
-                this.startIndex = 0;
             }
 
             indexOf(music) {
@@ -70,15 +77,112 @@
                 return -1;
             }
 
+            updateHtmlToEndPlaylistStatus() {
+                statusBox.firstChild.textContent = 'end playlist';
+                statusBox.lastChild.textContent = '';
+            }
+
+            prevPlay() {
+                if (!this.loop && this.playIndex -1 < 0) {
+                    const prevMusic = this.musicList[0];
+                    prevMusic.play();
+                }
+
+                let prevMusic;
+
+                if (this.currentMusic.isLoop()) {
+                    prevMusic = this.currentMusic;
+                }
+                else if (this.loop && this.playIndex - 1 < 0) {
+                    prevMusic = this.musicList[this.playIndex = this.musicList.length - 1];
+                } else {
+                    prevMusic = this.musicList[--this.playIndex];
+                }
+
+                prevMusic.play();
+            }
+
             nextPlay() {
-                if (playIndex  === currentPlaylist.length - 1) {
-                    currentMusic.removeEventListener('ended', this.nextPlay);
+                if (!this.loop && this.playIndex  === this.musicList.length - 1) {
+                    musicAudio.removeEventListener('ended', this.nextPlay);
                     this.updateHtmlToEndPlaylistStatus();
                     return;
                 }
 
-                const nextMusic = currentPlaylist[++playIndex];
+                let nextMusic;
+
+                if (this.currentMusic.isLoop()) {
+                    nextMusic = this.currentMusic;
+                }
+                else if (this.loop && this.playIndex + 1 > this.musicList.length - 1) {
+                    nextMusic = this.musicList[this.playIndex = 0];
+                } else {
+                    nextMusic = this.musicList[++this.playIndex];
+                }
+
                 nextMusic.play();
+            }
+
+            createStatusElementIfNone() {
+                if (statusBox.hasChildNodes()) {
+                    return;
+                }
+
+                const status = document.createElement('span');
+                const utilBox = document.createElement('div');
+                const prevPlayBtn  = document.createElement('div');
+                const nextPlayBtn  = document.createElement('div');
+                const playControlBtn = document.createElement('div');
+                const loopPlayBtn = document.createElement('div');
+
+                status.style.borderBottom = '1px solid black';
+                utilBox.className = 'util-box';
+                prevPlayBtn.className = 'operation-btn';
+                nextPlayBtn.className = 'operation-btn';
+                playControlBtn.className = 'operation-btn';
+                loopPlayBtn.className = 'operation-btn';
+
+                prevPlayBtn.textContent = 'prev';
+                nextPlayBtn.textContent = 'next';
+                loopPlayBtn.textContent = 'loop';
+
+                prevPlayBtn.addEventListener('click', () => {
+                    this.prevPlay();
+                });
+
+                nextPlayBtn.addEventListener('click', () => {
+                    this.nextPlay();
+                });
+
+                playControlBtn.addEventListener('click', () => {
+                    if (this.currentMusic.isPaused()) {
+                        this.currentMusic.resume();
+                    } else if (this.currentMusic.isPlaying()) {
+                        this.currentMusic.pause();
+                    } else {
+                    }
+                });
+
+                loopPlayBtn.addEventListener('click', () => {
+                    if (!this.currentMusic.isLoop() && !this.loop) {
+                        this.currentMusic.loop();
+                        loopPlayBtn.textContent = 'loop(this)';
+                    } else if (musicAudio.isLoop() && !this.loop) {
+                        this.currentMusic.unLoop();
+                        this.loop = true;
+                        loopPlayBtn.textContent = 'loop(playlist)';
+                    } else {
+                        this.loop = false;
+                        loopPlayBtn.textContent = 'loop';
+                    }
+                });
+
+                statusBox.appendChild(status);
+                utilBox.appendChild(prevPlayBtn);
+                utilBox.appendChild(playControlBtn);
+                utilBox.appendChild(nextPlayBtn);
+                utilBox.appendChild(loopPlayBtn);
+                status.appendChild(utilBox);
             }
 
             play(music) {
@@ -93,32 +197,31 @@
                 }
 
                 this.startIndex = this.indexOf(music);
-                playIndex = 0;
 
-                if (this.startIndex !== -1) {
-                    const entirePlaylist = [];
-
-                    for (let i = this.startIndex; i < this.musicList.length; i++) {
-                        entirePlaylist.push(this.musicList[i]);
-                    }
-
-                    for (let i = 0; i < this.startIndex; i++) {
-                        entirePlaylist.push(this.musicList[i]);
-                    }
-
-                    currentPlaylist = entirePlaylist;
+                if (this.startIndex === -1) {
+                    return;
                 }
 
-                currentMusic.removeAttribute('src');
-                currentMusic.addEventListener('ended', this.nextPlay);
+                this.createStatusElementIfNone();
 
-                music.play();
-            }
+                const entirePlaylist = [];
+                this.playIndex = 0;
 
+                for (let i = this.startIndex; i < this.musicList.length; i++) {
+                    entirePlaylist.push(this.musicList[i]);
+                }
 
-            updateHtmlToEndPlaylistStatus() {
-                statusBox.firstChild.textContent = 'end playlist';
-                statusBox.lastChild.textContent = '';
+                for (let i = 0; i < this.startIndex; i++) {
+                    entirePlaylist.push(this.musicList[i]);
+                }
+
+                currentPlaylist = entirePlaylist;
+
+                musicAudio.removeAttribute('src');
+                musicAudio.addEventListener('ended', this.nextPlay);
+
+                this.currentMusic = music;
+                this.currentMusic.play();
             }
         }
 
@@ -127,14 +230,29 @@
                 this.source = source;
                 this.title = title;
                 this.paused = false;
+                this.loop = false;
             }
 
             isPlaying() {
-                return currentMusic.src === 'https://hansanhha.github.io/archives/music/data/' + this.source;
+                return musicAudio.src === 'https://hansanhha.github.io/archives/music/data/' + this.source;
             }
 
             isPaused() {
                 return this.paused;
+            }
+
+            isLoop() {
+                return this.loop;
+            }
+
+            loop() {
+                this.loop = true;
+                musicAudio.loop = true;
+            }
+
+            unLoop() {
+                this.loop = false;
+                musicAudio.loop = false;
             }
 
             play() {
@@ -148,9 +266,9 @@
                     return;
                 }
 
-                currentMusic.src = './data/' + this.source;
-                currentMusic.load();
-                currentMusic.play();
+                musicAudio.src = './data/' + this.source;
+                musicAudio.load();
+                musicAudio.play();
 
                 if (!statusBox.hasChildNodes()) {
                     this.createStatusElement();
@@ -161,7 +279,7 @@
 
             resume() {
                 if (this.isPlaying()) {
-                    currentMusic.play();
+                    musicAudio.play();
                     this.updateHtmlToPlayStatus();
                     this.paused = false;
                 }
@@ -169,7 +287,7 @@
 
             pause() {
                 if (this.isPlaying()) {
-                    currentMusic.pause();
+                    musicAudio.pause();
                     this.updateHtmlToPausedStatus();
                     this.paused = true;
                 }
@@ -193,8 +311,7 @@
                 utilBtn.addEventListener('click', () => {
                     if (this.isPaused()) {
                         this.resume();
-                    }
-                    else if (this.isPlaying()) {
+                    } else if (this.isPlaying()) {
                         this.pause();
                     } else {
                         this.play();
