@@ -86,42 +86,42 @@
             }
 
             prevPlay() {
-                if (!this.currentMusic.isLoop() && !this.loop && this.currentPlayIndex -1 < 0) {
-                    this.currentPlayIndex = 0;
-                    this.currentMusic.reset();
-                    this.currentMusic.play(true);
+                if (!currentPlaylist.currentMusic.isLoop() && !currentPlaylist.loop && currentPlaylist.currentPlayIndex -1 < 0) {
+                    currentPlaylist.currentPlayIndex = 0;
+                    currentPlaylist.currentMusic.reset();
+                    currentPlaylist.currentMusic.play(true);
                     return;
                 }
 
-                if (this.currentMusic.isLoop()) {
-                    this.currentMusic.reset();
-                } else if (this.loop && this.currentPlayIndex - 1 < 0) {
-                    this.currentMusic = this.orderedMusicList[this.currentPlayIndex = this.orderedMusicList.length - 1];
+                if (currentPlaylist.currentMusic.isLoop()) {
+                    currentPlaylist.currentMusic.reset();
+                } else if (currentPlaylist.loop && currentPlaylist.currentPlayIndex - 1 < 0) {
+                    currentPlaylist.currentMusic = currentPlaylist.orderedMusicList[currentPlaylist.currentPlayIndex = currentPlaylist.orderedMusicList.length - 1];
                 } else {
-                    this.currentMusic = this.orderedMusicList[--this.currentPlayIndex];
+                    currentPlaylist.currentMusic = currentPlaylist.orderedMusicList[--currentPlaylist.currentPlayIndex];
                 }
 
-                this.currentMusic.play();
+                currentPlaylist.currentMusic.play();
             }
 
             nextPlay() {
-                if (!this.loop && this.currentPlayIndex  === this.orderedMusicList.length - 1) {
+                if (!currentPlaylist.loop && currentPlaylist.currentPlayIndex  === currentPlaylist.orderedMusicList.length - 1) {
                     musicAudio.removeEventListener('ended', this.nextPlay);
-                    this.currentMusic.pause();
-                    this.currentMusic = null;
-                    this.updateHtmlToEndPlaylistStatus();
+                    currentPlaylist.currentMusic.pause();
+                    currentPlaylist.currentMusic = null;
+                    currentPlaylist.updateHtmlToEndPlaylistStatus();
                     return;
                 }
 
-                if (this.currentMusic.isLoop()) {
-                    this.currentMusic.reset();
-                } else if (this.loop && this.currentPlayIndex + 1 > this.orderedMusicList.length - 1) {
-                    this.currentMusic = this.orderedMusicList[this.currentPlayIndex = 0];
+                if (currentPlaylist.currentMusic.isLoop()) {
+                    currentPlaylist.currentMusic.reset();
+                } else if (currentPlaylist.loop && currentPlaylist.currentPlayIndex + 1 > currentPlaylist.orderedMusicList.length - 1) {
+                    currentPlaylist.currentMusic = currentPlaylist.orderedMusicList[currentPlaylist.currentPlayIndex = 0];
                 } else {
-                    this.currentMusic = this.orderedMusicList[++this.currentPlayIndex];
+                    currentPlaylist.currentMusic = currentPlaylist.orderedMusicList[++currentPlaylist.currentPlayIndex];
                 }
 
-                this.currentMusic.play();
+                currentPlaylist.currentMusic.play();
             }
 
             getOrderedPlaylist() {
