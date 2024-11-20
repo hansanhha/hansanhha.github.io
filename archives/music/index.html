@@ -18,8 +18,8 @@
 
         .util-box {
             display: flex;
-            margin-top: 3px;
-            gap: 3px;
+            margin-top: 10px;
+            gap: 6px;
         }
 
         #playlist-box {
@@ -89,7 +89,7 @@
             }
 
             prevPlay() {
-                if (!this.loop && this.playIndex -1 < 0) {
+                if (!this.currentMusic.isLoop() && !this.loop && this.playIndex -1 < 0) {
                     this.currentMusic= this.musicList[this.playIndex = 0];
                     this.currentMusic.play();
                     return;
