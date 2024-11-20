@@ -55,6 +55,7 @@
 
         const musicAudio = createAudio();
         let currentPlaylist;
+        let globalMusicPlayLoop;
         const playlistSet = [];
         const statusBox = document.getElementById("status-box");
         const playlistBox = document.getElementById("playlist-box");
@@ -141,6 +142,7 @@
             initPlaylistStatus() {
                 for (const music of this.musicList) {
                     music.unPause();
+                    music.unLoop();
                 }
             }
 
@@ -191,10 +193,12 @@
                     if (!this.currentMusic.isLoop() && !this.loop) {
                         this.currentMusic.toLoop();
                         loopPlayBtn.textContent = 'loop(this)';
+                        globalMusicPlayLoop = true;
                     } else if (this.currentMusic.isLoop() && !this.loop) {
                         this.currentMusic.unLoop();
                         this.loop = true;
                         loopPlayBtn.textContent = 'loop(playlist)';
+                        globalMusicPlayLoop = false;
                     } else {
                         this.loop = false;
                         loopPlayBtn.textContent = 'loop';
@@ -226,6 +230,10 @@
 
                 musicAudio.removeAttribute('src');
                 musicAudio.addEventListener('ended', this.nextPlay);
+
+                if (globalMusicPlayLoop) {
+                    this.currentMusic.toLoop();
+                }
 
                 this.currentMusic.play();
             }
