@@ -92,7 +92,7 @@
                 if (!this.currentMusic.isLoop() && !this.loop && this.playIndex -1 < 0) {
                     this.currentMusic= this.musicList[this.playIndex = 0];
                     this.currentMusic.reset();
-                    this.currentMusic.play();
+                    this.currentMusic.play(true);
                     return;
                 }
 
@@ -258,7 +258,12 @@
                 musicAudio.currentTime = 0;
             }
 
-            play() {
+            play(forcePlay) {
+                if (forcePlay) {
+                    musicAudio.play();
+                    return;
+                }
+
                 if  (this.isPaused()) {
                     this.resume();
                     return;
