@@ -287,12 +287,12 @@
 
             updateHtmlToPlayStatus() {
                 statusBox.firstChild.textContent = this.title + ' (playing) ';
-                statusBox.lastChild.textContent = ' pause';
+                statusBox.lastChild.childNodes[1].textContent = ' pause';
             }
 
             updateHtmlToPausedStatus() {
                 statusBox.firstChild.textContent = this.title + ' (paused) ';
-                statusBox.lastChild.textContent = ' resume';
+                statusBox.lastChild.childNodes[1].textContent = ' resume';
             }
         }
 
