@@ -59,7 +59,7 @@
         const playlistBox = document.getElementById("playlist-box");
 
         class Playlist {
-            musicList;
+            musicList = [];
             currentMusic;
             loop;
             startIndex;
@@ -89,18 +89,16 @@
                     prevMusic.play();
                 }
 
-                let prevMusic;
-
                 if (this.currentMusic.isLoop()) {
-                    prevMusic = this.currentMusic;
+                    this.currentMusic.reset();
                 }
                 else if (this.loop && this.playIndex - 1 < 0) {
-                    prevMusic = this.musicList[this.playIndex = this.musicList.length - 1];
+                    this.currentMusic = this.musicList[this.playIndex = this.musicList.length - 1];
                 } else {
-                    prevMusic = this.musicList[--this.playIndex];
+                    this.currentMusic = this.musicList[--this.playIndex];
                 }
 
-                prevMusic.play();
+                this.currentMusic.play();
             }
 
             nextPlay() {
@@ -110,21 +108,18 @@
                     return;
                 }
 
-                let nextMusic;
-
                 if (this.currentMusic.isLoop()) {
-                    nextMusic = this.currentMusic;
-                }
-                else if (this.loop && this.playIndex + 1 > this.musicList.length - 1) {
-                    nextMusic = this.musicList[this.playIndex = 0];
+                    this.currentMusic.reset();
+                } else if (this.loop && this.playIndex + 1 > this.musicList.length - 1) {
+                    this.currentMusic = this.musicList[this.playIndex = 0];
                 } else {
-                    nextMusic = this.musicList[++this.playIndex];
+                    this.currentMusic = this.musicList[++this.playIndex];
                 }
 
-                nextMusic.play();
+                this.currentMusic.play();
             }
 
-            createStatusElementIfNone() {
+            createStatusElementIfRequire() {
                 if (statusBox.hasChildNodes()) {
                     return;
                 }
@@ -143,9 +138,10 @@
                 playControlBtn.className = 'operation-btn';
                 loopPlayBtn.className = 'operation-btn';
 
-                prevPlayBtn.textContent = 'prev';
-                nextPlayBtn.textContent = 'next';
-                loopPlayBtn.textContent = 'loop';
+                prevPlayBtn.textContent = 'prev ';
+                nextPlayBtn.textContent = 'next ';
+                playControlBtn.className = 'pause ';
+                loopPlayBtn.textContent = 'loop ';
 
                 prevPlayBtn.addEventListener('click', () => {
                     this.prevPlay();
@@ -183,7 +179,7 @@
                 utilBox.appendChild(playControlBtn);
                 utilBox.appendChild(nextPlayBtn);
                 utilBox.appendChild(loopPlayBtn);
-                status.appendChild(utilBox);
+                statusBox.appendChild(utilBox);
             }
 
             play(music) {
@@ -193,7 +189,7 @@
                     return;
                 }
 
-                this.createStatusElementIfNone();
+                this.createStatusElementIfRequire();
 
                 const entirePlaylist = [];
                 this.playIndex = 0;
@@ -249,6 +245,10 @@
             unLoop() {
                 this.loop = false;
                 musicAudio.loop = false;
+            }
+
+            reset() {
+                musicAudio.currentTime = 0;
             }
 
             play() {
