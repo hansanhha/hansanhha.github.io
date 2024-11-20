@@ -90,7 +90,7 @@
 
             prevPlay() {
                 if (!this.loop && this.playIndex -1 < 0) {
-                    this.currentMusic= this.musicList[0];
+                    this.currentMusic= this.musicList[this.playIndex = 0];
                     this.currentMusic.play();
                     return;
                 }
@@ -109,6 +109,7 @@
             nextPlay() {
                 if (!this.loop && this.playIndex  === this.musicList.length - 1) {
                     musicAudio.removeEventListener('ended', this.nextPlay);
+                    this.currentMusic.pause();
                     this.updateHtmlToEndPlaylistStatus();
                     return;
                 }
