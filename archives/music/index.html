@@ -124,7 +124,7 @@
                 this.currentMusic.play();
             }
 
-            getOrderedPlaylist(index) {
+            getOrderedPlaylist() {
                 const entirePlaylist = [];
 
                 for (let i = this.startIndex; i < this.musicList.length; i++) {
@@ -138,8 +138,8 @@
                 return entirePlaylist;
             }
 
-            cancelPauseStatus() {
-                for (const music in this.musicList) {
+            initPlaylistStatus() {
+                for (const music of this.musicList) {
                     music.unPause();
                 }
             }
@@ -217,9 +217,9 @@
                 }
 
                 this.createStatusElementIfRequire();
-                this.cancelPauseStatus();
+                this.initPlaylistStatus();
 
-                this.orderedMusicList = this.getOrderedPlaylist(this.startIndex);
+                this.orderedMusicList = this.getOrderedPlaylist();
                 this.currentPlayIndex = 0;
                 this.currentMusic = music;
                 currentPlaylist = this;
