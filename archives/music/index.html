@@ -132,10 +132,7 @@
                     return;
                 }
 
-                if (statusBox.hasChildNodes() && statusBox.childNodes.length === 2) {
-                    statusBox.removeChild(statusBox.firstChild);
-                    statusBox.removeChild(statusBox.lastChild);
-                }
+                statusBox.replaceChildren();
 
                 const status = document.createElement('span');
                 const utilBox = document.createElement('div');
