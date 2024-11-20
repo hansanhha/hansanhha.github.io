@@ -13,12 +13,12 @@
             justify-items: center;
             align-content: center;
             align-items: center;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         .util-box {
             display: flex;
-            margin-top: 10px;
+            margin-top: 3px;
             gap: 6px;
         }
 
@@ -91,6 +91,7 @@
             prevPlay() {
                 if (!this.currentMusic.isLoop() && !this.loop && this.playIndex -1 < 0) {
                     this.currentMusic= this.musicList[this.playIndex = 0];
+                    this.currentMusic.reset();
                     this.currentMusic.play();
                     return;
                 }
@@ -146,7 +147,7 @@
 
                 prevPlayBtn.textContent = ' prev ';
                 nextPlayBtn.textContent = ' next ';
-                playControlBtn.className = ' pause ';
+                playControlBtn.textContent = ' pause ';
                 loopPlayBtn.textContent = ' loop ';
 
                 prevPlayBtn.addEventListener('click', () => {
