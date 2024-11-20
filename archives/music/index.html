@@ -65,7 +65,7 @@
             currentMusic = null;
             loop;
             startIndex;
-            playIndex;
+            currentPlayIndex;
 
             constructor(musicList) {
                 this.musicList = musicList;
@@ -86,8 +86,8 @@
             }
 
             prevPlay() {
-                if (!this.currentMusic.isLoop() && !this.loop && this.playIndex -1 < 0) {
-                    this.playIndex = 0;
+                if (!this.currentMusic.isLoop() && !this.loop && this.currentPlayIndex -1 < 0) {
+                    this.currentPlayIndex = 0;
                     this.currentMusic.reset();
                     this.currentMusic.play(true);
                     return;
@@ -95,17 +95,17 @@
 
                 if (this.currentMusic.isLoop()) {
                     this.currentMusic.reset();
-                } else if (this.loop && this.playIndex - 1 < 0) {
-                    this.currentMusic = this.orderedMusicList[this.playIndex = this.orderedMusicList.length - 1];
+                } else if (this.loop && this.currentPlayIndex - 1 < 0) {
+                    this.currentMusic = this.orderedMusicList[this.currentPlayIndex = this.orderedMusicList.length - 1];
                 } else {
-                    this.currentMusic = this.orderedMusicList[--this.playIndex];
+                    this.currentMusic = this.orderedMusicList[--this.currentPlayIndex];
                 }
 
                 this.currentMusic.play();
             }
 
             nextPlay() {
-                if (!this.loop && this.playIndex  === this.musicList.length - 1) {
+                if (!this.loop && this.currentPlayIndex  === this.orderedMusicList.length - 1) {
                     musicAudio.removeEventListener('ended', this.nextPlay);
                     this.currentMusic.pause();
                     this.currentMusic = null;
@@ -115,13 +115,27 @@
 
                 if (this.currentMusic.isLoop()) {
                     this.currentMusic.reset();
-                } else if (this.loop && this.playIndex + 1 > this.musicList.length - 1) {
-                    this.currentMusic = this.orderedMusicList[this.playIndex = 0];
+                } else if (this.loop && this.currentPlayIndex + 1 > this.orderedMusicList.length - 1) {
+                    this.currentMusic = this.orderedMusicList[this.currentPlayIndex = 0];
                 } else {
-                    this.currentMusic = this.orderedMusicList[++this.playIndex];
+                    this.currentMusic = this.orderedMusicList[++this.currentPlayIndex];
                 }
 
                 this.currentMusic.play();
+            }
+
+            getOrderedPlaylist(index) {
+                const entirePlaylist = [];
+
+                for (let i = this.startIndex; i < this.musicList.length; i++) {
+                    entirePlaylist.push(this.musicList[i]);
+                }
+
+                for (let i = 0; i < this.startIndex; i++) {
+                    entirePlaylist.push(this.musicList[i]);
+                }
+
+                return entirePlaylist;
             }
 
             createStatusElementIfRequire() {
@@ -198,25 +212,14 @@
 
                 this.createStatusElementIfRequire();
 
-                const entirePlaylist = [];
-
-                for (let i = this.startIndex; i < this.musicList.length; i++) {
-                    entirePlaylist.push(this.musicList[i]);
-                }
-
-                for (let i = 0; i < this.startIndex; i++) {
-                    entirePlaylist.push(this.musicList[i]);
-                }
-
-                this.orderedMusicList = [];
-                this.playIndex = 0;
+                this.orderedMusicList = this.getOrderedPlaylist(this.startIndex);
+                this.currentPlayIndex = 0;
+                this.currentMusic = music;
                 currentPlaylist = this;
-                this.orderedMusicList = entirePlaylist;
 
                 musicAudio.removeAttribute('src');
                 musicAudio.addEventListener('ended', this.nextPlay);
 
-                this.currentMusic = music;
                 this.currentMusic.play();
             }
         }
