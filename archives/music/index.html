@@ -9,10 +9,6 @@
             display: flex;
             flex-direction: column;
             width: fit-content;
-            justify-content: center;
-            justify-items: center;
-            align-content: center;
-            align-items: center;
             margin-top: 15px;
         }
 
@@ -109,7 +105,7 @@
             }
 
             nextPlay() {
-                if (!this.loop && this.playIndex  === this.orderedMusicList.length - 1) {
+                if (!this.loop && this.playIndex  === this.musicList.length - 1) {
                     musicAudio.removeEventListener('ended', this.nextPlay);
                     this.currentMusic.pause();
                     this.currentMusic = null;
