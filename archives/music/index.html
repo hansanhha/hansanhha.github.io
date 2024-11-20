@@ -9,12 +9,15 @@
             display: flex;
             flex-direction: column;
             width: fit-content;
+            justify-content: center;
+            align-content: center;
             margin-top: 10px;
         }
 
         .util-box {
             display: flex;
             margin-top: 3px;
+            gap: 3px;
         }
 
         #playlist-box {
@@ -138,10 +141,10 @@
                 playControlBtn.className = 'operation-btn';
                 loopPlayBtn.className = 'operation-btn';
 
-                prevPlayBtn.textContent = 'prev ';
-                nextPlayBtn.textContent = 'next ';
-                playControlBtn.className = 'pause ';
-                loopPlayBtn.textContent = 'loop ';
+                prevPlayBtn.textContent = ' prev ';
+                nextPlayBtn.textContent = ' next ';
+                playControlBtn.className = ' pause ';
+                loopPlayBtn.textContent = ' loop ';
 
                 prevPlayBtn.addEventListener('click', () => {
                     this.prevPlay();
@@ -164,7 +167,7 @@
                     if (!this.currentMusic.isLoop() && !this.loop) {
                         this.currentMusic.toLoop();
                         loopPlayBtn.textContent = 'loop(this)';
-                    } else if (musicAudio.isLoop() && !this.loop) {
+                    } else if (this.currentMusic.isLoop() && !this.loop) {
                         this.currentMusic.unLoop();
                         this.loop = true;
                         loopPlayBtn.textContent = 'loop(playlist)';
