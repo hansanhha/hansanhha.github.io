@@ -65,6 +65,7 @@
 
         class Playlist {
             musicList = [];
+            orderedMusicList = [];
             currentMusic = null;
             loop;
             startIndex;
@@ -90,7 +91,7 @@
 
             prevPlay() {
                 if (!this.currentMusic.isLoop() && !this.loop && this.playIndex -1 < 0) {
-                    this.currentMusic= this.musicList[this.playIndex = 0];
+                    this.playIndex = 0;
                     this.currentMusic.reset();
                     this.currentMusic.play(true);
                     return;
@@ -99,16 +100,16 @@
                 if (this.currentMusic.isLoop()) {
                     this.currentMusic.reset();
                 } else if (this.loop && this.playIndex - 1 < 0) {
-                    this.currentMusic = this.musicList[this.playIndex = this.musicList.length - 1];
+                    this.currentMusic = this.orderedMusicList[this.playIndex = this.orderedMusicList.length - 1];
                 } else {
-                    this.currentMusic = this.musicList[--this.playIndex];
+                    this.currentMusic = this.orderedMusicList[--this.playIndex];
                 }
 
                 this.currentMusic.play();
             }
 
             nextPlay() {
-                if (!this.loop && this.playIndex  === this.musicList.length - 1) {
+                if (!this.loop && this.playIndex  === this.orderedMusicList.length - 1) {
                     musicAudio.removeEventListener('ended', this.nextPlay);
                     this.currentMusic.pause();
                     this.currentMusic = null;
@@ -119,9 +120,9 @@
                 if (this.currentMusic.isLoop()) {
                     this.currentMusic.reset();
                 } else if (this.loop && this.playIndex + 1 > this.musicList.length - 1) {
-                    this.currentMusic = this.musicList[this.playIndex = 0];
+                    this.currentMusic = this.orderedMusicList[this.playIndex = 0];
                 } else {
-                    this.currentMusic = this.musicList[++this.playIndex];
+                    this.currentMusic = this.orderedMusicList[++this.playIndex];
                 }
 
                 this.currentMusic.play();
@@ -202,7 +203,6 @@
                 this.createStatusElementIfRequire();
 
                 const entirePlaylist = [];
-                this.playIndex = 0;
 
                 for (let i = this.startIndex; i < this.musicList.length; i++) {
                     entirePlaylist.push(this.musicList[i]);
@@ -212,7 +212,10 @@
                     entirePlaylist.push(this.musicList[i]);
                 }
 
-                currentPlaylist = entirePlaylist;
+                this.orderedMusicList = [];
+                this.playIndex = 0;
+                currentPlaylist = this;
+                this.orderedMusicList = entirePlaylist;
 
                 musicAudio.removeAttribute('src');
                 musicAudio.addEventListener('ended', this.nextPlay);
