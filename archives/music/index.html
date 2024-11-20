@@ -138,6 +138,12 @@
                 return entirePlaylist;
             }
 
+            cancelPauseStatus() {
+                for (const music in this.musicList) {
+                    music.unPause();
+                }
+            }
+
             createStatusElementIfRequire() {
                 if (this.currentMusic !== null) {
                     return;
@@ -211,6 +217,7 @@
                 }
 
                 this.createStatusElementIfRequire();
+                this.cancelPauseStatus();
 
                 this.orderedMusicList = this.getOrderedPlaylist(this.startIndex);
                 this.currentPlayIndex = 0;
@@ -300,6 +307,10 @@
                     this.updateHtmlToPausedStatus();
                     this.paused = true;
                 }
+            }
+
+            unPause() {
+                this.paused = false;
             }
 
             updateHtmlToPlayStatus() {
