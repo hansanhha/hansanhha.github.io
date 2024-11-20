@@ -111,6 +111,7 @@
                 if (!this.loop && this.playIndex  === this.musicList.length - 1) {
                     musicAudio.removeEventListener('ended', this.nextPlay);
                     this.currentMusic.pause();
+                    this.currentMusic = null;
                     this.updateHtmlToEndPlaylistStatus();
                     return;
                 }
@@ -127,8 +128,13 @@
             }
 
             createStatusElementIfRequire() {
-                if (statusBox.hasChildNodes()) {
+                if (this.currentMusic !== null) {
                     return;
+                }
+
+                if (statusBox.hasChildNodes() && statusBox.childNodes.length === 2) {
+                    statusBox.removeChild(statusBox.firstChild);
+                    statusBox.removeChild(statusBox.lastChild);
                 }
 
                 const status = document.createElement('span');
