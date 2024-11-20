@@ -59,6 +59,7 @@
         const playlistBox = document.getElementById("playlist-box");
 
         class Playlist {
+            musicList;
             currentMusic;
             loop;
             startIndex;
@@ -165,7 +166,7 @@
 
                 loopPlayBtn.addEventListener('click', () => {
                     if (!this.currentMusic.isLoop() && !this.loop) {
-                        this.currentMusic.loop();
+                        this.currentMusic.toLoop();
                         loopPlayBtn.textContent = 'loop(this)';
                     } else if (musicAudio.isLoop() && !this.loop) {
                         this.currentMusic.unLoop();
@@ -186,16 +187,6 @@
             }
 
             play(music) {
-                if (music.isPaused()) {
-                    music.resume();
-                    return;
-                }
-
-                if (music.isPlaying()) {
-                    music.pause();
-                    return;
-                }
-
                 this.startIndex = this.indexOf(music);
 
                 if (this.startIndex === -1) {
@@ -226,6 +217,11 @@
         }
 
         class Music {
+            source;
+            title;
+            paused;
+            loop;
+
             constructor(source, title) {
                 this.source = source;
                 this.title = title;
@@ -245,7 +241,7 @@
                 return this.loop;
             }
 
-            loop() {
+            toLoop() {
                 this.loop = true;
                 musicAudio.loop = true;
             }
@@ -261,7 +257,7 @@
                     return;
                 }
 
-                if (this.isPlaying()) {
+                if (!this.isLoop() && this.isPlaying()) {
                     this.pause();
                     return;
                 }
@@ -269,10 +265,6 @@
                 musicAudio.src = './data/' + this.source;
                 musicAudio.load();
                 musicAudio.play();
-
-                if (!statusBox.hasChildNodes()) {
-                    this.createStatusElement();
-                }
 
                 this.updateHtmlToPlayStatus();
             }
@@ -301,25 +293,6 @@
             updateHtmlToPausedStatus() {
                 statusBox.firstChild.textContent = this.title + ' (paused) ';
                 statusBox.lastChild.textContent = ' resume';
-            }
-
-            createStatusElement() {
-                const status = document.createElement('span');
-                const utilBtn = document.createElement('div');
-                utilBtn.className = 'operation-btn';
-
-                utilBtn.addEventListener('click', () => {
-                    if (this.isPaused()) {
-                        this.resume();
-                    } else if (this.isPlaying()) {
-                        this.pause();
-                    } else {
-                        this.play();
-                    }
-                });
-
-                statusBox.appendChild(status);
-                statusBox.appendChild(utilBtn);
             }
         }
 
