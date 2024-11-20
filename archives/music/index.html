@@ -10,7 +10,9 @@
             flex-direction: column;
             width: fit-content;
             justify-content: center;
+            justify-items: center;
             align-content: center;
+            align-items: center;
             margin-top: 10px;
         }
 
@@ -88,14 +90,14 @@
 
             prevPlay() {
                 if (!this.loop && this.playIndex -1 < 0) {
-                    const prevMusic = this.musicList[0];
-                    prevMusic.play();
+                    this.currentMusic= this.musicList[0];
+                    this.currentMusic.play();
+                    return;
                 }
 
                 if (this.currentMusic.isLoop()) {
                     this.currentMusic.reset();
-                }
-                else if (this.loop && this.playIndex - 1 < 0) {
+                } else if (this.loop && this.playIndex - 1 < 0) {
                     this.currentMusic = this.musicList[this.playIndex = this.musicList.length - 1];
                 } else {
                     this.currentMusic = this.musicList[--this.playIndex];
@@ -289,12 +291,12 @@
             }
 
             updateHtmlToPlayStatus() {
-                statusBox.firstChild.textContent = this.title + ' (playing) ';
+                statusBox.firstChild.textContent = this.title + '(playing)';
                 statusBox.lastChild.childNodes[1].textContent = ' pause';
             }
 
             updateHtmlToPausedStatus() {
-                statusBox.firstChild.textContent = this.title + ' (paused) ';
+                statusBox.firstChild.textContent = this.title + '(paused)';
                 statusBox.lastChild.childNodes[1].textContent = ' resume';
             }
         }
