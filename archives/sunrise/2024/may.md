@@ -3,7 +3,7 @@ layout: default
 title: 
 ---
 
-[prev](./april) 01/05/2024 [next](./june)
+[prev](./april) [next](./june)
 
 Yongmasan
 

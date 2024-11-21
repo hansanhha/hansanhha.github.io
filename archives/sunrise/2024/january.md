@@ -3,7 +3,7 @@ layout: default
 title: 
 ---
 
-01/01/2024 [next](./march)
+[next](./march)
 
 Seoul Mongchontoseong Earthen Fortification
 

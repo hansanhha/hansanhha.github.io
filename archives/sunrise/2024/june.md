@@ -3,7 +3,7 @@ layout: default
 title: 
 ---
 
-[prev](./may) 01/06/2024 [next](./july)
+[prev](./may) [next](./july)
 
 Nodeul Island
 

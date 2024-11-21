@@ -3,7 +3,7 @@ layout: default
 title: 
 ---
 
-[prev](./june) 01/07/2024 [next](./november)
+[prev](./june) [next](./november)
 
 Boramae Park
 

@@ -3,7 +3,7 @@ layout: default
 title: 
 ---
 
-[prev](./march) 01/04/2024 [next](./may)
+[prev](./march) [next](./may)
 
 Guksabong Peak
 

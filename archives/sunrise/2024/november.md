@@ -3,7 +3,7 @@ layout: default
 title: 
 ---
 
-[prev](./july) 01/11/2024
+[prev](./july)
 
 Han River-Seonyudo Park
 
