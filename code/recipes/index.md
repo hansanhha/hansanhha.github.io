@@ -3,6 +3,6 @@ layout: default
 title: 
 ---
 
-[java](./java/index.md)
+[java](./java)
 
-[spring framework](./spring/index.md)
+[spring framework](./spring)

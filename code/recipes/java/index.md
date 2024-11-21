@@ -3,4 +3,4 @@ layout: default
 title:
 ---
 
-[hello world](./hello world.md)
+[hello world](./hello world)

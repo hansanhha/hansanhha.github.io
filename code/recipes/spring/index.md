@@ -4,4 +4,4 @@ title:
 ---
 
 
-[spring data jpa](./spring-data-jpa/index.md)
+[spring data jpa](./spring-data-jpa)

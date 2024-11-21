@@ -3,10 +3,10 @@ layout: default
 title: hansanhha
 ---
 
-[code](./code/index.md)
+[code](./code)
 
-[records](./records/index.md)
+[records](./records)
 
-[archives](./archives/index.md)
+[archives](./archives)
 
 <img src="./images/after%20hours.jpg" alt="after hours"/>

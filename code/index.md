@@ -3,11 +3,11 @@ layout: default
 title:
 ---
 
-[**projects**](./projects/index.md)
+[**projects**](./projects)
 
 
-[**recipes**](./recipes/index.md)
+[**recipes**](./recipes)
 
-[java](./recipes/java/index.md)
+[java](./recipes/java)
 
-[spring framework](./recipes/spring/index.md)
+[spring framework](./recipes/spring)
