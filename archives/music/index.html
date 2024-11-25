@@ -71,10 +71,12 @@
 
                 if (currentPlaylist !== undefined && currentPlaylist.isPlaying()) {
                     currentPlaylist.turnOff();
+                    this.restoreEmphasizingCurrentPlaylist();
                 }
 
                 currentPlaylist = playlist;
                 currentPlaylist.play();
+                this.emphasizeCurrentPlaylist();
             }
 
             static findPlaylist(genre) {
@@ -84,6 +86,16 @@
                 }
 
                 return null;
+            }
+
+            static emphasizeCurrentPlaylist() {
+                const currentPlaylistElement = document.getElementById(currentPlaylist.genre + '-element');
+                currentPlaylistElement.style.fontWeight = 400;
+            }
+
+            static restoreEmphasizingCurrentPlaylist() {
+                const currentPlaylistElement = document.getElementById(currentPlaylist.genre + '-element');
+                currentPlaylistElement.style.fontWeight = 700;
             }
 
         }
@@ -173,7 +185,7 @@
                 return entirePlaylist;
             }
 
-            initPlaylistStatus() {
+            initMusicListStatus() {
                 for (const music of this.musicList) {
                     music.unPause();
                     music.unLoop();
@@ -248,7 +260,7 @@
 
             play(shuffle) {
                 this.createStatusElementIfRequire();
-                this.initPlaylistStatus();
+                this.initMusicListStatus();
 
                 this.orderedMusicList = this.getOrderedPlaylist(shuffle);
                 this.currentPlayIndex = 0;
@@ -381,6 +393,7 @@
             const createGenreElement = (genre) => {
                 const genreDiv = document.createElement('div');
                 genreDiv.textContent = genre;
+                genreDiv.id = genre + '-element';
                 genreDiv.className = 'operation-btn';
                 genreDiv.addEventListener('click', () => PlaylistController.startPlaylist(genre));
                 playlistBox.appendChild(genreDiv);
