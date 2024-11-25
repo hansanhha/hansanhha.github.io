@@ -283,7 +283,7 @@
                 }
             }
 
-            set setHtmlElement(genreElement) {
+            set htmlElement(genreElement) {
                 this.htmlElement = genreElement;
             }
 
@@ -421,10 +421,8 @@
                 });
 
                 const playlist = new Playlist(genre, musicList);
-                const genreElement = createGenreElement(genre);
-                playlist.setHtmlElement(genreElement);
+                playlist.htmlElement = createGenreElement(genre);
                 playlistSet.push(playlist);
-
 
             }
 
