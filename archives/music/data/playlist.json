@@ -1,15 +1,9 @@
 {
-  "playlist": {
-
-    "chill": {
-      "genre": "chill",
-      "list": [
-        "emotional_oranges-sundays",
-        "lauv-reforget",
-        "local_natives-april",
-        "the_weeknd-after_hours",
-        "lily_massie-i_found_love"
-      ]
-    }
-  }
+  "chill": [
+    "emotional_oranges-sundays",
+    "lauv-reforget",
+    "local_natives-april",
+    "the_weeknd-after_hours",
+    "lily_massie-i_found_love"
+  ]
 }

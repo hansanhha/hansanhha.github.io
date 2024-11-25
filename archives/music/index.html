@@ -374,7 +374,14 @@
 
         const init = async () => {
 
-            const createPlaylist = (genre, musicListInfo) => {
+            const createGenreElement = (genre) => {
+                const genreDiv = document.createElement("div");
+                genreDiv.textContent = genre;
+                genreDiv.addEventListener('click', () => Controller.startPlaylist(genre));
+                playlistBox.appendChild(genreDiv);
+            }
+
+            const createPlaylistAndGenreElement = (genre, musicListInfo) => {
                 const musicList = musicListInfo.map(info => {
                     const split = info.split('-');
                     const artist = split[0].replace('_', ' ');
@@ -385,24 +392,15 @@
 
                 const playlist = new Playlist(genre, musicList);
                 playlistSet.push(playlist);
-            }
 
-            const createGenreElement = (genre) => {
-                const genreDiv = document.createElement("div");
-                genreDiv.textContent = genre;
-                genreDiv.addEventListener('click', () => Controller.startPlaylist(genre));
-                playlistBox.appendChild(genreDiv);
+                createGenreElement(genre);
             }
 
             const playlistSetup = async () => {
                 await fetch("https://hansanhha.github.io/archives/music/data/playlist.json")
                     .then(response => response.json())
                     .then(data => {
-                        const playlistInfos = data.playlist;
-                        for (const playlist of playlistInfos) {
-                            createPlaylist(playlist.genre, playlist.list);
-                            createGenreElement(playlist.genre);
-                        }
+                        createPlaylistAndGenreElement("chill", data.chill);
                     });
             }
 
