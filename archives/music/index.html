@@ -53,7 +53,7 @@
         }
 
         const musicAudio = createAudio();
-        let currentPlaylist;
+        let currentPlaylist = undefined;
         let globalMusicPlayLoop;
         const playlistSet = [];
         const statusBox = document.getElementById("status-box");
@@ -68,7 +68,7 @@
                     return;
                 }
 
-                if (currentPlaylist !== null && currentPlaylist.isPlaying()) {
+                if (currentPlaylist !== undefined && currentPlaylist.isPlaying()) {
                     currentPlaylist.turnOff();
                 }
 
@@ -375,8 +375,9 @@
         const init = async () => {
 
             const createGenreElement = (genre) => {
-                const genreDiv = document.createElement("div");
+                const genreDiv = document.createElement('div');
                 genreDiv.textContent = genre;
+                genreDiv.className = 'operation-btn';
                 genreDiv.addEventListener('click', () => Controller.startPlaylist(genre));
                 playlistBox.appendChild(genreDiv);
             }
