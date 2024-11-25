@@ -7,6 +7,7 @@
     <style>
         #status-box {
             display: flex;
+            flex-direction: column;
             width: fit-content;
             margin-top: 15px;
         }
@@ -59,7 +60,7 @@
         const statusBox = document.getElementById("status-box");
         const playlistBox = document.getElementById("playlist-box");
 
-        class Controller {
+        class PlaylistController {
 
             static startPlaylist(genre) {
                 const playlist = this.findPlaylist(genre);
@@ -216,9 +217,8 @@
                 playControlBtn.addEventListener('click', () => {
                     if (this.currentMusic.isPaused()) {
                         this.currentMusic.resume();
-                    } else if (this.currentMusic.isPlaying()) {
-                        this.currentMusic.pause();
                     } else {
+                        this.currentMusic.pause();
                     }
                 });
 
@@ -378,7 +378,7 @@
                 const genreDiv = document.createElement('div');
                 genreDiv.textContent = genre;
                 genreDiv.className = 'operation-btn';
-                genreDiv.addEventListener('click', () => Controller.startPlaylist(genre));
+                genreDiv.addEventListener('click', () => PlaylistController.startPlaylist(genre));
                 playlistBox.appendChild(genreDiv);
             }
 
