@@ -114,7 +114,7 @@
             }
 
             isPlaying() {
-                return this.currentMusic.isPlaying();
+                return this.currentMusic !== null && this.currentMusic.isPlaying();
             }
 
             prevPlay() {
@@ -157,17 +157,12 @@
             }
 
             getOrderedPlaylist(shuffle) {
-                const entirePlaylist = [];
+                const entirePlaylist = [...this.musicList];
 
                 if (shuffle) {
-                    this.startIndex = Math.random() * this.musicList.length;
-                    for (let i = this.startIndex; i < this.musicList.length; i++) {
-                        entirePlaylist.push(this.musicList[i]);
-                    }
-                } else {
-                    this.startIndex = 0;
-                    for (const music of this.musicList) {
-                        entirePlaylist.push(music);
+                    for (let i = entirePlaylist.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [entirePlaylist[i], entirePlaylist[j]] = [entirePlaylist[j], entirePlaylist[i]];
                     }
                 }
 
@@ -243,7 +238,8 @@
                 });
 
                 shuffleBtn.addEventListener('click', () => {
-                    this.musicList = this.getOrderedPlaylist(true);
+                    this.currentPlayIndex = 0;
+                    this.orderedMusicList = this.getOrderedPlaylist(true);
                 })
 
                 statusBox.appendChild(status);
