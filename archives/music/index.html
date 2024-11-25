@@ -71,12 +71,10 @@
 
                 if (currentPlaylist !== undefined && currentPlaylist.isPlaying()) {
                     currentPlaylist.turnOff();
-                    this.restoreEmphasizingCurrentPlaylist();
                 }
 
                 currentPlaylist = playlist;
                 currentPlaylist.play();
-                this.emphasizeCurrentPlaylist();
             }
 
             static findPlaylist(genre) {
@@ -86,16 +84,6 @@
                 }
 
                 return null;
-            }
-
-            static emphasizeCurrentPlaylist() {
-                const currentPlaylistElement = document.getElementById(currentPlaylist.genre + '-element');
-                currentPlaylistElement.style.fontWeight = 400;
-            }
-
-            static restoreEmphasizingCurrentPlaylist() {
-                const currentPlaylistElement = document.getElementById(currentPlaylist.genre + '-element');
-                currentPlaylistElement.style.fontWeight = 700;
             }
 
         }
@@ -108,6 +96,7 @@
             loop;
             startIndex;
             currentPlayIndex;
+            htmlElement = null;
 
             constructor(genre, musicList) {
                 this.musicList = musicList;
@@ -205,6 +194,7 @@
                 const nextPlayBtn  = document.createElement('div');
                 const playControlBtn = document.createElement('div');
                 const loopPlayBtn = document.createElement('div');
+                const shuffleBtn = document.createElement('div');
 
                 status.style.borderBottom = '1px solid black';
                 utilBox.className = 'util-box';
@@ -212,11 +202,13 @@
                 nextPlayBtn.className = 'operation-btn';
                 playControlBtn.className = 'operation-btn';
                 loopPlayBtn.className = 'operation-btn';
+                shuffleBtn.className = 'operation-btn';
 
                 prevPlayBtn.textContent = ' prev ';
                 nextPlayBtn.textContent = ' next ';
                 playControlBtn.textContent = ' pause ';
                 loopPlayBtn.textContent = ' loop ';
+                shuffleBtn.textContent = ' shuffle ';
 
                 prevPlayBtn.addEventListener('click', () => {
                     this.prevPlay();
@@ -250,19 +242,24 @@
                     }
                 });
 
+                shuffleBtn.addEventListener('click', () => {
+                    this.musicList = this.getOrderedPlaylist(true);
+                })
+
                 statusBox.appendChild(status);
                 utilBox.appendChild(prevPlayBtn);
                 utilBox.appendChild(playControlBtn);
                 utilBox.appendChild(nextPlayBtn);
                 utilBox.appendChild(loopPlayBtn);
+                utilBox.appendChild(shuffleBtn);
                 statusBox.appendChild(utilBox);
             }
 
-            play(shuffle) {
+            play() {
                 this.createStatusElementIfRequire();
                 this.initMusicListStatus();
 
-                this.orderedMusicList = this.getOrderedPlaylist(shuffle);
+                this.orderedMusicList = this.getOrderedPlaylist();
                 this.currentPlayIndex = 0;
                 this.currentMusic = this.orderedMusicList[this.currentPlayIndex];
                 currentPlaylist = this;
@@ -275,14 +272,29 @@
                 }
 
                 this.currentMusic.play();
+                this.emphasizeHtmlElement();
             }
 
             turnOff() {
                 if (this.currentMusic !== null) {
                     this.currentMusic.turnOff();
                     this.updateHtmlToTurnOffPlaylistStatus();
+                    this.cancelEmphasizingHtmlElement();
                 }
             }
+
+            set setHtmlElement(genreElement) {
+                this.htmlElement = genreElement;
+            }
+
+            emphasizeHtmlElement() {
+                this.htmlElement.style.fontWeight = '700';
+            }
+
+            cancelEmphasizingHtmlElement() {
+                this.htmlElement.style.fontWeight = '400';
+            }
+
         }
 
         class Music {
@@ -393,10 +405,10 @@
             const createGenreElement = (genre) => {
                 const genreDiv = document.createElement('div');
                 genreDiv.textContent = genre;
-                genreDiv.id = genre + '-element';
                 genreDiv.className = 'operation-btn';
                 genreDiv.addEventListener('click', () => PlaylistController.startPlaylist(genre));
                 playlistBox.appendChild(genreDiv);
+                return genreDiv;
             }
 
             const createPlaylistAndGenreElement = (genre, musicListInfo) => {
@@ -409,9 +421,11 @@
                 });
 
                 const playlist = new Playlist(genre, musicList);
+                const genreElement = createGenreElement(genre);
+                playlist.setHtmlElement(genreElement);
                 playlistSet.push(playlist);
 
-                createGenreElement(genre);
+
             }
 
             const playlistSetup = async () => {
