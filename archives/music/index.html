@@ -287,7 +287,11 @@
             }
 
             isPlaying() {
-                return musicAudio.src === 'https://hansanhha.github.io/archives/music/data/' + this.source && !this.isPaused();
+                return this.isCurrentMusic() && !this.isPaused();
+            }
+
+            isCurrentMusic() {
+                return musicAudio.src === 'https://hansanhha.github.io/archives/music/data/' + this.source;
             }
 
             isPaused() {
@@ -336,7 +340,7 @@
             }
 
             resume() {
-                if (this.isPlaying()) {
+                if (!this.isPlaying()) {
                     musicAudio.play();
                     this.updateHtmlToPlayStatus();
                     this.paused = false;
