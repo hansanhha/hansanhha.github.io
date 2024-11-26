@@ -427,6 +427,7 @@
                     .then(response => response.json())
                     .then(data => {
                         createPlaylistAndGenreElement("chill", data.chill);
+                        createPlaylistAndGenreElement("instrumental", data.instrumental);
                     });
             }
 
