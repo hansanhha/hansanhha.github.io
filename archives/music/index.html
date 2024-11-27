@@ -22,7 +22,7 @@
             margin-top: 10px;
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 4px;
             width: 100vw;
         }
 
@@ -142,6 +142,7 @@
                     currentPlaylist.currentMusic.pause();
                     currentPlaylist.currentMusic = null;
                     currentPlaylist.updateHtmlToEndPlaylistStatus();
+                    this.cancelEmphasizingHtmlElement();
                     return;
                 }
 
