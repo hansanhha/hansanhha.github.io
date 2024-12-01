@@ -23,13 +23,18 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
-            width: 100vw;
+            padding: 10px;
+            width: fit-content;
         }
 
         .operation-btn {
             margin-left: 3px;
             cursor: pointer;
             width: fit-content;
+        }
+
+        a {
+            text-decoration: none;
         }
     </style>
 </head>
@@ -192,7 +197,7 @@
                 const loopPlayBtn = document.createElement('div');
                 const shuffleBtn = document.createElement('div');
 
-                status.style.borderBottom = '1px solid black';
+                status.style.marginLeft = "3px";
                 utilBox.className = 'util-box';
                 prevPlayBtn.className = 'operation-btn';
                 nextPlayBtn.className = 'operation-btn';
@@ -387,12 +392,11 @@
             }
 
             updateHtmlToPlayStatus() {
-                statusBox.firstChild.textContent = this.title + '(playing)';
+                statusBox.firstChild.textContent = this.title;
                 statusBox.lastChild.childNodes[1].textContent = ' pause';
             }
 
             updateHtmlToPausedStatus() {
-                statusBox.firstChild.textContent = this.title + '(paused)';
                 statusBox.lastChild.childNodes[1].textContent = ' resume';
             }
         }
@@ -423,6 +427,11 @@
 
             }
 
+            const playlistBoxHtmlUpdate = () => {
+                playlistBox.style.borderTop = '1px solid black';
+                playlistBox.style.borderBottom = '1px solid black';
+            }
+
             const playlistSetup = async () => {
                 await fetch("https://hansanhha.github.io/archives/music/data/playlist.json")
                     .then(response => response.json())
@@ -430,6 +439,7 @@
                         createPlaylistAndGenreElement("chill", data.chill);
                         createPlaylistAndGenreElement("instrumental", data.instrumental);
                         createPlaylistAndGenreElement("band", data.band);
+                        playlistBoxHtmlUpdate();
                     });
             }
 
