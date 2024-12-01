@@ -5,13 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ site.title }} - {{ page.title }}</title>
   <style>
+
     thead {
       display: none;
     }
+
     img {
       display: block;
       max-width: 30%;
       height: auto;
+    }
+
+    a {
+      text-decoration: none;
     }
 
     @media (max-width: 768px) {
@@ -55,7 +61,7 @@
             {% endfor %}
           {% endif %}
           {% if page.name != "index.md" %}
-            {{ page.name | split: '.' | first }}
+            <a href="">{{ page.name | split: '.' | first }}</a>
           {% endif %}
       </div>
     {% endunless %}
