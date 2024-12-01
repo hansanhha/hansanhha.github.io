@@ -411,8 +411,8 @@
             const createPlaylistAndGenreElement = (genre, musicListInfo) => {
                 const musicList = musicListInfo.map(info => {
                     const split = info.split('-');
-                    const artist = split[0].replace('_', ' ');
-                    const title = split[1].replace('_', ' ');
+                    const artist = split[0].replaceAll('_', ' ');
+                    const title = split[1].replaceAll('_', ' ');
 
                     return new Music(info + '.mp3', artist + ' - ' + title);
                 });
@@ -429,6 +429,7 @@
                     .then(data => {
                         createPlaylistAndGenreElement("chill", data.chill);
                         createPlaylistAndGenreElement("instrumental", data.instrumental);
+                        createPlaylistAndGenreElement("band", data.band);
                     });
             }
 
