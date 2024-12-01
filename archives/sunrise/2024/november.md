@@ -3,7 +3,7 @@ layout: default
 title: 
 ---
 
-[prev](./july)
+[prev](./july) [next](./december)
 
 Han River-Seonyudo Park
 
