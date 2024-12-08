@@ -7,3 +7,5 @@ title:
 
 
 [**stack**](./stack)
+
+[**series**](./series)
