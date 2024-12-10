@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <title>HANSANHHA - </title>
+    <style>
+
+        img {
+            display: block;
+            max-width: 30%;
+            height: auto;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div style="display: flex;">
+            <a href="/">home/</a>
+            <a href="../">archives/</a>
+            <a href="./">images/</a>
+        </div>
+        <h2></h2>
+    </header>
+
+    <main>
+        <p><a href="./1">next</a></p>
+
+        <p><img src="./marlboro.jpeg" alt="marlboro.jpeg" /></p>
+
+        <p><img src="./motorcycle.jpeg" alt="motorcycle.jpeg" /></p>
+
+        <p><img src="./horizoning.jpg" alt="horizoning.jpg" /></p>
+
+        <p><img src="./walking%20sillim.JPG" alt="walking sillim.jpg" /></p>
+
+        <p><img id="sudeoksa" src="./sudeocksa.JPG" alt="sudeoksa.jpg" /></p>
+    </main>
+
+    <script>
+        const sudeoksa = document.getElementById('sudeoksa');
+        let sudeoksaToggle = false;
+
+        sudeoksa.addEventListener('click', () => {
+            sudeoksaToggle = !sudeoksaToggle;
+            if (sudeoksaToggle) {
+                sudeoksa.src = "./sudeoksa-2.jpeg";
+            } else {
+                sudeoksa.src = "./sudeocksa.JPG";
+            }
+        })
+    </script>
+</body>
+</html>
