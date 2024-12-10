@@ -433,7 +433,7 @@
             }
 
             const playlistSetup = async () => {
-                await fetch("https://hansanhha.github.io/archives/music/data/playlist.json")
+                await fetch("https://hansanhha.github.io/fill/archives/music/data/playlist.json")
                     .then(response => response.json())
                     .then(data => {
                         createPlaylistAndGenreElement("chill", data.chill);
