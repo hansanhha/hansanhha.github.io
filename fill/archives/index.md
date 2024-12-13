@@ -6,4 +6,3 @@ title:
 [videos](./videos)
 [images](./images)
 [text](./text)
-[music](./music)
