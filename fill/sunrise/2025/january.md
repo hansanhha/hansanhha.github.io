@@ -3,7 +3,7 @@ layout: default
 title: 
 ---
 
-[prev](../2024/december)
+[prev](../2024/december) [next](./february)
 
 Site of Moaksan Moutain Beacon Fire East Station
 
