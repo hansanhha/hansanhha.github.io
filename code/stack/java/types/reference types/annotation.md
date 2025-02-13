@@ -120,7 +120,7 @@ public interface Annotation {
 
 또한 어노테이션은 컴파일 타임에 바이트코드로 고정되는 불변 데이터로 속성 값을 동적으로 정의할 수 없다 (method area에 저장되는 메타데이터는 전부 불변으로 설계되었으며 어노테이션은 컴파일 타임에 바이트코드로 저장, 런타임에 상수로 참조된다) 
 
-[MyAnnotation](https://github.com/hansanhha/hansanhha.github.io/tree/default/code/stack/java/types/reference%20types/source%20code/src/main/java/hansanhha/annotations/MyAnnotation.java)을 컴파일한 후 `javap -v MyAnnotation.class` 명령을 사용하면 아래와 같은 결과가 출력된다
+[MyAnnotation](https://github.com/hansanhha/hansanhha.github.io/blob/default/code/stack/java/types/source%20code/src/main/java/hansanhha/annotations/MyAnnotation.java)을 컴파일한 후 `javap -v MyAnnotation.class` 명령을 사용하면 아래와 같은 결과가 출력된다
 
 ```text
 Last modified Feb 13, 2025; size 510 bytes
