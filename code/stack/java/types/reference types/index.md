@@ -4,6 +4,7 @@ basic
 - [nested class](./nested class)
 - [anonymous class](./anonymous class)
 - [enum](./enum)
+- [annotation](./annotation)
 
 java 14/17 +
 - [record](./record)
