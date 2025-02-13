@@ -5,11 +5,11 @@ basic
 - [monitoring system architecture](./monitoring system architecture)
 
 tools
-- [spring boot actuator](./spring boot actuator)
-- [micrometer](./micrometer)
-- [prometheus](./prometheus)
-- [grafana](./grafana)
-- [loki](./loki)
+- [spring boot actuator](./spring-boot-actuator/index.md)
+- [micrometer](./micrometer/index.md)
+- [prometheus](./prometheus/index.md)
+- [grafana](./grafana/index.md)
+- [loki](./loki/index.md)
 
 
 

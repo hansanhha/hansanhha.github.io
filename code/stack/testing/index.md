@@ -4,10 +4,10 @@
 - [개발자와 테스트 프레임워크의 역할](#개발자와-테스트-프레임워크의-역할)
 
 [자바 생태계의 테스트 도구들](#자바-생태계의-테스트-도구들)
-- [junit5](./junit5)
-- [mockito](./mockito)
-- [jacoco](./jacoco)
-- [spring boot test](./springboot)
+- [junit5](./junit5/index.md)
+- [mockito](./mockito/index.md)
+- [jacoco](./jacoco/index.md)
+- [spring boot test](./springboot/index.md)
 
 ## 테스트
 

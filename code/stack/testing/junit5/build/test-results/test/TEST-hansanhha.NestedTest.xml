@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hansanhha.NestedTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-02-02T03:52:33" hostname="localhost.local" time="0.011">
-  <properties/>
-  <testcase name="initialBalanceShouldBeSetCorrectly()" classname="hansanhha.NestedTest" time="0.011"/>
-  <system-out><![CDATA[자바 8만 빼고 실행되는 테스트
-]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

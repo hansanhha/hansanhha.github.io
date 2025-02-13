@@ -1,4 +1,4 @@
-[reference types](./reference types/index.md)
+[reference types](reference-types/index.md)
 
 [primitive types]()
 

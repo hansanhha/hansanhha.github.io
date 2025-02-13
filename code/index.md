@@ -3,8 +3,8 @@ layout: default
 title:
 ---
 
-[**projects**](./projects)
+[**projects**](./projects/index.md)
 
-[**stack**](./stack)
+[**stack**](./stack/index.md)
 
-[**how-to**](./how-to)
+[**how-to**](./how-to/index.md)

@@ -3,26 +3,16 @@ layout: default
 title: 
 ---
 
-[java](./java)
+java
+- [language](./java/index.md)
+- [spring framework](./spring/index.md)
+- [querydsl](./querydsl/index.md)
+- [testing](./testing/index.md)
+- [gradle](./github-actions/index.md)
 
-[spring framework](./spring)
-
-[querydsl](./querydsl)
-
-[gradle](./gradle)
-
-[junit5](./testing/junit5)
-
-[mockito](./testing/mockito)
-
-[jacoco](./testing/jacoco)
-
-[api design](./api)
-
-[databases](./databases)
-
-[docker](./docker)
-
-[github actions](./github actions)
-
-[monitoring](./monitoring)
+common
+- [api design](./api/index.md)
+- [databases](./databases/index.md)
+- [docker](./docker/index.md)
+- [github actions](./github-actions/index.md)
+- [monitoring](./monitoring/index.md)

@@ -1,3 +1,3 @@
-[mysql](./mysql)
+[mysql](./mysql/index.md)
 
-[redis](./redis)
+[redis](./redis/index.md)

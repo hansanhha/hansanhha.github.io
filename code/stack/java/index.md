@@ -1,9 +1,9 @@
-[oop](./oop)
+[oop](./oop/index.md)
 
-[types](./types)
+[types](./types/index.md)
 
-[generics](./generics)
+[generics](./generics/index.md)
 
-[functional](./functional)
+[functional](./functional/index.md)
 
-[collection frameworks](./collection_frameworks)
+[collection frameworks](collection-frameworks/index.md)

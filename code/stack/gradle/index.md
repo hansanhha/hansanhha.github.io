@@ -1,4 +1,4 @@
-[concepts](./concepts)
+[concepts](./concepts/index.md)
 
 [playground](https://github.com/hansanhha/hansanhha.github.io/tree/main/code/stack/gradle/playground)
 

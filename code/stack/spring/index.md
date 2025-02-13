@@ -1,16 +1,16 @@
-[core(ioc, psa, aop, transaction)](./core)
+[core(ioc, psa, aop, transaction)](./core/index.md)
 
-[boot(auto configuration, environment abstraction, embedded web server)](./boot)
+[boot(auto configuration, environment abstraction, embedded web server)](./boot/index.md)
 
-[web(servlet)](./web)
+[web(servlet)](./web/index.md)
 
-[data](data)
+[data](data/index.md)
 
-[security(jwt, oauth)](./security)
+[security(jwt, oauth)](./security/index.md)
 
-[modulith](./modulith)
+[modulith](./modulith/index.md)
 
-[test](../testing/springboot)
+[test](../testing/springboot/index.md)
 
 batch
 
