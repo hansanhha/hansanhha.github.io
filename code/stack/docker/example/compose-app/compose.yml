@@ -1,0 +1,96 @@
+include:
+  - infra.yml
+
+# 서비스에서 사용할 secrets 정의
+secrets:
+
+  # secrest 파일 정의
+  db_credentials:
+    file: ./config/db_credentials.txt
+
+  # 환경변수로부터 정의할 수도 있다
+  mysql_password:
+    environment: MYSQL_CREDENTIALS
+
+
+services:
+
+  mysql:
+    image: mysql:8.4.0
+    platform: linux/amd64
+    profiles:
+      - db
+      - example
+    environment:
+      - MYSQL_ROOT_PASSWORD=/run/secrets/db_credentials
+      - MYSQL_ALLOW_EMPTY_PASSWORD=/run/secrets/db_credentials
+      - MYSQL_RANDOM_ROOT_PASSWORD=/run/secrets/db_credentials
+    secrets:
+      - db_credentials
+
+  example-profile-app:
+    image: hansanhha/example-spring-app
+
+    # interpolation: ${VAR} 또는 $VAR 형태로 선언하여 외부로부터 변수의 값을 주입받는 기능
+    # ${VAR:-default}: VAR의 값이 설정되지 않은 경우 defalut 값 사용
+    container_name: ${EXAMPLE_PROFILE_APP_NAME:-default_example_profile_app}
+    environment:
+      - DEBUG=${COMPOSE_DEBUG}
+    platform: linux/amd64
+    ports:
+      - "9090:8080"
+    depends_on:
+      - mysql
+    profiles:
+      - example
+
+  user:
+    build: ./user
+    container_name: spring-user-app
+    ports:
+      - "8083:8080"
+    profiles: [dev, user]
+
+    environment:
+      # 직접 환경 변수와 값을 할당하는 두 가지 방식
+#      ACTIVE_PROFILES: prod, dev
+#      - ACTIVE_PROFILES=prod, dev
+
+      # 환경 변수만 설정하는 방식, 쉘에서 값을 전달한다
+      # docker run -e VARIABLE ... 과 동일한 방식으로 동작한다
+      # docker compose run -e ACTIVE_PROFILES=prod,staging user
+#      - ACTIVE_PROFILES
+
+      # 아래처럼 선언하면 쉘 또는 .env 파일에서 값을 설정하지 않은 경우 컴포즈가 경고한다
+      - ACTIVE_PROFILES=${USER_APP_ACTIVE_PROFILES}
+
+    # 여러 개의 .env 파일을 명시할 수 있다
+    # 각 파일은 순서대로 평가되며, 이전 파일의 값을 재정의할 수 있다
+#    env_file:
+      # .env 파일은 프로젝트 최상단에 두거나 별도의 디렉토리에 분리해서 둘 수 있다
+#      - .user.env # 프로젝트 최상단의 .user.env 파일 참조
+#      - ${USER_APP_ENV_FILE}
+
+  counting:
+    build: ./counting
+    container_name: spring-counting-app
+    ports:
+      - "8080:8080"
+    profiles: [dev]
+    # ./counting/src 파일이 변경되면 이미지 재빌드 및 컨테이너 재시작
+    develop:
+      watch:
+        - action: rebuild
+          path: ./counting/src
+
+  greeting:
+    build: ./greeting
+    container_name: spring-greeting-app
+    ports:
+      - "8081:8080"
+    profiles: [dev]
+    # ./greeting/src 파일이 변경되면 이미지 재빌드 및 컨테이너 재시작
+    develop:
+      watch:
+        - action: rebuild
+          path: ./greeting/src

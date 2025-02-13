@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hansanhha.BasicTest" tests="5" skipped="1" failures="0" errors="0" timestamp="2025-02-02T03:52:33" hostname="localhost.local" time="0.017">
+  <properties/>
+  <testcase name="orderFirstTest()" classname="hansanhha.BasicTest" time="0.007"/>
+  <testcase name="disabledTest()" classname="hansanhha.BasicTest" time="0.001">
+    <skipped/>
+  </testcase>
+  <testcase name="orderLastTest()" classname="hansanhha.BasicTest" time="0.001"/>
+  <testcase name="timeoutTest()" classname="hansanhha.BasicTest" time="0.01"/>
+  <testcase name="주문이 완료되면 상품의 재고 수량을 차감한다" classname="hansanhha.BasicTest" time="0.009"/>
+  <system-out><![CDATA[order test: first
+order test: last
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

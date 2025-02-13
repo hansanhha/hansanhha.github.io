@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<div id="loginBox">
+    <a href="/login" id="kakaoLoginLink">로그인/회원가입</a>
+</div>
+
+<script>
+    window.onload = function() {
+        const accessToken = localStorage.getItem('accessToken');
+
+        if (accessToken) {
+            removeLoginLink();
+            setLogoutLink();
+            getUserInfo(accessToken);
+        }
+    }
+
+    function removeLoginLink() {
+        document.getElementById('kakaoLoginLink').remove();
+    }
+
+    function setLogoutLink() {
+        const logout = document.createElement('a');
+        logout.href = '/logout';
+        logout.innerText = '로그아웃';
+        logout.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('issuedAt');
+            localStorage.removeItem('expiresIn');
+            window.location.href = '/';
+        });
+        document.getElementById('loginBox').appendChild(logout);
+    }
+
+    function getUserInfo(accessToken) {
+        fetch('/api/simpleUser', {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                Accept: 'application/json',
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                const userInfo = document.createElement('div');
+                userInfo.innerText = `email: ${data.email} nickname: ${data.nickname} permission: ${data.permission}`;
+                document.getElementById('loginBox').appendChild(userInfo);
+            });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hansanhha.extension_model.ExtensionModelTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-02-02T03:52:33" hostname="localhost.local" time="0.005">
+  <properties/>
+  <testcase name="postProcessTest()" classname="hansanhha.extension_model.ExtensionModelTest" time="0.005"/>
+  <system-out><![CDATA[맥os에서만 실행되는 테스트
+os.name의 프로퍼티에 윈도우가 포함되지 않은 경우에만 실행되는 테스트
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

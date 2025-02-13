@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hansanhha.ExampleApplicationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-02-09T03:37:30" hostname="localhost.local" time="0.515">
+  <properties/>
+  <testcase name="contextLoads()" classname="hansanhha.ExampleApplicationTest" time="0.515"/>
+  <system-out><![CDATA[12:37:29.386 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [hansanhha.ExampleApplicationTest]: ExampleApplicationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+12:37:29.478 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration hansanhha.ExampleApplication for test class hansanhha.ExampleApplicationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.2)
+
+2025-02-09T12:37:29.778+09:00  INFO 27216 --- [    Test worker] hansanhha.ExampleApplicationTest         : Starting ExampleApplicationTest using Java 21.0.5 with PID 27216 (started by hansanhha in /Users/hansanhha/code/backend/build automation/github actions/example application/app)
+2025-02-09T12:37:29.779+09:00  INFO 27216 --- [    Test worker] hansanhha.ExampleApplicationTest         : No active profile set, falling back to 1 default profile: "default"
+2025-02-09T12:37:30.554+09:00  INFO 27216 --- [    Test worker] hansanhha.ExampleApplicationTest         : Started ExampleApplicationTest in 0.967 seconds (process running for 1.912)
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build what is described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/hansanhha/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.15.11/a38b16385e867f59a641330f0362ebe742788ed8/byte-buddy-agent-1.15.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

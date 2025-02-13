@@ -5,7 +5,6 @@ title:
 
 [**projects**](./projects)
 
-
 [**stack**](./stack)
 
-[**series**](./series)
+[**how-to**](./how-to)

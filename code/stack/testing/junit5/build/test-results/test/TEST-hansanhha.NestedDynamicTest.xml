@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="hansanhha.NestedDynamicTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-02-02T03:52:33" hostname="localhost.local" time="0.004">
+  <properties/>
+  <testcase name="last test" classname="hansanhha.NestedDynamicTest" time="0.001"/>
+  <testcase name="first test" classname="hansanhha.NestedDynamicTest" time="0.0"/>
+  <testcase name="first test" classname="hansanhha.NestedDynamicTest" time="0.003"/>
+  <testcase name="last test" classname="hansanhha.NestedDynamicTest" time="0.002"/>
+  <system-out><![CDATA[자바 21에서만 실행되는 테스트
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
