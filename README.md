@@ -1,3 +1,3 @@
-## [go to actual main branch](https://github.com/hansanhha/hansanhha.github.io/tree/default)
+## actual main branch
 
 ## [blog](https://hansanhha.github.io/)
