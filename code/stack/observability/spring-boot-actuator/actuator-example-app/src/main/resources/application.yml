@@ -1,0 +1,11 @@
+management:
+  endPoints:
+    web:
+      exposure:
+        include: health, info
+
+info:
+  app:
+    name: actuator application
+    version: 1.0.0
+    description: hansanhha spring boot actuator example application
