@@ -15,4 +15,4 @@ common
 - [databases](./databases/index.md)
 - [docker](./docker/index.md)
 - [github actions](./github-actions/index.md)
-- [monitoring](./monitoring/index.md)
+- [observability](observability/index.md)

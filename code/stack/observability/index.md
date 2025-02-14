@@ -1,8 +1,7 @@
 basic
-- [metrics](./metrics)
-- [observability, monitoring](./observability and monitoring)
+- [metric](./metric)
+- [observability design principles and architectures](./observability design principles and architectures)
 - [monitoring types and data collection methods](./monitoring types and data collection methods)
-- [monitoring system architecture](./monitoring system architecture)
 
 tools
 - [spring boot actuator](./spring-boot-actuator/index.md)
