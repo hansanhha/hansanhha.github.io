@@ -1,1 +1,1 @@
-[actuator](./actuator)
+[basic usage](./basic usage)

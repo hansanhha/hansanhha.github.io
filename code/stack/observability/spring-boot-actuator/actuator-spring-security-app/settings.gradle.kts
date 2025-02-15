@@ -1,0 +1,1 @@
+rootProject.name="spring-boot-actuator-with-security-example-app"
