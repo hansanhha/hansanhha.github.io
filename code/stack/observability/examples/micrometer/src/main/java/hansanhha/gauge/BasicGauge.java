@@ -21,7 +21,7 @@ public class BasicGauge {
     // Number 타입에 대한 Gauge 생성
     public void numberGauge() {
         AtomicInteger state = new AtomicInteger(0);
-        registry.gauge("numberGauge", state);
+        registry.gauge("gauge.number", state);
 
         state.decrementAndGet();
         state.decrementAndGet();
@@ -31,7 +31,7 @@ public class BasicGauge {
     // Collection 타입에 대한 Gauge 생성
     public void listGauge() {
         List<String> state = new ArrayList<>();
-        registry.gauge("listGauge", Tags.empty(), state, List::size);
+        registry.gauge("gauge.list", Tags.empty(), state, List::size);
 
         state.add("hello");
         state.add("list gauge");
@@ -41,7 +41,7 @@ public class BasicGauge {
     public void mapGauge() {
         HashMap<String, Integer> state = new HashMap<>();
 
-        registry.gaugeMapSize("mapGauge", Tags.empty(), state);
+        registry.gaugeMapSize("gauge.map", Tags.empty(), state);
 
         state.put("hello", 1);
         state.put("map gauge", 2);
@@ -53,7 +53,7 @@ public class BasicGauge {
         ToDoubleFunction<ArrayList<Integer>> callback = List::size;
 
         Gauge gauge = Gauge
-                .builder("gauge", state, callback)
+                .builder("gauge.builder", state, callback)
                 .description("gauge description")
                 .tag("type", "test gauge")
                 .register(registry);

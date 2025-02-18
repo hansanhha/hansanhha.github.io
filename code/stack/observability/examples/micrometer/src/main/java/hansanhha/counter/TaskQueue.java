@@ -11,19 +11,17 @@ public class TaskQueue {
 
     // FunctionCounter는 값을 누적하지 않고 현재 상태를 기반으로 동적으로 값을 계산한다
     public TaskQueue(MeterRegistry registry) {
-        FunctionCounter.builder("task.queue.size", queueSize, AtomicInteger::get)
+        FunctionCounter.builder("counter.task.queue.size", queueSize, AtomicInteger::get)
                 .description("current size of the task queue")
                 .register(registry);
     }
 
     public void addTask() {
         queueSize.incrementAndGet();
-        System.out.println("task added to the queue");
     }
 
     public void completeTask() {
         queueSize.decrementAndGet();
-        System.out.println("task completed");
     }
 
 }

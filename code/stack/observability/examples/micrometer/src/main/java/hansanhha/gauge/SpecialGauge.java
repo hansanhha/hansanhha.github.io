@@ -25,7 +25,7 @@ public class SpecialGauge {
 
         // 특정 시간 단위(TimeUnit)을 지정하여 TimeGauge 생성
         TimeGauge timeGauge = TimeGauge
-                .builder("my.time.gauge", msTimeGauge, TimeUnit.MILLISECONDS, AtomicInteger::get)
+                .builder("gauge.time", msTimeGauge, TimeUnit.MILLISECONDS, AtomicInteger::get)
                 .register(registry);
     }
 
@@ -33,7 +33,7 @@ public class SpecialGauge {
         MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
 
         // MultiGauge 생성
-        MultiGauge multiGauge = MultiGauge.builder("server.memory.usage")
+        MultiGauge multiGauge = MultiGauge.builder("gauge.multi")
                 .description("memory usage by category")
                 .register(registry);
 

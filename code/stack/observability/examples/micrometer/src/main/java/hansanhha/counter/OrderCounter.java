@@ -13,15 +13,13 @@ public class OrderCounter {
          type=online 태그 설정
      */
     public OrderCounter(MeterRegistry registry) {
-        orderCounter = Counter.builder("order.created.count")
+        orderCounter = Counter.builder("counter.order.count")
                 .description("total number of orders created")
                 .tags("type", "online")
                 .register(registry);
     }
 
     public void createOrder() {
-        System.out.println("created order");
-
         orderCounter.increment();
     }
 }
