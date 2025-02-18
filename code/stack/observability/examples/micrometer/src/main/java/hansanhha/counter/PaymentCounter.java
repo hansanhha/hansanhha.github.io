@@ -1,6 +1,7 @@
 package hansanhha.counter;
 
 import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.aop.MeterTag;
 
 public class PaymentCounter {
 
@@ -11,6 +12,14 @@ public class PaymentCounter {
     @Counted(value = "payment.success.count", description = "number of successful payments")
     public void processPayment() {
         System.out.println("payment proceed successfully");
+    }
+
+    /*
+        @MeterTag 어노테이션은 어노테이션에 지정한 키와 파라미터의 값의 쌍이 메트릭 태그에 추가한다
+     */
+    @Counted(value = "payment.failure.count", description = "number of failure payments")
+    public void failPayment(@MeterTag(key = "cause") String failureCause) {
+        System.out.println("payment failed (cause: " + failureCause + ")");
     }
 
 }

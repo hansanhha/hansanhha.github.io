@@ -1,8 +1,10 @@
 #### index
-- [Counter, @Counted, FunctionCounter](#counter-counted-functioncounter)
+- [Counter](#counter)
+- [@Counted](#counted)
+- [FunctionCounter](#functioncounter)
 
 
-## Counter, @Counted, FunctionCounter
+## Counter
 
 counter는 단순한 카운트 값을 수집하는 메트릭으로, 마이크로미터에서 제공하는 Counter 인터페이스을 사용하면 고정된 양(양수)만큼 값을 증가시킬 수 있다
 
@@ -32,6 +34,9 @@ public class OrderCounter {
 }
 ```
 
+
+## @Counted
+
 `@Counted` 어노테이션은 aspectj aop 기반으로 메서드 호출 횟수를 자동으로 카운팅한다
 
 참고로 프록시 패턴을 사용하기 때문에 프록시 객체 내부에서 자기 자신을 호출하면 카운팅되지 않는다
@@ -49,6 +54,25 @@ public class PaymentCounter {
     }
 }
 ```
+
+### @MeterTag
+
+@Counted나 @Timed 등과 함께 사용하는 어노테이션으로 메서드 호출 시점에 파라미터 값을 메트릭 태그로 활용한다
+
+```java
+public class PaymentCounter {
+    /*
+        @MeterTag 어노테이션은 어노테이션에 지정한 키와 파라미터의 값의 쌍이 메트릭 태그에 추가한다
+    */
+    @Counted(value = "payment.failure.count", description = "number of failure payments")
+    public void failPayment(@MeterTag(key = "cause") String failureCause) {
+        System.out.println("payment failed (cause: " + failureCause + ")");
+    }
+}
+```
+
+
+## FunctionCounter
 
 `FunctionCounter`는 현재 상태를 기반으로 동적으로 값을 계산하는 인터페이스로 값을 누적하지 않고 현재 상태를 나타낸다
 
@@ -78,9 +102,3 @@ public class TaskQueue {
 
 }
 ```
-
-
-
-
-
-
