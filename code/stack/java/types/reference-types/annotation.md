@@ -1,13 +1,11 @@
-index
+#### index
 - [annotation](#annotation)
 - [java.lang.annotation.Annotation](#javalangannotationannotation)
 - [annotation vs interface](#annotation-vs-interface)
 - [how annotation works](#how-annotation-works)
 - [meta annotation](#meta-annotation)
 - [compose annotation](#compose-annotation)
-- [reflect annotation](#reflect-annotation)
-- [@Target](#target)
-- [@Retention](#retention)
+- [annotation processor](#annotation-processor)
 
 
 ## annotation
@@ -15,6 +13,8 @@ index
 자바의 어노테이션은 프로그램 코드에 메타데이터를 제공하여 코드에 영향을 미치거나 런타임 시 읽혀서 동작한다 
 
 주석(comment)과 달리 단순히 정보 전달 목적으로만 사용되지 않고 컴파일러에게 정보를 전달하거나 런타임에 특정 동작을 트리거하는 용도로 사용된다
+
+또한 클래스처럼 실제로 인스턴스를 생성하는 것이 아니라 바이트코드 메타데이터(method area)로 존재한다
 
 아래와 같이 @interface 키워드를 사용하여 어노테이션을 정의할 수 있다 
 
@@ -106,7 +106,7 @@ public interface Annotation {
 - 목적: 메타 데이터 제공 vs 다형성을 위한 계약 정의
 - 동작 방식: 리플렉션 vs 상속
 - 상속: java.lang.annotation.Annotation vs Object (직계 상속 없음)
-- 메서드 성격: public abstract (기본값 제공 가능) vs public abstract
+- 메서드 성격: public abstract (기본값 제공 가능) vs public abstract, default, static
 - 리플렉션: getAnnotation()으로 직접 읽기 가능 vs 리플렉션으로 메서드 호출
 
 
@@ -183,14 +183,161 @@ RuntimeVisibleAnnotations:
 
 ## meta annotation
 
+메타 어노테이션은 어떤 어노테이션을 정의할 때 해당 어노테이션의 특성을 지정하기 위해 사용되는 어노테이션을 말한다
+
+어노테이션 선언 시 `@Target(ElementType.ANNOTATION_TYPE)`을 적용하면 다른 어노테이션에 적용할 수 있는 메타 어노테이션으로써 동작한다
+
+아래와 같이 @Werther 어노테이션이 @Sorrow 어노테이션을 선언한 경우 @Sorrow 어노테이션은 메타 어노테이션으로써 동작하여 @Werther 어노테이션 자체에 대한 부가정보를 제공한다
+
+```java
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@Sorrow(age = "young")
+public @interface Werther {
+    String author() default "Johann Wolfgang von Goethe";
+}
+```
+
+```java
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.ANNOTATION_TYPE)
+public @interface Sorrow {
+    String age();
+}
+```
+
+### how meta annotation works
+
+메타 어노테이션(@Sorrow)은 어노테이션 선언 자체(@Werther)에 부가 정보를 부여하여 컴파일러와 jvm이 해당 어노테이션(@Werther)을 어떻게 처리할지 결정한다
+
+위의 @Werther 어노테이션을 컴파일하면 Werther.class 파일이 생성되며, 이 클래스 파일의 RuntimeVisibleAnnotations 또는 RuntimeInvisibleAnnotations 섹션에 어노테이션의 정의 정보와 메타 어노테이션 설정 정보가 포함된다
+
+jvm의 클래스 로딩 시 해당 클래스 파일을 읽어 Clsas 객체를 로드하는데, 이 때 어노테이션의 메타데이터(메타 어노테이션에 의해 지정된 설정)도 함께 로드되어 jvm 내부의 method area에 상주한다
+
+이후 jvm은 RuntimeVisibleAnnotations에 기록된 메타데이터를 참고하여 어노테이션 객체를 생성하거나 어노테이션 정보를 반환한다
+
+### built-in meta annotation
+
+자바에서 제공하는 주요 메타 어노테이션은 다음과 같다
+
+#### `@Retention`
+
+어노테이션의 유지 시점을 결정하는 어노테이션
+
+RetentionPolicy의 값에 따라 유지 시점이 결정된다
+- SOURCE: 컴파일 시 제거 (소스 코드에만 존재하는 어노테이션)
+- CLASS: 바이트코드에 포함되지만 런타임(리플렉션)에 사용 불가능
+- RUNTIME: 런타임까지 어노테이션이 유지되어 리플렉션을 통해 접근할 수 있다
+
+#### `@Target`
+
+어노테이션이 어디에 적용될 수 있는지 결정하는 어노테이션
+
+ElementType의 값에 따라 적용 범위가 결정된다 (여러 개 지정 가능)
+- TYPE: 클래스, 인터페이스, enum
+- FIELD, METHOD, PARAMETER
+- CONSTRUCTOR
+- LOCAL_VARIABLE
+- ANNOTATION_TYPE
+- PACKAGE
+- TYPE_USE
+- TYPE_PARAMETER
+- MODULE
+- RECORD_COMPONENT
+
+#### `@Inherit`
+
+어노테이션이 상속될 수 있음을 나타내는 어노테이션
+
+부모 클래스에 적용된 어노테이션이 자식 클래스에 자동으로 상속되도록 한다
+
+단, 인터페이스나 메서드에는 적용되지 않는다
+
+#### `@Documented`
+
+어노테이션이 javadoc 같은 문서 생성 도구에 포함되도록 한다
+
+@Documented 어노테이션을 사용하는 클래스나 메서드에 해당 어노테이션 정보가 문서화된다
+
+#### `@Repeatable`
+
+동일한 대상에 같은 어노테이션을 여러 번 적용할 수 있도록 한다
+
+#### `@Native`
+
+네이티브 코드와 상호작용하기 위해 사용되는 상수를 나타내는 어노테이션
+
+자바의 jni.h 파일이나 네이티브 라이브러리(c/c++)에서 이 상수에 접근해야 하는 경우 선언한다
+
+#### `@Deprecated`
+
+더 이상 사용하지 않는 코드임을 나타내는 어노테이션
+
+이 어노테이션이 적용된 코드를 사용하면 컴파일러가 경고를 출력하여 해당 코드가 더 이상 권장되지 않음을 알린다
+
+속성
+- since: deprecated 시점
+- forRemoval: 해당 api가 삭제될 예정인지 여부를 나타낸다
+
+#### `@SuppressWarnings`
+
+컴파일러 경고를 무시하는 어노테이션
+
+코드의 특정 부분에서 지정한 경고 타입에 대해 경고 메시지를 숨기고자 할 때 사용한다
+
+주요 경고 무시 항목
+- unchecked: 제네릭 타입 강제 형변환 관련 경고 무시
+- deprecation: @Deprecated 처리된 메서드 호출 시 경고 무시
+- rawtypes: 제네릭 타입 없이 사용 시 경고 무시
+- unused: 사용하지 않는 변수에 대한 경고 무시
+- serial: Serializable 클래스에 serialVersionUID가 없을 때 경고 무시
 
 
 ## compose annotation
 
+합성 어노테이션은 여러 개의 어노테이션을 하나로 묶어서 사용하는 것을 말하며 이를 통해 코드의 중복을 줄이고 가독성을 높일 수 있다
+
+주로 [메타 어노테이션](#meta-annotation)과 함께 사용된다
+
+아래의 코드는 @NotNull과 @Size를 합성하여 @PositiveNumber이라는 합성 어노테이션을 만들어 @PositiveNumber을 사용하면 해당 선언부가 null이 아니고 0 이상의 값이어야 한다는 검증을 한 번에 적용할 수 있다 
+
+```java
+@Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.ANNOTATION_TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface NotNull {
+}
+```
+
+```java
+@Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.ANNOTATION_TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Size {
+    
+    int min() default Integer.MIN_VALUE;
+    int max() default Integer.MAX_VALUE;
+}
+```
+
+```java
+// @NotNull과 @Size를 합성한 합성 어노테이션
+@Target({ElementType.FIELD, ElementType.PARAMETER, 
+        ElementType.RECORD_COMPONENT, ElementType.LOCAL_VARIABLE})
+@Retention(RetentionPolicy.RUNTIME)
+@NotNull
+@Size(min = 0)
+public @interface PositiveNumber {
+}
+```
+
+### how compose annotation works
+
+합성 어노테이션은 개별 어노테이션으로 분해되지 않고 합성 어노테이션 자체로 바이트코드에 저장된다
+
+바이트코드에 저장된 어노테이션은 jvm의 메타데이터 영역(method area)에 저장된다
+
+이후 리플렉션을 통해 합성 어노테이션에 접근할 수 있으며 필요한 경우 내부 어노테이션도 확인할 수 있다
+
+jvm은 합성 어노테이션을 인식하지만 해당 어노테이션이 적용된 클래스나 필드에 연결된 메타데이터로만 존재한다
 
 
-## reflect annotation
-
-## @Target
-
-## @Retention
+## annotation processor
