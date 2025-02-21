@@ -1,0 +1,1 @@
+rootProject.name="micrometer-observation-example-app"
