@@ -8,7 +8,7 @@ java
 - [spring framework](./spring/index.md)
 - [querydsl](./querydsl/index.md)
 - [testing](./testing/index.md)
-- [gradle](./github-actions/index.md)
+- [gradle](./gradle/index.md)
 
 common
 - [api design](./api/index.md)

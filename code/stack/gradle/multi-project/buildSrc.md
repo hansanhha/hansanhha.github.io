@@ -18,7 +18,7 @@ you want to call from build scripts, and you can put any code in buildSrc, your 
 
 Convention plugins are a way of applying the same build logic to multiple subprojects
 
-create convention plugin and apply it subproject in sample [multi-project](../../playground/multi-project)
+create convention plugin and apply it subproject in sample [multi-project](../../examples/multi-project)
 
 1. create buildSrc directory at the root of the project and create build.gradle.kts file
 

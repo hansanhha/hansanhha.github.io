@@ -18,7 +18,7 @@ Then will see `run` task through `./gradlew tasks`
 
 before run task, it needs to configure the main class to be executed
 
-In [my playground's build script](../../playground/app/build.gradle.kts), I configured it as follows: 
+In [my playground's build script](../../examples/app/build.gradle.kts), I configured it as follows: 
 
 ```kotlin
 application {
