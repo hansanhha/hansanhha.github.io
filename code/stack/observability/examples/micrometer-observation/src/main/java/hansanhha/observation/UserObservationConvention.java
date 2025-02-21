@@ -1,4 +1,4 @@
-package hansanhha;
+package hansanhha.observation;
 
 import io.micrometer.common.KeyValues;
 import io.micrometer.observation.GlobalObservationConvention;

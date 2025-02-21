@@ -11,3 +11,5 @@ micrometer metrics
 - [histograms and percentiles](./histograms and percentiles)
 
 [micrometer observation](./micrometer observation)
+
+[micrometer observation instrumenting examples](./micrometer observation instrumenting examples)

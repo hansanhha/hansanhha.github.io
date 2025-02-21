@@ -1,4 +1,4 @@
-package hansanhha;
+package hansanhha.observation;
 
 import io.micrometer.observation.ObservationTextPublisher;
 import io.micrometer.observation.aop.ObservedAspect;

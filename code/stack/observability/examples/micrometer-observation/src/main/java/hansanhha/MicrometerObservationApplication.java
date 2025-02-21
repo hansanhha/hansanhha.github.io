@@ -1,5 +1,6 @@
 package hansanhha;
 
+import hansanhha.observation.*;
 import io.micrometer.observation.Observation;
 import io.micrometer.observation.ObservationRegistry;
 
@@ -8,6 +9,10 @@ import java.time.LocalDateTime;
 public class MicrometerObservationApplication {
 
     public static void main(String[] args) {
+        observation();
+    }
+
+    public static void observation() {
         UserService userService = new UserService();
 
         // 레지스트리 생성 (SimpleObservationRegistry)
