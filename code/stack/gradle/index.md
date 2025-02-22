@@ -1,20 +1,24 @@
 [examples](https://github.com/hansanhha/hansanhha.github.io/tree/default/code/stack/gradle/examples)
 
-[step-by-step](https://github.com/hansanhha/hansanhha.github.io/tree/default/code/stack/gradle/examples/step-by-step)
+basic
+- [build tool](./build tool)
+- [gradle architecture](./gradle architecture)
+- [build script (build.gradle)](./build script (build.gradle))
+- [project script (settings.gradle)](./project script (settings.gradle))
+- [build objects](./build objects)
 
-[basic]()
+plugins
+- [gradle plugins](./gradle plugins)
+- [community plugins](./community plugins)
+- [custom plugin creation](./custom plugin creation)
 
-[version catalog]()
+version catalog
 
-[buildSrc]()
+buildSrc
 
-[multi project]()
+multi project
 
-[useful plugin]()
 
-[custom plugin]()
-
-- [gradle](./gradle)
 - [gradle project structure](./basic gradle project structure)
 - [gradle init, gradle wrapper](./gradle init,gradle-wrapper)
 - [build lifecycle](./build-lifecycle)
