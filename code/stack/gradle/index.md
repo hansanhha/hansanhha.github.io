@@ -2,9 +2,9 @@
 
 basic
 - [build tool](./build tool)
-- [gradle architecture](./gradle architecture)
-- [build script (build.gradle)](./build script (build.gradle))
-- [project script (settings.gradle)](./project script (settings.gradle))
+- [overview](./overview)
+- [gradle build](./gradle build)
+- [project settings](./project settings)
 - [build objects](./build objects)
 
 plugins
