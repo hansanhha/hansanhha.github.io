@@ -3,6 +3,8 @@
   - [global](#global)
   - [scrape_configs](#scrape_configs)
   - [docker_sd_configs](#docker_sd_configs)
+  - [recording rules](#recording-rules)
+  - [alerting rules](#alerting-rules)
 - [docker config](#docker-config)
 - [docker compose config](#docker-compose-config)
 
@@ -119,6 +121,102 @@ scrape_configs:
       # 아래의 설정은 app=myapp 이라는 라벨을 가진 컨테이너만 검색하도록 조건을 지정한다
       filters: 
         - labels: "app=myapp"
+```
+
+## recording rules
+
+프로메테우스는 recording rule과 alerting rule을 정의할 수 있도록 지원하는데, 그 중 recording rule은 자주 사용하는 쿼리나 복잡한 계산 로직을 미리 계산된 시계열 데이터로 저장하는 데 사용된다
+
+rule은 prometheus.yml 파일이 아닌 별도의 yaml 파일에 작성하고 rules_files 속성으로 해당 rule 파일을 로드하는 방식으로 적용된다 
+
+#### 주의점
+
+recording rules는 새로운 시계열을 생성하므로 프로메테우스의 저장소 사용량이 늘어날 수 있기 때문에 너무 많은 규칙을 생성하지 않도록 한다
+
+interval를 짧게 설정하면 프로메테우스 서버의 부하를 증가시킬 수 있다
+
+너무 많은 라벨을 사용하면 cardinality가 급격히 증가하여 메모리 사용량에 영향을 미친다
+
+```yaml
+# rules/default-rule.yml
+
+# groups 라는 최상위 키워드로 시작하며 각 rule을 그룹화하는 역할을 한다
+groups:
+  -
+    
+    # 그룹의 이름을 정의한다
+    name: example-rules
+    
+    # 이 그룹의 규칙이 평가되는 주기를 설정한다
+    # 기본값: global.evaluation_interval
+    interval: 30s
+    
+    # 이 그룹에 포함될 recording rule 목록을 정의한다
+    rules:
+      -
+        
+        # 새롭게 생성될 메트릭 이름을 정의한다
+        record: code:prometheus_http_requests_total:sum
+        
+        # promql 쿼리를 정의한다 (이 쿼리를 기반으로 시계열 데이터 생성)
+        expr: sum by (code) (prometheus_http_request_total)
+
+        # 생성된 메트릭에 추가할 라벨을 정의한다
+        labels:
+          job: 'node'
+```
+
+위의 rule 파일을 아래처럼 prometheus.yml 파일에서 참조하여 rule들을 적용시킬 수 있다
+
+```yaml
+# prometheus.yml
+
+rules_files:
+  - 'rules/default.yml'
+```
+
+### alerting rules
+
+alerting rules는 프로메테우스에서 모니터링 데이터에 대한 조건을 정의하고 특정 조건이 충족될 때 알람을 트리거하도록 설정하는 규칙이다
+
+정해진 조건을 지속적으로 평가하여 시스템 상태를 감시하고 설정된 조건에 달성하면 alertmanager와 통합하여 이메일, 슬랙 등 다양한 알림 채널을 통해 알림을 전송한다
+
+recording rule과 함께 같은 파일에 정의할 수 있으며 prometheus.yml에서 이 파일을 로드하여 규칙이 적용되는 방식으로 동작한다
+
+#### 주의점
+
+짧은 순간의 스파이크(spike)나 일시적인 상태 변화로 불필요한 알람이 발생하지 않도록 for 옵션을 사용하여 일정 시간 동안 조건이 충족되었을 때만 알람을 발생시킨다
+
+alertmanager의 라우팅 규칙을 쉽게 설정하도록 알람 라벨을 체계적으로 관리한다
+
+주요 지표에만 중요도를 부여하고 정말 필요한 경우에만 알람을 발생하도록 설정하여 경로 피로(alert fatigue)를 유발하지 않도록 한다
+
+설정한 alerting rules를 미리 테스트하여 의도한 대로 작동하는지 검증한다
+
+```yaml
+# recording rules와 동일한 구조로 rule을 정의한다
+groups:
+    name: example-rules
+    interval: 30s
+    rules:
+
+      -
+        
+        # 알람의 이름을 설정한다
+        alert: high_cpu_usage
+        
+        # promql 쿼리를 사용하여 알람을 발생시킬 조건을 정의한다
+        expr: avg(rate(note_cpu_seconds_total[5m])) by (instance) > 0.8
+        
+        # 조건이 일정 시간 지속되었을 때만 알람을 발생시킨다
+        for: 2m
+        labels:
+          severity: critical
+          
+        # 알람에 대한 추가 설명을 제공한다
+        annotations:
+          summary: 'high cpu usage detected on {{ $labels.instance }}'
+          description: 'the cpu suage is above 80% for more than 2 minutes.'
 ```
 
 

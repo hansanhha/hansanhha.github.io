@@ -1,6 +1,6 @@
 #### index
 - [run prometheus docker container](#run-prometheus-docker-container)
-- [run prometheus docker compose](#run-prometheus-docker-compose)
+- [run prometheus with alertmanaager in docker compose](#run-prometheus-with-alertmanager-in-docker-compose)
 
 ## run prometheus docker container
 
@@ -26,7 +26,7 @@ docker run -d --name prometheus --network prometheus-network -p 9090:9090 \
 prom/prometheus
 ```
 
-## run prometheus docker compose
+## run prometheus with alertmanager in docker compose
 
 #### 1. 도커 이미지 pull
 
@@ -40,9 +40,11 @@ docker pull prom/prometheus
 docker volume create prometheus-vol
 ```
 
-#### 3. docker-compose.yml 파일 확인
+#### 3. prometheus.yml 파일 확인
 
-#### 4. prometheus.yml 파일 확인
+#### 4. docker-compose.yml 파일 확인
+
+#### 5. alertmanager.yml 파일 확인
 
 #### 5. 프로메테우스 도커 컴포즈 실행 (이 디렉토리 경로에서 도커 명령어를 실행한다고 가정)
 
