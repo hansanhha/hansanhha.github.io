@@ -196,6 +196,24 @@ groovy dsl, kotlin dsl로 작성된 빌드 스크립트에 대한 class 파일, 
 
 ## gradle daemon
 
+그레이들 래퍼를 통해서 동적으로 그레이들을 인터넷으로 다운받거나 로컬에 설치된 그레이들 프로그램을 통해 그레이들을 실행하면 어떻게 될까?
+
+그레이들을 실행 시키는 파일은 `gradle` 또는 `gradle.bat` 파일이다
+
+```shell
+# 그레이들 래퍼를 통해서 다운받은 그레이들 실행 파일
+../gradle-8.10-bin/deqhafrv1ntovfmgh0nh3npr9/gradle-8.10/bin # ls -al
+total 24
+drwxr-xr-x 2 hansanhha hansanhha 4096 Feb  4 17:27 .
+drwxr-xr-x 5 hansanhha hansanhha 4096 Feb  4 17:27 ..
+-rwxr-xr-x 1 hansanhha hansanhha 8836 Feb  4 17:27 gradle
+-rw-r--r-- 1 hansanhha hansanhha 3037 Feb  4 17:27 gradle.bat
+```
+
+이 파일은 그레이들을 동작시키는 쉘 스크립트 파일로 gradle 런처를 실행시킨다
+
+이후 
+
 
 
 

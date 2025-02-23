@@ -2,7 +2,7 @@
 
 basic
 - [build tool](./build tool)
-- [overview](./overview)
+- [architecture](./architecture)
 - [gradle build](./gradle build)
 - [project settings](./project settings)
 - [build objects](./build objects)
