@@ -5,3 +5,9 @@
 [jobs and instances](./jobs and instances)
 
 [configurations](./configurations)
+
+[alerting](./alerting)
+
+[query](./query)
+
+[storage](./storage)
