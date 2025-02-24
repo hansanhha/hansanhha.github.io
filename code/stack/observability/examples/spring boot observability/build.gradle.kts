@@ -10,10 +10,15 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
+
+    // annotation-based metrics measurement
+    implementation("org.springframework.boot:spring-boot-starter-aop")
+
+    // spring boot observability
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
+    // metrics
     implementation("io.micrometer:micrometer-registry-prometheus")
-    implementation("io.micrometer:micrometer-tracing:1.4.3")
 }
 
 

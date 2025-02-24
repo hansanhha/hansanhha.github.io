@@ -1,9 +1,14 @@
+spring:
+  application:
+    name: spring-boot-observability
+
 management:
   endpoints:
     web:
       exposure:
         include: health, loggers, prometheus, metrics
 
-  observations:
-    annotations:
-      enabled: true
+# 프로메테우스의 스크랩 요청을 로그로 출력한다
+logging:
+  level:
+    org.springframework.web: DEBUG

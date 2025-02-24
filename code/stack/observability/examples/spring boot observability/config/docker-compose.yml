@@ -5,7 +5,7 @@ services:
     build:
       context: ../
       dockerfile: config/Dockerfile
-    container_name: spring-boot-observability
+    container_name: spring-boot-app
     ports:
       - '8080:8080'
 
@@ -16,3 +16,7 @@ services:
     container_name: spring-boot-prometheus
     ports:
       - '9090:9090'
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
