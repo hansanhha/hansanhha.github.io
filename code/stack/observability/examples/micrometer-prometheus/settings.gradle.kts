@@ -1,1 +1,0 @@
-rootProject.name="micrometer-prometheus-example-app"

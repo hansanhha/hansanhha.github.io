@@ -14,6 +14,4 @@ micrometer metrics
 
 [micrometer observation instrumenting examples](./micrometer observation instrumenting examples)
 
-[micrometer prometheus](./micrometer prometheus)
-
 [spring boot observability](../spring-boot-actuator/spring boot observability)

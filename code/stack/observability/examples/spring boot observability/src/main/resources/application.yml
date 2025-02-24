@@ -2,4 +2,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, loggers
+        include: health, loggers, prometheus, metrics
+
+  observations:
+    annotations:
+      enabled: true

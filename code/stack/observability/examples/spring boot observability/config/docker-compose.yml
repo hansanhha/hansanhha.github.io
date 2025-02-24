@@ -1,0 +1,18 @@
+services:
+
+  spring-boot:
+    image: hansanhha/spring-boot-observability
+    build:
+      context: ../
+      dockerfile: config/Dockerfile
+    container_name: spring-boot-observability
+    ports:
+      - '8080:8080'
+
+  prometheus:
+    depends_on:
+      - spring-boot
+    image: prom/prometheus
+    container_name: spring-boot-prometheus
+    ports:
+      - '9090:9090'

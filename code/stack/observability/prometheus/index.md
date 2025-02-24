@@ -14,4 +14,4 @@
 
 [storage](./storage)
 
-[micrometer prometheus](../micrometer/micrometer prometheus)
+[spring observability prometheus](../spring-boot-actuator/spring boot metrics)
