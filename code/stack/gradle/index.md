@@ -1,6 +1,6 @@
 [examples](https://github.com/hansanhha/hansanhha.github.io/tree/default/code/stack/gradle/examples)
 
-basic
+core
 - [build tool](./build tool)
 - [architecture](./architecture)
 - [gradle build](./gradle build)
