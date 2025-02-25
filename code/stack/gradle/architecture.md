@@ -1,12 +1,65 @@
 #### index
+- [gradle build workflow and components](#gradle-build-workflow-and-components)
 - [gradle basic files](#gradle-basic-files)
-- [gradle build system workflow](#gradle-build-system-workflow)
 - [gradle wrapper and local gradle](#gradle-wrapper-and-local-gradle)
 - [GRADLE_USER_HOME](#gradle_user_home)
 - [gradle daemon](#gradle-daemon)
 - [gradle daemon vs no-daemon](#gradle-daemon-vs-no-daemon)
 - [build environment: customizing build process](#build-environment-customizing-build-process)
 - [gradle script file analysis](#gradle-script-file-analysis)
+
+
+## gradle build workflow and components
+
+그레이들은 빌드 스크립트의 내용을 기반으로 빌드, 테스트, 소프트웨어 배포 등을 자동화하는 메커니즘을 구현한다
+
+그레이들 빌드 과정의 구성 요소는 크게 세 가지로 이뤄진다
+
+프로젝트: 애플리케이션이나 라이브러리 같은 소프트웨어로 빌드될 수 있는 요소
+
+그레이들: 빌드를 수행하는 주체로서 빌드 로직을 구성 및 실행하거나 의존성 관리 등의 기능을 제공한다 
+
+결과물: 테스트 결과, 빌드 결과물(아티팩트, .jar/.apk/.zip/.war 등)
+
+#### 1. gradle or gradle wrapper
+
+사용자가 그레이들 빌드를 시작하는 단계로 그레이들 래퍼를 사용하면 정의된 버전에 따라 그레이들을 자동으로 다운받는다 (그레이들 버전 관리)
+
+#### 2. initialize gradle
+
+그레이들이 실행되어 초기화 작업을 수행한다
+
+그레이들의 환경 설정 및 설정 파일(gradle.properties 등)을 로드하고 필요한 그레이들 버전을 확인한다
+
+#### 3. daemon
+
+--no-daemon 옵션이 주어지지 않은 이상 데몬을 사용한다
+
+사용할 데몬이 없는 경우 새 데몬을 생성한다
+
+#### 4. initialize project
+
+Settings 인스턴스를 만들고 settings.gradle(.kts) 스크립트 파일을 파싱한 뒤 프로젝트의 설정을 평가한다
+
+빌드에 참여하는 각 프로젝트에 대한 Project 인스턴스를 생성한다
+
+#### 5. configure tasks
+
+빌드에 참여하는 프로젝트의 build.gradle(.kts) 스크립트 파일을 파싱한 뒤 태스크 의존관계에 따른 태스크 그래프를 생성한다
+
+#### 6. execute the tasks
+
+태스크 실행 계획을 세우고 의존 관계 순서에 따라 각 태스크를 실행한다 (병렬적으로 실행될 수도 있다)
+
+#### 7.
+
+
+
+읽기 좋은 글
+- [gradle basics](https://docs.gradle.org/current/userguide/gradle_basics.html)
+- [how gradle works part 1 - startup](https://blog.gradle.org/how-gradle-works-1)
+- [how gradle works part 2 - inside the daemon](https://blog.gradle.org/how-gradle-works-2)
+- [how gradle works part 3 - build script](https://blog.gradle.org/how-gradle-works-3)
 
 
 ## gradle basic files
@@ -101,36 +154,6 @@ unix 기반 시스템에서 사용하는 그레이들 래퍼 실행 스크립트
 windows 시스템에서 사용하는 그레이들 그레이들 래퍼 실행 스크립트
 
 gradlew의 윈도우 버전이다 `./gradlew.bat build`
-
-
-## gradle build system workflow
-
-#### 1. gradle or gradle wrapper
-
-사용자가 그레이들 빌드를 시작하는 단계로 그레이들 래퍼를 사용하면 정의된 버전에 따라 그레이들을 자동으로 다운받는다 (그레이들 버전 관리)
-
-#### 2. initialize gradle
-
-그레이들이 실행되어 초기화 작업을 수행한다
-
-그레이들의 환경 설정 및 설정 파일(gradle.properties 등)을 로드하고 필요한 그레이들 버전을 확인한다
-
-#### 3. daemon
-
---no-daemon 옵션이 주어지지 않은 이상 데몬을 사용한다
-
-사용할 데몬이 없는 경우 새 데몬을 생성한다
-
-#### 4. initialize project
-
-#### 5. configure tasks
-
-#### 6. execute the tasks
-
-
-
-
-
 
 
 ## gradle wrapper and local gradle
