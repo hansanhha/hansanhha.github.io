@@ -1,8 +1,8 @@
-[concepts](./concepts)
+basic
+- [concepts](./concepts)
 
-[configurations](./configurations)
-
-micrometer metrics
+micrometer metrics (core)
+- [metrics](./metrics module)
 - [counters](./counters)
 - [gauges](./gauges)
 - [timers](./timers)
@@ -10,8 +10,12 @@ micrometer metrics
 - [long task times](./long task times)
 - [histograms and percentiles](./histograms and percentiles)
 
-[micrometer observation](./micrometer observation)
+micrometer tracing
+- [tracing](./tracing module)
 
-[micrometer observation instrumenting examples](./micrometer observation instrumenting examples)
+micrometer observation
+- [observation](./observation module)
+- [micrometer observation instrumenting examples](./micrometer observation instrumenting examples)
 
-[spring boot observability](../spring-boot-actuator/spring boot observability)
+advanced
+- [spring boot observability](../spring-boot-actuator/spring boot observability)
