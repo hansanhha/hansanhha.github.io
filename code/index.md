@@ -7,4 +7,4 @@ title:
 
 [**stack**](./stack/index.md)
 
-[**how-to**](./how-to/index.md)
+[**cookbook**](./cookbook/index.md)
