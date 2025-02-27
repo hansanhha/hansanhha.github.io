@@ -2,7 +2,6 @@
 - [build](#build)
 - [build tool](#build-tool)
 - [gradle](#gradle)
-- [terminology](#terminology)
 
 
 ## build
@@ -113,11 +112,3 @@ maven, ivy 저장소와 호환되어 외부 라이브러리를 쉽게 관리할 
 #### build automation on continuous integration
 
 ci/cd 파이프라인에서 자동화된 테스트, 패키징, 배포 기능을 활용할 수 있다
-
-## terminology
-
-dependency: 프로젝트를 빌드 또는 실행하기 위해 빌드 파일에 명시된 외부 리소스
-
-library: 코드의 관점에서 해당 리소스를 참조할 때 지칭하는 용어
-
-artifact: 리포지토리 내의 jar 파일 같은 물리적인 리소스

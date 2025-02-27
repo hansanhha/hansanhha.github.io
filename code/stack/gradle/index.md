@@ -1,10 +1,11 @@
 [examples](https://github.com/hansanhha/hansanhha.github.io/tree/default/code/stack/gradle/examples)
 
 basic
-- [build tool](./build tool)
+- [what is gradle](./what is gradle)
 - [core concepts](./core concepts)
-- [build](./build components)
-- [project components](./project components)
+- [project](./project)
+- [build](./build)
+- [terminologies](./terminologies)
 
 advanced
 - [incremental build](./incremental build)
