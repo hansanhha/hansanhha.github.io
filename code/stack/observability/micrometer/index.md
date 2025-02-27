@@ -2,20 +2,18 @@ basic
 - [concepts](./concepts)
 
 micrometer metrics (core)
-- [metrics](./metrics module)
-- [counters](./counters)
-- [gauges](./gauges)
-- [timers](./timers)
-- [distribution summaries](./distribution summaries)
-- [long task times](./long task times)
-- [histograms and percentiles](./histograms and percentiles)
+- [metrics](./metrics/concepts)
+- [components](./metrics/components)
 
 micrometer tracing
-- [tracing](./tracing module)
+- [tracing](./tracing/concepts)
+- [api](./tracing/api)
+- [context propagation](./tracing/context propagation)
+- [examples](./tracing/examples)
 
 micrometer observation
-- [observation](./observation module)
-- [micrometer observation instrumenting examples](./micrometer observation instrumenting examples)
+- [observation](./observation/concepts)
+- [micrometer observation instrumenting examples](./observation/examples)
 
 advanced
 - [spring boot observability](../spring-boot-actuator/spring boot observability)
