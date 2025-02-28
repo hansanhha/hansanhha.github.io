@@ -3,8 +3,10 @@ layout: default
 title:
 ---
 
-[**stack**](./stack/index.md)
+[tools](./tools/index.md)
 
-[**projects**](./projects/index.md)
+[computer science](./computer-science/index.md)
 
-[**cookbook**](./cookbook/index.md)
+[projects](./projects/index.md)
+
+[cookbook](./cookbook/index.md)
