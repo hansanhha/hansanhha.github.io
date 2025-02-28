@@ -21,6 +21,9 @@ buildSrc
 
 multi project
 
+---
+
+deprecated
 
 - [gradle project structure](./basic gradle project structure)
 - [gradle init, gradle wrapper](./gradle init,gradle-wrapper)
@@ -33,7 +36,7 @@ multi project
 - [file handling](./file handling)
 - [kotlin](./kotlin)
 
-plugins
+plugins (deprecated)
 - [java plugin](./plugins/java plugin)
 - [application plugin](./plugins/application plugin)
 - [java library plugin](./plugins/java library)
@@ -41,6 +44,6 @@ plugins
 - [spring plugins](./plugins/spring plugins)
 - [custom plugin, task](../examples/plugin)
 
-multi-project (multi-module)
+multi-project (multi-module) (deprecated)
 - [multi project build](./multi-project/multi project build)
 - [buildSrc](./multi-project/buildSrc)
