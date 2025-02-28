@@ -1,25 +1,13 @@
-basic
-- [basic concepts](./basic concepts)
-- [inheritance, polymorphism](./inheritance and polymorphism)
-- [nested class](./nested class)
-- [anonymous class](./anonymous class)
-- [enum](./enum)
-- [annotation](./annotation)
+[class](./class)
 
-java 14/17 +
-- [record](./record)
-- [sealed classes](./sealed classes)
+[nested class](./nested class)
 
-advanced
-- [reflection]()
-- [class dynamic processing]()
-- [object lifecycle, memory management]()
-- [serialization]()
-- [pattern matching for switch with class]() 
+[anonymous class](./anonymous class)
 
-jvm
-- [classloader workflow]()
-- [unsafe]()
-- [method handle, lookup api]()
+[enum](./enum)
 
+[annotation](./annotation)
 
+[record](./record)
+
+[sealed classes](./sealed classes)

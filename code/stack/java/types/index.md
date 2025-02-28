@@ -1,11 +1,11 @@
 [reference types](reference-types/index.md)
 
-[primitive types]()
+[primitive types](./primitive-types/index.md)
 
-[wrappers]()
+[wrappers](./wrappers/index.md)
 
-[arrays]()
+[util classes](./util-classes/index.md)
 
-[built-in-classes](./built-in-classes)
+[built-in-classes](./built-in-classes/index.md)
 
 
