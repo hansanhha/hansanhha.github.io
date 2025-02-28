@@ -51,7 +51,7 @@ curl localhost:8080/actuator/loggers | jq
     "hansanhha": {
       "effectiveLevel": "INFO"
     },
-    "hansanhha.SpringBootObservabilityApplication": {
+    "hansanhha.ServerApplication": {
       "effectiveLevel": "INFO"
     }
   }

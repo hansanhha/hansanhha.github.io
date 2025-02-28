@@ -5,10 +5,3 @@ include(
     "order",
     "payment"
 )
-
-pluginManagement {
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}

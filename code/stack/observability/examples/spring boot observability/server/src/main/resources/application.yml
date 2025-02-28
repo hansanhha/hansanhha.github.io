@@ -1,0 +1,37 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: server
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, loggers, prometheus, metrics
+
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+
+  tracing:
+    sampling:
+      probability: 1.0   # 모든 trace를 샘플링한다 (실제 프로덕션 환경에선 과부하를 일으킬 수 있음)
+
+  otlp:
+    metrics:
+      export:
+        url: http://localhost:4318/v1/metrics
+        step: 2s
+
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+      encoding: proto3
+
+# 프로메테우스의 스크랩 요청을 로그로 출력한다
+logging:
+  level:
+    org.springframework.web: DEBUG

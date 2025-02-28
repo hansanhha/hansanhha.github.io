@@ -9,7 +9,9 @@ import java.util.Random;
 @Service
 public class UserService {
 
-    @Observed(name = "user.name", contextualName = "getting-user-name", lowCardinalityKeyValues = {"service", "user"})
+    @Observed(name = "user.name",
+            contextualName = "getting-user-name",
+            lowCardinalityKeyValues = {"userType", "userType2"})
     String getUsername(Long userId) {
         return "spring-man";
     }
