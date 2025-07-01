@@ -1,0 +1,11 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+    {% if page.title %}
+      {{ site.title }} - {{ page.title }}
+    {% else %}
+      {{ site.title }}
+    {% endif %}
+</title>
+{% feed_meta %}
+{% seo %} 

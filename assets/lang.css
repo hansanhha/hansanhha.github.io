@@ -1,0 +1,92 @@
+div[class^="language-"] {
+    padding: 12px;
+    margin: 12px 0;
+    overflow: auto;
+    font-family: "Courier New", monospace;
+    background-color: #f4f4f4; 
+    color: black; 
+    font-size: 0.95em; 
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+@media (prefers-color-scheme: dark) {
+    div[class^="language-"] {
+        --bg-color: #454545;
+        --text-color: #ddd;
+
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    code {
+        --bg-color: #454545;
+        --text-color: #ddd;
+        
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+}
+
+pre > code {
+    background-color: transparent;
+}
+
+code {
+    padding: 1px;
+    margin: 1px 5px;
+    font-family: "Courier New", monospace;
+    background-color: #f4f4f4; 
+    color: black; 
+    font-size: 0.95em; 
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.c1 {
+    color: gray;    
+    font-style: italic;
+}
+
+/* 예약어 */
+.language-java .kd {
+    color: #4866eb;
+}
+
+/* 클래스명 */
+.language-java .nc {
+    color: #0dac1a;
+}
+
+/* 자료형 */
+.language-java .kt {
+    color: #0dac1a;
+}
+
+/* 숫자 */
+.language-java .mi {
+    color: #59ab67;
+}
+
+/* 문자열 */
+.language-java .s {
+    color: #e11f1f;
+}
+
+.language-java .n {
+    color: #3a97d1;
+}
+
+.language-java .k {
+    color: #ab43d7;
+}
+
+/* 블록 */
+.language-java .o {
+    color: #000000;
+}
+
+/* 메서드 이름 */
+.language-java .nf {
+    color: #b7ba08;
+}

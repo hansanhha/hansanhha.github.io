@@ -1,0 +1,31 @@
+management:
+  endPoints:
+    web:
+      # actuator 엔드포인트 목록을 제공하는 discovery page 활성화 설정 (기본값: on)
+#      discovery:
+#        enabled: false
+
+      exposure:
+        include: health, info, beans, env, simple, order-info
+
+      # 기본적으로 cors를 비활성화하지만 cors.allowed-origins를 설정하면 cors가 활성화된다
+      cors:
+        allowed-origins: example.com
+        allowed-methods: GET, POST
+
+  endpoint:
+    env:
+#      show-values: always
+      show-values: when_authorized
+      roles: admin
+
+
+  info:
+    env:
+      enabled: on
+
+info:
+  app:
+    name: actuator application
+    version: 1.0.0
+    description: hansanhha spring boot actuator example application

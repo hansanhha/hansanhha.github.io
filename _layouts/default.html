@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<link rel="stylesheet" href="/assets/default.css">
+	<link rel="stylesheet" href="/assets/path.css">
+	<link rel="stylesheet" href="/assets/lang.css">
+	{% include meta.html %}
+</head>
+<body>
+	<div class="main-container">
+		{% include path.html %}
+		<main class="main-content">
+			{% if page.content != nil and page.content != "" %}
+				{{ content }}
+			{% else %}
+				<span>empty page</span>
+			{% endif %}
+		</main>
+	</div>
+</body>
+</html>
+

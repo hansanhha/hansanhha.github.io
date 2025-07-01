@@ -1,0 +1,77 @@
+springdoc:
+
+  api-docs:
+    path: /api-docs
+
+  swagger-ui:
+    path: /api-docs/swagger-ui.html
+    disable-swagger-default-url: true
+    display-request-duration: true
+    operations-sorter: alpha
+
+  show-actuator: true
+
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+
+  writer-with-default-pretty-printer: true
+
+spring:
+  application:
+    name: spring-boot
+
+
+# 로깅 설정
+logging:
+
+  pattern:
+
+    # 콘솔 출력 포맷 설정
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] [%X{traceId}]  %-5level %logger{36} - %msg%n"
+
+
+  # 로그 파일 설정
+  file:
+    name: # app.log
+    path: # ./spring-boot-logs
+
+  # 로그 파일 로테이션 설정
+  logback:
+    rollingpolicy:
+      clean-history-on-start: off
+      max-file-size: 1KB
+      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}.%i.gz
+      total-size-cap: 0B
+      max-history: 1
+
+
+  # 로그 레벨 조정
+  level:
+    root: info # 기본 전역 로그 레벨
+    org.springframework.web: debug # 스프링 web 패키지 로그 레벨
+    hansanhha:
+      logging: debug # 애플리케이션 패키지 로그 레벨
+    custom-group: info # 로그 그룹 로그 레벨
+
+  # 로그 그룹 지정
+  group:
+    custom-group: org.springframework.boot.autoconfigure.logging, hansanhha.logging
+
+  # 구조화된 로그 출력 포맷 설정
+  structured:
+    format:
+
+      # 구조화된 로그 콘솔 출력 포맷 설정 (ecs, gelf, logstash)
+      console: # logstash
+
+      # 구조화된 로그 파일 출력 포맷 설정 (ecs, gelf, logstash)
+      file: #ecs
+
+
+
+
+
+
+
+
+

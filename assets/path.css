@@ -1,0 +1,83 @@
+:root {
+    --bg-color: white;
+    --text-color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+      --bg-color: #343232;
+      --text-color: #e3dfdf;
+    }
+    
+    a {
+      color: #e3dfdf;
+    }
+      
+    a:hover {
+      border-bottom-color: #e3dfdf;
+    }
+
+    hr {
+      width: 18vw;
+      margin: 2em 0;
+      border: 1px solid #e3dfdf;
+    }
+
+    .main-content a:hover {
+      border-bottom-color: transparent;
+      color: #2176d1;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+
+    hr {
+      width: 18vw;
+      margin: 2em 0;
+      border: 1px solid #121212;
+    }
+}
+
+.idx-path-box {
+    width: fit-content;
+}
+
+.idx-path {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 0.5s steps(31) none;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+
+.idx-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    margin-top: 10%;
+    margin-bottom: 3%;
+}
+
+.idx-content {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    padding-bottom: 20em;
+}
+
+.title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.category {
+    font-weight: 600;
+}

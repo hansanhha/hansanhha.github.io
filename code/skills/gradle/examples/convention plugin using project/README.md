@@ -1,0 +1,1 @@
+이 프로젝트는 [java-convention-plugin 프로젝트](../java-convention-plugin)에 정의된 컨벤션 플러그인을 빌드에 포함시켜 프로젝트의 빌드를 수행한다

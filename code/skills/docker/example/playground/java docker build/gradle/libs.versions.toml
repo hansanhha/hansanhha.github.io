@@ -1,0 +1,15 @@
+[plugins]
+springDependencyManagement =  { id = "io.spring.dependency-management", version = "1.1.5"}
+springBoot = { id = "org.springframework.boot", version = "3.3.1"}
+
+[versions]
+junit-jupiter = "5.10.0"
+mysql = "8.0.27"
+h2= "2.2.224"
+
+[libraries]
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+mysql = { module = "mysql:mysql-connector-java", version.ref = "mysql" }
+springBoot-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+springBoot-dataJpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }

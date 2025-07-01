@@ -1,0 +1,46 @@
+<div class="idx-container">
+    <div class="idx-title">
+        {% if page.title %}
+            <div class="title">{{ page.title }}</div>
+        {% else %}
+            <div class="title">pwd</div>
+        {% endif %}
+    </div>
+    <div class="idx-path-box">
+      <div class="idx-path">
+        {% if page.dir == "/" %}
+            home
+        {% endif %}
+          <div style="display: flex;">
+              {% assign dirs = page.dir | split: '/' %}
+              {% assign depth = dirs.size | minus: 2 %}
+              {% assign maxDepth = depth %}
+              {% if depth == 0 and depth == maxDepth %}
+                <a href="/">home</a><span>/</span><a href="./">{{ dirs.last }}</a><span>/</span>
+              {% else %}
+                {% for dir in dirs %}
+                  {% if dir != "" %}
+                    {% assign relative_path = "" %}
+                    {% for i in (1..depth) %}
+                      {% assign relative_path = relative_path | append: "../" %}
+                    {% endfor %}
+                    {% if depth == maxDepth %}
+                      <a href="/">home</a><span>/</span><a href="{{ relative_path }}">{{ dir }}</a><span>/</span>
+                    {% else %}
+                      {% if depth == 0 %}
+                        <a href="./">{{ dir }}</a><span>/</span>
+                      {% else %}
+                        <a href="{{ relative_path }}">{{ dir }}</a><span>/</span>
+                      {% endif %}
+                    {% endif %}
+                    {% assign depth = depth | minus: 1 %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+              {% if page.name != "index.md" %}
+                <span class="idx-path-filename">{{ page.name | replace : ".md", "" | replace: "%20", " " }}</span>
+              {% endif %}
+          </div>
+      </div>
+    </div>
+</div>

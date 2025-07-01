@@ -1,0 +1,2 @@
+hello python
+standard output is redirected

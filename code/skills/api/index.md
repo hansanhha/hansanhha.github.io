@@ -1,0 +1,6 @@
+---
+layout: index
+title:
+---
+
+[백엔드에서 발생할 수 있는 동시성 문제와 해결 방법](./concurrency/index.md)

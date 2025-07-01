@@ -1,0 +1,35 @@
+services:
+
+  loki:
+    image: grafana/loki
+    container_name: example-loki
+    ports:
+      - '3100:3100'
+    volumes:
+      - './docker/loki-config.yml:/etc/loki/loki-config.yml'
+    command:
+      - '-config.file=/etc/loki/loki-config.yml'
+    restart: always
+
+  alloy:
+    image: gradle/alloy
+    container_name: example-alloy
+    volumes:
+      - './docker/alloy-config.yml:/etc/alloy/alloy-config.yml'
+    command:
+      - '-config.file=/etc/alloy/alloy-config.yml'
+    depends_on:
+      - loki
+    restart: always
+
+  grafana:
+    image: grafana/grafana
+    container_name: example-grafana
+    ports:
+      - '3000:3000'
+    depends_on:
+      - loki
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true

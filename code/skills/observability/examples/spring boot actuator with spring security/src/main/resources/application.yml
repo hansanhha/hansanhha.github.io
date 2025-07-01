@@ -1,0 +1,15 @@
+management:
+  endPoints:
+    web:
+      exposure:
+        include: health, info, beans
+
+  info:
+    env:
+      enabled: on
+
+info:
+  app:
+    name: actuator application
+    version: 1.0.0
+    description: hansanhha spring boot actuator security example application
