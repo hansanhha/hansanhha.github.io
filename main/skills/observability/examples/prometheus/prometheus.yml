@@ -1,0 +1,22 @@
+global:
+  scrape_interval: 15s
+
+  external_labels:
+    monitor: 'prometheus-example-monitor'
+
+scrape_configs:
+
+  -
+    job_name: 'prometheus'
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['localhost:9090']
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['alertmanager:9093']
+
+rule_files:
+  - './rules/default-rule.yml'

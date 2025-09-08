@@ -1,0 +1,21 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: order-service
+
+logging:
+  level:
+    io.opentelemetry.exporter.logging: DEBUG
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+  otlp:
+    tracing:
+      export:
+        enabled: true
+      endpoint: http://localhost:4318/v1/traces

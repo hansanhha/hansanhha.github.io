@@ -1,0 +1,72 @@
+---
+layout: default
+title:
+---
+
+DDL(Data Definition Language)
+- Database
+- Schema
+- Table
+- Data Types
+    - Date, Time: DATE, TIME, DATETIME
+- Constraints
+- Index
+
+DCL(Data Control Language)
+- User
+- Privileges
+- Security
+- SSL
+
+DML(Data Manipulation Language)
+- Query
+- Join
+- Order By, Group By
+- Limit, Offset
+- Count
+- Prepared Statement
+
+TCL(Transaction Control Language)
+- Transaction
+
+Object
+- Views
+- Triggers
+- Stored Procedures
+- Functions
+
+Engine
+- MySQL Engine
+- InnoDB
+- MyISAM
+
+Integrity
+- Data Integrity
+- Reference Integrity
+
+Data 
+- Concurrent Control/Lock
+- Backup & Recovery
+- Replication
+- Partitioning
+
+High Availability
+- Clustering
+
+Performance Tuning
+- Execution Plan
+- Optimizer
+
+OTHERS
+- Connection Management
+- Normalization
+- SQL Injection
+- Reserved Words
+
+MySQL
+- MySQL Server
+- MySQL Client
+- MySQL Workbench
+- MySQL Shell
+- MySQL Router
+- MySQL Connector

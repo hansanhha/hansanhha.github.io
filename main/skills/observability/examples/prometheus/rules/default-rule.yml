@@ -1,0 +1,19 @@
+groups:
+    name: example-rules
+    interval: 30s
+    rules:
+      -
+        record: code:prometheus_http_requests_total:sum
+        expr: sum by (code) (prometheus_http_request_total)
+        labels:
+          job: 'node'
+
+      -
+        alert: InstanceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Instance {{ $labels.instance }} is down"
+          description: "The instance {{ $labels.instance }} is not reachable for more than 1 minute."

@@ -1,0 +1,5 @@
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
+}
+
+rootProject.name="spring-boot-actuator-with-spring-security-example-app"

@@ -1,0 +1,327 @@
+============== Class<Unit> info ====================
+
+-------------------- class type --------------------
+Class<Unit> super class: null
+Class<Unit> isInterface: true
+Class<Unit> isAnnotation: false
+Class<Unit> isEnum: false
+Class<Unit> isRecord: false
+
+-------------------- class name --------------------
+Class<Unit> simple name: Unit
+Class<Unit> name: hansanhha.classes.built_in.class_.Unit
+Class<Unit> canonical name: hansanhha.classes.built_in.class_.Unit
+Class<Unit> typename: hansanhha.classes.built_in.class_.Unit
+
+-------------------- package --------------------
+Class<Unit> package: package hansanhha.classes.built_in.class_
+Class<Unit> package name: hansanhha.classes.built_in.class_
+
+-------------------- generic --------------------
+Class<Unit> type parameters: [T]
+Class<Unit> generic super class: null
+Class<Unit> generic interfaces: []
+
+-------------------- annotation --------------------
+Class<Unit> annotations: []
+Class<Unit> declared annotations: []
+
+-------------------- modifier --------------------
+Class<Unit> modifier: 1537
+
+-------------------- class loader --------------------
+Class<Unit> class loader: jdk.internal.loader.ClassLoaders$AppClassLoader@2c854dc5
+
+-------------------- component type --------------------
+Class<Unit> component type: null
+
+-------------------- enclosing class --------------------
+Class<Unit> enclosing class: null
+
+-------------------- enclosing constructor --------------------
+Class<Unit> enclosing constructor: null
+
+-------------------- enclosing method --------------------
+Class<Unit> enclosing method: null
+
+-------------------- enum constants --------------------
+Class<Unit> enum constants: null
+
+-------------------- fields --------------------
+Class<Unit> fields: []
+Class<Unit> declared fields: []
+
+
+
+============== Class<TerranUnit> info ====================
+
+-------------------- class type --------------------
+Class<TerranUnit> super class: class java.lang.Object
+Class<TerranUnit> isInterface: false
+Class<TerranUnit> isAnnotation: false
+Class<TerranUnit> isEnum: false
+Class<TerranUnit> isRecord: false
+
+-------------------- class name --------------------
+Class<TerranUnit> simple name: TerranUnit
+Class<TerranUnit> name: hansanhha.classes.built_in.class_.TerranUnit
+Class<TerranUnit> canonical name: hansanhha.classes.built_in.class_.TerranUnit
+Class<TerranUnit> typename: hansanhha.classes.built_in.class_.TerranUnit
+
+-------------------- package --------------------
+Class<TerranUnit> package: package hansanhha.classes.built_in.class_
+Class<TerranUnit> package name: hansanhha.classes.built_in.class_
+
+-------------------- generic --------------------
+Class<TerranUnit> type parameters: [T]
+Class<TerranUnit> generic super class: class java.lang.Object
+Class<TerranUnit> generic interfaces: [hansanhha.classes.built_in.class_.Unit<T>]
+
+-------------------- annotation --------------------
+Class<TerranUnit> annotations: []
+Class<TerranUnit> declared annotations: []
+
+-------------------- modifier --------------------
+Class<TerranUnit> modifier: 1025
+
+-------------------- class loader --------------------
+Class<TerranUnit> class loader: jdk.internal.loader.ClassLoaders$AppClassLoader@2c854dc5
+
+-------------------- component type --------------------
+Class<TerranUnit> component type: null
+
+-------------------- enclosing class --------------------
+Class<TerranUnit> enclosing class: null
+
+-------------------- enclosing constructor --------------------
+Class<TerranUnit> enclosing constructor: null
+
+-------------------- enclosing method --------------------
+Class<TerranUnit> enclosing method: null
+
+-------------------- enum constants --------------------
+Class<TerranUnit> enum constants: null
+
+-------------------- fields --------------------
+Class<TerranUnit> fields: []
+Class<TerranUnit> declared fields: [int hansanhha.classes.built_in.class_.TerranUnit.hp, int hansanhha.classes.built_in.class_.TerranUnit.damage]
+
+
+
+============== Class<Marine> info ====================
+
+-------------------- class type --------------------
+Class<Marine> super class: class hansanhha.classes.built_in.class_.TerranUnit
+Class<Marine> isInterface: false
+Class<Marine> isAnnotation: false
+Class<Marine> isEnum: false
+Class<Marine> isRecord: false
+
+-------------------- class name --------------------
+Class<Marine> simple name: Marine
+Class<Marine> name: hansanhha.classes.built_in.class_.Marine
+Class<Marine> canonical name: hansanhha.classes.built_in.class_.Marine
+Class<Marine> typename: hansanhha.classes.built_in.class_.Marine
+
+-------------------- package --------------------
+Class<Marine> package: package hansanhha.classes.built_in.class_
+Class<Marine> package name: hansanhha.classes.built_in.class_
+
+-------------------- generic --------------------
+Class<Marine> type parameters: []
+Class<Marine> generic super class: hansanhha.classes.built_in.class_.TerranUnit<hansanhha.classes.built_in.class_.Small>
+Class<Marine> generic interfaces: []
+
+-------------------- annotation --------------------
+Class<Marine> annotations: [@hansanhha.classes.built_in.class_.AttackUnit()]
+Class<Marine> declared annotations: [@hansanhha.classes.built_in.class_.AttackUnit()]
+
+-------------------- modifier --------------------
+Class<Marine> modifier: 1
+
+-------------------- class loader --------------------
+Class<Marine> class loader: jdk.internal.loader.ClassLoaders$AppClassLoader@2c854dc5
+
+-------------------- component type --------------------
+Class<Marine> component type: null
+
+-------------------- enclosing class --------------------
+Class<Marine> enclosing class: null
+
+-------------------- enclosing constructor --------------------
+Class<Marine> enclosing constructor: null
+
+-------------------- enclosing method --------------------
+Class<Marine> enclosing method: null
+
+-------------------- enum constants --------------------
+Class<Marine> enum constants: null
+
+-------------------- fields --------------------
+Class<Marine> fields: []
+Class<Marine> declared fields: []
+
+
+
+============== Class<Mineral> info ====================
+
+-------------------- class type --------------------
+Class<Mineral> super class: class java.lang.Record
+Class<Mineral> isInterface: false
+Class<Mineral> isAnnotation: false
+Class<Mineral> isEnum: false
+Class<Mineral> isRecord: true
+
+-------------------- class name --------------------
+Class<Mineral> simple name: Mineral
+Class<Mineral> name: hansanhha.classes.built_in.class_.Mineral
+Class<Mineral> canonical name: hansanhha.classes.built_in.class_.Mineral
+Class<Mineral> typename: hansanhha.classes.built_in.class_.Mineral
+
+-------------------- package --------------------
+Class<Mineral> package: package hansanhha.classes.built_in.class_
+Class<Mineral> package name: hansanhha.classes.built_in.class_
+
+-------------------- generic --------------------
+Class<Mineral> type parameters: []
+Class<Mineral> generic super class: class java.lang.Record
+Class<Mineral> generic interfaces: []
+
+-------------------- annotation --------------------
+Class<Mineral> annotations: []
+Class<Mineral> declared annotations: []
+
+-------------------- modifier --------------------
+Class<Mineral> modifier: 17
+
+-------------------- class loader --------------------
+Class<Mineral> class loader: jdk.internal.loader.ClassLoaders$AppClassLoader@2c854dc5
+
+-------------------- component type --------------------
+Class<Mineral> component type: null
+
+-------------------- enclosing class --------------------
+Class<Mineral> enclosing class: null
+
+-------------------- enclosing constructor --------------------
+Class<Mineral> enclosing constructor: null
+
+-------------------- enclosing method --------------------
+Class<Mineral> enclosing method: null
+
+-------------------- enum constants --------------------
+Class<Mineral> enum constants: null
+
+-------------------- fields --------------------
+Class<Mineral> fields: []
+Class<Mineral> declared fields: [private final int hansanhha.classes.built_in.class_.Mineral.value]
+
+
+
+============== Class<AttackUnit> info ====================
+
+-------------------- class type --------------------
+Class<AttackUnit> super class: null
+Class<AttackUnit> isInterface: true
+Class<AttackUnit> isAnnotation: true
+Class<AttackUnit> isEnum: false
+Class<AttackUnit> isRecord: false
+
+-------------------- class name --------------------
+Class<AttackUnit> simple name: AttackUnit
+Class<AttackUnit> name: hansanhha.classes.built_in.class_.AttackUnit
+Class<AttackUnit> canonical name: hansanhha.classes.built_in.class_.AttackUnit
+Class<AttackUnit> typename: hansanhha.classes.built_in.class_.AttackUnit
+
+-------------------- package --------------------
+Class<AttackUnit> package: package hansanhha.classes.built_in.class_
+Class<AttackUnit> package name: hansanhha.classes.built_in.class_
+
+-------------------- generic --------------------
+Class<AttackUnit> type parameters: []
+Class<AttackUnit> generic super class: null
+Class<AttackUnit> generic interfaces: [interface java.lang.annotation.Annotation]
+
+-------------------- annotation --------------------
+Class<AttackUnit> annotations: [@java.lang.annotation.Target({TYPE, ANNOTATION_TYPE}), @java.lang.annotation.Retention(RUNTIME)]
+Class<AttackUnit> declared annotations: [@java.lang.annotation.Target({TYPE, ANNOTATION_TYPE}), @java.lang.annotation.Retention(RUNTIME)]
+
+-------------------- modifier --------------------
+Class<AttackUnit> modifier: 9729
+
+-------------------- class loader --------------------
+Class<AttackUnit> class loader: jdk.internal.loader.ClassLoaders$AppClassLoader@2c854dc5
+
+-------------------- component type --------------------
+Class<AttackUnit> component type: null
+
+-------------------- enclosing class --------------------
+Class<AttackUnit> enclosing class: null
+
+-------------------- enclosing constructor --------------------
+Class<AttackUnit> enclosing constructor: null
+
+-------------------- enclosing method --------------------
+Class<AttackUnit> enclosing method: null
+
+-------------------- enum constants --------------------
+Class<AttackUnit> enum constants: null
+
+-------------------- fields --------------------
+Class<AttackUnit> fields: []
+Class<AttackUnit> declared fields: []
+
+
+
+============== Class<Race> info ====================
+
+-------------------- class type --------------------
+Class<Race> super class: class java.lang.Enum
+Class<Race> isInterface: false
+Class<Race> isAnnotation: false
+Class<Race> isEnum: true
+Class<Race> isRecord: false
+
+-------------------- class name --------------------
+Class<Race> simple name: Race
+Class<Race> name: hansanhha.classes.built_in.class_.Race
+Class<Race> canonical name: hansanhha.classes.built_in.class_.Race
+Class<Race> typename: hansanhha.classes.built_in.class_.Race
+
+-------------------- package --------------------
+Class<Race> package: package hansanhha.classes.built_in.class_
+Class<Race> package name: hansanhha.classes.built_in.class_
+
+-------------------- generic --------------------
+Class<Race> type parameters: []
+Class<Race> generic super class: java.lang.Enum<hansanhha.classes.built_in.class_.Race>
+Class<Race> generic interfaces: []
+
+-------------------- annotation --------------------
+Class<Race> annotations: []
+Class<Race> declared annotations: []
+
+-------------------- modifier --------------------
+Class<Race> modifier: 16401
+
+-------------------- class loader --------------------
+Class<Race> class loader: jdk.internal.loader.ClassLoaders$AppClassLoader@2c854dc5
+
+-------------------- component type --------------------
+Class<Race> component type: null
+
+-------------------- enclosing class --------------------
+Class<Race> enclosing class: null
+
+-------------------- enclosing constructor --------------------
+Class<Race> enclosing constructor: null
+
+-------------------- enclosing method --------------------
+Class<Race> enclosing method: null
+
+-------------------- enum constants --------------------
+Class<Race> enum constants: [ZERG, TERRAN, PROTOSS]
+
+-------------------- fields --------------------
+Class<Race> fields: [public static final hansanhha.classes.built_in.class_.Race hansanhha.classes.built_in.class_.Race.ZERG, public static final hansanhha.classes.built_in.class_.Race hansanhha.classes.built_in.class_.Race.TERRAN, public static final hansanhha.classes.built_in.class_.Race hansanhha.classes.built_in.class_.Race.PROTOSS]
+Class<Race> declared fields: [public static final hansanhha.classes.built_in.class_.Race hansanhha.classes.built_in.class_.Race.ZERG, public static final hansanhha.classes.built_in.class_.Race hansanhha.classes.built_in.class_.Race.TERRAN, public static final hansanhha.classes.built_in.class_.Race hansanhha.classes.built_in.class_.Race.PROTOSS, private static final hansanhha.classes.built_in.class_.Race[] hansanhha.classes.built_in.class_.Race.$VALUES]

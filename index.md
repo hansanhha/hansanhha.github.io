@@ -3,9 +3,9 @@ layout: index
 title: hansanhha
 ---
 
-[source code](./code)
+[main](./main)
 
-[records](./records)
+[about](./about)
 
 [archives](./archives)
 

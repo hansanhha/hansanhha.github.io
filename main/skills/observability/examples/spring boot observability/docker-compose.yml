@@ -1,0 +1,60 @@
+services:
+
+  prometheus:
+    image: prom/prometheus
+    container_name: spring-boot-observability-prometheus
+    extra_hosts: [ 'host.docker.internal:host-gateway' ]
+    command:
+      - --enable-feature=exemplar-storage
+      - --enable-feature=otlp-write-receiver
+      - --web.enable-remote-write-receiver
+      - --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - '9090:9090'
+    volumes:
+      - prometheus:/prometheus
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+
+  grafana:
+    image: grafana/grafana
+    container_name: spring-boot-observability-grafana
+    extra_hosts: [ 'host.docker.internal:host-gateway' ]
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+    volumes:
+      - ./docker/grafana/grafana.ini:/etc/grafana/grafana.ini:ro
+      - ./docker/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./docker/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+    ports:
+      - '3000:3000'
+
+  tempo:
+    image: grafana/tempo
+    container_name: spring-boot-observability-tempo
+    extra_hosts: ['host.docker.internal:host-gateway']
+    command:
+      - '-config.file=/etc/tempo.yml'
+    volumes:
+      - tempo:/tmp/tempo
+      - ./docker/grafana/tempo.yml:/etc/tempo.yml:ro
+    ports:
+      - '3200:3200' # tempo
+      - '4318:4318' # otlp http
+
+  loki:
+    image: grafana/loki
+    container_name: spring-boot-observability-loki
+    extra_hosts: [ 'host.docker.internal:host-gateway' ]
+    command:
+      - '-config.file=/etc/loki/local-config.yaml'
+    ports:
+      - '3100:3100'
+
+
+volumes:
+  prometheus:
+    driver: local
+  tempo:
+    driver: local

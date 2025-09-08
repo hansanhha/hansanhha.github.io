@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login success</title>
+</head>
+<body>
+<script>
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    window.onload = async function() {
+        const accessToken = getQueryParam('access_token');
+        const refreshToken = getQueryParam('refresh_token');
+
+        if (accessToken && refreshToken) {
+            await fetch(`/api/get-token`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({accessToken: accessToken, refreshToken: refreshToken}),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    localStorage.setItem('accessToken', data.access_token)
+                    localStorage.setItem('refreshToken', data.refresh_token)
+                    localStorage.setItem('expiresIn', data.expiredAt)
+                    localStorage.setItem('issuedAt', data.issuedAt)
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        window.location.href = '/';
+    }
+</script>
+</body>
+</html>

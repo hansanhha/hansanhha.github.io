@@ -1,0 +1,60 @@
+[versions]
+springframework="6.1.14"
+spring-boot = "3.3.5"
+spring-management = "1.1.6"
+spring-modulith = "1.1.2"
+hibernate-orm = "6.6.0.Final"
+hibernate-validator = "8.0.0.Final"
+querydsl = "5.1.0"
+h2 = "2.3.232"
+junit5 = "5.11.0"
+lombok = "1.18.36"
+
+[plugins]
+spring-boot = { id="org.springframework.boot", version.ref= "spring-boot" }
+spring-management = { id="io.spring.dependency-management", version.ref= "spring-management" }
+
+[libraries]
+# Spring
+springframework-core = { module="org.springframework:spring-core", version.ref="springframework" }
+springframework-context = { module="org.springframework:spring-context", version.ref="springframework" }
+springframework-context-support = { module="org.springframework:spring-context-support", version.ref="springframework"}
+springframework-context-indexer = { module="org.springframework:spring-context-indexer", version.ref="springframework"}
+springframework-beans = { module="org.springframework:spring-beans", version.ref="springframework" }
+springframework-aop = { module="org.springframework:spring-aop", version.ref="springframework" }
+springframework-aspects = { module="org.springframework:spring-aspects", version.ref="springframework" }
+spring-boot = { module="org.springframework.boot:spring-boot-starter"}
+spring-boot-test = { module="org.springframework.boot:spring-boot-starter-test"}
+spring-boot-data-jpa = { module="org.springframework.boot:spring-boot-starter-data-jpa"}
+spring-boot-web = { module="org.springframework.boot:spring-boot-starter-web"}
+spring-boot-thymeleaf = { module="org.springframework.boot:spring-boot-starter-thymeleaf"}
+spring-boot-actuator = { module="org.springframework.boot:spring-boot-starter-actuator"}
+spring-boot-configuration-processor = { module="org.springframework.boot:spring-boot-configuration-processor"}
+spring-boot-security = { module="org.springframework.boot:spring-boot-starter-security"}
+spring-boot-security-oauth2-client = { module="org.springframework.boot:spring-boot-starter-oauth2-client"}
+
+# Spring Modulith
+spring-modulith-core = { module="org.springframework.modulith:spring-modulith-starter-core", version.ref= "spring-modulith" }
+spring-modulith-events-api =  { module="org.springframework.modulith:spring-modulith-events-api", version.ref= "spring-modulith" }
+spring-modulith-events-core = { module="org.springframework.modulith:spring-modulith-events-core", version.ref= "spring-modulith" }
+spring-modulith-jpa = { module="org.springframework.modulith:spring-modulith-starter-jpa", version.ref= "spring-modulith" }
+spring-moduliith-test = { module="org.springframework.modulith:spring-modulith-starter-test", version.ref= "spring-modulith" }
+spring-modulith-actuator = { module="org.springframework.modulith:spring-modulith-actuator", version.ref= "spring-modulith" }
+
+# Hibernate
+hibernate-orm = { module = "org.hibernate.orm:hibernate-core", version.ref = "hibernate-orm" }
+hibernate-validator = { module = "org.hibernate.validator:hibernate-validator", version.ref = "hibernate-validator" }
+hibernate-agroal = { module = "org.hibernate.orm:hibernate-agroal", version.ref = "hibernate-orm" }
+hibernate-jpamodelgen = { module = "org.hibernate.orm:hibernate-jpamodelgen", version.ref = "hibernate-orm" }
+glassfish-el = { module = "org.glassfish:jakarta.el", version = "4.0.2" }
+agroal = { module = "io.agroal:agroal-pool", version = "2.1" }
+
+# QueryDSL
+querydsl-jpa = { module = "com.querydsl:querydsl-jpa", version.ref= "querydsl" }
+querydsl-apt = { module = "com.querydsl:querydsl-apt", version.ref= "querydsl" }
+
+# etc
+log4j = { module = "org.apache.logging.log4j:log4j-core", version = "2.20.0" }
+jupiter = { module= "org.junit.jupiter:junit-jupiter-api", version.ref= "junit5" }
+h2 = { module = "com.h2database:h2", version.ref= "h2" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
