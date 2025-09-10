@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 
+prev: march
+next: may
 ---
-
-[prev](./march) [next](./may)
 
 Guksabong Peak
 

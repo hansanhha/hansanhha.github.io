@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 
+prev: january
+next: march
 ---
-
-[prev](./january) [next](./march)
 
 Samseong Haemaji Park
 

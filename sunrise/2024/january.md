@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 
+prev: index
+next: march
 ---
-
-[next](./march)
 
 Seoul Mongchontoseong Earthen Fortification
 

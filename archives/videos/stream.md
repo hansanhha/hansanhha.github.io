@@ -1,10 +1,9 @@
 ---
 layout: default
 title: 
+prev: chairs
 ---
 
-[prev](./3)
-
 <video controls>
-    <source src="./data/pink%20sky.mov">
+    <source src="./data/stream.mov">
 </video>

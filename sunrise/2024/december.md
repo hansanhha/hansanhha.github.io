@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 
+prev: november
+next: ../2025/january
 ---
-
-[prev](./november) [next](../2025/january)
 
 Sky Park
 

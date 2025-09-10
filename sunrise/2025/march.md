@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 
+prev: february
+next: april
 ---
-
-[prev](./february) [next](./april)
 
 Sayukshin Park
 

@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 
+prev: may
+next: july
 ---
-
-[prev](./may) [next](./july)
 
 Nodeul Island
 

@@ -1,11 +1,15 @@
 ---
-layout: default
-title: 
+layout: index
+title:
 ---
 
-[next](./1)
+[blue sky](./blue%20sky)
 
-<video controls>
-    <source src="./data/blue%20sky.mov">
-</video>
+[hazy sky](./hazy%20sky)
+
+[pink sky](./pink%20sky)
+
+[chairs](./chairs)
+
+[stream](./stream)
 

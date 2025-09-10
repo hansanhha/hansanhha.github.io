@@ -40,6 +40,8 @@
 
 .idx-path-box {
     width: fit-content;
+    /* font-size: 1.1em; */
+    margin-bottom: 10px;
 }
 
 .idx-path {
@@ -73,11 +75,15 @@
 }
 
 .title {
-    font-size: 2em;
-    font-weight: bold;
     margin-bottom: 10px;
 }
 
 .category {
     font-weight: 600;
+}
+
+.page-link {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
 }

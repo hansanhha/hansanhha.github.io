@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 
+prev: april
+next: june
 ---
-
-[prev](./april) [next](./june)
 
 Yongmasan
 

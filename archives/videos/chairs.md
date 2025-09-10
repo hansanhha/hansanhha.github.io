@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 
+prev: pink%20sky
+next: stream
 ---
-
-[prev](./index) [next](./2)
 
 <video controls>
     <source src="./data/chairs.mov">

@@ -1,9 +1,9 @@
 ---
 layout: default
 title: 
+prev: blue%20sky
+next: pink%20sky
 ---
-
-[prev](./2) [next](./4)
 
 <video controls>
     <source src="./data/hazy%20sky.mov">

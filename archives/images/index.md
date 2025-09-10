@@ -1,14 +1,12 @@
 ---
-layout: default
+layout: index
 title:
 ---
 
-[next](./1)
+[moving](./moving)
 
-<img src="./motorcycle.jpeg" alt="motorcycle.jpeg" />
+[people](./people)
 
-<img src="./horizoning.jpg" alt="horizoning.jpg" />
+[tools](./tools)
 
-<img src="./walking%20sillim.JPG" alt="walking sillim.jpg" />
-
-<img src="./sudeocksa.JPG" alt="sudeoksa.jpg" />
+[weeknd](./weeknd)
