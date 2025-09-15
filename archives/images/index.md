@@ -9,4 +9,4 @@ title:
 
 [tools](./tools)
 
-[weeknd](./weeknd)
+[the weeknd](./the%20weeknd)

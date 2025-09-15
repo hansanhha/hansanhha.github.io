@@ -8,7 +8,11 @@
 <body>
     {% include path.html %}
     <div class="idx-content">
-        {{ content }}
+        {% if page.content != nil and page.content != "" %}
+				{{ content }}
+        {% else %}
+            <span>empty page</span>
+        {% endif %}
     </div>
 </body>
 </html>

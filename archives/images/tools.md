@@ -2,14 +2,14 @@
 layout: default
 title: 
 prev: people
-next: weeknd
+next: the%20weeknd
 ---
 
 <img src="./data/macbook.JPG" alt="macbook.jpg" />
 
 <img src="./data/clock.jpg" alt="clock.jpg" />
 
-<img src="./data/ports.jfif" alt="ports.jfif" />
+<img src="./data/ports.jpeg" alt="ports.jpeg" />
 
 <img src="./data/Ipod 1st Generation (2001).jpeg" alt="Ipod%201st%20generation%20(2001).jpeg" />
 
