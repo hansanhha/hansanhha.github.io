@@ -12,3 +12,5 @@ title:
 [april](./april)
 
 [may](./may)
+
+[october](./october)

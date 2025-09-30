@@ -2,9 +2,8 @@
 layout: default
 title: 
 prev: april
+next: october
 ---
-
-[prev](./april)
 
 Boramae Park
 
