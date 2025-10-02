@@ -3,6 +3,8 @@
 :root {
   --bg-color: white;
   --text-color: black;
+
+  cursor: default;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -62,6 +64,10 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: "Libre Franklin", "Arial", "Verdana", sans-serif;
+}
+
+a:hover {
+  cursor: default;
 }
 
 .main-container {
