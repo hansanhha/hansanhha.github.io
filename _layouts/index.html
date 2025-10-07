@@ -6,13 +6,28 @@
     {% include meta.html %}
 </head>
 <body>
-    {% include path.html %}
-    <div class="idx-content">
-        {% if page.content != nil and page.content != "" %}
-				{{ content }}
-        {% else %}
-            <span>empty page</span>
-        {% endif %}
+    <div class="index-container">
+        {% include path.html %}
+        {% include nav.html %}
+        <div class="idx-content">
+            {% if page.content != nil and page.content != "" %}
+                    {{ content }}
+            {% else %}
+                <span id="empty"></span>
+            {% endif %}
+        </div>
     </div>
 </body>
+<script>
+	const $empty = document.getElementById("empty");
+
+    if ($empty != undefined) {
+        const lang = localStorage.getItem("lang");
+        if (lang === "한글") {
+            $empty.textContent = "빈 페이지";
+        } else {
+            $empty.textContent = "empty page";
+        }
+    }
+</script>
 </html>

@@ -3,6 +3,7 @@ layout: default
 title:
 prev: index
 next: people
+page-name-ko: 동작
 ---
 
 <img src="./data/motorcycle.jpeg" alt="motorcycle.jpeg" />

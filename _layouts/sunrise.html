@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<link rel="stylesheet" href="/assets/default.css">
+	<link rel="stylesheet" href="/assets/path.css">
+	<link rel="stylesheet" href="/assets/lang.css">
+	{% include meta.html %}
+</head>
+<body>
+	<div class="main-container">
+		{% include path.html %}
+		{% include nav.html %}
+		<main class="main-content">
+			{% if page.content != nil and page.content != "" %}
+                <p id="nomiation" data-nomiation="{{ page.nomiation }}" data-nomiation-ko="{{ page.nomiation-ko }}"></p>
+                <p id="address" data-address="{{ page.address }}" data-address-ko="{{ page.address-ko }}"></p>
+				{{ content }}
+			{% else %}
+				<span>empty page</span>
+			{% endif %}
+		</main>
+	</div>
+</body>
+<script>
+    const $nomiation = document.getElementById("nomiation");
+    const $address = document.getElementById("address");
+
+    const lang = localStorage.getItem("lang");
+    if (lang === "한글") {
+        $nomiation.textContent = $nomiation.dataset.nomiationKo;
+        $address.textContent = $address.dataset.addressKo;
+    } else {
+        $nomiation.textContent = $nomiation.dataset.nomiation;
+        $address.textContent = $address.dataset.address;
+    }
+</script>
+</html>
+

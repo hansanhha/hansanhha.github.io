@@ -1,13 +1,13 @@
 ---
-layout: default
-title: 
+layout: sunrise
 prev: february
 next: april
+page-name-ko: 3월
+nomiation: Sayukshin Park
+address: 191, Noryangjin-ro, Dongjak-gu, Seoul
+nomiation-ko: 사육신공원
+address-ko: 서울 동작구 노량진로 191
 ---
-
-Sayukshin Park
-
-191, Noryangjin-ro, Dongjak-gu, Seoul
 
 <img src="./data/3/1.jpeg" alt="">
 

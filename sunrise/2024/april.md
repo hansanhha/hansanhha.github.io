@@ -1,13 +1,13 @@
 ---
-layout: default
-title: 
+layout: sunrise
 prev: march
 next: may
+page-name-ko: 4월
+nomiation: Guksabong Peak
+address: Sangdo-dong, Dongjak-gu, Seoul
+nomiation-ko: 국사봉
+address-ko: 서울 동작구 국사봉
 ---
-
-Guksabong Peak
-
-Sangdo-dong, Dongjak-gu, Seoul
 
 <img src="2404-1.JPG" alt="">
 

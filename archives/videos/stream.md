@@ -2,6 +2,7 @@
 layout: default
 title: 
 prev: chairs
+page-name-ko: 개울
 ---
 
 <video controls>

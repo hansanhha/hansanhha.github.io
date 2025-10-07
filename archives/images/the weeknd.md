@@ -2,6 +2,7 @@
 layout: default
 title: 
 prev: tools
+page-name-ko: 위켄드
 ---
 
 <img src="./data/after%20hours.JPG" alt="after hours.jpg" />

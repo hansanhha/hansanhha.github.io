@@ -1,13 +1,13 @@
 ---
-layout: default
-title: 
+layout: sunrise
 prev: june
 next: november
+page-name-ko: 7월
+nomiation: Boramae Park
+address: 33, Yeouidaebang-ro 20-gil, Dongjak-gu, Seoul
+nomiation-ko: 보라매공원
+address-ko: 서울 동작구 여의대방로 20길 33
 ---
-
-Boramae Park
-
-33, Yeouidaebang-ro 20-gil, Dongjak-gu, Seoul
 
 <img src="./2407-1.JPG" alt="">
 

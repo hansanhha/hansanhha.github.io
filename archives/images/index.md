@@ -1,12 +1,27 @@
 ---
 layout: index
-title:
 ---
 
-[moving](./moving)
+<a href="./moving" id="moving">moving</a>
 
-[people](./people)
+<a href="./people" id="people">people</a>
 
-[tools](./tools)
+<a href="./tools" id="tools">tools</a>
 
-[the weeknd](./the%20weeknd)
+<a href="./the%20weeknd" id="theWeeknd">the weeknd</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const lang = localStorage.getItem("lang");
+    if (lang === "한글") {
+        const moving = document.getElementById("moving");
+        const people = document.getElementById("people");
+        const tools = document.getElementById("tools");
+        const theWeeknd = document.getElementById("theWeeknd");
+        moving.textContent = "동작";
+        people.textContent = "사람들";
+        tools.textContent = "도구";
+        theWeeknd.textContent = "위켄드";
+    }
+}); 
+</script>

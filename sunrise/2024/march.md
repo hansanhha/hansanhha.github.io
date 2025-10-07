@@ -1,13 +1,13 @@
 ---
-layout: default
-title: 
+layout: sunrise
 prev: january
 next: april
+page-name-ko: 3월
+nomiation: Han River-Seonyudo Park
+address: 343, Seonyu-ro, Yeongdeungpo-gu, Seoul
+nomiation-ko: 한강 선유도공원
+address-ko: 서울 영등포구 선유로 343
 ---
-
-Han River-Seonyudo Park
-
-343, Seonyu-ro, Yeongdeungpo-gu, Seoul
 
 <img src="./2403-1.JPG" alt="">
 

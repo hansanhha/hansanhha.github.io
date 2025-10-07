@@ -3,6 +3,7 @@ layout: default
 title: 
 prev: people
 next: the%20weeknd
+page-name-ko: 도구
 ---
 
 <img src="./data/macbook.JPG" alt="macbook.jpg" />

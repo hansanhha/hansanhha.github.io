@@ -1,13 +1,13 @@
 ---
-layout: default
-title: 
+layout: sunrise
 prev: november
 next: ../2025/january
+page-name-ko: 12월
+nomiation: Sky Park
+address: 95, Haneulgongwon-ro, Mapo-gu, Seoul
+nomiation-ko: 하늘공원
+address-ko: 서울 마포구 하늘공원로 95
 ---
-
-Sky Park
-
-95, Haneulgongwon-ro, Mapo-gu, Seoul
 
 <img src="2412-1.JPG" alt="">
 

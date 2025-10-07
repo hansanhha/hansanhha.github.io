@@ -1,13 +1,13 @@
 ---
-layout: default
-title: 
+layout: sunrise
 prev: may
 next: july
+page-name-ko: 6월
+nomiation: Nodeul Island
+address: 445, Yangnyeong-ro, Yongsan-gu, Seoul
+nomiation-ko: 노들섬
+address-ko: 서울 용산구 양녕로 445
 ---
-
-Nodeul Island
-
-445, Yangnyeong-ro, Yongsan-gu, Seoul
 
 <img src="./2406-1.JPG" alt="">
 

@@ -56,6 +56,13 @@
     to { width: 100%; }
 }
 
+@media (max-width: 767px) {
+  .index-container {
+     display: flex;
+     flex-direction: column;
+     margin-top: 40%;
+  }
+}
 
 .idx-container {
     display: flex;

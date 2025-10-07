@@ -3,6 +3,7 @@ layout: default
 title: 
 prev: moving
 next: tools
+page-name-ko: 사람들
 ---
 
 <img src="./data/pulp fiction.jpg" alt="pulp fiction.jpg" />

@@ -2,14 +2,14 @@
     <div class="idx-path-box">
       <div class="idx-path">
         {% if page.dir == "/" %}
-            home
+            <span class="home"></span>
         {% endif %}
           <div style="display: flex;">
               {% assign dirs = page.dir | split: '/' %}
               {% assign depth = dirs.size | minus: 2 %}
               {% assign maxDepth = depth %}
               {% if depth == 0 and depth == maxDepth %}
-                <a href="/">home</a><span>/</span><a href="./">{{ dirs.last }}</a><span>/</span>
+                <a href="/" class="home"></a><span>/</span><a href="./" class="dir" data-dir-name="{{ dirs.last }}"></a><span>/</span>
               {% else %}
                 {% for dir in dirs %}
                   {% if dir != "" %}
@@ -18,12 +18,12 @@
                       {% assign relative_path = relative_path | append: "../" %}
                     {% endfor %}
                     {% if depth == maxDepth %}
-                      <a href="/">home</a><span>/</span><a href="{{ relative_path }}">{{ dir }}</a><span>/</span>
+                      <a href="/" class="home"></a><span>/</span><a href="{{ relative_path }}" class="dir" data-dir-name="{{ dir }}"></a><span>/</span>
                     {% else %}
                       {% if depth == 0 %}
-                        <a href="./">{{ dir }}</a><span>/</span>
+                        <a href="./" class="dir" data-dir-name="{{ dir }}"></a><span>/</span>
                       {% else %}
-                        <a href="{{ relative_path }}">{{ dir }}</a><span>/</span>
+                        <a href="{{ relative_path }}" class="dir" data-dir-name="{{ dir }}"></a><span>/</span>
                       {% endif %}
                     {% endif %}
                     {% assign depth = depth | minus: 1 %}
@@ -31,7 +31,7 @@
                 {% endfor %}
               {% endif %}
               {% if page.name != "index.md" %}
-                <span class="idx-path-filename">{{ page.name | replace : ".md", "" | replace: "%20", " " }}</span>
+                <span class="idx-path-filename" data-page-name="{{ page.name | replace : '.md', '' | replace: '%20', ' ' }}" data-page-name-ko="{{ page.page-name-ko | replace : '.md', '' | replace: '%20', ' ' }}"></span>
               {% endif %}
           </div>
       </div>
@@ -41,21 +41,124 @@
       <div class="page-link">
         {% if page.prev %}
           {% if page.prev == "./index" or page.prev == ".index" or page.prev == "index" %}
-            <a href={{ page.prev }}>index</a >
+            <a href={{ "page.prev" }} class="p-index">index</a >
           {% else %}
-            <a href={{ page.prev }}>prev</a>
+            <a href={{ page.prev }} class="p-prev">prev</a>
           {% endif %}
         {% endif %}
         {% if page.next %}
-          <a href={{ page.next }}>next</a>
+          <a href={{ page.next }} class="p-next">next</a>
         {% endif %}
       </div>
     {% endif %}
 
-    {% if page.title %}
+    {% if page.title || page.title-ko %}
     <div class="idx-title">
-          <div class="title">{{ page.title }}</div>
+          <div class="title" data-title="{{ page.title }}" data-title-ko="{{ page.title-ko }}">{{ page.title }}</div>
     </div>
     {% endif %}
     
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const home = document.getElementsByClassName("home")[0];
+  const dirs = document.getElementsByClassName("dir");
+  const index = document.getElementsByClassName("p-index");
+  const prev = document.getElementsByClassName("p-prev");
+  const next = document.getElementsByClassName("p-next");
+  const title = document.getElementsByClassName("title");
+  const pageName = document.getElementsByClassName("idx-path-filename");
+
+  const lang = localStorage.getItem("lang");
+  if (lang === undefined || lang === "english") {
+    home.textContent = "home";
+    if (index[0] != undefined) {
+      index[0].textContent = "index";
+    }
+    if (prev[0] != undefined) {
+      prev[0].textContent = "prev";
+    }
+    if (next[0] != undefined) {
+      next[0].textContent = "next";
+    }
+    if (title[0] != undefined) {
+      title[0].textContent = title[0].dataset.title;
+      if (title[0].dataset.title == undefined || title[0].dataset.title === "") {
+        title[0].textContent = title[0].dataset.titleKo;
+      }
+    }
+    if (pageName[0] != undefined) {
+      pageName[0].textContent = pageName[0].dataset.pageName;
+      if (pageName[0].dataset.pageName == undefined || pageName[0].dataset.pageName === "") {
+        pageName[0].textContent = pageName[0].dataset.pageNameKo;
+      }
+    }
+    if (dirs != undefined) {
+      for (let i = 0; i < dirs.length; i++) {
+        dirs[i].textContent = dirs[i].dataset.dirName;
+      }
+    }
+    return;
+  }
+
+  home.textContent = "홈";
+  if (index[0] != undefined) {
+    index[0].textContent = "인덱스";
+  }
+  if (prev[0] != undefined) {
+    prev[0].textContent = "이전";
+  }
+  if (next[0] != undefined) {
+    next[0].textContent = "다음";
+  }
+  if (title[0] != undefined) {
+      title[0].textContent = title[0].dataset.titleKo;
+      if (title[0].dataset.titleKo == undefined || title[0].dataset.titleKo === "") {
+        title[0].textContent = title[0].dataset.title;
+      }
+  }
+  if (pageName[0] != undefined) {
+    pageName[0].textContent = pageName[0].dataset.pageNameKo;
+    if (pageName[0].dataset.pageNameKo == undefined || pageName[0].dataset.pageNameKo === "") {
+      pageName[0].textContent = pageName[0].dataset.pageName;
+    }
+  }
+  if (dirs != undefined) {
+    for (let i = 0; i < dirs.length; i++) {
+      switch (dirs[i].dataset.dirName) {
+        case "code":
+          dirs[i].textContent = "소스코드";
+          break;
+        case "projects":
+          dirs[i].textContent = "프로젝트";
+          break;
+        case "reflect":
+          dirs[i].textContent = "회고";
+          break;
+        case "archives":
+          dirs[i].textContent = "아카이브";
+          break;
+        case "text":
+          dirs[i].textContent = "글 귀";
+          break;
+        case "images":
+          dirs[i].textContent = "사진";
+          break;
+        case "videos":
+          dirs[i].textContent = "동영상";
+          break;
+        case "sunrise":
+          dirs[i].textContent = "해맞이";
+          break;
+        case "options":
+          dirs[i].textContent = "설정";
+          break;
+        default:
+          dirs[i].textContent = dirs[i].dataset.dirName;
+      }
+    }
+  }
+
+});
+</script>
