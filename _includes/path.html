@@ -41,7 +41,7 @@
       <div class="page-link">
         {% if page.prev %}
           {% if page.prev == "./index" or page.prev == ".index" or page.prev == "index" %}
-            <a href={{ "page.prev" }} class="p-index">index</a >
+            <a href={{ page.prev }} class="p-index">index</a >
           {% else %}
             <a href={{ page.prev }} class="p-prev">prev</a>
           {% endif %}

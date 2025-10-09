@@ -8,6 +8,8 @@ page-name-ko: 도구
 
 <img src="./data/macbook.JPG" alt="macbook.jpg" />
 
+<img src="./data/mirror.jpg" alt="mirror.jpg" />
+
 <img src="./data/clock.jpg" alt="clock.jpg" />
 
 <img src="./data/ports.jpeg" alt="ports.jpeg" />

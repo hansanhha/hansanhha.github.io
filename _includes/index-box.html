@@ -1,0 +1,511 @@
+<script>
+const nav = localStorage.getItem("nav");
+if (nav === "true" && !("{{ page.title | escape }}" === "hansanhha" || "{{ page.title | escape }}" === "한산하" )) {
+    const $contentPage = document.getElementsByClassName("main-container");
+    const $indexPage = document.getElementsByClassName("index-container");
+    if ($contentPage[0] != undefined) {
+        const $idxBox = document.createElement("div");
+        $idxBox.className = "idx-box";
+        $idxBox.id = "idx-box";
+        document.body.insertBefore($idxBox, $contentPage[0]);
+        printIndexBox($idxBox);
+    }
+    if ($indexPage[0] != undefined) {
+        const $idxPageBox = document.createElement("div");
+        $idxPageBox.className = "idx-page-box";
+        $idxPageBox.id = "idx-box";
+        document.body.insertBefore($idxPageBox, $indexPage[0]);
+        printIndexBox($idxPageBox);
+    }    
+}
+
+function printIndexBox($idxBox) {
+    const $code = document.createElement("div");
+    const $reflect = document.createElement("div");
+    const $archives = document.createElement("div");
+    const $sunrise = document.createElement("div");
+    const $options = document.createElement("div");
+    
+    $code.className = "no-select";
+    $reflect.className = "no-select";
+    $archives.className = "no-select";
+    $sunrise.className = "no-select";
+    $options.className = "no-select";
+
+    const lang = localStorage.getItem("lang");
+    if (lang === "한글") {
+        $code.textContent = "소스코드";
+        $reflect.textContent = "회고";
+        $archives.textContent = "아카이브";
+        $sunrise.textContent = "해맞이";
+        $options.textContent = "설정";
+    } else {
+        $code.textContent = "code";
+        $reflect.textContent = "reflect";
+        $archives.textContent = "archives";
+        $sunrise.textContent = "sunrise";
+        $options.textContent = "options";
+    }
+
+    $code.addEventListener("click", () => toggleCodeIdx($code));
+    $reflect.addEventListener("click", () => toggleReflectIdx($reflect));
+    $archives.addEventListener("click", () => toggleArchivesIdx($archives));
+    $sunrise.addEventListener("click", () => toggleSunriseIdx($sunrise));
+    $options.addEventListener("click", () => location.href = "/options");
+
+    $idxBox.appendChild($code);
+    $idxBox.appendChild($reflect);
+    $idxBox.appendChild($archives);
+    $idxBox.appendChild($sunrise);
+    $idxBox.appendChild($options);
+}
+
+let toggledList = [];
+
+function toggleCodeIdx($code) {
+    if (toggledList.includes("code")) {
+        removeIdxDetailOf($code);
+        toggledList.splice(toggledList.indexOf("code"), 1);
+        return;
+    }
+
+    const $codeIdxBox = document.createElement("ul");
+    const $computerNinja = document.createElement("li");
+    const $computerNinjaLink = document.createElement("a");
+    const $projects = document.createElement("li");
+    const $projectsLink = document.createElement("a");
+    
+    $codeIdxBox.className = "idx-box-content";
+    $computerNinja.className = "idx-box-content-detail";
+    $projects.className = "idx-box-content-detail";
+
+    $computerNinjaLink.href = "https://github.com/hansanhha/computer-ninja";
+    $projectsLink.href = "/code/projects";
+
+    const lang = localStorage.getItem("lang");
+    if (lang === "한글") {
+        $computerNinjaLink.textContent = "컴퓨터 닌자";
+        $projectsLink.textContent = "프로젝트";
+    } else {
+        $computerNinjaLink.textContent = "computer-ninja";
+        $projectsLink.textContent = "projects";
+    }
+
+    $computerNinja.appendChild($computerNinjaLink);
+    $projects.appendChild($projectsLink);
+    $codeIdxBox.appendChild($computerNinja);
+    $codeIdxBox.appendChild($projects);
+    $code.appendChild($codeIdxBox);
+    toggledList.push("code");
+}
+
+function toggleReflectIdx($reflect) {
+    if (toggledList.includes("reflect")) {
+        removeIdxDetailOf($reflect);
+        toggledList.splice(toggledList.indexOf("relfect"), 1);
+        return;
+    }
+
+    const $reflectIdxBox = document.createElement("ul");
+    const $1 = document.createElement("li");
+    const $1Link = document.createElement("a");
+    const $2 = document.createElement("li");
+    const $2Link = document.createElement("a");
+    const $3 = document.createElement("li");
+    const $3Link = document.createElement("a");
+
+    $reflectIdxBox.className = "idx-box-content";
+    $1.className = "idx-box-content-detail";
+    $2.className = "idx-box-content-detail";
+    $3.className = "idx-box-content-detail";
+
+    $1Link.textContent = "1";
+    $2Link.textContent = "2";
+    $3Link.textContent = "3";
+
+    $1Link.href = "/reflect/1";
+    $2Link.href = "/reflect/2";
+    $3Link.href = "/reflect/3";
+
+    $1.appendChild($1Link);
+    $2.appendChild($2Link);
+    $3.appendChild($3Link);
+    $reflectIdxBox.appendChild($1);
+    $reflectIdxBox.appendChild($2);
+    $reflectIdxBox.appendChild($3);
+    $reflect.appendChild($reflectIdxBox);
+
+    toggledList.push("reflect");
+}
+
+function toggleArchivesIdx($archives) {
+    if (toggledList.includes("archives")) {
+        removeIdxDetailOf($archives);
+        toggledList.splice(toggledList.indexOf("archives"), 1);
+        if (toggledList.includes("images")) {
+            toggledList.splice(toggledList.indexOf("images"), 1);
+        }
+        if (toggledList.includes("videos")) {
+            toggledList.splice(toggledList.indexOf("videos"), 1);
+        }
+        return;
+    }
+
+    const $archivesIdxBox = document.createElement("ul");
+    const $text = document.createElement("li");
+    const $textLink = document.createElement("a");
+    const $images = document.createElement("li");
+    const $videos = document.createElement("li");
+
+    $archivesIdxBox.className = "idx-box-content";
+    $text.className = "idx-box-content-detail";
+    $images.className = "idx-box-content-detail";
+    $videos.className = "idx-box-content-detail";
+
+    const lang = localStorage.getItem("lang");
+    if (lang === "한글") {
+        $textLink.textContent = "글 귀";
+        $images.textContent = "이미지";
+        $videos.textContent = "동영상";
+    } else {
+        $textLink.textContent = "text";
+        $images.textContent = "images";
+        $videos.textContent = "videos";
+    }
+
+    $textLink.href = "/archives/text";
+    $images.addEventListener("click", () => toggleArchivesImagesIdx($images));
+    $videos.addEventListener("click", () => toggleArchivesVideosIdx($videos));
+
+    $text.appendChild($textLink);
+    $archivesIdxBox.appendChild($text);
+    $archivesIdxBox.appendChild($images);
+    $archivesIdxBox.appendChild($videos);
+    $archives.appendChild($archivesIdxBox);
+
+    toggledList.push("archives");
+}
+
+function toggleArchivesImagesIdx($images) {
+    if (toggledList.includes("images")) {
+        removeIdxDetailOf($images);
+        toggledList.splice(toggledList.indexOf("images"), 1);
+        event.stopPropagation();
+        return;
+    }
+
+    const $imagesIdxBox = document.createElement("ul");
+    const $moving = document.createElement("li");
+    const $movingLink = document.createElement("a");
+    const $people = document.createElement("li");
+    const $peopleLink = document.createElement("a");
+    const $tools = document.createElement("li");
+    const $toolsLink = document.createElement("a");
+    const $weeknd = document.createElement("li");
+    const $weekndLink = document.createElement("a");
+
+    $imagesIdxBox.className = "idx-box-content";
+    $moving.className = "idx-box-content-detail";
+    $people.className = "idx-box-content-detail";
+    $tools.className = "idx-box-content-detail";
+    $weeknd.className = "idx-box-content-detail";
+
+    const lang = localStorage.getItem("lang");
+    if (lang === "한글") {
+        $movingLink.textContent = "동작";
+        $peopleLink.textContent = "사람들";
+        $toolsLink.textContent = "도구";
+        $weekndLink.textContent = "위켄드";
+    } else {
+        $movingLink.textContent = "moving";
+        $peopleLink.textContent = "people";
+        $toolsLink.textContent = "tools";
+        $weekndLink.textContent = "the weeknd";
+    }
+
+    $movingLink.href = "/archives/images/moving";
+    $peopleLink.href = "/archives/images/people";
+    $toolsLink.href = "/archives/images/tools";
+    $weekndLink.href = "/archives/images/the%20weeknd";
+
+    $moving.appendChild($movingLink);
+    $people.appendChild($peopleLink);
+    $tools.appendChild($toolsLink);
+    $weeknd.appendChild($weekndLink);
+    $imagesIdxBox.appendChild($moving);
+    $imagesIdxBox.appendChild($people);
+    $imagesIdxBox.appendChild($tools);
+    $imagesIdxBox.appendChild($weeknd);
+    $images.appendChild($imagesIdxBox);
+
+    toggledList.push("images");
+    event.stopPropagation();
+}
+
+function toggleArchivesVideosIdx($videos) {
+    if (toggledList.includes("videos")) {
+        removeIdxDetailOf($videos);
+        toggledList.splice(toggledList.indexOf("videos"), 1);
+        event.stopPropagation();
+        return;
+    }
+
+    const $videosIdxBox = document.createElement("ul");
+    const $blueSky = document.createElement("li");
+    const $blueSkyLink = document.createElement("a");
+    const $hazySky = document.createElement("li");
+    const $hazySkyLink = document.createElement("a");
+    const $pinkSky = document.createElement("li");
+    const $pinkSkyLink = document.createElement("a");
+    const $chiars = document.createElement("li");
+    const $chairsLink = document.createElement("a");
+    const $stream = document.createElement("li");
+    const $streamLink = document.createElement("a");
+
+    $videosIdxBox.className = "idx-box-content";
+    $blueSky.className = "idx-box-content-detail";
+    $hazySky.className = "idx-box-content-detail";
+    $pinkSky.className = "idx-box-content-detail";
+    $chiars.className = "idx-box-content-detail";
+    $stream.className = "idx-box-content-detail";
+
+    const lang = localStorage.getItem("lang");
+    if (lang === "한글") {
+        $blueSkyLink.textContent = "파란 하늘";
+        $hazySkyLink.textContent = "흐릿한 하늘";
+        $pinkSkyLink.textContent = "분홍 하늘";
+        $chairsLink.textContent = "의자";
+        $streamLink.textContent = "개울";
+    } else {
+        $blueSkyLink.textContent = "blue sky";
+        $hazySkyLink.textContent = "hazy sky";
+        $pinkSkyLink.textContent = "pink sky";
+        $chairsLink.textContent = "chairs";
+        $streamLink.textContent = "stream";
+    }
+
+    $blueSkyLink.href = "/archives/videos/blue%20sky";
+    $hazySkyLink.href = "/archives/videos/hazy%20sky";
+    $pinkSkyLink.href = "/archives/videos/pink%20sky";
+    $chairsLink.href = "/archives/videos/chairs";
+    $streamLink.href = "/archives/videos/stream";
+
+    $blueSky.appendChild($blueSkyLink);
+    $hazySky.appendChild($hazySkyLink);
+    $pinkSky.appendChild($pinkSkyLink);
+    $chiars.appendChild($chairsLink);
+    $stream.appendChild($streamLink);
+    $videosIdxBox.appendChild($blueSky);
+    $videosIdxBox.appendChild($hazySky);
+    $videosIdxBox.appendChild($pinkSky);
+    $videosIdxBox.appendChild($chiars);
+    $videosIdxBox.appendChild($stream);
+    $videos.appendChild($videosIdxBox);
+
+    toggledList.push("videos");
+    event.stopPropagation();
+}
+
+function toggleSunriseIdx($sunrise) {
+    if (toggledList.includes("sunrise")) {
+        removeIdxDetailOf($sunrise);
+        toggledList.splice(toggledList.indexOf("sunrise"), 1);
+        if (toggledList.includes("2024")) {
+            toggledList.splice(toggledList.indexOf("2024"), 1);
+        }
+        if (toggledList.includes("2025")) {
+            toggledList.splice(toggledList.indexOf("2025"), 1);
+        }
+        return;
+    }
+
+    const $sunriseIdxBox = document.createElement("ul"); 
+    const $2024 = document.createElement("li");
+    const $2025 = document.createElement("li");
+
+    $sunriseIdxBox.className = "idx-box-content";
+    $2024.className = "idx-box-content-detail";
+    $2025.className = "idx-box-content-detail";
+
+    $2024.textContent = "2024";
+    $2025.textContent = "2025";
+
+    $sunriseIdxBox.appendChild($2024);
+    $sunriseIdxBox.appendChild($2025);
+
+    $2024.addEventListener("click", () => toggleSunrise2024Idx($2024));
+    $2025.addEventListener("click", () => toggleSunrise2025Idx($2025));
+
+    $sunrise.appendChild($sunriseIdxBox);
+
+    toggledList.push("sunrise");
+}
+
+function toggleSunrise2024Idx($2024) {
+    if (toggledList.includes("2024")) {
+        removeIdxDetailOf($2024);
+        toggledList.splice(toggledList.indexOf("2024"), 1);
+        event.stopPropagation();
+        return;
+    }
+
+    const $2024IdxBox = document.createElement("ul");
+    const $january = document.createElement("li");
+    const $januaryLink = document.createElement("a");
+    const $march = document.createElement("li");
+    const $marchLink = document.createElement("a");
+    const $april = document.createElement("li");
+    const $aprilLink = document.createElement("a");
+    const $may = document.createElement("li");
+    const $mayLink = document.createElement("a");
+    const $june = document.createElement("li");
+    const $juneLink = document.createElement("a");
+    const $july = document.createElement("li");
+    const $julyLink = document.createElement("a");
+    const $november = document.createElement("li");
+    const $novemberLink = document.createElement("a");
+    const $december = document.createElement("li");
+    const $decemberLink = document.createElement("a");
+
+    $2024IdxBox.className = "idx-box-content";
+    $january.className = "idx-box-content-detail";
+    $march.className = "idx-box-content-detail";
+    $april.className = "idx-box-content-detail";
+    $may.className = "idx-box-content-detail";
+    $june.className = "idx-box-content-detail";
+    $july.className = "idx-box-content-detail";
+    $november.className = "idx-box-content-detail";
+    $december.className = "idx-box-content-detail";
+
+    const lang = localStorage.getItem("lang");
+    if (lang === "한글") {
+        $januaryLink.textContent = "1월";
+        $marchLink.textContent = "3월";
+        $aprilLink.textContent = "4월";
+        $mayLink.textContent = "5월";
+        $juneLink.textContent = "6월";
+        $julyLink.textContent = "7월";
+        $novemberLink.textContent = "11월";
+        $decemberLink.textContent = "12월";
+    } else {
+        $januaryLink.textContent = "january";
+        $marchLink.textContent = "march";
+        $aprilLink.textContent = "april";
+        $mayLink.textContent = "may";
+        $juneLink.textContent = "june";
+        $julyLink.textContent = "july";
+        $novemberLink.textContent = "november";
+        $decemberLink.textContent = "december";
+    }
+
+    $januaryLink.href = "/sunrise/2024/january";
+    $marchLink.href = "/sunrise/2024/march";
+    $aprilLink.href = "/sunrise/2024/april";
+    $mayLink.href = "/sunrise/2024/may";
+    $juneLink.href = "/sunrise/2024/june";
+    $julyLink.href = "/sunrise/2024/july";
+    $novemberLink.href = "/sunrise/2024/november";
+    $decemberLink.href = "/sunrise/2024/december";
+
+    $january.appendChild($januaryLink);
+    $march.appendChild($marchLink);
+    $april.appendChild($aprilLink);
+    $may.appendChild($mayLink);
+    $june.appendChild($juneLink);
+    $july.appendChild($julyLink);
+    $november.appendChild($novemberLink);
+    $december.appendChild($decemberLink);
+    $2024IdxBox.appendChild($january);
+    $2024IdxBox.appendChild($march);
+    $2024IdxBox.appendChild($april);
+    $2024IdxBox.appendChild($may);
+    $2024IdxBox.appendChild($june);
+    $2024IdxBox.appendChild($july);
+    $2024IdxBox.appendChild($november);
+    $2024IdxBox.appendChild($december);
+    $2024.appendChild($2024IdxBox);
+
+    toggledList.push("2024");
+    event.stopPropagation();
+}
+
+function toggleSunrise2025Idx($2025) {
+    if (toggledList.includes("2025")) {
+        removeIdxDetailOf($2025);
+        toggledList.splice(toggledList.indexOf("2025"), 1);
+        event.stopPropagation();
+        return;
+    }
+
+    const $2025IdxBox = document.createElement("ul");
+    const $january = document.createElement("li");
+    const $januaryLink = document.createElement("a");
+    const $march = document.createElement("li");
+    const $marchLink = document.createElement("a");
+    const $april = document.createElement("li");
+    const $aprilLink = document.createElement("a");
+    const $may = document.createElement("li");
+    const $mayLink = document.createElement("a");
+    const $february = document.createElement("li");
+    const $februaryLink = document.createElement("a");
+    const $october = document.createElement("li");
+    const $octoberLink = document.createElement("a");
+    const $november = document.createElement("li");
+    const $novemberLink = document.createElement("a");
+    const $december = document.createElement("li");
+    const $decemberLink = document.createElement("a");
+
+    $2025IdxBox.className = "idx-box-content";
+    $january.className = "idx-box-content-detail";
+    $february.className = "idx-box-content-detail";
+    $march.className = "idx-box-content-detail";
+    $april.className = "idx-box-content-detail";
+    $may.className = "idx-box-content-detail";
+    $october.className = "idx-box-content-detail";
+
+    const lang = localStorage.getItem("lang");
+    if (lang === "한글") {
+        $januaryLink.textContent = "1월";
+        $februaryLink.textContent = "2월";
+        $marchLink.textContent = "3월";
+        $aprilLink.textContent = "4월";
+        $mayLink.textContent = "5월";
+        $octoberLink.textContent = "10월";
+    } else {
+        $januaryLink.textContent = "january";
+        $februaryLink.textContent = "february";
+        $marchLink.textContent = "march";
+        $aprilLink.textContent = "april";
+        $mayLink.textContent = "may";
+        $octoberLink.textContent = "october";
+    }
+
+    $januaryLink.href = "/sunrise/2025/january";
+    $februaryLink.href = "/sunrise/2025/february";
+    $marchLink.href = "/sunrise/2025/march";
+    $aprilLink.href = "/sunrise/2025/april";
+    $mayLink.href = "/sunrise/2025/may";
+    $octoberLink.href = "/sunrise/2025/october";
+
+    $january.appendChild($januaryLink);
+    $february.appendChild($februaryLink);
+    $march.appendChild($marchLink);
+    $april.appendChild($aprilLink);
+    $may.appendChild($mayLink);
+    $october.appendChild($octoberLink);
+    $2025IdxBox.appendChild($january);
+    $2025IdxBox.appendChild($february);
+    $2025IdxBox.appendChild($march);
+    $2025IdxBox.appendChild($april);
+    $2025IdxBox.appendChild($may);
+    $2025IdxBox.appendChild($october);
+    $2025.appendChild($2025IdxBox);
+
+    toggledList.push("2025");
+    event.stopPropagation();
+}
+
+function removeIdxDetailOf($idxEl) {
+    $idxEl.replaceChildren($idxEl.firstChild);
+}
+</script>

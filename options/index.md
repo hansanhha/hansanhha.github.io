@@ -56,6 +56,7 @@ function toggleNav() {
             nav.textContent = "목차 비활성화";    
         }
         
+        location.reload();
         return;
     }
     
@@ -65,6 +66,8 @@ function toggleNav() {
     } else {
         nav.textContent = "목차 활성화";
     }
+
+    location.reload();
 }
 
 function toggleLang() {

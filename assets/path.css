@@ -48,13 +48,13 @@
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
-    animation: typing 0.5s steps(31) none;
+    /* animation: typing 0.5s steps(31) none; */
 }
 
-@keyframes typing {
+/* @keyframes typing {
     from { width: 0; }
     to { width: 100%; }
-}
+} */
 
 @media (max-width: 767px) {
   .index-container {
