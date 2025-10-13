@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: images
 title: 
 prev: tools
 page-name-ko: 위켄드

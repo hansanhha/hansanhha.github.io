@@ -7,6 +7,10 @@
   cursor: default;
 }
 
+::selection {
+  background: transparent;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #343232;
@@ -40,6 +44,11 @@
     border-bottom: 2px solid #2176d1;
     color: #2176d1;
   }
+
+  .main-content p:not(:has(video, img))::selection {
+    background: transparent;
+    color: #9CAF88;
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -58,12 +67,18 @@
     border-bottom: 2px solid #007bff;
     color: #007bff;
   }
+
+  .main-content p:not(:has(video, img))::selection {
+    background: transparent;
+    color: green;
+  }
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: "Libre Franklin", "Arial", "Verdana", sans-serif;
+  margin: 0;
 }
 
 a:hover {
@@ -85,6 +100,34 @@ a:hover {
 
 .idx-page-box {
   position: absolute;
+  left: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  max-width: 15%;
+  height: auto;
+  /* border-top: 1px solid black;
+  border-bottom: 1px solid black; */
+  padding: 2em;
+}
+
+.idx-hamburger-box {
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  max-width: 15%;
+  height: auto;
+  /* border-top: 1px solid black;
+  border-bottom: 1px solid black; */
+  padding: 2em;
+}
+
+.idx-page-hamburger-box {
+  position: absolute;
+  top: 30%;
   left: 20%;
   display: flex;
   flex-direction: column;
@@ -122,11 +165,14 @@ a:hover {
 
 .main-content {
   padding-bottom: 15em;
-  margin: 0 23%;
+  margin-top: 3%;
+  margin-left: 23%;
+  margin-right: 23%;
 }
 
 .main-content:has(video) {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -205,6 +251,7 @@ img {
   }
 
   .main-content {
+    margin-top: 3%;
     padding-bottom: 15em;
     margin: 0 0;
   }
@@ -214,4 +261,35 @@ video {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+.image-view-selector {
+  display: flex;
+  gap: 0.3em;
+}
+
+#image-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0;  
+  align-items: flex-start;
+}
+
+#image-container > .image-row {
+  margin-bottom: 1em;
+}
+
+#image-container > p:first-of-type {
+  margin-top: 0.3em;
+}
+
+#image-container > p {
+  margin-bottom: 0;
+}
+
+.image-row {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
 }

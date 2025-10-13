@@ -12,8 +12,7 @@ layout: index
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    const lang = localStorage.getItem("lang");
-    if (lang === "한글") {
+    if (localStorage.getItem("lang") === "한글") {
         const moving = document.getElementById("moving");
         const people = document.getElementById("people");
         const tools = document.getElementById("tools");

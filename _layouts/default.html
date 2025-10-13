@@ -9,10 +9,10 @@
 <body>
 	<div class="main-container">
 		{% include path.html %}
-		{% include nav.html %}
 		<main class="main-content">
 			{% if page.content != nil and page.content != "" %}
 				{{ content }}
+				{% include go-to-top.html %}
 			{% else %}
 				<span id="empty"></span>
 			{% endif %}
@@ -24,8 +24,7 @@
 	const $empty = document.getElementById("empty");
 
 	if ($empty != undefined) {
-        const lang = localStorage.getItem("lang");
-        if (lang === "한글") {
+        if (localStorage.getItem("lang") === "한글") {
             $empty.textContent = "빈 페이지";
         } else {
             $empty.textContent = "empty page";

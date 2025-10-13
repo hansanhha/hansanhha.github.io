@@ -1,0 +1,33 @@
+<div style="display: flex; justify-content: center; margin-top: 10%;">
+    <span id="go-to-top"></span>
+</div>
+<script>
+    const $goToTop = document.getElementById("go-to-top");
+    if (localStorage.getItem("lang") === "한글") {
+        $goToTop.textContent = "위로 가기";
+    } else {
+        $goToTop.textContent = "go to top";
+    }
+
+    function toggleGoToTop() {
+        const $mainContainer = document.getElementsByClassName("main-container");
+        const mainContainerStyle = getComputedStyle($mainContainer[0]);
+        const marginTop = parseFloat(mainContainerStyle.marginTop);
+        const marginBottom = parseFloat(mainContainerStyle.marginBottom);
+        const scrollHeight = document.documentElement.scrollHeight;
+        const adjustedHeight = scrollHeight - marginTop - marginBottom;
+        const exceeds = adjustedHeight > (window.innerHeight + 100);
+        $goToTop.style.display = exceeds ? "block" : "none";
+    }
+
+    window.addEventListener("load", toggleGoToTop);
+    window.addEventListener("resize", toggleGoToTop);
+    $goToTop.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
+    });
+
+    toggleGoToTop();
+</script>

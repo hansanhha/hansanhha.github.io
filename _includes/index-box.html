@@ -1,6 +1,56 @@
 <script>
 const nav = localStorage.getItem("nav");
-if (nav === "true" && !("{{ page.title | escape }}" === "hansanhha" || "{{ page.title | escape }}" === "한산하" )) {
+
+function toggleIndexBox() {
+    if (nav === "true" && !("{{ page.title | escape }}" === "hansanhha" || "{{ page.title | escape }}" === "한산하" )) {
+        if (window.innerWidth < 768) {
+            printHamburgerIndexBox();
+        } else {
+            printNormalIndexBox();
+        }
+    }
+}
+
+window.addEventListener("resize", toggleIndexBox);
+toggleIndexBox();
+
+function printHamburgerIndexBox() {
+    const $idxBox = document.getElementsByClassName("idx-box");
+    const $idxPageBox = document.getElementsByClassName("idx-page-box");
+    if ($idxBox[0] != undefined) {
+        $idxBox[0].innerHTML = "";
+    }
+    if ($idxPageBox[0] != undefined) {
+        $idxPageBox[0].innerHTML = "";
+    }
+
+    const $contentPage = document.getElementsByClassName("main-container");
+    const $indexPage = document.getElementsByClassName("index-container");
+    if ($contentPage[0] != undefined) {
+        const $idxHamburgerBox = document.createElement("div");
+        $idxHamburgerBox.className = "idx-hamburger-box";
+        $idxHamburgerBox.id = "idx-hamburger-box";
+        if (localStorage.getItem("lang") === "한글") {
+            $idxHamburgerBox.textContent = "목차";
+        } else {
+            $idxHamburgerBox.textContent = "index";
+        }
+        document.body.insertBefore($idxHamburgerBox, $contentPage[0]);
+    }
+    if ($indexPage[0] != undefined) {
+        const $idxPageHamburgerBox = document.createElement("div");
+        $idxPageHamburgerBox.className = "idx-page-hamburger-box";
+        $idxPageHamburgerBox.id = "idx-page-hamburger-box";
+        if (localStorage.getItem("lang") === "한글") {
+            $idxPageHamburgerBox.textContent = "목차";
+        } else {
+            $idxPageHamburgerBox.textContent = "index";
+        }
+        document.body.insertBefore($idxPageHamburgerBox, $contentPage[0]);
+    }
+}
+
+function printNormalIndexBox() {
     const $contentPage = document.getElementsByClassName("main-container");
     const $indexPage = document.getElementsByClassName("index-container");
     if ($contentPage[0] != undefined) {
@@ -32,8 +82,7 @@ function printIndexBox($idxBox) {
     $sunrise.className = "no-select";
     $options.className = "no-select";
 
-    const lang = localStorage.getItem("lang");
-    if (lang === "한글") {
+    if (localStorage.getItem("lang") === "한글") {
         $code.textContent = "소스코드";
         $reflect.textContent = "회고";
         $archives.textContent = "아카이브";
@@ -82,8 +131,7 @@ function toggleCodeIdx($code) {
     $computerNinjaLink.href = "https://github.com/hansanhha/computer-ninja";
     $projectsLink.href = "/code/projects";
 
-    const lang = localStorage.getItem("lang");
-    if (lang === "한글") {
+    if (localStorage.getItem("lang") === "한글") {
         $computerNinjaLink.textContent = "컴퓨터 닌자";
         $projectsLink.textContent = "프로젝트";
     } else {
@@ -162,8 +210,7 @@ function toggleArchivesIdx($archives) {
     $images.className = "idx-box-content-detail";
     $videos.className = "idx-box-content-detail";
 
-    const lang = localStorage.getItem("lang");
-    if (lang === "한글") {
+    if (localStorage.getItem("lang") === "한글") {
         $textLink.textContent = "글 귀";
         $images.textContent = "이미지";
         $videos.textContent = "동영상";
@@ -210,8 +257,7 @@ function toggleArchivesImagesIdx($images) {
     $tools.className = "idx-box-content-detail";
     $weeknd.className = "idx-box-content-detail";
 
-    const lang = localStorage.getItem("lang");
-    if (lang === "한글") {
+    if (localStorage.getItem("lang") === "한글") {
         $movingLink.textContent = "동작";
         $peopleLink.textContent = "사람들";
         $toolsLink.textContent = "도구";
@@ -269,8 +315,7 @@ function toggleArchivesVideosIdx($videos) {
     $chiars.className = "idx-box-content-detail";
     $stream.className = "idx-box-content-detail";
 
-    const lang = localStorage.getItem("lang");
-    if (lang === "한글") {
+    if (localStorage.getItem("lang") === "한글") {
         $blueSkyLink.textContent = "파란 하늘";
         $hazySkyLink.textContent = "흐릿한 하늘";
         $pinkSkyLink.textContent = "분홍 하늘";
@@ -377,8 +422,7 @@ function toggleSunrise2024Idx($2024) {
     $november.className = "idx-box-content-detail";
     $december.className = "idx-box-content-detail";
 
-    const lang = localStorage.getItem("lang");
-    if (lang === "한글") {
+    if (localStorage.getItem("lang") === "한글") {
         $januaryLink.textContent = "1월";
         $marchLink.textContent = "3월";
         $aprilLink.textContent = "4월";
@@ -463,8 +507,7 @@ function toggleSunrise2025Idx($2025) {
     $may.className = "idx-box-content-detail";
     $october.className = "idx-box-content-detail";
 
-    const lang = localStorage.getItem("lang");
-    if (lang === "한글") {
+    if (localStorage.getItem("lang") === "한글") {
         $januaryLink.textContent = "1월";
         $februaryLink.textContent = "2월";
         $marchLink.textContent = "3월";

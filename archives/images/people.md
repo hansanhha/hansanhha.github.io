@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: images
 title: 
 prev: moving
 next: tools

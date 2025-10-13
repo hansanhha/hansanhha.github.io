@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<link rel="stylesheet" href="/assets/default.css">
+	<link rel="stylesheet" href="/assets/path.css">
+	<link rel="stylesheet" href="/assets/lang.css">
+	{% include meta.html %}
+</head>
+<body>
+	<div class="main-container">
+		{% include path.html %}
+		<main class="main-content">
+            {% if page.content != nil and page.content != "" %}
+            <div class="image-view-selector">
+                <span id="view"></span>
+                <span id="single"></span>
+                <span id="multi"></span>
+            </div>
+            <div id="image-container">
+                {{ content }}
+            </div>
+            {% include go-to-top.html %}
+			{% else %}
+				<span id="empty"></span>
+			{% endif %}
+		</main>
+	</div>
+</body>
+{% include index-box.html %}
+<script>
+	const $empty = document.getElementById("empty");
+	if ($empty != undefined) {
+        if (localStorage.getItem("lang") === "한글") {
+            $empty.textContent = "빈 페이지";
+        } else {
+            $empty.textContent = "empty page";
+        }
+    }
+
+    const $view = document.getElementById("view");
+    const $single = document.getElementById("single");
+    const $multi = document.getElementById("multi");
+    const $imageContainer = document.getElementById("image-container");
+
+    if (localStorage.getItem("lang") === "한글") {
+        $view.textContent = "표시: ";
+        $single.textContent = "단일";
+        $multi.textContent = "다중";
+    } else {
+        $view.textContent = "view: ";
+        $single.textContent = "single";
+        $multi.textContent = "multi";
+    }
+
+    $single.addEventListener("click", () => {
+        const images = Array.from($imageContainer.querySelectorAll("img"));
+        $imageContainer.innerHTML = "";
+
+        images.forEach(img => {
+            img.style.display = "block";
+            img.style.height = "auto";
+            img.style.width = "100%";
+            const $imgBox = document.createElement("p");
+            $imgBox.appendChild(img);
+            $imageContainer.appendChild($imgBox);
+        });
+    });
+
+    $multi.addEventListener("click", () => {
+        const $imageContainer = document.getElementById("image-container");
+        const containerWidth = $imageContainer.clientWidth;
+        const images = Array.from($imageContainer.querySelectorAll("img"));
+        const imgCount = images.length;
+        const rows = [];
+        let currentRow = [];
+        let currentRowWidth = 0;
+
+        for (const img of images) {
+            const aspectRatio = img.naturalWidth / img.naturalHeight;
+            const expectedWidth = aspectRatio * 250;
+            if (currentRowWidth + expectedWidth > containerWidth && currentRow.length > 0) {
+                rows.push(currentRow);
+                currentRow = [];
+                currentRowWidth = 0;
+            }
+            currentRow.push({img, aspectRatio});
+            currentRowWidth += expectedWidth;
+        }
+
+        if (currentRow.length > 0) rows.push(currentRow);
+        
+        $imageContainer.innerHTML = "";
+
+        rows.forEach(row => {
+            const $row = document.createElement("div");
+            $row.classList.add("image-row");
+
+            const totalAspect = row.reduce((sum, {aspectRatio}) => sum + aspectRatio, 0);
+
+            row.forEach(({img, aspectRatio}) => {
+                const cloned = img.cloneNode();
+                cloned.style.width = `${(aspectRatio / totalAspect) * 100}%`;
+                $row.appendChild(cloned);
+            });
+
+            $imageContainer.appendChild($row);
+        });
+    });
+</script>
+</html>
+

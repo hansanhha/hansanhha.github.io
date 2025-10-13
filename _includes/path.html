@@ -70,8 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const title = document.getElementsByClassName("title");
   const pageName = document.getElementsByClassName("idx-path-filename");
 
-  const lang = localStorage.getItem("lang");
-  if (lang === undefined || lang === "english") {
+  if (localStorage.getItem("lang") === undefined || localStorage.getItem("lang") === "english") {
     home.textContent = "home";
     if (index[0] != undefined) {
       index[0].textContent = "index";

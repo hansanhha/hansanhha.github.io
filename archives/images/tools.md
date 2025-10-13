@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: images
 title: 
 prev: people
 next: the%20weeknd
