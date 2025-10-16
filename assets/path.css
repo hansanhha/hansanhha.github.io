@@ -55,17 +55,17 @@
     to { width: 100%; }
 } */
 
-@media (max-width: 767px) {
-  .index-container {
+@media (max-width: 768px) {
+  .idx-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-items: center;
-    margin-top: 35%;
+    margin-top: 20%;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .idx-container {
     display: flex;
     flex-direction: column;

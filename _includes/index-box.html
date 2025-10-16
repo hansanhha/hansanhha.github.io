@@ -1,12 +1,39 @@
 <script>
-const nav = localStorage.getItem("nav");
-
 function toggleIndexBox() {
-    if (nav === "true" && !("{{ page.title | escape }}" === "hansanhha" || "{{ page.title | escape }}" === "한산하" )) {
-        if (window.innerWidth < 768) {
+    if (localStorage.getItem("nav") === "false" || ("{{ page.title | escape }}" === "hansanhha" || "{{ page.title | escape }}" === "한산하" )) {
+        return;
+    }
+
+    const $idxBox = document.getElementById("idx-box");
+    const $idxPageBox = document.getElementById("idx-page-box");
+    const $idxHamburgerBox = document.getElementById("idx-hamburger-box");
+    const $idxPageHamburgerBox = document.getElementById("idx-page-hamburger-box");
+    if (window.innerWidth <= 768) {
+        if ($idxBox != undefined) {
+            $idxBox.remove();
+        }
+        if ($idxPageBox != undefined) {
+            $idxPageBox.remove();
+        }
+        if ($idxHamburgerBox == undefined && $idxPageHamburgerBox == undefined) {
             printHamburgerIndexBox();
-        } else {
-            printNormalIndexBox();
+        }
+    } else {
+        if ($idxHamburgerBox != undefined) {
+            $idxHamburgerBox.remove();
+        }
+        if ($idxPageHamburgerBox != undefined) {
+            $idxPageHamburgerBox.remove();
+        }
+        if ($idxBox == undefined && $idxPageBox == undefined) {
+            const $contentPage = document.getElementsByClassName("main-container");
+            const $indexPage = document.getElementsByClassName("index-container");
+            if ($contentPage[0] != undefined) {
+                printNormalIndexBox($contentPage[0], true);
+            }
+            if ($indexPage[0] != undefined) {
+                printNormalIndexBox($indexPage[0], false);
+            }
         }
     }
 }
@@ -15,58 +42,113 @@ window.addEventListener("resize", toggleIndexBox);
 toggleIndexBox();
 
 function printHamburgerIndexBox() {
-    const $idxBox = document.getElementsByClassName("idx-box");
-    const $idxPageBox = document.getElementsByClassName("idx-page-box");
-    if ($idxBox[0] != undefined) {
-        $idxBox[0].innerHTML = "";
+    const $idxContainer = document.getElementsByClassName("idx-container");
+    const $idxPathBox = document.getElementsByClassName("idx-path-box");
+    const $hamburgerWithIdxPathBox = document.createElement("div");
+    Object.assign($hamburgerWithIdxPathBox.style, {
+        display: "flex",
+        gap: "0.8em",
+    });
+    const $idxHamburgerBox = document.createElement("div");
+    $idxHamburgerBox.className = "idx-hamburger-box";
+    $idxHamburgerBox.id = "idx-hamburger-box";
+    if (localStorage.getItem("lang") === "한글") {
+        $idxHamburgerBox.textContent = "목차";
+    } else {
+        $idxHamburgerBox.textContent = "index";
     }
-    if ($idxPageBox[0] != undefined) {
-        $idxPageBox[0].innerHTML = "";
-    }
-
-    const $contentPage = document.getElementsByClassName("main-container");
-    const $indexPage = document.getElementsByClassName("index-container");
-    if ($contentPage[0] != undefined) {
-        const $idxHamburgerBox = document.createElement("div");
-        $idxHamburgerBox.className = "idx-hamburger-box";
-        $idxHamburgerBox.id = "idx-hamburger-box";
-        if (localStorage.getItem("lang") === "한글") {
-            $idxHamburgerBox.textContent = "목차";
-        } else {
-            $idxHamburgerBox.textContent = "index";
-        }
-        document.body.insertBefore($idxHamburgerBox, $contentPage[0]);
-    }
-    if ($indexPage[0] != undefined) {
-        const $idxPageHamburgerBox = document.createElement("div");
-        $idxPageHamburgerBox.className = "idx-page-hamburger-box";
-        $idxPageHamburgerBox.id = "idx-page-hamburger-box";
-        if (localStorage.getItem("lang") === "한글") {
-            $idxPageHamburgerBox.textContent = "목차";
-        } else {
-            $idxPageHamburgerBox.textContent = "index";
-        }
-        document.body.insertBefore($idxPageHamburgerBox, $contentPage[0]);
-    }
+    $hamburgerWithIdxPathBox.appendChild($idxHamburgerBox);
+    $idxHamburgerBox.addEventListener("click", () => toggleHamburgerIdx($idxHamburgerBox));
+    $hamburgerWithIdxPathBox.appendChild($idxPathBox[0]);
+    $idxContainer[0].replaceChild($hamburgerWithIdxPathBox, $idxContainer[0].firstChild);
 }
 
-function printNormalIndexBox() {
-    const $contentPage = document.getElementsByClassName("main-container");
-    const $indexPage = document.getElementsByClassName("index-container");
-    if ($contentPage[0] != undefined) {
+function toggleHamburgerIdx($hamburgerIdx) {
+    if (document.getElementById("idx-overlay-scroll-style") == undefined) {
+        const style = document.createElement("style");
+        style.id = "idx-overlay-scroll-style";
+        style.textContent = `
+        .idx-focus-box .idx-focus-content { overflow-y: auto; -ms-overflow-style: none; scrollbar-width: none; }
+        .idx-focus-box .idx-focus-content::-webkit-scrollbar { display: none; width: 0; height: 0; }
+        `;
+        document.head.appendChild(style);
+    }
+
+    const overlay = document.createElement("div");
+    Object.assign(overlay.style, {
+        position: "fixed",
+        inset: "0",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: "9999",
+        cursor: "normal",
+        padding: "20px",
+    });
+
+    const $idxFocusBox = document.createElement("div");
+    Object.assign($idxFocusBox.style, {
+        width: "30%",
+        maxWidth: "100%",
+        maxHeigth: "70%",
+        border: "1px solid black",
+        background: "white",
+        boxShadow: "0 5px 10px rgba(0,0,0,0.4)",
+        cursor: "normal",
+        padding: "1em 1em",
+        overflow: "hidden",
+    });
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+    if (prefersDarkScheme.matches) {
+        $idxFocusBox.style.background = "#343232";
+        $idxFocusBox.style.border = "1px solid #e3dfdf";
+    }
+
+    $idxFocusBox.addEventListener("click", (e) => e.stopPropagation());
+    $idxFocusBox.addEventListener("scroll", (e) => {
+        e.stopPropagation();
+    });
+
+    const $idxFocusContent = document.createElement("div");
+    $idxFocusContent.className = "idx-focus-content";
+    $idxFocusContent.style.scrollbarWidth = "none";
+    Object.assign($idxFocusContent.style, {
+        overflowY: "auto",
+        maxHeight: "calc(70vh - 2em)",
+    });
+    $idxFocusBox.appendChild($idxFocusContent);
+    printIndexBox($idxFocusContent);
+
+    function close() {
+        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        document.body.style.overflow = "";
+        document.removeEventListener("keydown", onKey);
+    }
+    function onKey(e) {
+        if (e.key === "Escape") close();
+    }
+
+    overlay.addEventListener("click", close);
+    document.addEventListener("keydown", onKey);
+    document.body.appendChild(overlay);
+    overlay.appendChild($idxFocusBox);
+}
+
+function printNormalIndexBox($parent, isContentPage) {
+    if (isContentPage) {
         const $idxBox = document.createElement("div");
         $idxBox.className = "idx-box";
         $idxBox.id = "idx-box";
-        document.body.insertBefore($idxBox, $contentPage[0]);
+        document.body.insertBefore($idxBox, $parent);
         printIndexBox($idxBox);
-    }
-    if ($indexPage[0] != undefined) {
+    } else {
         const $idxPageBox = document.createElement("div");
         $idxPageBox.className = "idx-page-box";
         $idxPageBox.id = "idx-box";
-        document.body.insertBefore($idxPageBox, $indexPage[0]);
+        document.body.insertBefore($idxPageBox, $parent);
         printIndexBox($idxPageBox);
-    }    
+    }
 }
 
 function printIndexBox($idxBox) {

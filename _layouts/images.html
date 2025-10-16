@@ -28,84 +28,136 @@
 </body>
 {% include index-box.html %}
 <script>
-	const $empty = document.getElementById("empty");
-	if ($empty != undefined) {
+const originalImgs = [];
+
+document.addEventListener("DOMContentLoaded", function() {
+    const $empty = document.getElementById("empty");
+    if ($empty != undefined) {
         if (localStorage.getItem("lang") === "한글") {
             $empty.textContent = "빈 페이지";
         } else {
             $empty.textContent = "empty page";
         }
+        return;
     }
 
-    const $view = document.getElementById("view");
-    const $single = document.getElementById("single");
-    const $multi = document.getElementById("multi");
+    const images = Array.from($imageContainer.querySelectorAll("img")); 
+    images.forEach(img => {
+        originalImgs.push(img);
+        img.addEventListener("click", () => focus(img));
+    });
+});
+
+const $view = document.getElementById("view");
+const $single = document.getElementById("single");
+const $multi = document.getElementById("multi");
+const $imageContainer = document.getElementById("image-container");
+
+if (localStorage.getItem("lang") === "한글") {
+    $view.textContent = "표시: ";
+    $single.textContent = "단일";
+    $multi.textContent = "다중";
+} else {
+    $view.textContent = "view: ";
+    $single.textContent = "single";
+    $multi.textContent = "multi";
+}
+
+$single.addEventListener("click", () => {
+    const images = Array.from($imageContainer.querySelectorAll("img"));
+    $imageContainer.innerHTML = "";
+
+    originalImgs.forEach(img => {
+        const $imgBox = document.createElement("p");
+        $imgBox.appendChild(img);
+        $imageContainer.appendChild($imgBox);  
+    });
+});
+
+$multi.addEventListener("click", () => {
     const $imageContainer = document.getElementById("image-container");
+    const containerWidth = $imageContainer.clientWidth;
+    const images = Array.from($imageContainer.querySelectorAll("img"));
+    const imgCount = images.length;
+    const rows = [];
+    let currentRow = [];
+    let currentRowWidth = 0;
 
-    if (localStorage.getItem("lang") === "한글") {
-        $view.textContent = "표시: ";
-        $single.textContent = "단일";
-        $multi.textContent = "다중";
-    } else {
-        $view.textContent = "view: ";
-        $single.textContent = "single";
-        $multi.textContent = "multi";
+    for (const img of images) {
+        const aspectRatio = img.naturalWidth / img.naturalHeight;
+        const expectedWidth = aspectRatio * 250;
+        if (currentRowWidth + expectedWidth > containerWidth && currentRow.length > 0) {
+            rows.push(currentRow);
+            currentRow = [];
+            currentRowWidth = 0;
+        }
+        currentRow.push({img, aspectRatio});
+        currentRowWidth += expectedWidth;
     }
 
-    $single.addEventListener("click", () => {
-        const images = Array.from($imageContainer.querySelectorAll("img"));
-        $imageContainer.innerHTML = "";
+    if (currentRow.length > 0) rows.push(currentRow);
+    
+    $imageContainer.innerHTML = "";
 
-        images.forEach(img => {
-            img.style.display = "block";
-            img.style.height = "auto";
-            img.style.width = "100%";
-            const $imgBox = document.createElement("p");
-            $imgBox.appendChild(img);
-            $imageContainer.appendChild($imgBox);
+    rows.forEach(row => {
+        const $row = document.createElement("div");
+        $row.classList.add("image-row");
+
+        const totalAspect = row.reduce((sum, {aspectRatio}) => sum + aspectRatio, 0);
+
+        row.forEach(({img, aspectRatio}) => {
+            const cloned = img.cloneNode();
+            cloned.addEventListener("click", () => focus(originalImgs.filter(i => i.src === img.src)[0]));
+            cloned.style.width = `${(aspectRatio / totalAspect) * 100}%`;
+            $row.appendChild(cloned);
         });
+
+        $imageContainer.appendChild($row);
+    });
+});
+
+function focus($img) {
+    const overlay = document.createElement("div");
+    Object.assign(overlay.style, {
+        position: "fixed",
+        inset: "0",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "rgba(0,0,0,0.6)",
+        backdropFilter: "blur(2px)",
+        WebkitBackdropFilter: "blur(2px)",
+        zIndex: "9999",
+        cursor: "normal",
+        padding: "20px",
     });
 
-    $multi.addEventListener("click", () => {
-        const $imageContainer = document.getElementById("image-container");
-        const containerWidth = $imageContainer.clientWidth;
-        const images = Array.from($imageContainer.querySelectorAll("img"));
-        const imgCount = images.length;
-        const rows = [];
-        let currentRow = [];
-        let currentRowWidth = 0;
-
-        for (const img of images) {
-            const aspectRatio = img.naturalWidth / img.naturalHeight;
-            const expectedWidth = aspectRatio * 250;
-            if (currentRowWidth + expectedWidth > containerWidth && currentRow.length > 0) {
-                rows.push(currentRow);
-                currentRow = [];
-                currentRowWidth = 0;
-            }
-            currentRow.push({img, aspectRatio});
-            currentRowWidth += expectedWidth;
-        }
-
-        if (currentRow.length > 0) rows.push(currentRow);
-        
-        $imageContainer.innerHTML = "";
-
-        rows.forEach(row => {
-            const $row = document.createElement("div");
-            $row.classList.add("image-row");
-
-            const totalAspect = row.reduce((sum, {aspectRatio}) => sum + aspectRatio, 0);
-
-            row.forEach(({img, aspectRatio}) => {
-                const cloned = img.cloneNode();
-                cloned.style.width = `${(aspectRatio / totalAspect) * 100}%`;
-                $row.appendChild(cloned);
-            });
-
-            $imageContainer.appendChild($row);
-        });
+    const focused = $img.cloneNode(true);
+    Object.assign(focused.style, {
+        maxWidth: "100%",
+        maxHeight: "100%",
+        boxShadow: "0 10px 40px rgba(0,0,0,0.8)",
+        cursor: "normal",
     });
+
+    function close() {
+        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        document.body.style.overflow = "";
+        document.removeEventListener("keydown", onKey);
+    }
+    function onKey(e) {
+        if (e.key === "Escape") close();
+    }
+
+    focused.addEventListener("click", close);
+    overlay.addEventListener("click", close);
+    document.addEventListener("keydown", onKey);
+
+    document.body.appendChild(overlay);
+    overlay.appendChild(focused);
+
+    document.body.style.overflow = "hidden";
+}
 </script>
 </html>
 
