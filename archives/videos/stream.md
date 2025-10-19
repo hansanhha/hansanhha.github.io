@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: video
 title: 
 prev: chairs
 page-name-ko: 개울

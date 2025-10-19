@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: video
 title: 
 prev: blue%20sky
 next: pink%20sky

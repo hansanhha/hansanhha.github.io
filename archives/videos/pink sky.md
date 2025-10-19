@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: video
 title: 
 prev: hazy%20sky
 next: chairs

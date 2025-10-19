@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: video
 title: 
 prev: pink%20sky
 next: stream

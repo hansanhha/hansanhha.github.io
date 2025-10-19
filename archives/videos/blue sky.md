@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: video
 title: 
 prev: index
 next: hazy%20sky
