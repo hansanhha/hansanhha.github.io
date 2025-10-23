@@ -29,5 +29,24 @@
             $empty.textContent = "empty page";
         }
     }
+
+    const $aList = Array.from(document.getElementsByTagName("a"));
+
+    const korean = localStorage.getItem("lang") === "한글";
+    $aList.forEach($a => {
+        if (korean) {
+            if ($a.dataset.displayKo != undefined) {
+                $a.textContent = $a.dataset.displayKo;
+            }
+            if ($a.dataset.hrefKo != undefined) {
+                $a.href = $a.dataset.hrefKo;
+            }
+        } else if ($a.dataset.display != undefined){
+            $a.textContent = $a.dataset.display;
+        } else {
+            $a.textContent = $a.textContent;
+        }
+    });
+
 </script>
 </html>

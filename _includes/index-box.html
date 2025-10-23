@@ -203,28 +203,37 @@ function toggleCodeIdx($code) {
     const $codeIdxBox = document.createElement("ul");
     const $computerNinja = document.createElement("li");
     const $computerNinjaLink = document.createElement("a");
-    const $projects = document.createElement("li");
-    const $projectsLink = document.createElement("a");
+    const $server = document.createElement("li");
+    const $serverLink = document.createElement("a");
+    const $papillon = document.createElement("li");
+    const $papillonLink = document.createElement("a");
     
     $codeIdxBox.className = "idx-box-content";
     $computerNinja.className = "idx-box-content-detail";
-    $projects.className = "idx-box-content-detail";
+    $server.className = "idx-box-content-detail";
+    $papillon.className = "idx-box-content-detail";
 
     $computerNinjaLink.href = "https://github.com/hansanhha/computer-ninja";
-    $projectsLink.href = "/code/projects";
+    $papillonLink.href = "/code/papillon";
 
     if (localStorage.getItem("lang") === "한글") {
         $computerNinjaLink.textContent = "컴퓨터 닌자";
-        $projectsLink.textContent = "프로젝트";
+        $serverLink.href = "/code/server%20keywords-ko";
+        $serverLink.textContent = "서버 키워드";
+        $papillonLink.textContent = "빠삐용";
     } else {
         $computerNinjaLink.textContent = "computer-ninja";
-        $projectsLink.textContent = "projects";
+        $serverLink.href = "/code/server%20keywords";
+        $serverLink.textContent = "server keywords";
+        $papillonLink.textContent = "papillon";
     }
 
     $computerNinja.appendChild($computerNinjaLink);
-    $projects.appendChild($projectsLink);
+    $server.appendChild($serverLink);
+    $papillon.appendChild($papillonLink);
     $codeIdxBox.appendChild($computerNinja);
-    $codeIdxBox.appendChild($projects);
+    $codeIdxBox.appendChild($server);
+    $codeIdxBox.appendChild($papillon);
     $code.appendChild($codeIdxBox);
     toggledList.push("code");
 }

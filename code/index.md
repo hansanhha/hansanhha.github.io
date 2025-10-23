@@ -1,20 +1,9 @@
 ---
 layout: index
-title:
 ---
 
-<a id="ninja" href="https://github.com/hansanhha/computer-ninja">computer-ninja</a>
+<a href="https://github.com/hansanhha/computer-ninja" data-display-ko="컴퓨터 닌자">computer-ninja</a>
 
-<a id="projects" href="./projects">projects</a>
+<a href="./server%20keywords" data-display-ko="서버 키워드" data-href-ko="./server%20keywords-ko">server keywords</a>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const lang = localStorage.getItem("lang");
-    if (lang === "한글") {
-        const ninja = document.getElementById("ninja");
-        const projects = document.getElementById("projects");
-        ninja.textContent="컴퓨터 닌자";
-        projects.textContent="프로젝트";
-    }
-});
-</script>
+<a href="./papillon" data-display-ko="빠삐용">papillon</a>

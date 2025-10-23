@@ -2,25 +2,10 @@
 layout: index
 ---
 
-<a href="./moving" id="moving">moving</a>
+<a href="./moving" data-display-ko="역동적인">moving</a>
 
-<a href="./people" id="people">people</a>
+<a href="./people" data-display-ko="사람들">people</a>
 
-<a href="./tools" id="tools">tools</a>
+<a href="./tools" data-display-ko="도구">tools</a>
 
-<a href="./the%20weeknd" id="theWeeknd">the weeknd</a>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    if (localStorage.getItem("lang") === "한글") {
-        const moving = document.getElementById("moving");
-        const people = document.getElementById("people");
-        const tools = document.getElementById("tools");
-        const theWeeknd = document.getElementById("theWeeknd");
-        moving.textContent = "동작";
-        people.textContent = "사람들";
-        tools.textContent = "도구";
-        theWeeknd.textContent = "위켄드";
-    }
-}); 
-</script>
+<a href="./theWeeknd" data-display-ko="위켄드">the weeknd</a>

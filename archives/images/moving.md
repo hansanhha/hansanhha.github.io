@@ -3,7 +3,7 @@ layout: images
 title:
 prev: index
 next: people
-page-name-ko: 동작
+page-name-ko: 역동적인
 ---
 
 <img src="./data/motorcycle.jpeg" alt="motorcycle.jpeg" />

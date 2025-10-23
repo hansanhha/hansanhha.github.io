@@ -45,7 +45,7 @@
     color: #2176d1;
   }
 
-  .main-content p:not(:has(video, img))::selection {
+  .main-content :not(img):not(video)::selection {
     background: transparent;
     color: #9CAF88;
   }
@@ -68,7 +68,7 @@
     color: #007bff;
   }
 
-  .main-content p:not(:has(video, img))::selection {
+  .main-content :not(img):not(video)::selection {
     background: transparent;
     color: green;
   }
