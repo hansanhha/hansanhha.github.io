@@ -41,90 +41,99 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
     }
 
+    const $imageContainer = document.getElementById("image-container");
     const images = Array.from($imageContainer.querySelectorAll("img")); 
     images.forEach(img => {
         originalImgs.push(img);
         img.addEventListener("click", () => focus(img));
     });
+
+    configureDisplayOptions();
 });
 
-const $view = document.getElementById("view");
-const $single = document.getElementById("single");
-const $multi = document.getElementById("multi");
-const $imageContainer = document.getElementById("image-container");
-
-if (localStorage.getItem("lang") === "한글") {
-    $view.textContent = "표시: ";
-    $single.textContent = "단일";
-    $multi.textContent = "다중";
-} else {
-    $view.textContent = "view: ";
-    $single.textContent = "single";
-    $multi.textContent = "multi";
-}
-
-$single.addEventListener("click", () => {
-    const images = Array.from($imageContainer.querySelectorAll("img"));
-    $imageContainer.innerHTML = "";
-
-    originalImgs.forEach(img => {
-        const $imgBox = document.createElement("p");
-        $imgBox.appendChild(img);
-        $imageContainer.appendChild($imgBox);  
-    });
-});
-
-$multi.addEventListener("click", () => {
+function configureDisplayOptions() {
+    const $view = document.getElementById("view");
+    const $single = document.getElementById("single");
+    const $multi = document.getElementById("multi");
     const $imageContainer = document.getElementById("image-container");
-    const containerWidth = $imageContainer.clientWidth;
-    const images = Array.from($imageContainer.querySelectorAll("img"));
-    const imgCount = images.length;
-    const rows = [];
-    let currentRow = [];
-    let currentRowWidth = 0;
 
-    for (const img of images) {
-        const aspectRatio = img.naturalWidth / img.naturalHeight;
-        const expectedWidth = aspectRatio * 250;
-        if (currentRowWidth + expectedWidth > containerWidth && currentRow.length > 0) {
-            rows.push(currentRow);
-            currentRow = [];
-            currentRowWidth = 0;
-        }
-        currentRow.push({img, aspectRatio});
-        currentRowWidth += expectedWidth;
+    if (localStorage.getItem("lang") === "한글") {
+        $view.textContent = "표시: ";
+        $single.textContent = "단일";
+        $multi.textContent = "다중";
+    } else {
+        $view.textContent = "view: ";
+        $single.textContent = "single";
+        $multi.textContent = "multi";
     }
 
-    if (currentRow.length > 0) rows.push(currentRow);
-    
-    $imageContainer.innerHTML = "";
+    $single.addEventListener("click", () => {
+        const images = Array.from($imageContainer.querySelectorAll("img"));
+        $imageContainer.innerHTML = "";
 
-    rows.forEach(row => {
-        const $row = document.createElement("div");
-        $row.classList.add("image-row");
-
-        const totalAspect = row.reduce((sum, {aspectRatio}) => sum + aspectRatio, 0);
-
-        row.forEach(({img, aspectRatio}) => {
-            const cloned = img.cloneNode();
-            cloned.addEventListener("click", () => focus(originalImgs.filter(i => i.src === img.src)[0]));
-            cloned.style.width = `${(aspectRatio / totalAspect) * 100}%`;
-            $row.appendChild(cloned);
+        originalImgs.forEach(img => {
+            const $imgBox = document.createElement("p");
+            $imgBox.appendChild(img);
+            $imageContainer.appendChild($imgBox);  
         });
-
-        $imageContainer.appendChild($row);
     });
-});
+
+    $multi.addEventListener("click", () => {
+        const $imageContainer = document.getElementById("image-container");
+        const containerWidth = $imageContainer.clientWidth;
+        const images = Array.from($imageContainer.querySelectorAll("img"));
+        const imgCount = images.length;
+        const rows = [];
+        let currentRow = [];
+        let currentRowWidth = 0;
+
+        for (const img of images) {
+            const aspectRatio = img.naturalWidth / img.naturalHeight;
+            const expectedWidth = aspectRatio * 250;
+            if (currentRowWidth + expectedWidth > containerWidth && currentRow.length > 0) {
+                rows.push(currentRow);
+                currentRow = [];
+                currentRowWidth = 0;
+            }
+            currentRow.push({img, aspectRatio});
+            currentRowWidth += expectedWidth;
+        }
+
+        if (currentRow.length > 0) rows.push(currentRow);
+        
+        $imageContainer.innerHTML = "";
+
+        rows.forEach(row => {
+            const $row = document.createElement("div");
+            $row.classList.add("image-row");
+
+            const totalAspect = row.reduce((sum, {aspectRatio}) => sum + aspectRatio, 0);
+
+            row.forEach(({img, aspectRatio}) => {
+                const cloned = img.cloneNode();
+                cloned.addEventListener("click", () => focus(originalImgs.filter(i => i.src === img.src)[0]));
+                cloned.style.width = `${(aspectRatio / totalAspect) * 100}%`;
+                $row.appendChild(cloned);
+            });
+
+            $imageContainer.appendChild($row);
+        });
+    });
+}
 
 function focus($img) {
-    const overlay = document.createElement("div");
-    Object.assign(overlay.style, {
+    const $overlay = document.createElement("div");
+    Object.assign($overlay.style, {
         position: "fixed",
+        maxWidth: "100vw",
+        maxHeight: "100vh",
+        overflow: "scroll",
         inset: "0",
         display: "flex",
-        alignItems: "center",
+        // justifyContent: "space-evenly",
+        alignItems: "start",
         justifyContent: "center",
-        background: "rgba(0,0,0,0.6)",
+        background: "rgba(0,0,0,0.7)",
         backdropFilter: "blur(2px)",
         WebkitBackdropFilter: "blur(2px)",
         zIndex: "9999",
@@ -132,16 +141,78 @@ function focus($img) {
         padding: "20px",
     });
 
-    const focused = $img.cloneNode(true);
-    Object.assign(focused.style, {
+    if (window.innerWidth <= 768) {
+        $overlay.style.flexDirection = "column";
+        $overlay.style.justifyContent = "start";
+    }
+
+    const $focusedImg = $img.cloneNode(true);
+    Object.assign($focusedImg.style, {
         maxWidth: "100%",
         maxHeight: "100%",
         boxShadow: "0 10px 40px rgba(0,0,0,0.8)",
         cursor: "normal",
     });
 
+    const $imgDescriptionBox = document.createElement("div");
+    if ($img.dataset.desc || $img.dataset.descKo) {
+        $imgDescriptionBox.style.fontSize = "17px";
+        $imgDescriptionBox.style.color = "#e3dfdf";
+        $imgDescriptionBox.style.marginLeft = "50px";
+        $imgDescriptionBox.style.marginTop = "50px"
+        $imgDescriptionBox.style.display = "flex";
+        $imgDescriptionBox.style.flexDirection = "column";
+        $imgDescriptionBox.style.gap = "0.5em";
+        $imgDescriptionBox.style.maxWidth = "40%";
+
+        if (window.innerWidth <= 768) {
+        $imgDescriptionBox.style.maxWidth = "80%";
+    }
+
+        let descriptions;
+        if (localStorage.getItem("lang") === "한글") {
+            descriptions = $img.dataset.descKo.split(" ");
+        } else {
+            descriptions = $img.dataset.desc.split(" ");
+        }
+
+        const nextLineIdxs = [];
+        let index = descriptions.indexOf("\\n");
+
+        while (index !== -1) {
+            nextLineIdxs.push(index); 
+            index = descriptions.indexOf("\\n", index + 1);
+        }
+        
+        let $lastDesc;
+        if (nextLineIdxs.length === 0) {
+            const $desc = document.createElement("div");
+            descriptions.forEach(d => {
+                $desc.textContent += (d + " ");
+            });
+        } else {
+            let start = 0;
+            for (let i = 0; i < nextLineIdxs.length; i++) {
+                const $desc = document.createElement("div");
+                const idx = nextLineIdxs[i];
+                const slices = descriptions.slice(start, idx);
+                slices.forEach(s => {
+                    $desc.textContent += (s + " ");
+                });
+                start = idx + 1;
+                $imgDescriptionBox.appendChild($desc);
+            }
+            const slices = descriptions.slice(start);
+            const $desc = document.createElement("div");
+            slices.forEach(s => {
+                $desc.textContent += (s + " ");
+            });
+            $imgDescriptionBox.appendChild($desc);
+        }
+    }
+
     function close() {
-        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        if ($overlay.parentNode) $overlay.parentNode.removeChild($overlay);
         document.body.style.overflow = "";
         document.removeEventListener("keydown", onKey);
     }
@@ -149,12 +220,13 @@ function focus($img) {
         if (e.key === "Escape") close();
     }
 
-    focused.addEventListener("click", close);
-    overlay.addEventListener("click", close);
+    $focusedImg.addEventListener("click", close);
+    $overlay.addEventListener("click", close);
     document.addEventListener("keydown", onKey);
 
-    document.body.appendChild(overlay);
-    overlay.appendChild(focused);
+    document.body.appendChild($overlay);
+    $overlay.appendChild($focusedImg);
+    $overlay.appendChild($imgDescriptionBox);
 
     document.body.style.overflow = "hidden";
 }
