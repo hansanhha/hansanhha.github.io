@@ -1,9 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
 
-:root {
-  --bg-color: white;
-  --text-color: black;
+body {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+}
+::-webkit-scrollbar { 
+  display: none; 
+  width: 0; 
+  height: 0; 
+}
 
+:root {
   cursor: default;
 }
 
@@ -19,10 +26,14 @@
 
   a {
     color: #e3dfdf;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
   }
 
   a:hover {
-    border-bottom-color: #e3dfdf;
+    /* border-bottom-color: #e3dfdf; */
+    /* font-weight: bold; */
+    color: #9CAF88;
   }
 
   hr {
@@ -52,6 +63,101 @@
 }
 
 @media (prefers-color-scheme: light) {
+  :root {
+    --bg-color: white;
+    --text-color: black;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  a:hover {
+    /* border-bottom-color: black; */
+    /* font-weight: bold; */
+    color: green;
+  }
+
+  hr {
+    width: 18vw;
+    margin: 2em 0;
+    border: 1px solid #121212;
+  }
+
+  .main-content p a {
+    border-bottom: 2px solid black;
+  }
+
+  .main-content p a:hover {
+    border-bottom: 2px solid #007bff;
+    color: #007bff;
+  }
+
+  .main-content :not(img):not(video)::selection {
+    background: transparent;
+    color: green;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg-color: #343232;
+  --text-color: #e3dfdf;
+
+  a {
+    color: #e3dfdf;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  a:hover {
+    /* border-bottom-color: #e3dfdf; */
+    /* font-weight: bold; */
+    color: #9CAF88;
+  }
+
+  hr {
+    width: 18vw;
+    margin: 2em 0;
+    border: 1px solid #e3dfdf;
+  }
+
+  .main-content a:hover {
+    border-bottom-color: transparent;
+    color: #2176d1;
+  }
+
+  .main-content p a {
+    border-bottom: 2px solid #e3dfdf;
+  }
+
+  .main-content p a:hover {
+    border-bottom: 2px solid #2176d1;
+    color: #2176d1;
+  }
+
+  .main-content :not(img):not(video)::selection {
+    background: transparent;
+    color: #9CAF88;
+  }
+}
+
+:root[data-theme="light"] {  
+  --bg-color: white;
+  --text-color: black;
+
+  a {
+    color: black;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+  }
+
+  a:hover {
+    /* border-bottom-color: black; */
+    /* font-weight: bold; */
+    color: green;
+  }
 
   hr {
     width: 18vw;
@@ -171,25 +277,8 @@ p {
   margin-inline-end: 0px;
 }
 
-hr {
-  width: 18vw;
-  margin: 2em 0;
-  border: 1px solid black;
-}
-
 thead {
   display: none;
-}
-
-a {
-  color: black;
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0 ease;
-}
-
-a:hover {
-  border-bottom-color: black;
 }
 
 .main-content a:hover {

@@ -6,12 +6,16 @@ layout: index
 
 <a id="toggle_lang" onclick="toggleLang(); return false;">english</a>
 
+<a id="toggle_theme" onclick="toggleTheme(); return false;"></a>
+
 <script>
-window.addEventListener("load", function() {
+window.addEventListener("DOMContentLoaded", function() {
     const $nav = document.getElementById("toggle_nav");
     const $lang = document.getElementById("toggle_lang");
+    const $theme = document.getElementById("toggle_theme");
     const nav = localStorage.getItem("nav");
     const lang = localStorage.getItem("lang");
+    const theme = localStorage.getItem("theme");
     let english = true;
 
     if (lang === "한글") {
@@ -35,6 +39,47 @@ window.addEventListener("load", function() {
             $nav.textContent = "목차 비활성화";
         }
     }
+
+    if (theme === "dark") {
+        if (english) {
+            $theme.textContent = "brightly";
+        } else {
+            $theme.textContent = "밝게";
+        }
+    } else {
+        if (english) {
+            $theme.textContent = "darkly";
+        } else {
+            $theme.textContent = "어둡게";
+        }
+    }
+
+    const preferTheme = window.matchMedia("(prefers-color-scheme: dark)");
+    preferTheme.addEventListener?.("change", (e) => {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const $root = document.documentElement;
+        const $theme = document.getElementById("toggle_theme");
+
+        if (prefersDark) {
+            localStorage.setItem("theme", "dark");
+            $root.setAttribute("data-theme", "dark");
+
+            if (localStorage.getItem("lang") === "한글") {
+                $theme.textContent = "밝게";
+            } else {
+                $theme.textContent = "brightly";
+            }
+            return;
+        }
+
+        localStorage.setItem("theme", "light");
+        $root.setAttribute("data-theme", "light");
+        if (localStorage.getItem("lang") === "한글") {
+            $theme.textContent = "어둡게";
+        } else {
+            $theme.textContent = "darkly";
+        }
+    });
 
 });
 
@@ -85,6 +130,31 @@ function toggleLang() {
     lang.textContent = "english";
     location.reload();
 }
+
+function toggleTheme() {
+    const $root = document.documentElement;
+    const $theme = document.getElementById("toggle_theme");
+    let next;
+
+    if (localStorage.getItem("theme") === "dark") {
+        next = "light";
+        if (localStorage.getItem("lang") === "한글") {
+            $theme.textContent = "어둡게";
+        } else {
+            $theme.textContent = "darkly";
+        }
+    } else {
+        next = "dark";
+        if (localStorage.getItem("lang") === "한글") {
+            $theme.textContent = "밝게";
+        } else {
+            $theme.textContent = "brightly";
+        }
+    }
+
+    localStorage.setItem("theme", next);
+    $root.setAttribute("data-theme", next);
+}
 </script>
 
 <style>
@@ -92,6 +162,9 @@ function toggleLang() {
     border-bottom: none;
 }
 #toggle_lang{
+    border-bottom: none;
+}
+#toggle_theme {
     border-bottom: none;
 }
 </style>
