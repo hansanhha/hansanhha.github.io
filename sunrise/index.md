@@ -1,6 +1,7 @@
 ---
 layout: index
-title: 
+idx-name: sunrise
+idx-name-ko: 해맞이
 ---
 
 [2024](./2024)

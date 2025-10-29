@@ -1,6 +1,7 @@
 <script>
 function toggleIndexBox() {
-    if (localStorage.getItem("nav") === "false" || ("{{ page.title | escape }}" === "hansanhha" || "{{ page.title | escape }}" === "한산하" )) {
+    const isHome = "{{ page.url }}" == "/";
+    if (localStorage.getItem("nav") === "false" || isHome) {
         return;
     }
 
@@ -93,16 +94,16 @@ function toggleHamburgerIdx($hamburgerIdx) {
         maxHeigth: "70%",
         border: "1px solid black",
         background: "white",
-        boxShadow: "0 5px 10px rgba(0,0,0,0.4)",
+        boxShadow: "0 8px 13px rgba(0,0,0,0.4)",
         cursor: "normal",
         padding: "1em 1em",
         overflow: "hidden",
     });
     const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-    if (prefersDarkScheme.matches) {
+    if (prefersDarkScheme.matches || localStorage.getItem("theme") === "dark") {
         $idxFocusBox.style.background = "#343232";
-        $idxFocusBox.style.border = "1px solid #e3dfdf";
+        $idxFocusBox.style.border = "2px solid #e3dfdf";
     }
 
     $idxFocusBox.addEventListener("click", (e) => e.stopPropagation());
@@ -116,6 +117,9 @@ function toggleHamburgerIdx($hamburgerIdx) {
     Object.assign($idxFocusContent.style, {
         overflowY: "auto",
         maxHeight: "calc(70vh - 2em)",
+        display: "flex",
+        flexDirection: "column",
+        gap: "5px",
     });
     $idxFocusBox.appendChild($idxFocusContent);
     printIndexBox($idxFocusContent);
@@ -252,11 +256,14 @@ function toggleReflectIdx($reflect) {
     const $2Link = document.createElement("a");
     const $3 = document.createElement("li");
     const $3Link = document.createElement("a");
+    const $funnyQ = document.createElement("li");
+    const $funnyQLink = document.createElement("a");
 
     $reflectIdxBox.className = "idx-box-content";
     $1.className = "idx-box-content-detail";
     $2.className = "idx-box-content-detail";
     $3.className = "idx-box-content-detail";
+    $funnyQ.className = "idx-box-content-detail";
 
     $1Link.textContent = "1";
     $2Link.textContent = "2";
@@ -266,12 +273,22 @@ function toggleReflectIdx($reflect) {
     $2Link.href = "/reflect/2";
     $3Link.href = "/reflect/3";
 
+    if (localStorage.getItem("lang") === "한글") {
+        $funnyQLink.textContent = "재미있는 질문들";
+        $funnyQLink.href = "/reflect/재미있는%20질문들";
+    } else {
+        $funnyQLink.textContent = "funny questions";
+        $funnyQLink.href = "/reflect/funny%20questions";
+    }
+
     $1.appendChild($1Link);
     $2.appendChild($2Link);
     $3.appendChild($3Link);
+    $funnyQ.appendChild($funnyQLink);
     $reflectIdxBox.appendChild($1);
     $reflectIdxBox.appendChild($2);
     $reflectIdxBox.appendChild($3);
+    $reflectIdxBox.appendChild($funnyQ);
     $reflect.appendChild($reflectIdxBox);
 
     toggledList.push("reflect");

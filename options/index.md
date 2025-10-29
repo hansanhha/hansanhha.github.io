@@ -1,5 +1,7 @@
 ---
 layout: index
+idx-name: options
+idx-name-ko: 설정
 ---
 
 <a id="toggle_nav" onclick="toggleNav(); return false;"></a>

@@ -1,5 +1,7 @@
 ---
 layout: index
+idx-name: 2025
+idx-name-ko: 2025
 ---
 
 <a id="january" href="./january">january</a>

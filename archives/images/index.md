@@ -1,5 +1,7 @@
 ---
 layout: index
+idx-name: images
+idx-name-ko: 사진
 ---
 
 <a href="./moving" data-display-ko="역동적인">moving</a>

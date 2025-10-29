@@ -1,5 +1,7 @@
 ---
 layout: index
+idx-name: videos
+idx-name-ko: 동영상
 ---
 
 <a href="./blue%20sky" data-display-ko="푸르른 하늘">blue sky</a>

@@ -1,4 +1,5 @@
 ---
 layout: index
-page-name-ko: 빠삐용
+idx-name: papillon
+idx-name-ko: 빠삐용
 ---
