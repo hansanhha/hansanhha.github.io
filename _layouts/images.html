@@ -153,6 +153,7 @@ function focus($img) {
         maxHeight: "100%",
         boxShadow: "0 10px 40px rgba(0,0,0,0.8)",
         cursor: "normal",
+        marginTop: "30px",
     });
 
     const $imgDescriptionBox = document.createElement("div");
@@ -167,14 +168,22 @@ function focus($img) {
         $imgDescriptionBox.style.maxWidth = "40%";
 
         if (window.innerWidth <= 768) {
-        $imgDescriptionBox.style.maxWidth = "80%";
-    }
+            $imgDescriptionBox.style.maxWidth = "80%";
+        }
 
         let descriptions;
         if (localStorage.getItem("lang") === "한글") {
-            descriptions = $img.dataset.descKo.split(" ");
+            if ($img.dataset.descKo == undefined) {
+                descriptions = $img.dataset.desc.split(" ");
+            } else {
+                descriptions = $img.dataset.descKo.split(" ");
+            }
         } else {
-            descriptions = $img.dataset.desc.split(" ");
+            if ($img.dataset.desc == undefined) {
+                descriptions = $img.dataset.descKo.split(" ");
+            } else {
+                descriptions = $img.dataset.desc.split(" ");
+            }
         }
 
         const nextLineIdxs = [];

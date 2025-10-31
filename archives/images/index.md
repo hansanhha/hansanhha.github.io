@@ -10,4 +10,4 @@ idx-name-ko: 사진
 
 <a href="./tools" data-display-ko="도구">tools</a>
 
-<a href="./theWeeknd" data-display-ko="위켄드">the weeknd</a>
+<a href="./the%20weeknd" data-display-ko="위켄드">the weeknd</a>

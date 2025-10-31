@@ -99,6 +99,11 @@ body {
     background: transparent;
     color: green;
   }
+
+  .img-desc::selection {
+    background: transparent;
+    color: green;
+  }
 }
 
 :root[data-theme="dark"] {
