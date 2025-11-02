@@ -312,30 +312,38 @@ function toggleArchivesIdx($archives) {
     const $textLink = document.createElement("a");
     const $images = document.createElement("li");
     const $videos = document.createElement("li");
+    const $digital = document.createElement("li");
+    const $digitalLink = document.createElement("a");
 
     $archivesIdxBox.className = "idx-box-content";
     $text.className = "idx-box-content-detail";
     $images.className = "idx-box-content-detail";
     $videos.className = "idx-box-content-detail";
+    $digital.className = "idx-box-content-detail";
 
     if (localStorage.getItem("lang") === "한글") {
         $textLink.textContent = "글 귀";
         $images.textContent = "이미지";
         $videos.textContent = "동영상";
+        $digitalLink.textContent = "디지털";
     } else {
         $textLink.textContent = "text";
         $images.textContent = "images";
         $videos.textContent = "videos";
+        $digitalLink.textContent = "digital";
     }
 
     $textLink.href = "/archives/text";
     $images.addEventListener("click", () => toggleArchivesImagesIdx($images));
     $videos.addEventListener("click", () => toggleArchivesVideosIdx($videos));
+    $digitalLink.href = "/archives/digital";
 
     $text.appendChild($textLink);
+    $digital.appendChild($digitalLink);
     $archivesIdxBox.appendChild($text);
     $archivesIdxBox.appendChild($images);
     $archivesIdxBox.appendChild($videos);
+    $archivesIdxBox.appendChild($digital);
     $archives.appendChild($archivesIdxBox);
 
     toggledList.push("archives");
@@ -614,6 +622,7 @@ function toggleSunrise2025Idx($2025) {
     $april.className = "idx-box-content-detail";
     $may.className = "idx-box-content-detail";
     $october.className = "idx-box-content-detail";
+    $november.className = "idx-box-content-detail";
 
     if (localStorage.getItem("lang") === "한글") {
         $januaryLink.textContent = "1월";
@@ -622,6 +631,7 @@ function toggleSunrise2025Idx($2025) {
         $aprilLink.textContent = "4월";
         $mayLink.textContent = "5월";
         $octoberLink.textContent = "10월";
+        $novemberLink.textContent = "11월";
     } else {
         $januaryLink.textContent = "january";
         $februaryLink.textContent = "february";
@@ -629,6 +639,7 @@ function toggleSunrise2025Idx($2025) {
         $aprilLink.textContent = "april";
         $mayLink.textContent = "may";
         $octoberLink.textContent = "october";
+        $novemberLink.textContent = "november";
     }
 
     $januaryLink.href = "/sunrise/2025/january";
@@ -637,6 +648,7 @@ function toggleSunrise2025Idx($2025) {
     $aprilLink.href = "/sunrise/2025/april";
     $mayLink.href = "/sunrise/2025/may";
     $octoberLink.href = "/sunrise/2025/october";
+    $novemberLink.href = "/sunrise/2025/november";
 
     $january.appendChild($januaryLink);
     $february.appendChild($februaryLink);
@@ -644,12 +656,14 @@ function toggleSunrise2025Idx($2025) {
     $april.appendChild($aprilLink);
     $may.appendChild($mayLink);
     $october.appendChild($octoberLink);
+    $november.appendChild($novemberLink);
     $2025IdxBox.appendChild($january);
     $2025IdxBox.appendChild($february);
     $2025IdxBox.appendChild($march);
     $2025IdxBox.appendChild($april);
     $2025IdxBox.appendChild($may);
     $2025IdxBox.appendChild($october);
+    $2025IdxBox.appendChild($november);
     $2025.appendChild($2025IdxBox);
 
     toggledList.push("2025");

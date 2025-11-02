@@ -1,6 +1,7 @@
 ---
 layout: sunrise
 prev: may
+next: november
 page-name-ko: 10월
 nomiation: Eungbongsan
 address: 1540, Geumho-dong 4(sa)-ga, Seongdong-gu, Seoul
