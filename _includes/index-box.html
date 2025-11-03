@@ -374,7 +374,7 @@ function toggleArchivesImagesIdx($images) {
     $weeknd.className = "idx-box-content-detail";
 
     if (localStorage.getItem("lang") === "한글") {
-        $movingLink.textContent = "동작";
+        $movingLink.textContent = "역동적인";
         $peopleLink.textContent = "사람들";
         $toolsLink.textContent = "도구";
         $weekndLink.textContent = "위켄드";
@@ -423,6 +423,10 @@ function toggleArchivesVideosIdx($videos) {
     const $chairsLink = document.createElement("a");
     const $stream = document.createElement("li");
     const $streamLink = document.createElement("a");
+    const $wave = document.createElement("li");
+    const $waveLink = document.createElement("a");
+    const $forest = document.createElement("li");
+    const $forestLink = document.createElement("a");
 
     $videosIdxBox.className = "idx-box-content";
     $blueSky.className = "idx-box-content-detail";
@@ -430,19 +434,25 @@ function toggleArchivesVideosIdx($videos) {
     $pinkSky.className = "idx-box-content-detail";
     $chiars.className = "idx-box-content-detail";
     $stream.className = "idx-box-content-detail";
+    $wave.className = "idx-box-content-detail";
+    $forest.className = "idx-box-content-detail";
 
     if (localStorage.getItem("lang") === "한글") {
         $blueSkyLink.textContent = "파란 하늘";
         $hazySkyLink.textContent = "흐릿한 하늘";
         $pinkSkyLink.textContent = "분홍 하늘";
         $chairsLink.textContent = "의자";
-        $streamLink.textContent = "개울";
+        $streamLink.textContent = "흐름";
+        $waveLink.textContent = "파도";
+        $forestLink.textContent = "숲 속";
     } else {
         $blueSkyLink.textContent = "blue sky";
         $hazySkyLink.textContent = "hazy sky";
         $pinkSkyLink.textContent = "pink sky";
         $chairsLink.textContent = "chairs";
         $streamLink.textContent = "stream";
+        $waveLink.textContent = "wave";
+        $forestLink.textContent = "forest";
     }
 
     $blueSkyLink.href = "/archives/videos/blue%20sky";
@@ -450,17 +460,23 @@ function toggleArchivesVideosIdx($videos) {
     $pinkSkyLink.href = "/archives/videos/pink%20sky";
     $chairsLink.href = "/archives/videos/chairs";
     $streamLink.href = "/archives/videos/stream";
+    $waveLink.href = "/archives/videos/wave";
+    $forestLink.href = "/archives/videos/forest";
 
     $blueSky.appendChild($blueSkyLink);
     $hazySky.appendChild($hazySkyLink);
     $pinkSky.appendChild($pinkSkyLink);
     $chiars.appendChild($chairsLink);
     $stream.appendChild($streamLink);
+    $wave.appendChild($waveLink);
+    $forest.appendChild($forestLink);
     $videosIdxBox.appendChild($blueSky);
     $videosIdxBox.appendChild($hazySky);
     $videosIdxBox.appendChild($pinkSky);
     $videosIdxBox.appendChild($chiars);
     $videosIdxBox.appendChild($stream);
+    $videosIdxBox.appendChild($wave);
+    $videosIdxBox.appendChild($forest);
     $videos.appendChild($videosIdxBox);
 
     toggledList.push("videos");

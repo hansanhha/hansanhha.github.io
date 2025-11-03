@@ -55,22 +55,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     });
 
-    video.addEventListener("waiting", () => {
-        loadingIndicator.style.display = "block";
-        videoBox.style.display = "none";
-        if (lang === "한글") {
-            loadingIndicator.textContent = "비디오 다운로드 중";
-        } else {
-            loadingIndicator.textContent = "loading video";
-        }
-    });
-
-    video.addEventListener("canplaythrough", () => {
-        loadingIndicator.style.display = "none";
-        videoBox.style.display = "block";
-    });
-
-    video.addEventListener("playing", () => {
+    video.addEventListener("canplay", () => {
         loadingIndicator.style.display = "none";
         videoBox.style.display = "block";
     });

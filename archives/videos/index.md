@@ -13,3 +13,7 @@ idx-name-ko: 동영상
 <a href="./chairs" data-display-ko="의자">chairs</a>
 
 <a href="./stream" data-display-ko="흐름">stream</a>
+
+<a href="./wave" data-display-ko="파도">wave</a>
+
+<a href="./forest" data-display-ko="숲 속">forest</a>

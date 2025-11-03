@@ -185,15 +185,44 @@ body {
   }
 }
 
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: "Libre Franklin", "Arial", "Verdana", sans-serif;
-  margin: 0;
+@media (max-width: 768px) {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .main-content {
+    margin-top: 3%;
+    padding-bottom: 15em;
+    margin: 0 0;
+  }
+
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
 }
 
-a:hover {
-  cursor: default;
+@media (min-width: 769px) {
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .main-content {
+    padding-bottom: 15em;
+    margin-top: 3%;
+    margin-left: 23%;
+    margin-right: 23%;
+  }
+
+  video {
+    display: block;
+    max-width: 100%;
+    max-height: 95vh;
+  }
 }
 
 .idx-box {
@@ -253,25 +282,15 @@ a:hover {
   margin: 10% 0;
 }
 
-.main-content {
-  padding-bottom: 15em;
-  margin-top: 3%;
-  margin-left: 23%;
-  margin-right: 23%;
-}
-
 .main-content:has(video) {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-p {
-  display: block;
-  margin-block-start: 0.6em;
-  margin-block-end: 0.6em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+.main-content a:hover {
+  border-bottom-color: transparent;
+  color: #007bff;
 }
 
 .main-content p {
@@ -280,60 +299,6 @@ p {
   margin-block-end: 1.5em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-}
-
-thead {
-  display: none;
-}
-
-.main-content a:hover {
-  border-bottom-color: transparent;
-  color: #007bff;
-}
-
-h2 {
-  margin-top: 3.5em;
-  font-weight: normal;
-}
-
-h3 {
-  margin-top: 2.5em;
-  font-weight: normal;
-}
-
-h4 {
-  margin-top: 1.5em;
-  font-weight: bold;
-}
-
-h5 {
-  margin-top: 1em;
-  font-weight: bold;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-@media (max-width: 768px) {
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .main-content {
-    margin-top: 3%;
-    padding-bottom: 15em;
-    margin: 0 0;
-  }
-}
-
-video {
-  display: block;
-  max-width: 100%;
-  height: auto;
 }
 
 .image-view-selector {
@@ -365,4 +330,47 @@ video {
   display: flex;
   gap: 8px;
   justify-content: flex-start;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Libre Franklin", "Arial", "Verdana", sans-serif;
+  margin: 0;
+}
+
+p {
+  display: block;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+a:hover {
+  cursor: default;
+}
+
+thead {
+  display: none;
+}
+
+h2 {
+  margin-top: 3.5em;
+  font-weight: normal;
+}
+
+h3 {
+  margin-top: 2.5em;
+  font-weight: normal;
+}
+
+h4 {
+  margin-top: 1.5em;
+  font-weight: bold;
+}
+
+h5 {
+  margin-top: 1em;
+  font-weight: bold;
 }

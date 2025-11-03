@@ -2,6 +2,7 @@
 layout: video
 title: 
 prev: chairs
+next: wave
 page-name-ko: 흐름
 ---
 
