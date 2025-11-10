@@ -4,7 +4,7 @@ idx-name: images
 idx-name-ko: 사진
 ---
 
-<a href="./moving" data-display-ko="역동적인">moving</a>
+<a href="./dynamic" data-display-ko="역동적인">dynamic</a>
 
 <a href="./people" data-display-ko="사람들">people</a>
 

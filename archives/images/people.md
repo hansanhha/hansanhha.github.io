@@ -1,7 +1,7 @@
 ---
 layout: images
 title: 
-prev: moving
+prev: dynamic
 next: tools
 page-name-ko: 사람들
 ---

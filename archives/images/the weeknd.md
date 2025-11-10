@@ -24,3 +24,9 @@ page-name-ko: 위켄드
 <img src="./data/kiss_land.jpeg" alt="kiss land.jpeg" data-desc="Professional \n The Town \n Adaptation \n Love In The Sky \n Belong To The World \n Live For \n Wanderlust \n Kiss Land \n Pretty \n Tears In The Rain"/>
 
 <img src="./data/trilogy.jpeg" alt="trilogy.jpeg" data-desc="High For This \n What You Need \n House Of Balloons \n Glass Table Girls \n The Morning \n Wicked Gams \n The Party & The After Party \n Coming Down \n Loft Music \n The Knowing \n Twenty Eight \n Lonely Star \n Life Of The Party \n Thursday \n The Zone \n The Birds Pt.1 \n The Birds Pt.2 \n Gone \n Rolling Stone \n Heaven Or Las Vegas \n Valerie \n D.D. \n Montreal \n Outside \n XO / The Host \n Initiation \n Same Old Song \n The Fall \n Next \n Echoes Of Silence \n Till Dawn (Hear Comes The Sun)"/>
+
+<img src="./data/echoes_of_silence.jpeg" alt="echoes of silence.jpeg" data-desc="D.D. \n Montreal \n Outside \n XO / The Host \n Initiation \n Same Old Song \n The Fall \n Next \n Echoes Of Silence">
+
+<img src="./data/thursday.jpeg" alt="thursday.jpeg" data-desc="Lonely Star \n Life Of The Party \n Thursday \n The Zone \n The Birds Pt.1 \n The Birds Pt.2 \n Gone \n Rolling Stone \n Heaven Or Las Vegas">
+
+<img src="./data/house_of_balloons.jpeg" alt="house of balloons.jpeg" data-desc="High For This \n What You Need \n House Of Balloons \n Glass Table Girls \n The Morning \n Wicked Gams \n The Party & The After Party \n Coming Down \n Loft Music \n The Knowing">
