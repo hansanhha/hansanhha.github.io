@@ -2,7 +2,7 @@
 layout: images
 title: 
 prev: people
-next: the%20weeknd
+next: season
 page-name-ko: 도구
 ---
 

@@ -2,6 +2,7 @@
 layout: images
 title: 
 prev: tools
+next: renoir
 page-name-ko: 위켄드
 ---
 

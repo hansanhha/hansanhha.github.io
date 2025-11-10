@@ -279,7 +279,7 @@ body {
 
 .main-container {
   height: 100vh;
-  margin: 10% 0;
+  margin: 10% 2.5%;
 }
 
 .main-content:has(video) {

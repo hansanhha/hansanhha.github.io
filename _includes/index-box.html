@@ -358,46 +358,62 @@ function toggleArchivesImagesIdx($images) {
     }
 
     const $imagesIdxBox = document.createElement("ul");
-    const $moving = document.createElement("li");
-    const $movingLink = document.createElement("a");
+    const $dynamic = document.createElement("li");
+    const $dynamicLink = document.createElement("a");
     const $people = document.createElement("li");
     const $peopleLink = document.createElement("a");
     const $tools = document.createElement("li");
     const $toolsLink = document.createElement("a");
     const $weeknd = document.createElement("li");
     const $weekndLink = document.createElement("a");
+    const $season = document.createElement("li");
+    const $seasonLink = document.createElement("a");
+    const $renoir = document.createElement("li");
+    const $renoirLink = document.createElement("a");
 
     $imagesIdxBox.className = "idx-box-content";
-    $moving.className = "idx-box-content-detail";
+    $dynamic.className = "idx-box-content-detail";
     $people.className = "idx-box-content-detail";
     $tools.className = "idx-box-content-detail";
     $weeknd.className = "idx-box-content-detail";
+    $season.className = "idx-box-content-detail";
+    $renoir.className = "idx-box-content-detail";
 
     if (localStorage.getItem("lang") === "한글") {
-        $movingLink.textContent = "역동적인";
+        $dynamicLink.textContent = "역동적인";
         $peopleLink.textContent = "사람들";
         $toolsLink.textContent = "도구";
         $weekndLink.textContent = "위켄드";
+        $seasonLink.textContent = "계절";
+        $renoirLink.textContent = "피에르 오귀스트 르누아르";
     } else {
-        $movingLink.textContent = "moving";
+        $dynamicLink.textContent = "dynamic";
         $peopleLink.textContent = "people";
         $toolsLink.textContent = "tools";
         $weekndLink.textContent = "the weeknd";
+        $seasonLink.textContent = "season";
+        $renoirLink.textContent = "pierre-auguste renoir";
     }
 
-    $movingLink.href = "/archives/images/moving";
+    $dynamicLink.href = "/archives/images/dynamic";
     $peopleLink.href = "/archives/images/people";
     $toolsLink.href = "/archives/images/tools";
     $weekndLink.href = "/archives/images/the%20weeknd";
+    $seasonLink.href = "/archives/images/season";
+    $renoirLink.href = "/archives/images/renoir";
 
-    $moving.appendChild($movingLink);
+    $dynamic.appendChild($dynamicLink);
     $people.appendChild($peopleLink);
     $tools.appendChild($toolsLink);
     $weeknd.appendChild($weekndLink);
-    $imagesIdxBox.appendChild($moving);
+    $season.appendChild($seasonLink);
+    $renoir.appendChild($renoirLink);
+    $imagesIdxBox.appendChild($dynamic);
     $imagesIdxBox.appendChild($people);
     $imagesIdxBox.appendChild($tools);
+    $imagesIdxBox.appendChild($season);
     $imagesIdxBox.appendChild($weeknd);
+    $imagesIdxBox.appendChild($renoir);
     $images.appendChild($imagesIdxBox);
 
     toggledList.push("images");
