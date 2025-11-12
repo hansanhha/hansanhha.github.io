@@ -9,8 +9,6 @@ Is a bad law still a low?
 
 Do stupid people know they're stupid? If someone feels stupid, does that mean they're stupid?
 
-Why do I want to sit when I'm standing, and lie down when I'm sitting?
-
 How can a person act or express something different from what is on their mind?
 
 Are we dying or are we living?
