@@ -34,6 +34,25 @@
         $nomiation.textContent = $nomiation.dataset.nomiation;
         $address.textContent = $address.dataset.address;
     }
+
+	const images = Array.from(document.getElementsByTagName("img")); 
+    images.forEach(img => {
+        function limitImageHeight() {
+            const viewportHeight = window.innerHeight;
+            const maxHeight = viewportHeight * 0.98;
+            
+            if (img.naturalHeight > viewportHeight) {
+                img.style.maxHeight = maxHeight + "px";
+                img.style.width = "auto";
+            }
+        }
+        
+        if (img.complete) {
+            limitImageHeight();
+        } else {
+            img.addEventListener("load", limitImageHeight);
+        }
+    });
 </script>
 </html>
 
