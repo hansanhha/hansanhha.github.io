@@ -655,6 +655,7 @@ function toggleSunrise2025Idx($2025) {
     $may.className = "idx-box-content-detail";
     $october.className = "idx-box-content-detail";
     $november.className = "idx-box-content-detail";
+    $december.className = "idx-box-content-detail";
 
     if (localStorage.getItem("lang") === "한글") {
         $januaryLink.textContent = "1월";
@@ -664,6 +665,7 @@ function toggleSunrise2025Idx($2025) {
         $mayLink.textContent = "5월";
         $octoberLink.textContent = "10월";
         $novemberLink.textContent = "11월";
+        $decemberLink.textContent = "12월";
     } else {
         $januaryLink.textContent = "january";
         $februaryLink.textContent = "february";
@@ -672,6 +674,7 @@ function toggleSunrise2025Idx($2025) {
         $mayLink.textContent = "may";
         $octoberLink.textContent = "october";
         $novemberLink.textContent = "november";
+        $decemberLink.textContent = "december";
     }
 
     $januaryLink.href = "/sunrise/2025/january";
@@ -681,6 +684,7 @@ function toggleSunrise2025Idx($2025) {
     $mayLink.href = "/sunrise/2025/may";
     $octoberLink.href = "/sunrise/2025/october";
     $novemberLink.href = "/sunrise/2025/november";
+    $decemberLink.href = "/sunrise/2025/december";
 
     $january.appendChild($januaryLink);
     $february.appendChild($februaryLink);
@@ -689,6 +693,7 @@ function toggleSunrise2025Idx($2025) {
     $may.appendChild($mayLink);
     $october.appendChild($octoberLink);
     $november.appendChild($novemberLink);
+    $december.appendChild($decemberLink);
     $2025IdxBox.appendChild($january);
     $2025IdxBox.appendChild($february);
     $2025IdxBox.appendChild($march);
@@ -696,6 +701,7 @@ function toggleSunrise2025Idx($2025) {
     $2025IdxBox.appendChild($may);
     $2025IdxBox.appendChild($october);
     $2025IdxBox.appendChild($november);
+    $2025IdxBox.appendChild($december);
     $2025.appendChild($2025IdxBox);
 
     toggledList.push("2025");

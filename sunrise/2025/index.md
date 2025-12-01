@@ -17,3 +17,5 @@ idx-name-ko: 2025
 <a href="./october" data-display-ko="10월">october</a>
 
 <a href="./november" data-display-ko="11월">november</a>
+
+<a href="./december" data-display-ko="12월">december</a>
