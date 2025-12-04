@@ -1,7 +1,7 @@
 ---
 layout: images
 title: 
-prev: tools
+prev: season
 next: renoir
 page-name-ko: 위켄드
 ---

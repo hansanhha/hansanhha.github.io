@@ -144,78 +144,102 @@ function focus($img) {
         position: "fixed",
         maxWidth: "100vw",
         maxHeight: "100vh",
-        overflow: "scroll",
-        inset: "0",
         display: "flex",
-        // justifyContent: "space-evenly",
-        alignItems: "start",
+        inset: "0",
+        alignItems: "center",
         justifyContent: "center",
         background: "rgba(0,0,0,0.7)",
         backdropFilter: "blur(2px)",
         WebkitBackdropFilter: "blur(2px)",
         zIndex: "9999",
         cursor: "normal",
-        padding: "20px",
+        overflow: "hidden",
+        padding: window.innerWidth <= 768 ? "10px" : "40px",
     });
 
-    if (window.innerWidth <= 768) {
-        $overlay.style.flexDirection = "column";
-        $overlay.style.justifyContent = "start";
-    }
+    const $imgBox = document.createElement("div");
+    Object.assign($imgBox.style, {
+        width: "100%",
+        height: "95%",
+        display: "flex",
+        alignItems: "start",
+        justifyContent: "center",
+        overflow: "hidden",
+    });
 
     const $focusedImg = $img.cloneNode(true);
     Object.assign($focusedImg.style, {
         maxWidth: "100%",
-        maxHeight: "100%",
-        boxShadow: "0 10px 40px rgba(0,0,0,0.8)",
+        height: "100%",
+        boxShadow: "0 10px 20px rgba(0,0,0,0.8)",
         cursor: "normal",
-        // marginTop: "30px",
+        flexShrink: 0,
     });
 
+    if (window.innerWidth <= 768) {
+        $imgBox.style.flexDirection = "column";
+        $imgBox.style.justifyContent = "start";
+        $focusedImg.style.height = "auto";
+        $focusedImg.style.maxHeight = "65%";
+    }
+
     const $imgDescriptionBox = document.createElement("div");
+    Object.assign($imgDescriptionBox.style, {
+        display: "flex",
+        flexDirection: "column",
+        gap: "0.5em",
+        overflowY: "auto",
+        overflowX: "hidden",
+        scrollbarWidth: "none",
+        fontSize: "17px",
+        color: "#e3dfdf",
+    });
+
+    const style = document.createElement("style");
+    style.textContent = `
+        .img-desc-box::-webkit-scrollbar { display: none; width: 0; height: 0; }
+    `;
+    document.head.appendChild(style);
+    $imgDescriptionBox.className = "img-desc-box";
+
+    if (window.innerWidth <= 768) {
+        Object.assign($imgDescriptionBox.style, {
+            maxWidth: "95vw",
+            maxHeight: "100%",
+            marginTop: "20px",
+            paddingRight: "10px",
+        });
+    } else {
+        Object.assign($imgDescriptionBox.style, {
+            maxWidth: "35%",
+            maxHeight: "100%",
+            marginLeft: "30px",
+            paddingRight: "10px",
+        });
+    }
+
     if ($img.dataset.desc || $img.dataset.descKo) {
-        $imgDescriptionBox.style.fontSize = "17px";
-        $imgDescriptionBox.style.color = "#e3dfdf";
-        $imgDescriptionBox.style.marginLeft = "50px";
-        $imgDescriptionBox.style.marginTop = "10px";
-        $imgDescriptionBox.style.display = "flex";
-        $imgDescriptionBox.style.flexDirection = "column";
-        $imgDescriptionBox.style.gap = "0.5em";
-        $imgDescriptionBox.style.maxWidth = "40%";
-
-        if (window.innerWidth <= 768) {
-            $imgDescriptionBox.style.maxWidth = "80%";
-        }
-
         let descriptions;
         if (localStorage.getItem("lang") === "한글") {
-            if ($img.dataset.descKo == undefined) {
-                descriptions = $img.dataset.desc.split(" ");
-            } else {
-                descriptions = $img.dataset.descKo.split(" ");
-            }
+            descriptions = ($img.dataset.descKo || $img.dataset.desc).split(" ");
         } else {
-            if ($img.dataset.desc == undefined) {
-                descriptions = $img.dataset.descKo.split(" ");
-            } else {
-                descriptions = $img.dataset.desc.split(" ");
-            }
+            descriptions = ($img.dataset.desc || $img.dataset.descKo).split(" ");
         }
 
         const nextLineIdxs = [];
         let index = descriptions.indexOf("\\n");
 
         while (index !== -1) {
-            nextLineIdxs.push(index); 
+            nextLineIdxs.push(index);
             index = descriptions.indexOf("\\n", index + 1);
         }
-        
-        let $lastDesc;
+
         if (nextLineIdxs.length === 0) {
             const $desc = document.createElement("div");
             descriptions.forEach(d => {
                 $desc.textContent += (d + " ");
             });
+            $imgDescriptionBox.appendChild($desc);
         } else {
             let start = 0;
             for (let i = 0; i < nextLineIdxs.length; i++) {
@@ -245,14 +269,15 @@ function focus($img) {
     function onKey(e) {
         if (e.key === "Escape") close();
     }
-
+    
     $focusedImg.addEventListener("click", close);
     $overlay.addEventListener("click", close);
     document.addEventListener("keydown", onKey);
-
+    
+    $imgBox.appendChild($focusedImg);
+    $imgBox.appendChild($imgDescriptionBox);
+    $overlay.appendChild($imgBox);
     document.body.appendChild($overlay);
-    $overlay.appendChild($focusedImg);
-    $overlay.appendChild($imgDescriptionBox);
 
     document.body.style.overflow = "hidden";
 }
