@@ -258,20 +258,25 @@ function toggleReflectIdx($reflect) {
     const $3Link = document.createElement("a");
     const $funnyQ = document.createElement("li");
     const $funnyQLink = document.createElement("a");
+    const $2025 = document.createElement("li");
+    const $2025Link = document.createElement("a");
 
     $reflectIdxBox.className = "idx-box-content";
     $1.className = "idx-box-content-detail";
     $2.className = "idx-box-content-detail";
     $3.className = "idx-box-content-detail";
     $funnyQ.className = "idx-box-content-detail";
+    $2025.className = "idx-box-content-detail";
 
     $1Link.textContent = "1";
     $2Link.textContent = "2";
     $3Link.textContent = "3";
+    $2025Link.textContent = "2025년 회고";
 
     $1Link.href = "/reflect/1";
     $2Link.href = "/reflect/2";
     $3Link.href = "/reflect/3";
+    $2025Link.href = "/reflect/2025%20회고";
 
     if (localStorage.getItem("lang") === "한글") {
         $funnyQLink.textContent = "재미있는 질문들";
@@ -285,10 +290,12 @@ function toggleReflectIdx($reflect) {
     $2.appendChild($2Link);
     $3.appendChild($3Link);
     $funnyQ.appendChild($funnyQLink);
+    $2025.appendChild($2025Link);
     // $reflectIdxBox.appendChild($1);
     // $reflectIdxBox.appendChild($2);
     // $reflectIdxBox.appendChild($3);
     $reflectIdxBox.appendChild($funnyQ);
+    $reflectIdxBox.appendChild($2025);
     $reflect.appendChild($reflectIdxBox);
 
     toggledList.push("reflect");

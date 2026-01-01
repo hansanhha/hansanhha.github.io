@@ -6,3 +6,5 @@ idx-name-ko: 회고
 ---
 
 <a href="./funny%20questions" data-display-ko="재미있는 질문들" data-href-ko="./재미있는%20질문들">funny questions</a>
+
+<a href="./2025%20회고">2025년 회고</a>
