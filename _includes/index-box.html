@@ -516,25 +516,33 @@ function toggleSunriseIdx($sunrise) {
         if (toggledList.includes("2025")) {
             toggledList.splice(toggledList.indexOf("2025"), 1);
         }
+        if (toggledList.includes("2026")) {
+            toggledList.splice(toggledList.indexOf("2026"), 1);
+        }
         return;
     }
 
     const $sunriseIdxBox = document.createElement("ul"); 
     const $2024 = document.createElement("li");
     const $2025 = document.createElement("li");
+    const $2026 = document.createElement("li");
 
     $sunriseIdxBox.className = "idx-box-content";
     $2024.className = "idx-box-content-detail";
     $2025.className = "idx-box-content-detail";
+    $2026.className = "idx-box-content-detail";
 
     $2024.textContent = "2024";
     $2025.textContent = "2025";
+    $2026.textContent = "2026";
 
     $sunriseIdxBox.appendChild($2024);
     $sunriseIdxBox.appendChild($2025);
+    $sunriseIdxBox.appendChild($2026);
 
     $2024.addEventListener("click", () => toggleSunrise2024Idx($2024));
     $2025.addEventListener("click", () => toggleSunrise2025Idx($2025));
+    $2026.addEventListener("click", () => toggleSunrise2026Idx($2026));
 
     $sunrise.appendChild($sunriseIdxBox);
 
@@ -712,6 +720,42 @@ function toggleSunrise2025Idx($2025) {
     $2025.appendChild($2025IdxBox);
 
     toggledList.push("2025");
+    event.stopPropagation();
+}
+
+function toggleSunrise2026Idx($2026) {
+    if (toggledList.includes("2026")) {
+        removeIdxDetailOf($2026);
+        toggledList.splice(toggledList.indexOf("2026"), 1);
+        event.stopPropagation();
+        return;
+    }
+
+    const $2026IdxBox = document.createElement("ul");
+    const $january = document.createElement("li");
+    const $januaryLink = document.createElement("a");
+    
+
+    $2026IdxBox.className = "idx-box-content";
+    $january.className = "idx-box-content-detail";
+    
+    if (localStorage.getItem("lang") === "한글") {
+        $januaryLink.textContent = "1월";
+        
+    } else {
+        $januaryLink.textContent = "january";
+        
+    }
+
+    $januaryLink.href = "/sunrise/2026/january";
+
+    $january.appendChild($januaryLink);
+    
+    $2026IdxBox.appendChild($january);
+    
+    $2026.appendChild($2026IdxBox);
+
+    toggledList.push("2026");
     event.stopPropagation();
 }
 
