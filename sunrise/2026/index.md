@@ -5,3 +5,5 @@ idx-name-ko: 2026
 ---
 
 <a href="./january" data-display-ko="1월">january</a>
+
+<a href="./february" data-display-ko="2월">february</a>
