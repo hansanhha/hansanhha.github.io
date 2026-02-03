@@ -2,7 +2,7 @@
 layout: video
 title: 
 prev: wave
-next: 
+next: vending%20machine
 page-name-ko: 숲 속
 ---
 

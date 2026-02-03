@@ -45,6 +45,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     const lang = localStorage.getItem("lang");
 
+    video.load();
+
     video.addEventListener("loadstart", () => {
         loadingIndicator.style.display = "block";
         videoBox.style.display = "none";
@@ -53,6 +55,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
         } else {
             loadingIndicator.textContent = "loading video";
         }
+    });
+
+    video.addEventListener("loadeddata", () => {
+        loadingIndicator.style.display = "none";
+        videoBox.style.display = "block";
     });
 
     video.addEventListener("canplay", () => {

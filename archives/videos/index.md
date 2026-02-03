@@ -17,3 +17,5 @@ idx-name-ko: 동영상
 <a href="./wave" data-display-ko="파도">wave</a>
 
 <a href="./forest" data-display-ko="숲 속">forest</a>
+
+<a href="./vending%20machine" data-display-ko="자판기">vending machine</a>
