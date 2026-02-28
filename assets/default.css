@@ -301,6 +301,14 @@ body {
   margin-inline-end: 0px;
 }
 
+.main-content img {
+  max-height: 97vh;
+}
+
+.post-date {
+  text-align: right;
+}
+
 .image-view-selector {
   display: flex;
   gap: 0.3em;

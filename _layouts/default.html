@@ -11,6 +11,9 @@
 	<div class="main-container">
 		{% include path.html %}
 		<main class="main-content">
+			{% if page.date != nil %}
+				<div class="post-date"> {{ page.date }} </div>
+			{% endif %}
 			{% if page.content != nil and page.content != "" %}
 				{{ content }}
 				{% include go-to-top.html %}
