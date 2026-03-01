@@ -1,7 +1,7 @@
 ---
 layout: sunrise
 prev: january
-next: 
+next: march
 page-name-ko: 2월
 nomiation: Myeong-dong Cathedral
 address: 74, Myeongdong-gil, Jung-gu, Seoul

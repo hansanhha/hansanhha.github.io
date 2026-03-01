@@ -750,30 +750,38 @@ function toggleSunrise2026Idx($2026) {
     const $januaryLink = document.createElement("a");
     const $february = document.createElement("li");
     const $februaryLink = document.createElement("a");
+    const $march = document.createElement("li");
+    const $marchLink = document.createElement("a");
     
 
     $2026IdxBox.className = "idx-box-content";
     $january.className = "idx-box-content-detail";
     $february.className = "idx-box-content-detail";
+    $march.className = "idx-box-content-detail";
     
     
     if (localStorage.getItem("lang") === "한글") {
         $januaryLink.textContent = "1월";
         $februaryLink.textContent = "2월";
+        $marchLink.textContent = "3월";
         
     } else {
         $januaryLink.textContent = "january";
         $februaryLink.textContent = "february";
+        $marchLink.textContent = "march";
     }
 
     $januaryLink.href = "/sunrise/2026/january";
     $februaryLink.href = "/sunrise/2026/february";
+    $marchLink.href = "/sunrise/2026/march";
 
     $january.appendChild($januaryLink);
     $february.appendChild($februaryLink);
+    $march.appendChild($marchLink);
     
     $2026IdxBox.appendChild($january);
     $2026IdxBox.appendChild($february);
+    $2026IdxBox.appendChild($march);
     
     $2026.appendChild($2026IdxBox);
 
