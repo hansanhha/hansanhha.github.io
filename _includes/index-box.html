@@ -264,6 +264,8 @@ function toggleReflectIdx($reflect) {
     const $2026startLink = document.createElement("a");
     const $202602 = document.createElement("a");
     const $202602Link = document.createElement("a");
+    const $202603 = document.createElement("a");
+    const $202603Link = document.createElement("a");
 
     $reflectIdxBox.className = "idx-box-content";
     $1.className = "idx-box-content-detail";
@@ -273,6 +275,7 @@ function toggleReflectIdx($reflect) {
     $2025.className = "idx-box-content-detail";
     $2026start.className = "idx-box-content-detail";
     $202602.className = "idx-box-content-detail";
+    $202603.className = "idx-box-content-detail";
 
     $1Link.textContent = "1";
     $2Link.textContent = "2";
@@ -280,6 +283,7 @@ function toggleReflectIdx($reflect) {
     $2025Link.textContent = "2025년 회고";
     $2026startLink.textContent = "2026년 첫 스타뜨";
     $202602Link.textContent = "월화수목금퇼";
+    $202603Link.textContent = "봄이 오긴 오는구나";
 
     $1Link.href = "/reflect/1";
     $2Link.href = "/reflect/2";
@@ -287,6 +291,7 @@ function toggleReflectIdx($reflect) {
     $2025Link.href = "/reflect/2025%20회고";
     $2026startLink.href = "/reflect/2026년%20첫%20스타뜨";
     $202602Link.href = "/reflect/월화수목금퇼";
+    $202603Link.href = "/reflect/봄이%20오긴%20오는구나";
 
     if (localStorage.getItem("lang") === "한글") {
         $funnyQLink.textContent = "재미있는 질문들";
@@ -303,6 +308,7 @@ function toggleReflectIdx($reflect) {
     $2025.appendChild($2025Link);
     $2026start.appendChild($2026startLink);
     $202602.appendChild($202602Link);
+    $202603.appendChild($202603Link);
     // $reflectIdxBox.appendChild($1);
     // $reflectIdxBox.appendChild($2);
     // $reflectIdxBox.appendChild($3);
@@ -310,6 +316,7 @@ function toggleReflectIdx($reflect) {
     $reflectIdxBox.appendChild($2025);
     $reflectIdxBox.appendChild($2026start);
     $reflectIdxBox.appendChild($202602);
+    $reflectIdxBox.appendChild($202603);
     $reflect.appendChild($reflectIdxBox);
 
     toggledList.push("reflect");
