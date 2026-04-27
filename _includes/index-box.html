@@ -398,6 +398,8 @@ function toggleArchivesImagesIdx($images) {
     const $seasonLink = document.createElement("a");
     const $renoir = document.createElement("li");
     const $renoirLink = document.createElement("a");
+    const $film = document.createElement("li");
+    const $filmLink = document.createElement("a");
 
     $imagesIdxBox.className = "idx-box-content";
     $dynamic.className = "idx-box-content-detail";
@@ -406,6 +408,7 @@ function toggleArchivesImagesIdx($images) {
     $weeknd.className = "idx-box-content-detail";
     $season.className = "idx-box-content-detail";
     $renoir.className = "idx-box-content-detail";
+    $film.className = "idx-box-content-detail";
 
     if (localStorage.getItem("lang") === "한글") {
         $dynamicLink.textContent = "역동적인";
@@ -414,6 +417,7 @@ function toggleArchivesImagesIdx($images) {
         $weekndLink.textContent = "위켄드";
         $seasonLink.textContent = "계절";
         $renoirLink.textContent = "피에르 오귀스트 르누아르";
+        $filmLink.textContent = "영화";
     } else {
         $dynamicLink.textContent = "dynamic";
         $peopleLink.textContent = "people";
@@ -421,6 +425,7 @@ function toggleArchivesImagesIdx($images) {
         $weekndLink.textContent = "the weeknd";
         $seasonLink.textContent = "season";
         $renoirLink.textContent = "pierre-auguste renoir";
+        $filmLink.textContent = "film";
     }
 
     $dynamicLink.href = "/archives/images/dynamic";
@@ -429,6 +434,7 @@ function toggleArchivesImagesIdx($images) {
     $weekndLink.href = "/archives/images/the%20weeknd";
     $seasonLink.href = "/archives/images/season";
     $renoirLink.href = "/archives/images/renoir";
+    $filmLink.href = "/archives/images/film";
 
     $dynamic.appendChild($dynamicLink);
     $people.appendChild($peopleLink);
@@ -436,12 +442,14 @@ function toggleArchivesImagesIdx($images) {
     $weeknd.appendChild($weekndLink);
     $season.appendChild($seasonLink);
     $renoir.appendChild($renoirLink);
+    $film.appendChild($filmLink);
     $imagesIdxBox.appendChild($dynamic);
     $imagesIdxBox.appendChild($people);
     $imagesIdxBox.appendChild($tools);
     $imagesIdxBox.appendChild($season);
     $imagesIdxBox.appendChild($weeknd);
     $imagesIdxBox.appendChild($renoir);
+    $imagesIdxBox.appendChild($film);
     $images.appendChild($imagesIdxBox);
 
     toggledList.push("images");

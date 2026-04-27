@@ -15,3 +15,5 @@ idx-name-ko: 사진
 <a href="./the%20weeknd" data-display-ko="위켄드">the weeknd</a>
 
 <a href="./renoir" data-display-ko="피에르 오귀스트 르누아르">pierre-auguste renoir</a>
+
+<a href="./film" data-display-ko="영화">film</a>
