@@ -3,7 +3,7 @@ layout: images
 title: 
 prev: the%20weeknd
 next: film
-page-name: pierre-auguste renoir
+page-name: Pierre-Auguste Renoir
 page-name-ko: 피에르 오귀스트 르누아르
 ---
 

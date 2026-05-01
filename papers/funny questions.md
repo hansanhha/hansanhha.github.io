@@ -1,8 +1,7 @@
 ---
 layout: default
-page-name: funny questions
+page-name: Funny Questions
 page-name-ko: 재미있는 질문들
-prev: 3
 ---
 
 Is a bad law still a low?

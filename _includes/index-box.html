@@ -56,7 +56,7 @@ function printHamburgerIndexBox() {
     if (localStorage.getItem("lang") === "한글") {
         $idxHamburgerBox.textContent = "목차";
     } else {
-        $idxHamburgerBox.textContent = "index";
+        $idxHamburgerBox.textContent = "Index";
     }
     $hamburgerWithIdxPathBox.appendChild($idxHamburgerBox);
     $idxHamburgerBox.addEventListener("click", () => toggleHamburgerIdx($idxHamburgerBox));
@@ -157,39 +157,39 @@ function printNormalIndexBox($parent, isContentPage) {
 
 function printIndexBox($idxBox) {
     const $code = document.createElement("div");
-    const $reflect = document.createElement("div");
+    const $paper = document.createElement("div");
     const $archives = document.createElement("div");
     const $sunrise = document.createElement("div");
     const $options = document.createElement("div");
     
     $code.className = "no-select";
-    $reflect.className = "no-select";
+    $paper.className = "no-select";
     $archives.className = "no-select";
     $sunrise.className = "no-select";
     $options.className = "no-select";
 
     if (localStorage.getItem("lang") === "한글") {
         $code.textContent = "소스코드";
-        $reflect.textContent = "회고";
+        $paper.textContent = "글";
         $archives.textContent = "아카이브";
         $sunrise.textContent = "해맞이";
         $options.textContent = "설정";
     } else {
-        $code.textContent = "code";
-        $reflect.textContent = "reflect";
-        $archives.textContent = "archives";
-        $sunrise.textContent = "sunrise";
-        $options.textContent = "options";
+        $code.textContent = "Code";
+        $paper.textContent = "Paper";
+        $archives.textContent = "Archives";
+        $sunrise.textContent = "Sunrise";
+        $options.textContent = "Options";
     }
 
     $code.addEventListener("click", () => toggleCodeIdx($code));
-    $reflect.addEventListener("click", () => toggleReflectIdx($reflect));
+    $paper.addEventListener("click", () => togglePaperIdx($paper));
     $archives.addEventListener("click", () => toggleArchivesIdx($archives));
     $sunrise.addEventListener("click", () => toggleSunriseIdx($sunrise));
     $options.addEventListener("click", () => location.href = "/options");
 
     $idxBox.appendChild($code);
-    $idxBox.appendChild($reflect);
+    $idxBox.appendChild($paper);
     $idxBox.appendChild($archives);
     $idxBox.appendChild($sunrise);
     $idxBox.appendChild($options);
@@ -198,9 +198,9 @@ function printIndexBox($idxBox) {
 let toggledList = [];
 
 function toggleCodeIdx($code) {
-    if (toggledList.includes("code")) {
+    if (toggledList.includes("Code")) {
         removeIdxDetailOf($code);
-        toggledList.splice(toggledList.indexOf("code"), 1);
+        toggledList.splice(toggledList.indexOf("Code"), 1);
         return;
     }
 
@@ -226,10 +226,10 @@ function toggleCodeIdx($code) {
         $serverLink.textContent = "서버 키워드";
         $papillonLink.textContent = "빠삐용";
     } else {
-        $computerNinjaLink.textContent = "computer-ninja";
+        $computerNinjaLink.textContent = "Computer-Ninja";
         $serverLink.href = "/code/server%20keywords";
-        $serverLink.textContent = "server keywords";
-        $papillonLink.textContent = "papillon";
+        $serverLink.textContent = "Server Keywords";
+        $papillonLink.textContent = "Papillon";
     }
 
     $computerNinja.appendChild($computerNinjaLink);
@@ -239,17 +239,17 @@ function toggleCodeIdx($code) {
     $codeIdxBox.appendChild($server);
     $codeIdxBox.appendChild($papillon);
     $code.appendChild($codeIdxBox);
-    toggledList.push("code");
+    toggledList.push("Code");
 }
 
-function toggleReflectIdx($reflect) {
-    if (toggledList.includes("reflect")) {
-        removeIdxDetailOf($reflect);
-        toggledList.splice(toggledList.indexOf("relfect"), 1);
+function togglePaperIdx($paper) {
+    if (toggledList.includes("Paper")) {
+        removeIdxDetailOf($paper);
+        toggledList.splice(toggledList.indexOf("Paper"), 1);
         return;
     }
 
-    const $reflectIdxBox = document.createElement("ul");
+    const $paperIdxBox = document.createElement("ul");
     const $1 = document.createElement("li");
     const $1Link = document.createElement("a");
     const $2 = document.createElement("li");
@@ -267,7 +267,7 @@ function toggleReflectIdx($reflect) {
     const $202603 = document.createElement("a");
     const $202603Link = document.createElement("a");
 
-    $reflectIdxBox.className = "idx-box-content";
+    $paperIdxBox.className = "idx-box-content";
     $1.className = "idx-box-content-detail";
     $2.className = "idx-box-content-detail";
     $3.className = "idx-box-content-detail";
@@ -285,20 +285,20 @@ function toggleReflectIdx($reflect) {
     $202602Link.textContent = "월화수목금퇼";
     $202603Link.textContent = "봄이 오긴 오는구나";
 
-    $1Link.href = "/reflect/1";
-    $2Link.href = "/reflect/2";
-    $3Link.href = "/reflect/3";
-    $2025Link.href = "/reflect/2025%20회고";
-    $2026startLink.href = "/reflect/2026년%20첫%20스타뜨";
-    $202602Link.href = "/reflect/월화수목금퇼";
-    $202603Link.href = "/reflect/봄이%20오긴%20오는구나";
+    $1Link.href = "/papers/1";
+    $2Link.href = "/papers/2";
+    $3Link.href = "/papers/3";
+    $2025Link.href = "/papers/2025%20회고";
+    $2026startLink.href = "/papers/2026년%20첫%20스타뜨";
+    $202602Link.href = "/papers/월화수목금퇼";
+    $202603Link.href = "/papers/봄이%20오긴%20오는구나";
 
     if (localStorage.getItem("lang") === "한글") {
         $funnyQLink.textContent = "재미있는 질문들";
-        $funnyQLink.href = "/reflect/재미있는%20질문들";
+        $funnyQLink.href = "/papers/재미있는%20질문들";
     } else {
-        $funnyQLink.textContent = "funny questions";
-        $funnyQLink.href = "/reflect/funny%20questions";
+        $funnyQLink.textContent = "Funny Questions";
+        $funnyQLink.href = "/papers/Funny%20Questions";
     }
 
     $1.appendChild($1Link);
@@ -309,28 +309,28 @@ function toggleReflectIdx($reflect) {
     $2026start.appendChild($2026startLink);
     $202602.appendChild($202602Link);
     $202603.appendChild($202603Link);
-    // $reflectIdxBox.appendChild($1);
-    // $reflectIdxBox.appendChild($2);
-    // $reflectIdxBox.appendChild($3);
-    $reflectIdxBox.appendChild($funnyQ);
-    $reflectIdxBox.appendChild($2025);
-    $reflectIdxBox.appendChild($2026start);
-    $reflectIdxBox.appendChild($202602);
-    $reflectIdxBox.appendChild($202603);
-    $reflect.appendChild($reflectIdxBox);
+    // $paperIdxBox.appendChild($1);
+    // $paperIdxBox.appendChild($2);
+    // $paperIdxBox.appendChild($3);
+    $paperIdxBox.appendChild($funnyQ);
+    $paperIdxBox.appendChild($2025);
+    $paperIdxBox.appendChild($2026start);
+    $paperIdxBox.appendChild($202602);
+    $paperIdxBox.appendChild($202603);
+    $paper.appendChild($paperIdxBox);
 
-    toggledList.push("reflect");
+    toggledList.push("Paper");
 }
 
 function toggleArchivesIdx($archives) {
-    if (toggledList.includes("archives")) {
+    if (toggledList.includes("Archives")) {
         removeIdxDetailOf($archives);
-        toggledList.splice(toggledList.indexOf("archives"), 1);
-        if (toggledList.includes("images")) {
-            toggledList.splice(toggledList.indexOf("images"), 1);
+        toggledList.splice(toggledList.indexOf("Archives"), 1);
+        if (toggledList.includes("Images")) {
+            toggledList.splice(toggledList.indexOf("Images"), 1);
         }
-        if (toggledList.includes("videos")) {
-            toggledList.splice(toggledList.indexOf("videos"), 1);
+        if (toggledList.includes("Videos")) {
+            toggledList.splice(toggledList.indexOf("Videos"), 1);
         }
         return;
     }
@@ -355,10 +355,10 @@ function toggleArchivesIdx($archives) {
         $videos.textContent = "동영상";
         $digitalLink.textContent = "디지털";
     } else {
-        $textLink.textContent = "text";
-        $images.textContent = "images";
-        $videos.textContent = "videos";
-        $digitalLink.textContent = "digital";
+        $textLink.textContent = "Text";
+        $images.textContent = "Images";
+        $videos.textContent = "Videos";
+        $digitalLink.textContent = "Digital";
     }
 
     $textLink.href = "/archives/text";
@@ -374,13 +374,13 @@ function toggleArchivesIdx($archives) {
     $archivesIdxBox.appendChild($digital);
     $archives.appendChild($archivesIdxBox);
 
-    toggledList.push("archives");
+    toggledList.push("Archives");
 }
 
 function toggleArchivesImagesIdx($images) {
-    if (toggledList.includes("images")) {
+    if (toggledList.includes("Images")) {
         removeIdxDetailOf($images);
-        toggledList.splice(toggledList.indexOf("images"), 1);
+        toggledList.splice(toggledList.indexOf("Images"), 1);
         event.stopPropagation();
         return;
     }
@@ -419,13 +419,13 @@ function toggleArchivesImagesIdx($images) {
         $renoirLink.textContent = "피에르 오귀스트 르누아르";
         $filmLink.textContent = "영화";
     } else {
-        $dynamicLink.textContent = "dynamic";
-        $peopleLink.textContent = "people";
-        $toolsLink.textContent = "tools";
-        $weekndLink.textContent = "the weeknd";
-        $seasonLink.textContent = "season";
-        $renoirLink.textContent = "pierre-auguste renoir";
-        $filmLink.textContent = "film";
+        $dynamicLink.textContent = "Dynamic";
+        $peopleLink.textContent = "People";
+        $toolsLink.textContent = "Tools";
+        $weekndLink.textContent = "The Weeknd";
+        $seasonLink.textContent = "Season";
+        $renoirLink.textContent = "Pierre-Auguste Renoir";
+        $filmLink.textContent = "Film";
     }
 
     $dynamicLink.href = "/archives/images/dynamic";
@@ -452,14 +452,14 @@ function toggleArchivesImagesIdx($images) {
     $imagesIdxBox.appendChild($film);
     $images.appendChild($imagesIdxBox);
 
-    toggledList.push("images");
+    toggledList.push("Images");
     event.stopPropagation();
 }
 
 function toggleArchivesVideosIdx($videos) {
-    if (toggledList.includes("videos")) {
+    if (toggledList.includes("Videos")) {
         removeIdxDetailOf($videos);
-        toggledList.splice(toggledList.indexOf("videos"), 1);
+        toggledList.splice(toggledList.indexOf("Videos"), 1);
         event.stopPropagation();
         return;
     }
@@ -479,6 +479,10 @@ function toggleArchivesVideosIdx($videos) {
     const $waveLink = document.createElement("a");
     const $forest = document.createElement("li");
     const $forestLink = document.createElement("a");
+    const $vendingMachine = document.createElement("li");
+    const $vendingMachineLink = document.createElement("a");
+    const $noreply = document.createElement("li");
+    const $noreplyLink = document.createElement("a");
 
     $videosIdxBox.className = "idx-box-content";
     $blueSky.className = "idx-box-content-detail";
@@ -488,6 +492,8 @@ function toggleArchivesVideosIdx($videos) {
     $stream.className = "idx-box-content-detail";
     $wave.className = "idx-box-content-detail";
     $forest.className = "idx-box-content-detail";
+    $vendingMachine.className = "idx-box-content-detail";
+    $noreply.className = "idx-box-content-detail";
 
     if (localStorage.getItem("lang") === "한글") {
         $blueSkyLink.textContent = "파란 하늘";
@@ -497,14 +503,18 @@ function toggleArchivesVideosIdx($videos) {
         $streamLink.textContent = "흐름";
         $waveLink.textContent = "파도";
         $forestLink.textContent = "숲 속";
+        $vendingMachineLink.textContent = "자판기";
+        $noreplyLink.textContent = "No Reply";
     } else {
-        $blueSkyLink.textContent = "blue sky";
-        $hazySkyLink.textContent = "hazy sky";
-        $pinkSkyLink.textContent = "pink sky";
-        $chairsLink.textContent = "chairs";
-        $streamLink.textContent = "stream";
-        $waveLink.textContent = "wave";
-        $forestLink.textContent = "forest";
+        $blueSkyLink.textContent = "Blue Sky";
+        $hazySkyLink.textContent = "Hazy Sky";
+        $pinkSkyLink.textContent = "Pink Sky";
+        $chairsLink.textContent = "Chairs";
+        $streamLink.textContent = "Stream";
+        $waveLink.textContent = "Wave";
+        $forestLink.textContent = "Forest";
+        $vendingMachineLink.textContent = "Vending Machine";
+        $noreplyLink.textContent = "No Reply";
     }
 
     $blueSkyLink.href = "/archives/videos/blue%20sky";
@@ -514,6 +524,8 @@ function toggleArchivesVideosIdx($videos) {
     $streamLink.href = "/archives/videos/stream";
     $waveLink.href = "/archives/videos/wave";
     $forestLink.href = "/archives/videos/forest";
+    $vendingMachineLink.href = "/archives/videos/vending%20machine";
+    $noreplyLink.href = "/archives/videos/No%20Reply";
 
     $blueSky.appendChild($blueSkyLink);
     $hazySky.appendChild($hazySkyLink);
@@ -522,6 +534,8 @@ function toggleArchivesVideosIdx($videos) {
     $stream.appendChild($streamLink);
     $wave.appendChild($waveLink);
     $forest.appendChild($forestLink);
+    $vendingMachine.appendChild($vendingMachineLink);
+    $noreply.appendChild($noreplyLink);
     $videosIdxBox.appendChild($blueSky);
     $videosIdxBox.appendChild($hazySky);
     $videosIdxBox.appendChild($pinkSky);
@@ -529,16 +543,18 @@ function toggleArchivesVideosIdx($videos) {
     $videosIdxBox.appendChild($stream);
     $videosIdxBox.appendChild($wave);
     $videosIdxBox.appendChild($forest);
+    $videosIdxBox.appendChild($vendingMachine);
+    $videosIdxBox.appendChild($noreply);
     $videos.appendChild($videosIdxBox);
 
-    toggledList.push("videos");
+    toggledList.push("Videos");
     event.stopPropagation();
 }
 
 function toggleSunriseIdx($sunrise) {
-    if (toggledList.includes("sunrise")) {
+    if (toggledList.includes("Sunrise")) {
         removeIdxDetailOf($sunrise);
-        toggledList.splice(toggledList.indexOf("sunrise"), 1);
+        toggledList.splice(toggledList.indexOf("Sunrise"), 1);
         if (toggledList.includes("2024")) {
             toggledList.splice(toggledList.indexOf("2024"), 1);
         }
@@ -575,7 +591,7 @@ function toggleSunriseIdx($sunrise) {
 
     $sunrise.appendChild($sunriseIdxBox);
 
-    toggledList.push("sunrise");
+    toggledList.push("Sunrise");
 }
 
 function toggleSunrise2024Idx($2024) {
@@ -624,14 +640,14 @@ function toggleSunrise2024Idx($2024) {
         $novemberLink.textContent = "11월";
         $decemberLink.textContent = "12월";
     } else {
-        $januaryLink.textContent = "january";
-        $marchLink.textContent = "march";
-        $aprilLink.textContent = "april";
-        $mayLink.textContent = "may";
-        $juneLink.textContent = "june";
-        $julyLink.textContent = "july";
-        $novemberLink.textContent = "november";
-        $decemberLink.textContent = "december";
+        $januaryLink.textContent = "January";
+        $marchLink.textContent = "March";
+        $aprilLink.textContent = "April";
+        $mayLink.textContent = "May";
+        $juneLink.textContent = "June";
+        $julyLink.textContent = "July";
+        $novemberLink.textContent = "November";
+        $decemberLink.textContent = "December";
     }
 
     $januaryLink.href = "/sunrise/2024/january";
@@ -711,14 +727,14 @@ function toggleSunrise2025Idx($2025) {
         $novemberLink.textContent = "11월";
         $decemberLink.textContent = "12월";
     } else {
-        $januaryLink.textContent = "january";
-        $februaryLink.textContent = "february";
-        $marchLink.textContent = "march";
-        $aprilLink.textContent = "april";
-        $mayLink.textContent = "may";
-        $octoberLink.textContent = "october";
-        $novemberLink.textContent = "november";
-        $decemberLink.textContent = "december";
+        $januaryLink.textContent = "January";
+        $februaryLink.textContent = "February";
+        $marchLink.textContent = "March";
+        $aprilLink.textContent = "April";
+        $mayLink.textContent = "May";
+        $octoberLink.textContent = "October";
+        $novemberLink.textContent = "November";
+        $decemberLink.textContent = "December";
     }
 
     $januaryLink.href = "/sunrise/2025/january";
@@ -769,6 +785,8 @@ function toggleSunrise2026Idx($2026) {
     const $marchLink = document.createElement("a");
     const $april = document.createElement("li");
     const $aprilLink = document.createElement("a");
+    const $may = document.createElement("li");
+    const $mayLink = document.createElement("a");
     
 
     $2026IdxBox.className = "idx-box-content";
@@ -776,6 +794,7 @@ function toggleSunrise2026Idx($2026) {
     $february.className = "idx-box-content-detail";
     $march.className = "idx-box-content-detail";
     $april.className = "idx-box-content-detail";
+    $may.className = "idx-box-content-detail";
     
     
     if (localStorage.getItem("lang") === "한글") {
@@ -783,28 +802,33 @@ function toggleSunrise2026Idx($2026) {
         $februaryLink.textContent = "2월";
         $marchLink.textContent = "3월";
         $aprilLink.textContent = "4월";
+        $mayLink.textContent = "5월";
         
     } else {
-        $januaryLink.textContent = "january";
-        $februaryLink.textContent = "february";
-        $marchLink.textContent = "march";
-        $aprilLink.textContent = "april";
+        $januaryLink.textContent = "January";
+        $februaryLink.textContent = "February";
+        $marchLink.textContent = "March";
+        $aprilLink.textContent = "April";
+        $mayLink.textContent = "May";
     }
 
     $januaryLink.href = "/sunrise/2026/january";
     $februaryLink.href = "/sunrise/2026/february";
     $marchLink.href = "/sunrise/2026/march";
     $aprilLink.href = "/sunrise/2026/april";
+    $mayLink.href = "/sunrise/2026/may";
 
     $january.appendChild($januaryLink);
     $february.appendChild($februaryLink);
     $march.appendChild($marchLink);
     $april.appendChild($aprilLink);
+    $may.appendChild($mayLink);
     
     $2026IdxBox.appendChild($january);
     $2026IdxBox.appendChild($february);
     $2026IdxBox.appendChild($march);
     $2026IdxBox.appendChild($april);
+    $2026IdxBox.appendChild($may);
     
     $2026.appendChild($2026IdxBox);
 

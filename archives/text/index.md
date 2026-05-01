@@ -1,6 +1,6 @@
 ---
 layout: default
-idx-name: text
+idx-name: Text
 idx-name-ko: 글 귀
 ---
 

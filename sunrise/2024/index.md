@@ -4,21 +4,21 @@ idx-name: 2024
 idx-name-ko: 2024
 ---
 
-<a id="january" href="./january">january</a>
+<a id="january" href="./january">January</a>
 
-<a id="march" href="./march">march</a>
+<a id="march" href="./march">March</a>
 
-<a id="april" href="./april">april</a>
+<a id="april" href="./april">April</a>
 
-<a id="may" href="./may">may</a>
+<a id="may" href="./may">May</a>
 
-<a id="june" href="./june">june</a>
+<a id="june" href="./june">June</a>
 
-<a id="july" href="./july">july</a>
+<a id="july" href="./july">July</a>
 
-<a id="november" href="./november">november</a>
+<a id="november" href="./november">November</a>
 
-<a id="december" href="./december">december</a>
+<a id="december" href="./december">December</a>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {

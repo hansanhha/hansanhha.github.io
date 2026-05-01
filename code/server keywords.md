@@ -1,7 +1,7 @@
 ---
 layout: default
 page-name-ko: 서버 키워드
-page-name: server keywords
+page-name: Server Keywords
 ---
 
 API implementation

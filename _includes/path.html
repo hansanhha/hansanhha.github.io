@@ -45,11 +45,11 @@
         {% if page.prev == "./index" or page.prev == ".index" or page.prev == "index" %}
           <a href={{ page.prev }} class="p-index">index</a >
         {% else %}
-          <a href={{ page.prev }} class="p-prev" data-prev-ko="{{ page.prev-ko }}">prev</a>
+          <a href={{ page.prev }} class="p-prev" data-prev-ko="{{ page.prev-ko }}">Prev</a>
         {% endif %}
       {% endif %}
       {% if page.next %}
-        <a href={{ page.next }} class="p-next" data-next-ko="{{ page.next-ko }}">next</a>
+        <a href={{ page.next }} class="p-next" data-next-ko="{{ page.next-ko }}">Next</a>
       {% endif %}
     </div>
   {% endif %}
@@ -82,41 +82,41 @@ document.addEventListener("DOMContentLoaded", function() {
         }        
       } else {
         if (dirs[i].dataset.idxName != undefined) {
-          dirs[i].textContent = dirs[i].dataset.idxName;
+          dirs[i].textContent = capitalize(dirs[i].dataset.idxName);
         } else {
-          dirs[i].textContent = dirs[i].dataset.dirName;
+          dirs[i].textContent = capitalize(dirs[i].dataset.dirName);
         }
       }
     }
   }
 
   if (localStorage.getItem("lang") === undefined || localStorage.getItem("lang") === "english") {
-    home.textContent = "home";
+    home.textContent = "Home";
     if (index[0] != undefined) {
-      index[0].textContent = "index";
+      index[0].textContent = "Index";
     }
     if (prev[0] != undefined) {
-      prev[0].textContent = "prev";
+      prev[0].textContent = "Prev";
     }
     if (next[0] != undefined) {
-      next[0].textContent = "next";
+      next[0].textContent = "Next";
     }
     if (title[0] != undefined) {
-      title[0].textContent = title[0].dataset.title;
+      title[0].textContent = capitalize(pageName[0].dataset.title);
       if (title[0].dataset.title == undefined || title[0].dataset.title === "") {
         title[0].textContent = title[0].dataset.titleKo;
       }
     }
     if (pageName[0] != undefined) {
       if (pageName[0].dataset.pageName) {
-        pageName[0].textContent = pageName[0].dataset.pageName;
+        pageName[0].textContent = capitalize(pageName[0].dataset.pageName);
       } else {
-        pageName[0].textContent = pageName[0].dataset.defaultName;
+        pageName[0].textContent = capitalize(pageName[0].dataset.defaultName);
       }
     }
     if (dirs != undefined) {
       for (let i = 0; i < dirs.length; i++) {
-        dirs[i].textContent = dirs[i].dataset.dirName;
+        dirs[i].textContent = capitalize(dir[i].dataset.dirName);
       }
     }
   } else {
@@ -139,17 +139,24 @@ document.addEventListener("DOMContentLoaded", function() {
     if (title[0] != undefined) {
         title[0].textContent = title[0].dataset.titleKo;
         if (title[0].dataset.titleKo == undefined || title[0].dataset.titleKo === "") {
-          title[0].textContent = title[0].dataset.title;
+          title[0].textContent = capitalize(title[0].dataset.title);
         }
     }
     if (pageName[0] != undefined) {
       if (pageName[0].dataset.pageNameKo) {
         pageName[0].textContent = pageName[0].dataset.pageNameKo;
       } else {
-        pageName[0].textContent = pageName[0].dataset.defaultName;
+        pageName[0].textContent = capitalize(pageName[0].dataset.defaultName);
       }
     }
   }
 
 });
+
+function capitalize(str) {
+  return str
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
 </script>

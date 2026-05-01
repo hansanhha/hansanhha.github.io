@@ -1,6 +1,6 @@
 ---
 layout: index
-idx-name: sunrise
+idx-name: Sunrise
 idx-name-ko: 해맞이
 ---
 

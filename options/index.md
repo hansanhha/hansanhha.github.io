@@ -1,6 +1,6 @@
 ---
 layout: index
-idx-name: options
+idx-name: Options
 idx-name-ko: 설정
 ---
 
@@ -10,33 +10,37 @@ idx-name-ko: 설정
 
 <a id="toggle_theme" onclick="toggleTheme(); return false;"></a>
 
+<!-- <a id="toggle_additional_info" onclick="toggleAdditionalInfo(); return false;"></a> -->
+
 <script>
 window.addEventListener("DOMContentLoaded", function() {
     const $nav = document.getElementById("toggle_nav");
     const $lang = document.getElementById("toggle_lang");
     const $theme = document.getElementById("toggle_theme");
+    //const $addtionalInfo = document.getElementById("toggle_additional_info");
     const nav = localStorage.getItem("nav");
     const lang = localStorage.getItem("lang");
     const theme = localStorage.getItem("theme");
+    //const addtionalInfo = localStorage.getItem("addtional_info");
     let english = true;
 
     if (lang === "한글") {
         english = false;
-        $lang.textContent = "english";
+        $lang.textContent = "English";
     } else {
         $lang.textContent = "한글";
     }
 
     if (nav === "false") {
         if (english) {
-            $nav.textContent = "activate navigation";
+            $nav.textContent = "Activate Navigation";
         } else {
             $nav.textContent = "목차 활성화";
         }
         
     } else {
         if (english) {
-            $nav.textContent = "deactivate navigation";
+            $nav.textContent = "Deactivate Navigation";
         } else {
             $nav.textContent = "목차 비활성화";
         }
@@ -44,13 +48,13 @@ window.addEventListener("DOMContentLoaded", function() {
 
     if (theme === "dark") {
         if (english) {
-            $theme.textContent = "brightly";
+            $theme.textContent = "Brightly";
         } else {
             $theme.textContent = "밝게";
         }
     } else {
         if (english) {
-            $theme.textContent = "darkly";
+            $theme.textContent = "Darkly";
         } else {
             $theme.textContent = "어둡게";
         }
@@ -83,6 +87,19 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // if (addtionalInfo == undefined || addtionalInfo === "true") {
+    //     if (lang === "한글") {
+    //         $addtionalInfo.textContent = "부가정보 숨기기";
+    //     } else {
+    //         $addtionalInfo.textContent = "hide addtional info";
+    //     }
+    // } else {
+    //     if (lang === "한글") {
+    //         $addtionalInfo.textContent = "부가정보 출력";
+    //     } else {
+    //         $addtionalInfo.textContent = "print addtional info";
+    //     }
+    // }
 });
 
 function toggleNav() {
@@ -98,7 +115,7 @@ function toggleNav() {
     if (toggle === undefined || toggle === "false") {
         localStorage.setItem("nav", "true");
         if (english) {
-            nav.textContent = "deactivate navigation";
+            nav.textContent = "Deactivate Navigation";
         } else {
             nav.textContent = "목차 비활성화";    
         }
@@ -109,7 +126,7 @@ function toggleNav() {
     
     localStorage.setItem("nav", "false");
     if (english) {
-        nav.textContent = "activate navigation";
+        nav.textContent = "Activate Navigation";
     } else {
         nav.textContent = "목차 활성화";
     }
@@ -129,7 +146,7 @@ function toggleLang() {
     }
 
     localStorage.setItem("lang", "english");
-    lang.textContent = "english";
+    lang.textContent = "English";
     location.reload();
 }
 
@@ -143,20 +160,31 @@ function toggleTheme() {
         if (localStorage.getItem("lang") === "한글") {
             $theme.textContent = "어둡게";
         } else {
-            $theme.textContent = "darkly";
+            $theme.textContent = "Darkly";
         }
     } else {
         next = "dark";
         if (localStorage.getItem("lang") === "한글") {
             $theme.textContent = "밝게";
         } else {
-            $theme.textContent = "brightly";
+            $theme.textContent = "Brightly";
         }
     }
 
     localStorage.setItem("theme", next);
     $root.setAttribute("data-theme", next);
+    location.reload();
 }
+
+function toggleAdditionalInfo() {
+    if (localStorage.getItem("addtional_info") === "false") {
+        localStorage.setItem("addtional_info", "true");
+    } else {
+        localStorage.setItem("addtional_info", "false");
+    }
+    location.reload();
+}
+
 </script>
 
 <style>
@@ -167,6 +195,9 @@ function toggleTheme() {
     border-bottom: none;
 }
 #toggle_theme {
+    border-bottom: none;
+}
+#toggle_additional_info {
     border-bottom: none;
 }
 </style>

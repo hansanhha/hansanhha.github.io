@@ -1,6 +1,6 @@
 ---
 layout: default
-page-name: server keywords
+page-name: Server Keywords
 page-name-ko: 서버 키워드
 ---
 
