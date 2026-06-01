@@ -201,6 +201,7 @@ body {
     display: block;
     max-width: 100%;
     height: auto;
+    margin-bottom: 15px;
   }
 }
 
@@ -222,6 +223,7 @@ body {
     display: block;
     max-width: 100%;
     max-height: 95vh;
+    margin-bottom: 20px;
   }
 }
 

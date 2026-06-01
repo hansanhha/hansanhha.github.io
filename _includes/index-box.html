@@ -472,86 +472,55 @@ function toggleArchivesVideosIdx($videos) {
     }
 
     const $videosIdxBox = document.createElement("ul");
-    const $blueSky = document.createElement("li");
-    const $blueSkyLink = document.createElement("a");
-    const $hazySky = document.createElement("li");
-    const $hazySkyLink = document.createElement("a");
-    const $pinkSky = document.createElement("li");
-    const $pinkSkyLink = document.createElement("a");
-    const $chiars = document.createElement("li");
-    const $chairsLink = document.createElement("a");
-    const $stream = document.createElement("li");
-    const $streamLink = document.createElement("a");
+    const $sky = document.createElement("li");
+    const $skyLink = document.createElement("a");
     const $wave = document.createElement("li");
     const $waveLink = document.createElement("a");
     const $forest = document.createElement("li");
     const $forestLink = document.createElement("a");
-    const $vendingMachine = document.createElement("li");
-    const $vendingMachineLink = document.createElement("a");
-    const $noreply = document.createElement("li");
-    const $noreplyLink = document.createElement("a");
+    const $objects = document.createElement("li");
+    const $objectsLink = document.createElement("a");
+    const $piano = document.createElement("li");
+    const $pianoLink = document.createElement("a");
 
     $videosIdxBox.className = "idx-box-content";
-    $blueSky.className = "idx-box-content-detail";
-    $hazySky.className = "idx-box-content-detail";
-    $pinkSky.className = "idx-box-content-detail";
-    $chiars.className = "idx-box-content-detail";
-    $stream.className = "idx-box-content-detail";
+    $sky.className = "idx-box-content-detail";
     $wave.className = "idx-box-content-detail";
     $forest.className = "idx-box-content-detail";
-    $vendingMachine.className = "idx-box-content-detail";
-    $noreply.className = "idx-box-content-detail";
+    $objects.className = "idx-box-content-detail";
+    $piano.className = "idx-box-content-detail";
+    
 
     if (localStorage.getItem("lang") === "한글") {
-        $blueSkyLink.textContent = "파란 하늘";
-        $hazySkyLink.textContent = "흐릿한 하늘";
-        $pinkSkyLink.textContent = "분홍 하늘";
-        $chairsLink.textContent = "의자";
-        $streamLink.textContent = "흐름";
-        $waveLink.textContent = "파도";
+        $skyLink.textContent = "하늘";
+        $waveLink.textContent = "물결";
         $forestLink.textContent = "숲 속";
-        $vendingMachineLink.textContent = "자판기";
-        $noreplyLink.textContent = "No Reply";
+        $objectsLink.textContent = "사물";
+        $pianoLink.textContent = "피아노";
     } else {
-        $blueSkyLink.textContent = "Blue Sky";
-        $hazySkyLink.textContent = "Hazy Sky";
-        $pinkSkyLink.textContent = "Pink Sky";
-        $chairsLink.textContent = "Chairs";
-        $streamLink.textContent = "Stream";
+        $skyLink.textContent = "Sky";
         $waveLink.textContent = "Wave";
         $forestLink.textContent = "Forest";
-        $vendingMachineLink.textContent = "Vending Machine";
-        $noreplyLink.textContent = "No Reply";
+        $objectsLink.textContent = "Objects";
+        $pianoLink.textContent = "Piano";
     }
 
-    $blueSkyLink.href = "/archives/videos/blue%20sky";
-    $hazySkyLink.href = "/archives/videos/hazy%20sky";
-    $pinkSkyLink.href = "/archives/videos/pink%20sky";
-    $chairsLink.href = "/archives/videos/chairs";
-    $streamLink.href = "/archives/videos/stream";
+    $skyLink.href = "/archives/videos/sky";
     $waveLink.href = "/archives/videos/wave";
     $forestLink.href = "/archives/videos/forest";
-    $vendingMachineLink.href = "/archives/videos/vending%20machine";
-    $noreplyLink.href = "/archives/videos/No%20Reply";
+    $objectsLink.href = "/archives/videos/objects";
+    $pianoLink.href = "/archives/videos/piano";
 
-    $blueSky.appendChild($blueSkyLink);
-    $hazySky.appendChild($hazySkyLink);
-    $pinkSky.appendChild($pinkSkyLink);
-    $chiars.appendChild($chairsLink);
-    $stream.appendChild($streamLink);
+    $sky.appendChild($skyLink);
     $wave.appendChild($waveLink);
     $forest.appendChild($forestLink);
-    $vendingMachine.appendChild($vendingMachineLink);
-    $noreply.appendChild($noreplyLink);
-    $videosIdxBox.appendChild($blueSky);
-    $videosIdxBox.appendChild($hazySky);
-    $videosIdxBox.appendChild($pinkSky);
-    $videosIdxBox.appendChild($chiars);
-    $videosIdxBox.appendChild($stream);
+    $objects.appendChild($objectsLink);
+    $piano.appendChild($pianoLink);
+    $videosIdxBox.appendChild($sky);
     $videosIdxBox.appendChild($wave);
     $videosIdxBox.appendChild($forest);
-    $videosIdxBox.appendChild($vendingMachine);
-    $videosIdxBox.appendChild($noreply);
+    $videosIdxBox.appendChild($objects);
+    $videosIdxBox.appendChild($piano);
     $videos.appendChild($videosIdxBox);
 
     toggledList.push("Videos");

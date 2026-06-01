@@ -1,10 +1,10 @@
 ---
 layout: video
 title: 
-prev: vending%20machine
+prev: objects
 next: 
-page-name: No Reply
-page-name-ko: No Reply
+page-name: Piano
+page-name-ko: 피아노
 ---
 
 <video controls>
