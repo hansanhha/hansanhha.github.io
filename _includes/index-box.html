@@ -266,6 +266,8 @@ function togglePaperIdx($paper) {
     const $202602Link = document.createElement("a");
     const $202603 = document.createElement("a");
     const $202603Link = document.createElement("a");
+    const $202605 = document.createElement("a");
+    const $202605Link = document.createElement("a");
 
     $paperIdxBox.className = "idx-box-content";
     $1.className = "idx-box-content-detail";
@@ -276,6 +278,7 @@ function togglePaperIdx($paper) {
     $2026start.className = "idx-box-content-detail";
     $202602.className = "idx-box-content-detail";
     $202603.className = "idx-box-content-detail";
+    $202605.className = "idx-box-content-detail";
 
     $1Link.textContent = "1";
     $2Link.textContent = "2";
@@ -284,6 +287,7 @@ function togglePaperIdx($paper) {
     $2026startLink.textContent = "2026년 첫 스타뜨";
     $202602Link.textContent = "월화수목금퇼";
     $202603Link.textContent = "봄이 오긴 오는구나";
+    $202605Link.textContent = "리부트";
 
     $1Link.href = "/papers/1";
     $2Link.href = "/papers/2";
@@ -292,6 +296,7 @@ function togglePaperIdx($paper) {
     $2026startLink.href = "/papers/2026년%20첫%20스타뜨";
     $202602Link.href = "/papers/월화수목금퇼";
     $202603Link.href = "/papers/봄이%20오긴%20오는구나";
+    $202605Link.href = "/papers/리부트";
 
     if (localStorage.getItem("lang") === "한글") {
         $funnyQLink.textContent = "재미있는 질문들";
@@ -309,6 +314,7 @@ function togglePaperIdx($paper) {
     $2026start.appendChild($2026startLink);
     $202602.appendChild($202602Link);
     $202603.appendChild($202603Link);
+    $202605.appendChild($202605Link);
     // $paperIdxBox.appendChild($1);
     // $paperIdxBox.appendChild($2);
     // $paperIdxBox.appendChild($3);
@@ -317,6 +323,7 @@ function togglePaperIdx($paper) {
     $paperIdxBox.appendChild($2026start);
     $paperIdxBox.appendChild($202602);
     $paperIdxBox.appendChild($202603);
+    $paperIdxBox.appendChild($202605);
     $paper.appendChild($paperIdxBox);
 
     toggledList.push("Paper");
