@@ -787,6 +787,8 @@ function toggleSunrise2026Idx($2026) {
     const $aprilLink = document.createElement("a");
     const $may = document.createElement("li");
     const $mayLink = document.createElement("a");
+    const $june = document.createElement("li");
+    const $juneLink = document.createElement("a");
     
 
     $2026IdxBox.className = "idx-box-content";
@@ -795,6 +797,7 @@ function toggleSunrise2026Idx($2026) {
     $march.className = "idx-box-content-detail";
     $april.className = "idx-box-content-detail";
     $may.className = "idx-box-content-detail";
+    $june.className = "idx-box-content-detail";
     
     
     if (localStorage.getItem("lang") === "한글") {
@@ -803,6 +806,7 @@ function toggleSunrise2026Idx($2026) {
         $marchLink.textContent = "3월";
         $aprilLink.textContent = "4월";
         $mayLink.textContent = "5월";
+        $juneLink.textContent = "6월";
         
     } else {
         $januaryLink.textContent = "January";
@@ -810,6 +814,7 @@ function toggleSunrise2026Idx($2026) {
         $marchLink.textContent = "March";
         $aprilLink.textContent = "April";
         $mayLink.textContent = "May";
+        $juneLink.textContent = "June";
     }
 
     $januaryLink.href = "/sunrise/2026/january";
@@ -817,18 +822,21 @@ function toggleSunrise2026Idx($2026) {
     $marchLink.href = "/sunrise/2026/march";
     $aprilLink.href = "/sunrise/2026/april";
     $mayLink.href = "/sunrise/2026/may";
+    $juneLink.href = "/sunrise/2026/june";
 
     $january.appendChild($januaryLink);
     $february.appendChild($februaryLink);
     $march.appendChild($marchLink);
     $april.appendChild($aprilLink);
     $may.appendChild($mayLink);
+    $june.appendChild($juneLink);
     
     $2026IdxBox.appendChild($january);
     $2026IdxBox.appendChild($february);
     $2026IdxBox.appendChild($march);
     $2026IdxBox.appendChild($april);
     $2026IdxBox.appendChild($may);
+    $2026IdxBox.appendChild($june);
     
     $2026.appendChild($2026IdxBox);
 
