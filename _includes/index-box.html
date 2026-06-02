@@ -393,70 +393,62 @@ function toggleArchivesImagesIdx($images) {
     }
 
     const $imagesIdxBox = document.createElement("ul");
-    const $dynamic = document.createElement("li");
-    const $dynamicLink = document.createElement("a");
-    const $people = document.createElement("li");
-    const $peopleLink = document.createElement("a");
-    const $tools = document.createElement("li");
-    const $toolsLink = document.createElement("a");
-    const $weeknd = document.createElement("li");
-    const $weekndLink = document.createElement("a");
+    const $objects = document.createElement("li");
+    const $objectsLink = document.createElement("a");
     const $season = document.createElement("li");
     const $seasonLink = document.createElement("a");
-    const $renoir = document.createElement("li");
-    const $renoirLink = document.createElement("a");
+    const $room = document.createElement("li");
+    const $roomLink = document.createElement("a");
     const $film = document.createElement("li");
     const $filmLink = document.createElement("a");
+    const $weeknd = document.createElement("li");
+    const $weekndLink = document.createElement("a");
+    const $impressionism = document.createElement("li");
+    const $impressionismLink = document.createElement("a");
 
     $imagesIdxBox.className = "idx-box-content";
-    $dynamic.className = "idx-box-content-detail";
-    $people.className = "idx-box-content-detail";
-    $tools.className = "idx-box-content-detail";
-    $weeknd.className = "idx-box-content-detail";
+    $objects.className = "idx-box-content-detail";
     $season.className = "idx-box-content-detail";
-    $renoir.className = "idx-box-content-detail";
+    $room.className = "idx-box-content-detail";
     $film.className = "idx-box-content-detail";
+    $weeknd.className = "idx-box-content-detail";
+    $impressionism.className = "idx-box-content-detail";
 
     if (localStorage.getItem("lang") === "한글") {
-        $dynamicLink.textContent = "역동적인";
-        $peopleLink.textContent = "사람들";
-        $toolsLink.textContent = "도구";
-        $weekndLink.textContent = "위켄드";
+        $objectsLink.textContent = "사물";
         $seasonLink.textContent = "계절";
-        $renoirLink.textContent = "피에르 오귀스트 르누아르";
+        $roomLink.textContent = "공간";
         $filmLink.textContent = "영화";
+        $weekndLink.textContent = "위켄드";
+        $impressionismLink.textContent = "인상주의";
     } else {
-        $dynamicLink.textContent = "Dynamic";
-        $peopleLink.textContent = "People";
-        $toolsLink.textContent = "Tools";
-        $weekndLink.textContent = "The Weeknd";
+        $objectsLink.textContent = "Objects";
         $seasonLink.textContent = "Season";
-        $renoirLink.textContent = "Pierre-Auguste Renoir";
+        $roomLink.textContent = "Room";
         $filmLink.textContent = "Film";
+        $weekndLink.textContent = "The Weeknd";
+        $impressionismLink.textContent = "Impressionism";
     }
 
-    $dynamicLink.href = "/archives/images/dynamic";
-    $peopleLink.href = "/archives/images/people";
-    $toolsLink.href = "/archives/images/tools";
-    $weekndLink.href = "/archives/images/the%20weeknd";
+    $objectsLink.href = "/archives/images/objects";
     $seasonLink.href = "/archives/images/season";
-    $renoirLink.href = "/archives/images/renoir";
+    $roomLink.href = "/archives/images/room";
     $filmLink.href = "/archives/images/film";
+    $weekndLink.href = "/archives/images/the%20weeknd";
+    $impressionismLink.href = "/archives/images/impressionism";
 
-    $dynamic.appendChild($dynamicLink);
-    $people.appendChild($peopleLink);
-    $tools.appendChild($toolsLink);
-    $weeknd.appendChild($weekndLink);
+    $objects.appendChild($objectsLink);
     $season.appendChild($seasonLink);
-    $renoir.appendChild($renoirLink);
+    $room.appendChild($roomLink);
     $film.appendChild($filmLink);
-    $imagesIdxBox.appendChild($dynamic);
-    $imagesIdxBox.appendChild($people);
-    $imagesIdxBox.appendChild($tools);
+    $weeknd.appendChild($weekndLink);
+    $impressionism.appendChild($impressionismLink);
+    $imagesIdxBox.appendChild($objects);
     $imagesIdxBox.appendChild($season);
-    $imagesIdxBox.appendChild($weeknd);
-    $imagesIdxBox.appendChild($renoir);
+    $imagesIdxBox.appendChild($room);
     $imagesIdxBox.appendChild($film);
+    $imagesIdxBox.appendChild($weeknd);
+    $imagesIdxBox.appendChild($impressionism);
     $images.appendChild($imagesIdxBox);
 
     toggledList.push("Images");

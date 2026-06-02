@@ -1,8 +1,8 @@
 ---
 layout: images
 title: 
-prev: tools
-next: the%20weeknd
+prev: objects
+next: room
 page-name-ko: 계절
 ---
 
@@ -10,6 +10,6 @@ page-name-ko: 계절
 
 <img src="./data/summer.jpg" alt="">
 
-<img src="./data/autumn.JPG" alt="">
+<img src="./data/autumn.jpeg" alt="">
 
 <img src="./data/winter.JPG" alt="">

@@ -1,8 +1,8 @@
 ---
 layout: images
 title: 
-prev: season
-next: renoir
+prev: film
+next: impressionism
 page-name-ko: 위켄드
 ---
 
