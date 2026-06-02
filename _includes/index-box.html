@@ -347,38 +347,38 @@ function toggleArchivesIdx($archives) {
     const $textLink = document.createElement("a");
     const $images = document.createElement("li");
     const $videos = document.createElement("li");
-    const $digital = document.createElement("li");
-    const $digitalLink = document.createElement("a");
+    const $webpages = document.createElement("li");
+    const $webpagesLink = document.createElement("a");
 
     $archivesIdxBox.className = "idx-box-content";
     $text.className = "idx-box-content-detail";
     $images.className = "idx-box-content-detail";
     $videos.className = "idx-box-content-detail";
-    $digital.className = "idx-box-content-detail";
+    $webpages.className = "idx-box-content-detail";
 
     if (localStorage.getItem("lang") === "한글") {
         $textLink.textContent = "글 귀";
         $images.textContent = "이미지";
         $videos.textContent = "동영상";
-        $digitalLink.textContent = "디지털";
+        $webpagesLink.textContent = "웹 페이지";
     } else {
         $textLink.textContent = "Text";
         $images.textContent = "Images";
         $videos.textContent = "Videos";
-        $digitalLink.textContent = "Digital";
+        $webpagesLink.textContent = "Web Pages";
     }
 
     $textLink.href = "/archives/text";
     $images.addEventListener("click", () => toggleArchivesImagesIdx($images));
     $videos.addEventListener("click", () => toggleArchivesVideosIdx($videos));
-    $digitalLink.href = "/archives/digital";
+    $webpagesLink.href = "/archives/webpages";
 
     $text.appendChild($textLink);
-    $digital.appendChild($digitalLink);
+    $webpages.appendChild($webpagesLink);
     $archivesIdxBox.appendChild($text);
     $archivesIdxBox.appendChild($images);
     $archivesIdxBox.appendChild($videos);
-    $archivesIdxBox.appendChild($digital);
+    $archivesIdxBox.appendChild($webpages);
     $archives.appendChild($archivesIdxBox);
 
     toggledList.push("Archives");
