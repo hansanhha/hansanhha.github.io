@@ -16,3 +16,5 @@ idx-name-ko: 글
 [봄이 오긴 오는구나](./봄이%20오긴%20오는구나)
 
 [리부트](./리부트)
+
+[Java Virtual Machine](./Java%20Virtual%20Machine)
