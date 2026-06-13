@@ -53,7 +53,7 @@ function printHamburgerIndexBox() {
     const $idxHamburgerBox = document.createElement("div");
     $idxHamburgerBox.className = "idx-hamburger-box";
     $idxHamburgerBox.id = "idx-hamburger-box";
-    if (localStorage.getItem("lang") === "한글") {
+    if (localStorage.getItem("lang") === "ko") {
         $idxHamburgerBox.textContent = "목차";
     } else {
         $idxHamburgerBox.textContent = "Index";
@@ -156,39 +156,39 @@ function printNormalIndexBox($parent, isContentPage) {
 }
 
 function printIndexBox($idxBox) {
-    const $code = document.createElement("div");
+    const $projects = document.createElement("div");
     const $paper = document.createElement("div");
     const $archives = document.createElement("div");
     const $sunrise = document.createElement("div");
     const $options = document.createElement("div");
     
-    $code.className = "no-select";
+    $projects.className = "no-select";
     $paper.className = "no-select";
     $archives.className = "no-select";
     $sunrise.className = "no-select";
     $options.className = "no-select";
 
-    if (localStorage.getItem("lang") === "한글") {
-        $code.textContent = "소스코드";
+    if (localStorage.getItem("lang") === "ko") {
+        $projects.textContent = "프로젝트";
         $paper.textContent = "글";
         $archives.textContent = "아카이브";
         $sunrise.textContent = "해맞이";
         $options.textContent = "설정";
     } else {
-        $code.textContent = "Code";
+        $projects.textContent = "Projects";
         $paper.textContent = "Paper";
         $archives.textContent = "Archives";
         $sunrise.textContent = "Sunrise";
         $options.textContent = "Options";
     }
 
-    $code.addEventListener("click", () => toggleCodeIdx($code));
+    $projects.addEventListener("click", () => toggleprojectsIdx($projects));
     $paper.addEventListener("click", () => togglePaperIdx($paper));
     $archives.addEventListener("click", () => toggleArchivesIdx($archives));
     $sunrise.addEventListener("click", () => toggleSunriseIdx($sunrise));
     $options.addEventListener("click", () => location.href = "/options");
 
-    $idxBox.appendChild($code);
+    $idxBox.appendChild($projects);
     $idxBox.appendChild($paper);
     $idxBox.appendChild($archives);
     $idxBox.appendChild($sunrise);
@@ -197,14 +197,14 @@ function printIndexBox($idxBox) {
 
 let toggledList = [];
 
-function toggleCodeIdx($code) {
-    if (toggledList.includes("Code")) {
-        removeIdxDetailOf($code);
-        toggledList.splice(toggledList.indexOf("Code"), 1);
+function toggleprojectsIdx($projects) {
+    if (toggledList.includes("projects")) {
+        removeIdxDetailOf($projects);
+        toggledList.splice(toggledList.indexOf("projects"), 1);
         return;
     }
 
-    const $codeIdxBox = document.createElement("ul");
+    const $projectsIdxBox = document.createElement("ul");
     const $computerNinja = document.createElement("li");
     const $computerNinjaLink = document.createElement("a");
     const $server = document.createElement("li");
@@ -212,22 +212,22 @@ function toggleCodeIdx($code) {
     const $papillon = document.createElement("li");
     const $papillonLink = document.createElement("a");
     
-    $codeIdxBox.className = "idx-box-content";
+    $projectsIdxBox.className = "idx-box-content";
     $computerNinja.className = "idx-box-content-detail";
     $server.className = "idx-box-content-detail";
     $papillon.className = "idx-box-content-detail";
 
     $computerNinjaLink.href = "https://github.com/hansanhha/computer-ninja";
-    $papillonLink.href = "/code/papillon";
+    $papillonLink.href = "/projects/papillon";
 
-    if (localStorage.getItem("lang") === "한글") {
+    if (localStorage.getItem("lang") === "ko") {
         $computerNinjaLink.textContent = "컴퓨터 닌자";
-        $serverLink.href = "/code/server%20keywords-ko";
+        $serverLink.href = "/projects/server%20keywords-ko";
         $serverLink.textContent = "서버 키워드";
         $papillonLink.textContent = "빠삐용";
     } else {
         $computerNinjaLink.textContent = "Computer-Ninja";
-        $serverLink.href = "/code/server%20keywords";
+        $serverLink.href = "/projects/server%20keywords";
         $serverLink.textContent = "Server Keywords";
         $papillonLink.textContent = "Papillon";
     }
@@ -235,11 +235,11 @@ function toggleCodeIdx($code) {
     $computerNinja.appendChild($computerNinjaLink);
     $server.appendChild($serverLink);
     $papillon.appendChild($papillonLink);
-    $codeIdxBox.appendChild($computerNinja);
-    $codeIdxBox.appendChild($server);
-    $codeIdxBox.appendChild($papillon);
-    $code.appendChild($codeIdxBox);
-    toggledList.push("Code");
+    $projectsIdxBox.appendChild($computerNinja);
+    $projectsIdxBox.appendChild($server);
+    $projectsIdxBox.appendChild($papillon);
+    $projects.appendChild($projectsIdxBox);
+    toggledList.push("projects");
 }
 
 function togglePaperIdx($paper) {
@@ -303,7 +303,7 @@ function togglePaperIdx($paper) {
     $202605Link.href = "/papers/리부트";
     $jvmLink.href = "/papers/Java%20Virtual%20Machine";
 
-    if (localStorage.getItem("lang") === "한글") {
+    if (localStorage.getItem("lang") === "ko") {
         $funnyQLink.textContent = "재미있는 질문들";
         $funnyQLink.href = "/papers/재미있는%20질문들";
     } else {
@@ -363,7 +363,7 @@ function toggleArchivesIdx($archives) {
     $videos.className = "idx-box-content-detail";
     $webpages.className = "idx-box-content-detail";
 
-    if (localStorage.getItem("lang") === "한글") {
+    if (localStorage.getItem("lang") === "ko") {
         $textLink.textContent = "글 귀";
         $images.textContent = "이미지";
         $videos.textContent = "동영상";
@@ -421,7 +421,7 @@ function toggleArchivesImagesIdx($images) {
     $weeknd.className = "idx-box-content-detail";
     $impressionism.className = "idx-box-content-detail";
 
-    if (localStorage.getItem("lang") === "한글") {
+    if (localStorage.getItem("lang") === "ko") {
         $objectsLink.textContent = "사물";
         $seasonLink.textContent = "계절";
         $roomLink.textContent = "공간";
@@ -490,7 +490,7 @@ function toggleArchivesVideosIdx($videos) {
     $piano.className = "idx-box-content-detail";
     
 
-    if (localStorage.getItem("lang") === "한글") {
+    if (localStorage.getItem("lang") === "ko") {
         $skyLink.textContent = "하늘";
         $waveLink.textContent = "물결";
         $forestLink.textContent = "숲 속";
@@ -605,7 +605,7 @@ function toggleSunrise2024Idx($2024) {
     $november.className = "idx-box-content-detail";
     $december.className = "idx-box-content-detail";
 
-    if (localStorage.getItem("lang") === "한글") {
+    if (localStorage.getItem("lang") === "ko") {
         $januaryLink.textContent = "1월";
         $marchLink.textContent = "3월";
         $aprilLink.textContent = "4월";
@@ -692,7 +692,7 @@ function toggleSunrise2025Idx($2025) {
     $november.className = "idx-box-content-detail";
     $december.className = "idx-box-content-detail";
 
-    if (localStorage.getItem("lang") === "한글") {
+    if (localStorage.getItem("lang") === "ko") {
         $januaryLink.textContent = "1월";
         $februaryLink.textContent = "2월";
         $marchLink.textContent = "3월";
@@ -775,7 +775,7 @@ function toggleSunrise2026Idx($2026) {
     $june.className = "idx-box-content-detail";
     
     
-    if (localStorage.getItem("lang") === "한글") {
+    if (localStorage.getItem("lang") === "ko") {
         $januaryLink.textContent = "1월";
         $februaryLink.textContent = "2월";
         $marchLink.textContent = "3월";

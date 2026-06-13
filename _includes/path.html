@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   if (dirs != undefined) {
     for (let i = 0; i < dirs.length; i++) {
-      if (localStorage.getItem("lang") === "한글") {
+      if (localStorage.getItem("lang") === "ko") {
         if (dirs[i].dataset.idxNameKo != undefined) {
           dirs[i].textContent = dirs[i].dataset.idxNameKo;
         } else {
@@ -89,8 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
   }
-
-  if (localStorage.getItem("lang") === undefined || localStorage.getItem("lang") === "english") {
+  if (localStorage.getItem("lang") === "en" || (localStorage.getItem("lang") === undefined && navigator.language.startsWith("en"))) {
     home.textContent = "Home";
     if (index[0] != undefined) {
       index[0].textContent = "Index";

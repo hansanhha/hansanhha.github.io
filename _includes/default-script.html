@@ -1,0 +1,104 @@
+<script>
+if (localStorage.getItem("lang") === undefined && navigator.language.startsWith("ko")) {
+    localStorage.setItem("lang", "ko");
+}
+
+document.getElementById("input_search").addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        setUsername();
+    }
+});
+
+document.getElementById("user_agent").innerText = "User-Agent: " + navigator.userAgent;
+
+localStorage.getItem("lang") !== undefined
+    ? localStorage.getItem("lang") === "en" ? printEnLang() : printKoLang()
+    : navigator.language.startsWith("en") ? printEnLang() : printKoLang();
+
+const today = new Date();
+document.getElementById("user_visit_day").innerText = today.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long'
+});
+
+localStorage.getItem("theme") !== undefined 
+    ? (localStorage.getItem("theme") === "dark") ? printDarklyAppearance() : printBrightlyAppearance()
+    : (window.matchMedia("(prefers-color-scheme: dark)").matches) ? printDarklyAppearance() : printBrightlyAppearance();
+    
+const helloUserPreferTheme = window.matchMedia("(prefers-color-scheme: dark)");
+helloUserPreferTheme.addEventListener?.("change", (e) => {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    prefersDark ? printDarklyAppearance() : printBrightlyAppearance();
+});
+
+function printDarklyAppearance() {
+    document.getElementById("user_appearance_darkly").classList.add("text-underline-black", "cursor-pointer");
+    document.getElementById("user_appearance_brightly").classList = "cursor-pointer";
+}
+
+function printBrightlyAppearance() {
+    document.getElementById("user_appearance_darkly").classList = "cursor-pointer";
+    document.getElementById("user_appearance_brightly").classList.add("text-underline-black", "cursor-pointer");
+}
+
+function printEnLang() {
+    document.getElementById("user_lang_en").classList.add("text-underline-black", "cursor-pointer");
+    document.getElementById("user_lang_ko").classList = "cursor-pointer";
+}
+
+function printKoLang() {
+    document.getElementById("user_lang_en").classList = "cursor-pointer";
+    document.getElementById("user_lang_ko").classList.add("text-underline-black", "cursor-pointer");
+}
+
+function changeTheme(theme) {
+    if (theme === "darkly") {
+        localStorage.setItem("theme", "dark");
+    } else {
+        localStorage.setItem("theme", "light");
+    }
+    location.reload();
+}
+
+function changeLang(lang) {
+    if (lang === "en") {
+        localStorage.setItem("lang", "en");
+    } else {
+        localStorage.setItem("lang", "ko");
+    }
+    location.reload();
+}
+
+const $empty = document.getElementById("empty");
+
+if ($empty != undefined) {
+    const lang = localStorage.getItem("lang");
+    if (lang === "ko") {
+        $empty.textContent = "빈 페이지";
+    } else {
+        $empty.textContent = "Empty Page";
+    }
+}
+
+const $aList = Array.from(document.getElementsByTagName("a"));
+
+const isKorean = localStorage.getItem("lang") === "ko";
+$aList.forEach($a => {
+    if (isKorean) {
+        if ($a.dataset.displayKo != undefined) {
+            $a.textContent = $a.dataset.displayKo;
+        }
+        if ($a.dataset.hrefKo != undefined) {
+            $a.href = $a.dataset.hrefKo;
+        }
+    } else if ($a.dataset.display != undefined){
+        $a.textContent = $a.dataset.display;
+    } else {
+        $a.textContent = $a.textContent;
+    }
+});
+
+</script>

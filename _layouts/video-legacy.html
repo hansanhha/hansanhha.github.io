@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<link rel="stylesheet" href="/assets/item.css">
 	<link rel="stylesheet" href="/assets/default.css">
 	<link rel="stylesheet" href="/assets/path.css">
 	<link rel="stylesheet" href="/assets/lang.css">
@@ -9,12 +8,10 @@
     {% include theme.html %}
 </head>
 <body>
-    <div style="display: flex; flex-direction: column; margin-top: 5px; margin-left: 10px; gap: 10px;">
-        {% include blog-search.html %}
-        <div style="display: flex; flex-direction: column; gap: 1em;">
-            {% include blog-info.html %}
-			{% include page-info.html %}
-            {% if page.content != nil and page.content != "" %}
+	<div class="main-container">
+		{% include path.html %}
+		<main class="main-content">
+			{% if page.content != nil and page.content != "" %}
                 <div class="video-container">
                     <div id="video-loading-indicator">      
                     </div>
@@ -22,16 +19,25 @@
                         {{ content }}
                     </div>
                 </div>
-                {% include go-to-top.html %}
-            {% else %}
-                <span id="empty"></span>
-            {% endif %}
-            {% include internet-usernames.html %}
-        </div>
-    </div>
+				{% include go-to-top.html %}
+			{% else %}
+				<span id="empty"></span>
+			{% endif %}
+		</main>
+	</div>
 </body>
-{% include default-script.html %}
+{% include index-box.html %}
 <script>
+const $empty = document.getElementById("empty");
+
+if ($empty != undefined) {
+    if (localStorage.getItem("lang") === "ko") {
+        $empty.textContent = "빈 페이지";
+    } else {
+        $empty.textContent = "empty page";
+    }
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
     const video = document.getElementsByTagName("video")[0];
     const videoBox = document.getElementById('video-box');

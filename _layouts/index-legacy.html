@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="/assets/default.css">
+    <link rel="stylesheet" href="/assets/path.css">
+    {% include meta.html %}
+    {% include theme.html %}
+</head>
+<body>
+    <div class="index-container">
+        {% include path.html %}
+        <div class="idx-content">
+            {% if page.content != nil and page.content != "" %}
+                    {{ content }}
+            {% else %}
+                <span id="empty"></span>
+            {% endif %}
+        </div>
+    </div>
+</body>
+{% include index-box.html %}
+<script>
+const $empty = document.getElementById("empty");
+
+if ($empty != undefined) {
+    const lang = localStorage.getItem("lang");
+    if (lang === "ko") {
+        $empty.textContent = "빈 페이지";
+    } else {
+        $empty.textContent = "Empty Page";
+    }
+}
+
+const $aList = Array.from(document.getElementsByTagName("a"));
+
+const isKorean = localStorage.getItem("lang") === "ko";
+$aList.forEach($a => {
+    if (isKorean) {
+        if ($a.dataset.displayKo != undefined) {
+            $a.textContent = $a.dataset.displayKo;
+        }
+        if ($a.dataset.hrefKo != undefined) {
+            $a.href = $a.dataset.hrefKo;
+        }
+    } else if ($a.dataset.display != undefined){
+        $a.textContent = $a.dataset.display;
+    } else {
+        $a.textContent = $a.textContent;
+    }
+});
+
+if (localStorage.getItem("addtional_info") !== "false") {
+    //printAddtionalInfoBox();
+}
+
+function printAddtionalInfoBox() {
+    const $additionalInfoBox = document.createElement("div");
+    const $additionalInfo = document.createElement("div");
+    const $img = document.createElement("img");
+    const $info = document.createElement("div");
+    const $resume = document.createElement("div");
+    const $resumeLink = document.createElement("a");
+
+    Object.assign($additionalInfoBox.style, {
+        position: "fixed",
+        bottom: "8px",
+        right: "8px",
+        padding: "8px",
+        height: "40vh",
+        width: "20vw",
+        marginBottom: "7%",
+    });
+
+    Object.assign($additionalInfo.style, {
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100%",
+    });
+
+    Object.assign($img.style, {
+        width: "auto",
+        height: "auto",
+        maxWidth: "100%",
+        maxHeight: "100%",
+        display: "block",
+    });
+
+    Object.assign($info.style, {
+        fontWeight: "600",
+        fontSize: "20px",
+        color: "darkred",
+    });
+
+    if (localStorage.getItem("theme") == "dark") {
+        $info.style.color = "rgb(219, 52, 52)";
+    }
+
+    Object.assign($resume.style, {
+        marginTop: "10px",
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+    });
+
+    Object.assign($resumeLink.style, {
+        padding: "0px 10%",
+    });
+
+    if (localStorage.getItem("lang") === "ko") {
+        $info.textContent = "구직 중";
+        $resumeLink.textContent = "이력서";
+    } else {
+        $info.textContent = "I Wanna Get a Job";
+        $resumeLink.textContent = "resume";
+    }
+
+    $img.src = "/assets/img/uncle_sam.png";
+    $resumeLink.href = "/resume";
+    $resume.appendChild($resumeLink);
+    $additionalInfo.appendChild($img);
+    $additionalInfo.appendChild($info);
+    $additionalInfo.appendChild($resume);
+    $additionalInfoBox.appendChild($additionalInfo);
+    document.body.appendChild($additionalInfoBox);
+}
+
+</script>
+</html>

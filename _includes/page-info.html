@@ -1,0 +1,91 @@
+<ul id="blog_categories" class="horizontal-list">
+    <li><a id="projects_link">Projects</a></li>
+    <li><a id="programming_link">Programming</a></li>
+    <li><a id="daily_link">Daily</a></li>
+    <li><a id="archives_link">Archives</a></li>   
+    <li><a id="sunrise_link">Sunrise</a></li>
+</ul>
+
+<div id="idx-paths-box" style="display: none;">
+</div>
+
+{% if page.title != nil %}
+    <div class="text-left-align"> {{ page.title }} </div>
+{% endif %}
+{% if page.date != nil %}
+    <div class="text-left-align"> {{ page.date }} </div>
+{% endif %}
+
+<script>
+document.getElementById("projects_link").href = window.location.origin + "/projects/";
+document.getElementById("programming_link").href = window.location.origin + "/programming/";
+document.getElementById("daily_link").href = window.location.origin + "/daily/";
+document.getElementById("archives_link").href = window.location.origin + "/archives/";
+document.getElementById("sunrise_link").href = window.location.origin + "/sunrise/";
+
+const windowPathname = window.location.pathname;
+const pathnames = windowPathname.split("/").filter((p) => p !== "");
+
+const userLang = localStorage.getItem("lang") !== undefined
+    ? localStorage.getItem("lang") === "en" ? "en" : "ko"
+    : navigator.language.startsWith("en") ? "en" : "ko";
+
+document.querySelectorAll("#blog_categories li a").forEach((category) => {
+    if (pathnames.includes(category.textContent.toLowerCase())) {
+        category.textContent = `[${category.textContent}]`;
+    }
+
+    if (userLang === "ko") {
+        switch (category.textContent) {
+            case "Projects":
+                category.textContent = "프로젝트";
+                break;
+            case "[Projects]":
+                category.textContent = "[프로젝트]";
+                break;
+            case "Programming":
+                category.textContent = "프로그래밍";
+                break;
+            case "[Programming]":
+                category.textContent = "[프로그래밍]";
+                break;
+            case "Daily":
+                category.textContent = "일상";
+                break;
+            case "[Daily]":
+                category.textContent = "[일상]";
+                break;
+            case "Archives":
+                category.textContent = "아카이브";
+                break;
+            case "[Archives]":
+                category.textContent = "[아카이브]";
+                break;
+            case "Sunrise":
+                category.textContent = "해맞이";
+                break;
+            case "[Sunrise]":
+                category.textContent = "[해맞이]";
+                break;
+        }   
+    }
+});
+
+const $idxPathsBox = document.getElementById("idx-paths-box");
+if (pathnames.length > 1) {
+    $idxPathsBox.innerHTML = "";
+    let parentPaths = "";
+    for (let i = 0; i < pathnames.length; i++) {
+        const $div = document.createElement("div");
+        const $a = document.createElement("a");
+        $a.href = window.location.origin + parentPaths + "/" + pathnames[i];
+        $a.textContent = "/" + decodeURIComponent(pathnames[i]);
+        parentPaths += ("/" + pathnames[i]);
+        $div.appendChild($a);
+        $idxPathsBox.appendChild($div);
+    }
+    $idxPathsBox.style.display = "flex";   
+} else {
+    $idxPathsBox.style.display = "none";
+}
+</script>

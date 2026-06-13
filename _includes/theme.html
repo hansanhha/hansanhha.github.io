@@ -23,7 +23,7 @@ userPreferTheme.addEventListener?.("change", (e) => {
         localStorage.setItem("theme", "dark");
         $root.setAttribute("data-theme", "dark");
 
-        if (localStorage.getItem("lang") === "한글") {
+        if (localStorage.getItem("lang") === "ko") {
             $theme.textContent = "밝게";
         } else {
             $theme.textContent = "brightly";
@@ -33,7 +33,7 @@ userPreferTheme.addEventListener?.("change", (e) => {
 
     localStorage.setItem("theme", "light");
     $root.setAttribute("data-theme", "light");
-    if (localStorage.getItem("lang") === "한글") {
+    if (localStorage.getItem("lang") === "ko") {
         $theme.textContent = "어둡게";
     } else {
         $theme.textContent = "darkly";

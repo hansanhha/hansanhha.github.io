@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<link rel="stylesheet" href="/assets/item.css">
 	<link rel="stylesheet" href="/assets/default.css">
 	<link rel="stylesheet" href="/assets/path.css">
 	<link rel="stylesheet" href="/assets/lang.css">
@@ -9,29 +8,26 @@
     {% include theme.html %}
 </head>
 <body>
-    <div style="display: flex; flex-direction: column; margin-top: 5px; margin-left: 10px; gap: 10px;">
-        {% include blog-search.html %}
-        <div style="display: flex; flex-direction: column; gap: 1em;">
-            {% include blog-info.html %}
-            {% include page-info.html %}
-			{% if page.content != nil and page.content != "" %}
-                <div class="image-view-selector">
-                    <span id="view"></span>
-                    <span id="single"></span>
-                    <span id="multi"></span>
-                </div>
-                <div id="image-container">
-                    {{ content }}
-                </div>
-                {% include go-to-top.html %}
-            {% else %}
-                <span id="empty"></span>
-            {% endif %}
-            {% include internet-usernames.html %}
-        </div>
-    </div>
+	<div class="main-container">
+		{% include path.html %}
+		<main class="main-content">
+            {% if page.content != nil and page.content != "" %}
+            <div class="image-view-selector">
+                <span id="view"></span>
+                <span id="single"></span>
+                <span id="multi"></span>
+            </div>
+            <div id="image-container">
+                {{ content }}
+            </div>
+            {% include go-to-top.html %}
+			{% else %}
+				<span id="empty"></span>
+			{% endif %}
+		</main>
+	</div>
 </body>
-{% include default-script.html %}
+{% include index-box.html %}
 <script>
 const originalImgs = [];
 
@@ -102,7 +98,6 @@ function configureDisplayOptions() {
     $multi.addEventListener("click", () => {
         const $imageContainer = document.getElementById("image-container");
         const containerWidth = $imageContainer.clientWidth;
-        console.log(containerWidth);
         const images = Array.from($imageContainer.querySelectorAll("img"));
         const imgCount = images.length;
         const rows = [];

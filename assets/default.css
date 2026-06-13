@@ -24,16 +24,17 @@ body {
     --text-color: #e3dfdf;
   }
 
-  a {
+  /* a {
     color: #e3dfdf;
     text-decoration: none;
     border-bottom: 2px solid transparent;
-  }
+  } */
 
   a:hover {
     /* border-bottom-color: #e3dfdf; */
     /* font-weight: bold; */
-    color: #9CAF88;
+    /* color: #9CAF88; */
+    cursor: pointer;
   }
 
   hr {
@@ -43,17 +44,17 @@ body {
   }
 
   .main-content a:hover {
-    border-bottom-color: transparent;
-    color: #2176d1;
+    /* border-bottom-color: transparent;
+    color: #2176d1; */
   }
 
-  .main-content p a {
+  /* .main-content p a {
     border-bottom: 2px solid #e3dfdf;
-  }
+  } */
 
   .main-content p a:hover {
-    border-bottom: 2px solid #2176d1;
-    color: #2176d1;
+    /* border-bottom: 2px solid #2176d1;
+    color: #2176d1; */
   }
 
   .main-content :not(img):not(video)::selection {
@@ -68,16 +69,17 @@ body {
     --text-color: black;
   }
 
-  a {
+  /* a {
     color: black;
     text-decoration: none;
     border-bottom: 2px solid transparent;
-  }
+  } */
 
   a:hover {
     /* border-bottom-color: black; */
     /* font-weight: bold; */
-    color: green;
+    /* color: green; */
+    cursor: pointer;
   }
 
   hr {
@@ -86,13 +88,13 @@ body {
     border: 1px solid #121212;
   }
 
-  .main-content p a {
+  /* .main-content p a {
     border-bottom: 2px solid black;
-  }
+  } */
 
   .main-content p a:hover {
-    border-bottom: 2px solid #007bff;
-    color: #007bff;
+    /* border-bottom: 2px solid #007bff;
+    color: #007bff; */
   }
 
   .main-content :not(img):not(video)::selection {
@@ -110,16 +112,17 @@ body {
   --bg-color: #343232;
   --text-color: #e3dfdf;
 
-  a {
+  /* a {
     color: #e3dfdf;
     text-decoration: none;
     border-bottom: 2px solid transparent;
-  }
+  } */
 
   a:hover {
     /* border-bottom-color: #e3dfdf; */
     /* font-weight: bold; */
-    color: #9CAF88;
+    /* color: #9CAF88; */
+    cursor: pointer;
   }
 
   hr {
@@ -129,17 +132,17 @@ body {
   }
 
   .main-content a:hover {
-    border-bottom-color: transparent;
-    color: #2176d1;
+    /* border-bottom-color: transparent;
+    color: #2176d1; */
   }
 
-  .main-content p a {
+  /* .main-content p a {
     border-bottom: 2px solid #e3dfdf;
-  }
+  } */
 
   .main-content p a:hover {
-    border-bottom: 2px solid #2176d1;
-    color: #2176d1;
+    /* border-bottom: 2px solid #2176d1;
+    color: #2176d1; */
   }
 
   .main-content :not(img):not(video)::selection {
@@ -152,16 +155,17 @@ body {
   --bg-color: white;
   --text-color: black;
 
-  a {
+  /* a {
     color: black;
     text-decoration: none;
     border-bottom: 2px solid transparent;
-  }
+  } */
 
   a:hover {
     /* border-bottom-color: black; */
     /* font-weight: bold; */
-    color: green;
+    /* color: green; */
+    cursor: pointer;
   }
 
   hr {
@@ -170,13 +174,13 @@ body {
     border: 1px solid #121212;
   }
 
-  .main-content p a {
+  /* .main-content p a {
     border-bottom: 2px solid black;
-  }
+  } */
 
   .main-content p a:hover {
-    border-bottom: 2px solid #007bff;
-    color: #007bff;
+    /* border-bottom: 2px solid #007bff;
+    color: #007bff; */
   }
 
   .main-content :not(img):not(video)::selection {
@@ -212,12 +216,12 @@ body {
     height: auto;
   }
 
-  .main-content {
+  /* .main-content {
     padding-bottom: 15em;
     margin-top: 3%;
     margin-left: 23%;
     margin-right: 23%;
-  }
+  } */
 
   video {
     display: block;
@@ -291,8 +295,16 @@ body {
 }
 
 .main-content a:hover {
-  border-bottom-color: transparent;
-  color: #007bff;
+  /* border-bottom-color: transparent;
+  color: #007bff; */
+}
+
+.main-content p:first-of-type {
+  display: block;
+  margin-block-start: 0px;
+  margin-block-end: 1.5em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
 
 .main-content p {
@@ -304,11 +316,13 @@ body {
 }
 
 .main-content img {
-  max-height: 97vh;
+  max-width: 100vw;
+  max-height: 98vh;
+  object-fit: scale-down;
 }
 
-.post-date {
-  text-align: right;
+.text-left-align {
+  text-align: left;
 }
 
 .image-view-selector {
@@ -349,6 +363,10 @@ body {
   margin: 0;
 }
 
+ul {
+  padding-inline-start: 10px;
+}
+
 p {
   display: block;
   margin-block-start: 0.6em;
@@ -358,7 +376,7 @@ p {
 }
 
 a:hover {
-  cursor: default;
+  cursor: pointer;
 }
 
 thead {
@@ -366,12 +384,12 @@ thead {
 }
 
 h2 {
-  margin-top: 3.5em;
+  margin-top: 2.5em;
   font-weight: normal;
 }
 
 h3 {
-  margin-top: 2.5em;
+  margin-top: 2.0em;
   font-weight: normal;
 }
 
@@ -383,4 +401,29 @@ h4 {
 h5 {
   margin-top: 1em;
   font-weight: bold;
+}
+
+.text-underline-black {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.horizontal-list {
+  list-style: none;
+  
+  padding: 0;
+  margin: 0;
+  
+  display: flex;
+  
+  gap: 20px; 
+}
+
+.horizontal-list li {
+  cursor: pointer;
 }

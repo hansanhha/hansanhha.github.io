@@ -1,10 +1,10 @@
 ---
-layout: index
+layout: main
 title: hansanhha
 title-ko: 한산하
 ---
 
-<a href="./code/" data-display-ko="소스코드">Code</a>
+<a href="./projects/" data-display-ko="프로젝트">Projects</a>
 
 <a href="./papers/" data-display-ko="글">Paper</a>
 

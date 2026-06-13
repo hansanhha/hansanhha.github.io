@@ -3,7 +3,6 @@ layout: default
 date: 2026-06-08
 ---
 
-#### 인덱스
 - [JVM 실행 과정](#jvm-실행-과정)
 - [자바 빌드](#자바-빌드)
   - [META-INF와 MANIFEST.MF](#meta-inf와-manifestmf)

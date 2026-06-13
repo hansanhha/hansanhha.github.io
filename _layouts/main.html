@@ -16,11 +16,6 @@
         <div style="display: flex; flex-direction: column; gap: 1em;">
             {% include blog-info.html %}
             {% include page-info.html %}
-            {% if page.content != nil and page.content != "" %}
-                {{ content }}
-            {% else %}
-                <span id="empty"></span>
-            {% endif %}
             {% include internet-usernames.html %}
         </div>
     </div>
