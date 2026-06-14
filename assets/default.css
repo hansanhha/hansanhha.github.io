@@ -210,7 +210,7 @@ body {
 
 @media (max-width: 768px) {
   img {
-    max-width: 99%;
+    max-width: 97%;
     height: auto;
   }
 
@@ -222,7 +222,7 @@ body {
 
   video {
     display: block;
-    max-width: 99%;
+    max-width: 97%;
     height: auto;
     margin-bottom: 15px;
   }
@@ -252,6 +252,20 @@ body {
 
 #page-content-wrapper {
   margin-top: 10px;
+}
+
+#empty {
+  margin-top: 10px;
+}
+
+.post-list {
+  display: flex; 
+  flex-direction: column;
+  gap: 1em;
+}
+
+.post-date {
+  margin-right: 6px;
 }
 
 .idx-box {

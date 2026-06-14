@@ -7,6 +7,7 @@ nomiation: Sayukshin Park
 address: 191, Noryangjin-ro, Dongjak-gu, Seoul
 nomiation-ko: 사육신공원
 address-ko: 서울 동작구 노량진로 191
+createDate: 2025-03-01
 ---
 
 <img src="./data/3/1.jpeg" alt="">

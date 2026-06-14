@@ -7,6 +7,7 @@ nomiation: Eungbongsan
 address: 1540, Geumho-dong 4(sa)-ga, Seongdong-gu, Seoul
 nomiation-ko: 응봉산
 address-ko: 서울 성동구 금호동4가 1540
+createDate: 2025-10-01
 ---
 
 ![1](./data/10/1.jpg)

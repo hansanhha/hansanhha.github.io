@@ -7,6 +7,7 @@ nomiation: Korea Seoul National Cemetery
 address: 210 Hyeonchung-ro, Dongjak-gu, Seoul
 nomiation-ko: 국립서울현충원
 address-ko: 서울 동작구 현충로 210
+createDate: 2025-11-01
 ---
 
 ![1](./data/11/1.jpeg)

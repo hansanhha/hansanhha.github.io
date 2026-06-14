@@ -13,7 +13,9 @@
         {% include blog-search.html %}
         <div style="display: flex; flex-direction: column; gap: 1em;">
             {% include common.html %}
-            <div id="page-content-wrapper"></div>
+            <div id="page-content-wrapper">
+                {% include main-post.html %}
+            </div>
             {% include internet-usernames.html %}
         </div>
     </div>

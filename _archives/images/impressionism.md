@@ -5,6 +5,7 @@ prev-link: the%20weeknd
 next-link: 
 page-name: Impressionism
 page-name-ko: 인상주의
+createDate: 2026-05-03
 ---
 
 <img src="./data/bouquet-in-a-theater-box.jpg" alt="bouquet-in-a-theater-box.jpg" data-desc="Bouquet in a theater box \n Date: c.1871 \n Style: Impressionism \n Period: Association with Impressionists \n Genre: still life \n fetched by wikiart">

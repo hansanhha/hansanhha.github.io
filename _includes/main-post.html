@@ -1,0 +1,108 @@
+<div id="latest-posts-box" class="post-list">
+    
+</div>
+
+<script>
+loadLatestPosts();
+
+async function loadLatestPosts() {
+    const $latestPostsBox = document.getElementById("latest-posts-box");
+    $latestPostsBox.style.innerHTML = "";
+
+    const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
+    const options = { 
+            year: 'numeric', 
+            month: '2-digit', 
+            day: '2-digit',  
+        };
+
+    try {
+        const response = await fetch("/search.json");
+        const textData = await response.text();
+        const jsonData = JSON.parse(textData);
+        
+        const top10Posts = jsonData
+            .filter((post) => post.title.toLowerCase() != "index")
+            .sort((a, b) => {
+                const aDate = a.createDate ? a.createDate : a.date;
+                const bDate = b.createDate ? b.createDate : b.date;
+                return new Date(bDate.replace(/-/g, '/')) - new Date(aDate.replace(/-/g, '/'));
+            })
+            .slice(0, 10);
+
+        const printPostsByCategory = (category) => {
+            top10Posts
+                .filter((post) => post.category === category)
+                .forEach((post) => {
+                    let $category = document.getElementById(category);
+                    if (!$category) {
+                        $category = document.createElement("div");
+                        $category.id = category;
+                        $category.style.marginTop = "12px";
+                        $category.classList = "post-list";
+                        $categoryTextContent = document.createElement("span");
+                        $categoryTextContent.textContent = capitalize(localize(category));
+                        $categoryTextContent.style.fontWeight = 600;
+                        $category.appendChild($categoryTextContent)
+                        $latestPostsBox.appendChild($category);
+                    }
+
+                    const $post = document.createElement("div");
+                    const postDate = post.createDate ? post.createDate : post.date;
+                    const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
+
+                    $post.innerHTML = `
+                        <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${post.title}</a></span>
+                    `;
+                    $category.appendChild($post);
+            });            
+        }
+
+        printPostsByCategory("projects");
+        printPostsByCategory("programming");
+        printPostsByCategory("daily");
+        printPostsByCategory("archives");
+        printPostsByCategory("sunrise");
+
+    } catch (error) {
+        console.log(error);
+        $latestPostsBox.style.display = "none";
+    }
+}
+
+function localize(category) {
+    if (localStorage.getItem("lang") !== "ko") return category;
+
+    let localized;
+    switch(category) {
+        case "projects":
+        localized = "프로젝트";
+        break;
+
+        case "programming":
+        localized = "프로그래밍";
+        break;
+
+        case "daily":
+        localized = "일상";
+        break;
+
+        case "archives":
+        localized = "아카이브";
+        break;
+
+        case "sunrise":
+        localized = "해맞이";
+        break;
+    }
+
+    return localized
+}
+
+function capitalize(str) {
+  return str
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+</script>

@@ -5,6 +5,7 @@ prev-link: forest
 next-link: piano
 page-name: Objects
 page-name-ko: 사물
+createDate: 2024-12-01
 ---
 
 <video controls>

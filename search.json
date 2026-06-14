@@ -13,7 +13,10 @@ permalink: /search.json
     "url": {{ post.url | jsonify }},
     "content": {{ post.content | strip_html | jsonify }},
     "pagename": {{ post.page-name | jsonify}},
-    "pagenameKo": {{ post.page-name.ko | jsonify}}
+    "pagenameKo": {{ post.page-name.ko | jsonify}},
+    "createDate": {{ post.createDate | jsonify }},
+    "date": {{ post.date | jsonify }},
+    "category": "projects"
   }
   {% assign first = false %}
 {% endfor %}
@@ -25,7 +28,10 @@ permalink: /search.json
     "url": {{ post.url | jsonify }},
     "content": {{ post.content | strip_html | jsonify }},
     "pagename": {{ post.page-name | jsonify}},
-    "pagenameKo": {{ post.page-name.ko | jsonify}}
+    "pagenameKo": {{ post.page-name.ko | jsonify}},
+    "createDate": {{ post.createDate | jsonify }},
+    "date": {{ post.date | jsonify }},
+    "category": "programming"
   }
   {% assign first = false %}
 {% endfor %}
@@ -37,7 +43,10 @@ permalink: /search.json
     "url": {{ post.url | jsonify }},
     "content": {{ post.content | strip_html | jsonify }},
     "pagename": {{ post.page-name | jsonify}},
-    "pagenameKo": {{ post.page-name.ko | jsonify}}
+    "pagenameKo": {{ post.page-name.ko | jsonify}},
+    "createDate": {{ post.createDate | jsonify }},
+    "date": {{ post.date | jsonify }},
+    "category": "daily"
   }
   {% assign first = false %}
 {% endfor %}
@@ -49,7 +58,10 @@ permalink: /search.json
     "url": {{ post.url | jsonify }},
     "content": {{ post.content  | jsonify}},
     "pagename": {{ post.page-name | jsonify}},
-    "pagenameKo": {{ post.page-name.ko | jsonify}}
+    "pagenameKo": {{ post.page-name.ko | jsonify}},
+    "createDate": {{ post.createDate | jsonify }},
+    "date": {{ post.date | jsonify }},
+    "category": "archives"
   }
   {% assign first = false %}
 {% endfor %}
@@ -65,7 +77,10 @@ permalink: /search.json
     "nomiation": {{ post.nomiation | jsonify}},
     "address": {{ post.address | jsonify}},
     "nomiationKo": {{ post.nomiation-ko | jsonify}},
-    "addressKo": {{ post.address-ko | jsonify}}
+    "addressKo": {{ post.address-ko | jsonify}},
+    "createDate": {{ post.createDate | jsonify }},
+    "date": {{ post.date | jsonify }},
+    "category": "sunrise"
   }
   {% assign first = false %}
 {% endfor %}

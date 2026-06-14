@@ -7,7 +7,7 @@
 </div>
 
 <div id="search-result-box" style="display: none;">
-    <ul id="search-result">
+    <ul id="search-result" class="post-list">
     </ul>
 </div>
 
@@ -32,15 +32,15 @@ async function search() {
     try {
         const response = await fetch("/search.json");
         const textData = await response.text();
-        const searchResults= JSON.parse(textData);
-        printSearchResult(searchQuery, searchResults);
+        const jsonData = JSON.parse(textData);
+        printSearchResult(searchQuery, jsonData);
     } catch (error) {
         console.log(error);
         printErrorResult();
     }
 }
 
-function printSearchResult(searchQuery, searchResults) {
+function printSearchResult(searchQuery, posts) {
     const $pageContentWrapper = document.getElementById("page-content-wrapper");
     const $searchResultBox = document.getElementById("search-result-box");
     const $searchResult = document.getElementById("search-result");
@@ -49,7 +49,7 @@ function printSearchResult(searchQuery, searchResults) {
     $searchResultBox.style.display="";
     $pageContentWrapper.appendChild($searchResultBox);
 
-    const filteredResults = searchResults.filter((result) => {
+    const filteredResults = posts.filter((result) => {
         const titleMatch = result.title ? result.title.toLowerCase().includes(searchQuery) : false;
         const contentMatch = result.content ? result.content.toLowerCase().includes(searchQuery) : false;
         const pagenameMatch = result.pagename ? result.pagename.toLowerCase().includes(searchQuery) : false;
@@ -69,9 +69,24 @@ function printSearchResult(searchQuery, searchResults) {
 
     filteredResults.forEach((result) => {
         const $result = document.createElement("li");
-        $result.innerHTML = `
-            <a href="${result.url}">${result.title}</a>
-        `;
+        
+        if (result.createDate) {
+            const date = new Date(result.createDate.replace(/-/g, "/"));
+            const options = { 
+                year: 'numeric', 
+                month: '2-digit', 
+                day: '2-digit',  
+            };
+            const formattedDate = localStorage.getItem("lang") === "ko" ? date.toLocaleDateString("ko-KR", options) : date.toLocaleDateString("en-US", options);
+            $result.innerHTML = `
+                <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${result.url}">${result.title}</a></span>
+            `;
+        } else {
+            $result.innerHTML = `
+                <a href="${result.url}">${result.title}</a>
+            `;
+        }
+        
         $searchResult.appendChild($result);
     });
 }

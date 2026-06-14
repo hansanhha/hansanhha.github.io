@@ -4,6 +4,7 @@ title-name:
 prev-link: room
 next-link: the%20weeknd
 page-name-ko: 영화
+createDate: 2026-04-27
 ---
 
 <img src="./data/Papillon.jpg" alt="Papillon.jpg" data-desc="Papillon" data-desc-ko="빠삐용"/>

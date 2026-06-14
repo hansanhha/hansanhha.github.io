@@ -7,6 +7,7 @@ nomiation: Myeong-dong Cathedral
 address: 74, Myeongdong-gil, Jung-gu, Seoul
 nomiation-ko: 명동대성당
 address-ko: 서울 중구 명동길 74
+createDate: 2026-02-01
 ---
 
 <img src="./images/2602-1.jpeg" alt="">

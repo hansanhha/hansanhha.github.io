@@ -7,6 +7,7 @@ nomiation: Yongmasan
 address: Daebang-dong, Dongjak-gu, Seoul
 nomiation-ko: 용마산
 address-ko: 서울 동작구 대방동
+createDate: 2025-05-01
 ---
 
 <img src="2405-1.JPG" alt="">

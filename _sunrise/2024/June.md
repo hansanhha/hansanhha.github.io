@@ -7,6 +7,7 @@ nomiation: Nodeul Island
 address: 445, Yangnyeong-ro, Yongsan-gu, Seoul
 nomiation-ko: 노들섬
 address-ko: 서울 용산구 양녕로 445
+createDate: 2025-06-01
 ---
 
 <img src="./2406-1.JPG" alt="">

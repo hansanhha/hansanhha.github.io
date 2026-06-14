@@ -7,6 +7,7 @@ nomiation: Samseong Haemaji Park
 address: 39, Yeongdong-daero 128-gil, Gangnam-gu, Seoul
 nomiation-ko: 삼성 해맞이공원
 address-ko: 서울 강남구 영동대로 128길 39
+createDate: 2025-02-01
 ---
 
 <img src="./data/2502-01.jpeg" alt="">

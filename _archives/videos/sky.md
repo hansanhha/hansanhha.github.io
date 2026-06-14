@@ -5,6 +5,7 @@ prev-link: index
 next-link: wave
 page-name: Sky
 page-name-ko: 하늘
+createDate: 2024-12-01
 ---
 
 <video controls>
