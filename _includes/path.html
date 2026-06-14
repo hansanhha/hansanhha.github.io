@@ -1,155 +1,63 @@
 <div class="idx-container">
   <div class="idx-path-box">
     <div class="idx-path">
-      {% if page.dir == "/" %}
-          <span class="home"></span>
-      {% endif %}
       <div style="display: flex;">
-        {% assign dirs = page.dir | split: '/' %}
-        {% assign depth = dirs.size | minus: 2 %}
-        {% assign maxDepth = depth %}
-        {% assign target_dir = "" %}
+        {% assign dirs = page.path | replace_first: "_", "" | split: "/" %}
+        {% assign dirPath = "" %}
         {% for dir in dirs %}
-          {% if dir == "" %}
-            <a href="/" class="home"></a><span>/</span>
-          {% else %}
-            {% assign relative_path = "" %}
-            {% if depth == 0 %}
-              {% assign relative_path = "./" %}
+          {% unless dir == "index.md" %}
+            {% if dir contains ".md" %}
+              {% assign dirFilename = dir | replace: ".md" | "" %}
+              {% assign dirPath = dirPath | append: "/" | append: dirFilename %}
+              <a class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dirFilename }}" data-path-name-ko="{{ dir.page-name-ko }}"></a>
             {% else %}
-              {% for i in (1..depth) %}
-                {% assign relative_path = relative_path | append: "../" %}
-              {% endfor %}
+              {% assign dirPath = dirPath | append: "/" | append: dir %}
+              <a class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dir }}"></a>
             {% endif %}
-            {% if target_dir == "" %}
-              {% assign target_dir = dir %}
-            {% else %}
-              {% assign target_dir = target_dir | append: "/" | append: dir %}
-            {% endif %}
-            {% assign target_idx_path = target_dir | append: "/index.md" %}
-            {% assign idxMd = site.pages | where: "path", target_idx_path | first %}
-            <a href="{{ relative_path }}" class="dir" data-dir-name="{{ dir }}" data-idx-name="{{ idxMd.idx-name }}"" data-idx-name-ko="{{ idxMd.idx-name-ko }}"></a><span>/</span>
-            {% assign depth = depth | minus: 1 %}
-          {% endif %}
+          {% endunless %}
         {% endfor %}
-        {% if page.name != "index.md" %}
-          <span class="page-name" data-default-name="{{ page.name | replace: '.md', '' | replace: '%20', ' ' }}" data-page-name="{{ page.page-name | replace : '.md', '' | replace: '%20', ' ' }}" data-page-name-ko="{{ page.page-name-ko | replace : '.md', '' | replace: '%20', ' ' }}"></span>
-        {% endif %}
       </div>
     </div>
   </div>
-    
-  {% if page.next or page.prev %}
+  {% if page.next-link or page.prev-link %}
     <div class="page-link">
-      {% if page.prev %}
-        {% if page.prev == "./index" or page.prev == ".index" or page.prev == "index" %}
-          <a href={{ page.prev }} class="p-index">index</a >
+      {% if page.prev-link %}
+        {% if page.prev-link == "./index" or page.prev-link == ".index" or page.prev-link == "index" %}
+          <a href={{ page.prev-link }} class="page-index-link">Index</a >
         {% else %}
-          <a href={{ page.prev }} class="p-prev" data-prev-ko="{{ page.prev-ko }}">Prev</a>
+          <a href={{ page.prev-link }} class="page-prev-link"></a>
         {% endif %}
       {% endif %}
-      {% if page.next %}
-        <a href={{ page.next }} class="p-next" data-next-ko="{{ page.next-ko }}">Next</a>
+      {% if page.next-link %}
+        <a href={{ page.next-link }} class="page-next-link"></a>
       {% endif %}
     </div>
   {% endif %}
-
-  {% if page.title || page.title-ko %}
-  <div class="idx-title">
-        <div class="title" data-title="{{ page.title }}" data-title-ko="{{ page.title-ko }}">{{ page.title }}</div>
-  </div>
-  {% endif %}
-    
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const home = document.getElementsByClassName("home")[0];
-  const dirs = document.getElementsByClassName("dir");
-  const index = document.getElementsByClassName("p-index");
-  const prev = document.getElementsByClassName("p-prev");
-  const next = document.getElementsByClassName("p-next");
-  const title = document.getElementsByClassName("title");
-  const pageName = document.getElementsByClassName("page-name");
+const pathLinks = document.querySelectorAll(".path-link");
+pathLinks.forEach((link) => {
+  link.href = window.location.origin + link.dataset.path;
+  link.textContent = "/" + capitalize(link.dataset.pathName);
+});
 
-  if (dirs != undefined) {
-    for (let i = 0; i < dirs.length; i++) {
-      if (localStorage.getItem("lang") === "ko") {
-        if (dirs[i].dataset.idxNameKo != undefined) {
-          dirs[i].textContent = dirs[i].dataset.idxNameKo;
-        } else {
-          dirs[i].textContent = dirs[i].dataset.dirName;
-        }        
-      } else {
-        if (dirs[i].dataset.idxName != undefined) {
-          dirs[i].textContent = capitalize(dirs[i].dataset.idxName);
-        } else {
-          dirs[i].textContent = capitalize(dirs[i].dataset.dirName);
-        }
-      }
-    }
-  }
-  if (localStorage.getItem("lang") === "en" || (localStorage.getItem("lang") === undefined && navigator.language.startsWith("en"))) {
-    home.textContent = "Home";
-    if (index[0] != undefined) {
-      index[0].textContent = "Index";
-    }
-    if (prev[0] != undefined) {
-      prev[0].textContent = "Prev";
-    }
-    if (next[0] != undefined) {
-      next[0].textContent = "Next";
-    }
-    if (title[0] != undefined) {
-      title[0].textContent = capitalize(pageName[0].dataset.title);
-      if (title[0].dataset.title == undefined || title[0].dataset.title === "") {
-        title[0].textContent = title[0].dataset.titleKo;
-      }
-    }
-    if (pageName[0] != undefined) {
-      if (pageName[0].dataset.pageName) {
-        pageName[0].textContent = capitalize(pageName[0].dataset.pageName);
-      } else {
-        pageName[0].textContent = capitalize(pageName[0].dataset.defaultName);
-      }
-    }
-    if (dirs != undefined) {
-      for (let i = 0; i < dirs.length; i++) {
-        dirs[i].textContent = capitalize(dir[i].dataset.dirName);
-      }
-    }
-  } else {
-    home.textContent = "시작 페이지";
-    if (index[0] != undefined) {
-      index[0].textContent = "인덱스";
-    }
-    if (prev[0] != undefined) {
-      prev[0].textContent = "이전";
-      if (prev[0].dataset.prevKo) {
-        prev[0].href = prev[0].dataset.prevKo;
-      }
-    }
-    if (next[0] != undefined) {
-      next[0].textContent = "다음";
-      if (next[0].dataset.nextKo) {
-        next[0].href = next[0].dataset.nextKo;
-      }
-    }
-    if (title[0] != undefined) {
-        title[0].textContent = title[0].dataset.titleKo;
-        if (title[0].dataset.titleKo == undefined || title[0].dataset.titleKo === "") {
-          title[0].textContent = capitalize(title[0].dataset.title);
-        }
-    }
-    if (pageName[0] != undefined) {
-      if (pageName[0].dataset.pageNameKo) {
-        pageName[0].textContent = pageName[0].dataset.pageNameKo;
-      } else {
-        pageName[0].textContent = capitalize(pageName[0].dataset.defaultName);
-      }
-    }
-  }
+const pageIndexLinks = document.querySelectorAll(".page-index-link");
+pageIndexLinks.forEach((link) => {
+  const lang = localStorage.getItem("lang");
+  lang === "ko" ? link.textContent = "인덱스" : link.textContent = "Index";
+});
 
+const pagePrevLinks = document.querySelectorAll(".page-prev-link");
+pagePrevLinks.forEach((link) => {
+  const lang = localStorage.getItem("lang");
+  lang === "ko" ? link.textContent = "이전" : link.textContent = "Prev";
+});
+
+const pageNextLinks = document.querySelectorAll(".page-next-link");
+pageNextLinks.forEach((link) => {
+  const lang = localStorage.getItem("lang");
+  lang === "ko" ? link.textContent = "다음" : link.textContent = "Next";
 });
 
 function capitalize(str) {

@@ -9,19 +9,20 @@
     {% include theme.html %}
 </head>
 <body>
-    <div style="display: flex; flex-direction: column; margin-top: 5px; margin-left: 10px; gap: 10px;">
+    <div style="display: flex; flex-direction: column; margin-top: 5px; padding-left: 10px; gap: 10px;">
         {% include blog-search.html %}
-        <div style="display: flex; flex-direction: column; gap: 1em;">
-            {% include blog-info.html %}
-            {% include page-info.html %}
+        <div style="display: flex; flex-direction: column;">
+            {% include common.html %}
 			{% if page.content != nil and page.content != "" %}
-                <div class="image-view-selector">
-                    <span id="view"></span>
-                    <span id="single"></span>
-                    <span id="multi"></span>
-                </div>
-                <div id="image-container">
-                    {{ content }}
+                <div id="page-content-wrapper">
+                    <div class="image-view-selector">
+                        <span id="view"></span>
+                        <span id="single"></span>
+                        <span id="multi"></span>
+                    </div>
+                    <div id="image-container">
+                        {{ content }}
+                    </div>
                 </div>
                 {% include go-to-top.html %}
             {% else %}
@@ -102,7 +103,6 @@ function configureDisplayOptions() {
     $multi.addEventListener("click", () => {
         const $imageContainer = document.getElementById("image-container");
         const containerWidth = $imageContainer.clientWidth;
-        console.log(containerWidth);
         const images = Array.from($imageContainer.querySelectorAll("img"));
         const imgCount = images.length;
         const rows = [];
@@ -111,8 +111,9 @@ function configureDisplayOptions() {
 
         for (const img of images) {
             const aspectRatio = img.naturalWidth / img.naturalHeight;
-            const expectedWidth = aspectRatio * 250;
-            if (currentRowWidth + expectedWidth > containerWidth && currentRow.length > 0) {
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            const expectedWidth = isMobile ? aspectRatio * 100 : aspectRatio * 300;
+            if (currentRowWidth + expectedWidth >= containerWidth && currentRow.length > 0) {
                 rows.push(currentRow);
                 currentRow = [];
                 currentRowWidth = 0;
@@ -134,7 +135,7 @@ function configureDisplayOptions() {
             row.forEach(({img, aspectRatio}) => {
                 const cloned = img.cloneNode();
                 cloned.addEventListener("click", () => focus(originalImgs.filter(i => i.src === img.src)[0]));
-                cloned.style.width = `${(aspectRatio / totalAspect) * 100}%`;
+                cloned.style.maxWidth = `${(aspectRatio / totalAspect) * 98}%`;
                 $row.appendChild(cloned);
             });
 

@@ -1,4 +1,4 @@
-<ul id="blog_categories" class="horizontal-list">
+<ul id="blog_categories" class="horizontal-list" style="margin-top: 10px;">
     <li><a id="projects_link">Projects</a></li>
     <li><a id="programming_link">Programming</a></li>
     <li><a id="daily_link">Daily</a></li>
@@ -7,16 +7,22 @@
 </ul>
 
 <div id="idx-paths-box" style="display: none;">
+    {% include path.html %}
 </div>
 
-{% if page.title != nil %}
-    <div class="text-left-align"> {{ page.title }} </div>
+{% if page.title-name != nil %}
+    <div class="text-left-align">{{ page.title-name }}</div>
 {% endif %}
-{% if page.date != nil %}
-    <div class="text-left-align"> {{ page.date }} </div>
+{% if page.name != "index.md" and page.date != nil %}
+    <div class="text-left-align"> {{ page.createDate }} </div>
 {% endif %}
 
 <script>
+if (window.location.pathname !== "/") {
+    const $idxPathsBox = document.getElementById("idx-paths-box");
+    $idxPathsBox.style.display = "";
+}
+
 document.getElementById("projects_link").href = window.location.origin + "/projects/";
 document.getElementById("programming_link").href = window.location.origin + "/programming/";
 document.getElementById("daily_link").href = window.location.origin + "/daily/";
@@ -71,21 +77,4 @@ document.querySelectorAll("#blog_categories li a").forEach((category) => {
     }
 });
 
-const $idxPathsBox = document.getElementById("idx-paths-box");
-if (pathnames.length > 1) {
-    $idxPathsBox.innerHTML = "";
-    let parentPaths = "";
-    for (let i = 0; i < pathnames.length; i++) {
-        const $div = document.createElement("div");
-        const $a = document.createElement("a");
-        $a.href = window.location.origin + parentPaths + "/" + pathnames[i];
-        $a.textContent = "/" + decodeURIComponent(pathnames[i]);
-        parentPaths += ("/" + pathnames[i]);
-        $div.appendChild($a);
-        $idxPathsBox.appendChild($div);
-    }
-    $idxPathsBox.style.display = "flex";   
-} else {
-    $idxPathsBox.style.display = "none";
-}
 </script>

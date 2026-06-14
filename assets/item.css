@@ -28,6 +28,54 @@
   padding: 5px 19px 3px 21px;
 }
 
+@media (max-width: 768px) {
+    .win95-input {
+        display: inline-block;
+        width: 160px;
+        padding: 4px 6px;
+        background-color: #ffffff; 
+        color: #000000;
+        
+        font-family: '돋움', dotum, 'MS Sans Serif', sans-serif;
+        font-size: 12px;
+        outline: none; 
+
+        border-top: 2px solid #808080;    
+        border-left: 2px solid #808080;   
+        border-right: 2px solid #ffffff;  
+        border-bottom: 2px solid #ffffff;
+
+        box-shadow: inset 1px 1px 0px 0px #000000;
+
+        user-select: text !important;
+        -webkit-user-select: text !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .win95-input {
+        display: inline-block;
+        width: 200px;
+        padding: 4px 6px;
+        background-color: #ffffff; 
+        color: #000000;
+        
+        font-family: '돋움', dotum, 'MS Sans Serif', sans-serif;
+        font-size: 12px;
+        outline: none; 
+
+        border-top: 2px solid #808080;    
+        border-left: 2px solid #808080;   
+        border-right: 2px solid #ffffff;  
+        border-bottom: 2px solid #ffffff;
+
+        box-shadow: inset 1px 1px 0px 0px #000000;
+
+        user-select: text !important;
+        -webkit-user-select: text !important;
+    }  
+}
+
 .win95-input {
   display: inline-block;
   width: 200px;

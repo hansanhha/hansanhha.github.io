@@ -1,0 +1,72 @@
+---
+layout: null
+permalink: /search.json
+---
+
+[
+{% assign first = true %}
+
+{% for post in site.projects %}
+  {% unless first %},{% endunless %}
+  {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | jsonify }},
+    "content": {{ post.content | strip_html | jsonify }},
+    "pagename": {{ post.page-name | jsonify}},
+    "pagenameKo": {{ post.page-name.ko | jsonify}}
+  }
+  {% assign first = false %}
+{% endfor %}
+
+{% for post in site.programming %}
+  {% unless first %},{% endunless %}
+  {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | jsonify }},
+    "content": {{ post.content | strip_html | jsonify }},
+    "pagename": {{ post.page-name | jsonify}},
+    "pagenameKo": {{ post.page-name.ko | jsonify}}
+  }
+  {% assign first = false %}
+{% endfor %}
+
+{% for post in site.daily %}
+  {% unless first %},{% endunless %}
+  {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | jsonify }},
+    "content": {{ post.content | strip_html | jsonify }},
+    "pagename": {{ post.page-name | jsonify}},
+    "pagenameKo": {{ post.page-name.ko | jsonify}}
+  }
+  {% assign first = false %}
+{% endfor %}
+
+{% for post in site.archives %}
+  {% unless first %},{% endunless %}
+  {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | jsonify }},
+    "content": {{ post.content  | jsonify}},
+    "pagename": {{ post.page-name | jsonify}},
+    "pagenameKo": {{ post.page-name.ko | jsonify}}
+  }
+  {% assign first = false %}
+{% endfor %}
+
+{% for post in site.sunrise %}
+  {% unless first %},{% endunless %}
+  {
+    "title": {{ post.title | jsonify }},
+    "url": {{ post.url | jsonify }},
+    "content": {{ post.content  | jsonify}},
+    "pagename": {{ post.page-name | jsonify}},
+    "pagenameKo": {{ post.page-name.ko | jsonify}},
+    "nomiation": {{ post.nomiation | jsonify}},
+    "address": {{ post.address | jsonify}},
+    "nomiationKo": {{ post.nomiation-ko | jsonify}},
+    "addressKo": {{ post.address-ko | jsonify}}
+  }
+  {% assign first = false %}
+{% endfor %}
+]

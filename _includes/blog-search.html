@@ -6,8 +6,79 @@
     </div>
 </div>
 
+<div id="search-result-box" style="display: none;">
+    <ul id="search-result">
+    </ul>
+</div>
+
 <script>
 document.getElementById("hansanhha").addEventListener("click", () => {
-   location.href = window.origin; 
+        location.href = window.origin; 
 });
+
+document.getElementById("input_search").addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        search();
+    }
+});
+
+document.getElementById("search-result-box").style.display="none";
+
+async function search() {
+    const searchQuery = document.getElementById("input_search").value.trim().toLowerCase();
+    if (!searchQuery) return;
+
+    try {
+        const response = await fetch("/search.json");
+        const textData = await response.text();
+        const searchResults= JSON.parse(textData);
+        printSearchResult(searchQuery, searchResults);
+    } catch (error) {
+        console.log(error);
+        printErrorResult();
+    }
+}
+
+function printSearchResult(searchQuery, searchResults) {
+    const $pageContentWrapper = document.getElementById("page-content-wrapper");
+    const $searchResultBox = document.getElementById("search-result-box");
+    const $searchResult = document.getElementById("search-result");
+    $searchResult.innerHTML = "";
+    $pageContentWrapper.innerHTML = "";
+    $searchResultBox.style.display="";
+    $pageContentWrapper.appendChild($searchResultBox);
+
+    const filteredResults = searchResults.filter((result) => {
+        const titleMatch = result.title ? result.title.toLowerCase().includes(searchQuery) : false;
+        const contentMatch = result.content ? result.content.toLowerCase().includes(searchQuery) : false;
+        const pagenameMatch = result.pagename ? result.pagename.toLowerCase().includes(searchQuery) : false;
+        const pagenameKoMatch = result.pagenameKo ? result.pagenameKo.toLowerCase().includes(searchQuery) : false;
+        const nomiationMatch = result.nomiation ? result.nomiation.toLowerCase().includes(searchQuery) : false;
+        const addressMatch = result.address ? result.address.toLowerCase().includes(searchQuery) : false;
+        const nomiationKoMatch = result.nomiationKo ? result.nomiationKo.toLowerCase().includes(searchQuery) : false;
+        const addressKoMatch = result.addressKo ? result.addressKo.toLowerCase().includes(searchQuery) : false;
+        return titleMatch || contentMatch || pagenameMatch || pagenameKoMatch 
+            || nomiationMatch || addressMatch || nomiationKoMatch || addressKoMatch;
+    });
+
+    if (filteredResults.length === 0) {
+        $searchResult.textContent = localStorage.getItem("lang") === "ko" ? "검색 결과가 없습니다" : "none";
+        return;
+    }
+
+    filteredResults.forEach((result) => {
+        const $result = document.createElement("li");
+        $result.innerHTML = `
+            <a href="${result.url}">${result.title}</a>
+        `;
+        $searchResult.appendChild($result);
+    });
+}
+
+function printErrorResult() {
+    const $pageContentWrapper = document.getElementById("page-content-wrapper");
+    $pageContentWrapper.innerHTML = "";
+    $pageContentWrapper.textContent = localStorage.getItem("lang") === "ko" ? "검색에 실패했습니다" : "Failed search";
+}
 </script>

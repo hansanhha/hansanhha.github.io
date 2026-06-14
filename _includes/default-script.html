@@ -1,20 +1,13 @@
 <script>
 if (localStorage.getItem("lang") === undefined && navigator.language.startsWith("ko")) {
     localStorage.setItem("lang", "ko");
+} else if (localStorage.getItem("lang") === undefined) {
+    localStorage.setItem("lang", "en");
 }
 
-document.getElementById("input_search").addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        e.preventDefault();
-        setUsername();
-    }
-});
+localStorage.getItem("lang") === "en" ? printEnLang() : printKoLang()
 
 document.getElementById("user_agent").innerText = "User-Agent: " + navigator.userAgent;
-
-localStorage.getItem("lang") !== undefined
-    ? localStorage.getItem("lang") === "en" ? printEnLang() : printKoLang()
-    : navigator.language.startsWith("en") ? printEnLang() : printKoLang();
 
 const today = new Date();
 document.getElementById("user_visit_day").innerText = today.toLocaleDateString('en-US', {
@@ -73,31 +66,29 @@ function changeLang(lang) {
 }
 
 const $empty = document.getElementById("empty");
-
-if ($empty != undefined) {
-    const lang = localStorage.getItem("lang");
-    if (lang === "ko") {
-        $empty.textContent = "빈 페이지";
-    } else {
-        $empty.textContent = "Empty Page";
-    }
+const $pageContentWrapper = document.getElementById("page-content-wrapper");
+if ($empty) {
+    $empty.textContent = localStorage.getItem("lang") === "ko" ? "빈 페이지" : "Empty Page";
+} else if ($pageContentWrapper && $pageContentWrapper.childElementCount === 0) {
+    const $span = document.createElement("span");
+    $span.textContent = localStorage.getItem("lang") === "ko" ? "빈 페이지" : "Empty Page";
+    $pageContentWrapper.innerHTML = "";
+    $pageContentWrapper.appendChild($span);
 }
 
-const $aList = Array.from(document.getElementsByTagName("a"));
-
-const isKorean = localStorage.getItem("lang") === "ko";
-$aList.forEach($a => {
-    if (isKorean) {
-        if ($a.dataset.displayKo != undefined) {
-            $a.textContent = $a.dataset.displayKo;
+const hyperlinks = Array.from(document.getElementsByTagName("a"));
+hyperlinks.forEach((link) => {
+    if (localStorage.getItem("lang") === "ko") {
+        if (link.dataset.displayKo) {
+            link.textContent = link.dataset.displayKo;
         }
-        if ($a.dataset.hrefKo != undefined) {
-            $a.href = $a.dataset.hrefKo;
+        if (link.dataset.hrefKo) {
+            link.href = link.dataset.hrefKo;
         }
-    } else if ($a.dataset.display != undefined){
-        $a.textContent = $a.dataset.display;
+    } else if (link.dataset.display){
+        link.textContent = link.dataset.display;
     } else {
-        $a.textContent = $a.textContent;
+        link.textContent = link.textContent;
     }
 });
 

@@ -8,14 +8,12 @@
 	{% include meta.html %}
 	{% include theme.html %}
 </head>
-<head>
-</head>
 <body>
     <div style="display: flex; flex-direction: column; margin-top: 5px; margin-left: 10px; gap: 10px;">
         {% include blog-search.html %}
         <div style="display: flex; flex-direction: column; gap: 1em;">
-            {% include blog-info.html %}
-            {% include page-info.html %}
+            {% include common.html %}
+            <div id="page-content-wrapper"></div>
             {% include internet-usernames.html %}
         </div>
     </div>

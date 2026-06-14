@@ -5,3 +5,19 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+
+collections:
+  projects:
+    output: true 
+
+  programming:
+    output: true
+
+  daily:
+    output: true
+
+  archives:
+    output: true
+  
+  sunrise:
+    output: true
