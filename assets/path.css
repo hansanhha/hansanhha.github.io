@@ -62,8 +62,8 @@
     /* align-items: center; */
     /* justify-items: center; */
     /* margin-top: 20%; */
-    margin-top: 8px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 7px;
   }
 }
 
@@ -74,8 +74,8 @@
     /* align-items: center; */
     /* justify-items: center; */
     /* margin-top: 10%; */
-    margin-top: 8px;
-    margin-bottom: 5x;
+    margin-top: 10px;
+    margin-bottom: 7x;
   }
 }
 
@@ -98,6 +98,6 @@
 
 .page-link {
     display: flex;
-    gap: 5px;
-    margin-bottom: 10px;
+    gap: 7px;
+    margin-bottom: 15px;
 }

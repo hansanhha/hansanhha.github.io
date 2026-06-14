@@ -13,7 +13,7 @@ permalink: /search.json
     "url": {{ post.url | jsonify }},
     "content": {{ post.content | strip_html | jsonify }},
     "pagename": {{ post.page-name | jsonify}},
-    "pagenameKo": {{ post.page-name.ko | jsonify}},
+    "pagenameKo": {{ post.page-name-ko | jsonify}},
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
     "category": "projects"
@@ -21,17 +21,17 @@ permalink: /search.json
   {% assign first = false %}
 {% endfor %}
 
-{% for post in site.programming %}
+{% for post in site.code %}
   {% unless first %},{% endunless %}
   {
     "title": {{ post.title | jsonify }},
     "url": {{ post.url | jsonify }},
     "content": {{ post.content | strip_html | jsonify }},
     "pagename": {{ post.page-name | jsonify}},
-    "pagenameKo": {{ post.page-name.ko | jsonify}},
+    "pagenameKo": {{ post.page-name-ko | jsonify}},
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
-    "category": "programming"
+    "category": "code"
   }
   {% assign first = false %}
 {% endfor %}
@@ -43,7 +43,7 @@ permalink: /search.json
     "url": {{ post.url | jsonify }},
     "content": {{ post.content | strip_html | jsonify }},
     "pagename": {{ post.page-name | jsonify}},
-    "pagenameKo": {{ post.page-name.ko | jsonify}},
+    "pagenameKo": {{ post.page-name-ko | jsonify}},
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
     "category": "daily"
@@ -58,7 +58,7 @@ permalink: /search.json
     "url": {{ post.url | jsonify }},
     "content": {{ post.content  | jsonify}},
     "pagename": {{ post.page-name | jsonify}},
-    "pagenameKo": {{ post.page-name.ko | jsonify}},
+    "pagenameKo": {{ post.page-name-ko | jsonify}},
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
     "category": "archives"
@@ -73,7 +73,7 @@ permalink: /search.json
     "url": {{ post.url | jsonify }},
     "content": {{ post.content  | jsonify}},
     "pagename": {{ post.page-name | jsonify}},
-    "pagenameKo": {{ post.page-name.ko | jsonify}},
+    "pagenameKo": {{ post.page-name-ko | jsonify}},
     "nomiation": {{ post.nomiation | jsonify}},
     "address": {{ post.address | jsonify}},
     "nomiationKo": {{ post.nomiation-ko | jsonify}},

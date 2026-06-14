@@ -79,6 +79,8 @@ function configureDisplayOptions() {
     const $multi = document.getElementById("multi");
     const $imageContainer = document.getElementById("image-container");
 
+    $single.classList.add("cursor-pointer");
+    $multi.classList.add("cursor-pointer");
     if (localStorage.getItem("lang") === "ko") {
         $view.textContent = "표시: ";
         $single.textContent = "단일";
@@ -108,10 +110,10 @@ function configureDisplayOptions() {
         const rows = [];
         let currentRow = [];
         let currentRowWidth = 0;
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
         for (const img of images) {
             const aspectRatio = img.naturalWidth / img.naturalHeight;
-            const isMobile = window.matchMedia('(max-width: 768px)').matches;
             const expectedWidth = isMobile ? aspectRatio * 100 : aspectRatio * 300;
             if (currentRowWidth + expectedWidth >= containerWidth && currentRow.length > 0) {
                 rows.push(currentRow);
@@ -135,7 +137,7 @@ function configureDisplayOptions() {
             row.forEach(({img, aspectRatio}) => {
                 const cloned = img.cloneNode();
                 cloned.addEventListener("click", () => focus(originalImgs.filter(i => i.src === img.src)[0]));
-                cloned.style.maxWidth = `${(aspectRatio / totalAspect) * 98}%`;
+                cloned.style.maxWidth = isMobile ? `${(aspectRatio / totalAspect) * 94}%` : `${(aspectRatio / totalAspect) * 97.7}%`;
                 $row.appendChild(cloned);
             });
 

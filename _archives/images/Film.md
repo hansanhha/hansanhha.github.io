@@ -2,7 +2,7 @@
 layout: images
 title-name:
 prev-link: room
-next-link: the%20weeknd
+next-link: The%20Weeknd
 page-name-ko: 영화
 createDate: 2026-04-27
 ---

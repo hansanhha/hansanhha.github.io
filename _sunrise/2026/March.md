@@ -1,7 +1,7 @@
 ---
 layout: sunrise
-prev-link: february
-next-link: april
+prev-link: February
+next-link: April
 page-name-ko: 3월
 nomiation: Sky Park
 address: 95, Haneulgongwon-ro, Mapo-gu, Seoul

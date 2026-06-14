@@ -16,8 +16,7 @@
             {% if page.content != nil and page.content != "" %}
                 <div id="page-content-wrapper">
                     <div class="video-container">
-                        <div id="video-loading-indicator">      
-                        </div>
+                        <div id="video-loading-indicator" style="display: flex;"></div>
                         <div id="video-box">
                             {{ content }}
                         </div>
@@ -33,34 +32,39 @@
 </body>
 {% include default-script.html %}
 <script>
-document.addEventListener("DOMContentLoaded", (event) => {
-    const video = document.getElementsByTagName("video")[0];
-    const videoBox = document.getElementById('video-box');
-    const loadingIndicator = document.getElementById('video-loading-indicator');
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+let videoCount;
+let loadedvideoCount = 0;
+document.addEventListener("DOMContentLoaded", async (event) => {
+    const videos = document.getElementsByTagName("video");
+    const $videoBox = document.getElementById('video-box');
+    const $loadingIndicator = document.getElementById('video-loading-indicator');
 
-    const lang = localStorage.getItem("lang");
+    $loadingIndicator.style.display = "flex";
+    $loadingIndicator.style.alignItems = "center";
+    $videoBox.style.display = "none";
+    if (document.documentElement.getAttribute("data-theme") === "light" || localStorage.getItem("theme") === "light") {
+        $loadingIndicator.innerHTML = localStorage.getItem("lang") === "ko" 
+        ? "<span>비디오 다운로드 중</span><img src='/assets/img/loading-windows98.gif' style='width: 30px; height: 30px;'/>" 
+        : "<span>loading video</span><img src='/assets/img/loading-windows98.gif' style='width: 30px; height: 30px;'/>";
+    } else {
+        $loadingIndicator.innerHTML = localStorage.getItem("lang") === "ko" 
+        ? "<span>비디오 다운로드 중</span>" 
+        : "<span>loading video</span>";
+    }
 
-    video.load();
-
-    video.addEventListener("loadstart", () => {
-        loadingIndicator.style.display = "block";
-        videoBox.style.display = "none";
-        if (lang === "ko") {
-            loadingIndicator.textContent = "비디오 다운로드 중";
-        } else {
-            loadingIndicator.textContent = "loading video";
-        }
-    });
-
-    video.addEventListener("loadeddata", () => {
-        loadingIndicator.style.display = "none";
-        videoBox.style.display = "block";
-    });
-
-    video.addEventListener("canplay", () => {
-        loadingIndicator.style.display = "none";
-        videoBox.style.display = "block";
-    });
+    videoCount = videos.length;
+    for (let i = 0; i < videoCount; i++) {
+        videos[i].load();
+        videos[i].addEventListener("loadeddata", () => {
+            loadedvideoCount++;
+            if (videoCount == loadedvideoCount) {
+                $loadingIndicator.style.display = "none";
+                $videoBox.style.display = "block";
+            }
+        });
+    }
+    
 });
 </script>
 </html>

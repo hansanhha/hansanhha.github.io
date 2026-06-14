@@ -40,7 +40,7 @@ async function loadLatestPosts() {
                         $category.id = category;
                         $category.style.marginTop = "12px";
                         $category.classList = "post-list";
-                        $categoryTextContent = document.createElement("span");
+                        const $categoryTextContent = document.createElement("span");
                         $categoryTextContent.textContent = capitalize(localize(category));
                         $categoryTextContent.style.fontWeight = 600;
                         $category.appendChild($categoryTextContent)
@@ -59,13 +59,12 @@ async function loadLatestPosts() {
         }
 
         printPostsByCategory("projects");
-        printPostsByCategory("programming");
+        printPostsByCategory("code");
         printPostsByCategory("daily");
         printPostsByCategory("archives");
         printPostsByCategory("sunrise");
 
     } catch (error) {
-        console.log(error);
         $latestPostsBox.style.display = "none";
     }
 }
@@ -79,7 +78,7 @@ function localize(category) {
         localized = "프로젝트";
         break;
 
-        case "programming":
+        case "code":
         localized = "프로그래밍";
         break;
 

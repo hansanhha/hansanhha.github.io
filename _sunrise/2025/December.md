@@ -1,7 +1,7 @@
 ---
 layout: sunrise
-prev-link: november
-next-link: ../2026/january
+prev-link: November
+next-link: ../2026/January
 page-name-ko: 12월
 nomiation: YTN Seoul Tower
 address: 105 Namsangongwon-gil, Yongsan-gu, Seoul

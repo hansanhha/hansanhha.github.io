@@ -1,7 +1,7 @@
 ---
 layout: sunrise
-prev-link: october
-next-link: december
+prev-link: October
+next-link: December
 page-name-ko: 11월
 nomiation: Korea Seoul National Cemetery
 address: 210 Hyeonchung-ro, Dongjak-gu, Seoul

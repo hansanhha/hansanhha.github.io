@@ -1,7 +1,7 @@
 ---
 layout: images
 title-name: 
-prev-link: film
+prev-link: Film
 next-link: impressionism
 page-name-ko: 위켄드
 createDate: 2025-10-31

@@ -1,7 +1,7 @@
 ---
 layout: sunrise
-prev-link: january
-next-link: march
+prev-link: January
+next-link: March
 page-name-ko: 2월
 nomiation: Samseong Haemaji Park
 address: 39, Yeongdong-daero 128-gil, Gangnam-gu, Seoul

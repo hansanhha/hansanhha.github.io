@@ -1,7 +1,7 @@
 ---
 layout: sunrise
-prev-link: march
-next-link: may
+prev-link: March
+next-link: May
 page-name-ko: 4월
 nomiation: Jamsil Hangang Park
 address: 65, Hangaram-ro, Songpa-gu, Seoul

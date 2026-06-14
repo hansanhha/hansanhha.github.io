@@ -10,7 +10,7 @@ collections:
   projects:
     output: true 
 
-  programming:
+  code:
     output: true
 
   daily:

@@ -1,6 +1,6 @@
-<ul id="blog_categories" class="horizontal-list" style="margin-top: 10px;">
+<ul id="blog_categories" class="horizontal-list" style="margin-top: 7px;">
     <li><a id="projects_link">Projects</a></li>
-    <li><a id="programming_link">Programming</a></li>
+    <li><a id="code_link">Code</a></li>
     <li><a id="daily_link">Daily</a></li>
     <li><a id="archives_link">Archives</a></li>   
     <li><a id="sunrise_link">Sunrise</a></li>
@@ -11,10 +11,10 @@
 </div>
 
 {% if page.title-name != nil %}
-    <div class="text-left-align">{{ page.title-name }}</div>
+    <div id="page-info-title" class="text-left-align" style="margin-bottom: 5px;">{{ page.title-name }}</div>
 {% endif %}
 {% if page.name != "index.md" and page.date != nil %}
-    <div class="text-left-align"> {{ page.createDate }} </div>
+    <div id="page-info-date" class="text-left-align" style="margin-bottom: 5px;"> {{ page.createDate }} </div>
 {% endif %}
 
 <script>
@@ -24,7 +24,7 @@ if (window.location.pathname !== "/") {
 }
 
 document.getElementById("projects_link").href = window.location.origin + "/projects/";
-document.getElementById("programming_link").href = window.location.origin + "/programming/";
+document.getElementById("code_link").href = window.location.origin + "/code/";
 document.getElementById("daily_link").href = window.location.origin + "/daily/";
 document.getElementById("archives_link").href = window.location.origin + "/archives/";
 document.getElementById("sunrise_link").href = window.location.origin + "/sunrise/";
@@ -49,10 +49,10 @@ document.querySelectorAll("#blog_categories li a").forEach((category) => {
             case "[Projects]":
                 category.textContent = "[프로젝트]";
                 break;
-            case "Programming":
+            case "Code":
                 category.textContent = "프로그래밍";
                 break;
-            case "[Programming]":
+            case "[Code]":
                 category.textContent = "[프로그래밍]";
                 break;
             case "Daily":

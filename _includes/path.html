@@ -9,7 +9,7 @@
             {% if dir contains ".md" %}
               {% assign dirFilename = dir | replace: ".md" | "" %}
               {% assign dirPath = dirPath | append: "/" | append: dirFilename %}
-              <a class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dirFilename }}" data-path-name-ko="{{ dir.page-name-ko }}"></a>
+              <span class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dirFilename }}" data-path-name-ko="{{ dir.page-name-ko }}"></span>
             {% else %}
               {% assign dirPath = dirPath | append: "/" | append: dir %}
               <a class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dir }}"></a>
@@ -45,19 +45,19 @@ pathLinks.forEach((link) => {
 const pageIndexLinks = document.querySelectorAll(".page-index-link");
 pageIndexLinks.forEach((link) => {
   const lang = localStorage.getItem("lang");
-  lang === "ko" ? link.textContent = "인덱스" : link.textContent = "Index";
+  lang === "ko" ? link.textContent = "인덱스 페이지" : link.textContent = "Index";
 });
 
 const pagePrevLinks = document.querySelectorAll(".page-prev-link");
 pagePrevLinks.forEach((link) => {
   const lang = localStorage.getItem("lang");
-  lang === "ko" ? link.textContent = "이전" : link.textContent = "Prev";
+  lang === "ko" ? link.textContent = "이전 페이지" : link.textContent = "Prev";
 });
 
 const pageNextLinks = document.querySelectorAll(".page-next-link");
 pageNextLinks.forEach((link) => {
   const lang = localStorage.getItem("lang");
-  lang === "ko" ? link.textContent = "다음" : link.textContent = "Next";
+  lang === "ko" ? link.textContent = "다음 페이지" : link.textContent = "Next";
 });
 
 function capitalize(str) {

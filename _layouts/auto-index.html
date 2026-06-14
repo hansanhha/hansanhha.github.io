@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="/assets/item.css">
+	<link rel="stylesheet" href="/assets/default.css">
+	<link rel="stylesheet" href="/assets/path.css">
+	<link rel="stylesheet" href="/assets/lang.css">
+	{% include meta.html %}
+	{% include theme.html %}
+</head>
+<head>
+</head>
+<body>
+    <div style="display: flex; flex-direction: column; margin-top: 5px; padding-left: 10px; gap: 10px;">
+        {% include blog-search.html %}
+        <div style="display: flex; flex-direction: column;">
+            {% include common.html %}
+            <div id="page-content-wrapper">
+                <div></div>
+            </div>
+            <div id="page-sort" style="display: none;" data-idx-sort="{{ page.idx-sort }}"></div>
+            <div id="page-category" style="display: none;" data-category="{{ page.category-name }}"></div>
+            {% include internet-usernames.html %}
+        </div>
+    </div>
+</body>
+{% include default-script.html %}
+<script>
+loadIndexByCategory();
+
+async function loadIndexByCategory() {
+    const $pageContentWrapper = document.getElementById("page-content-wrapper");
+    const $pageSort = document.getElementById("page-sort");
+    const $pageCategory = document.getElementById("page-category");
+    $pageContentWrapper.style.innerHTML = "";
+
+    const sort = $pageSort.dataset.idxSort;
+    const category = $pageCategory.dataset.category;
+    const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
+    const options = { 
+            year: 'numeric', 
+            month: '2-digit', 
+            day: '2-digit',  
+        };
+
+    try {
+        const response = await fetch("/search.json");
+        const textData = await response.text();
+        const jsonData = JSON.parse(textData);
+        
+        const filteredCategory = jsonData
+            .filter((post) => post.title.toLowerCase() != "index")
+            .filter((post) => post.category.toLowerCase() === category)
+            .sort((a, b) => {
+                const aDate = a.createDate ? a.createDate : a.date;
+                const bDate = b.createDate ? b.createDate : b.date;
+
+                if (sort && sort === "asc")  return new Date(aDate.replace(/-/g, '/')) - new Date(bDate.replace(/-/g, '/'));
+                else return new Date(bDate.replace(/-/g, '/')) - new Date(aDate.replace(/-/g, '/'));
+            });
+
+        const printIndexByCategory = (category) => {
+            filteredCategory
+                .forEach((post) => {
+                    const $post = document.createElement("p");
+                    const postDate = post.createDate ? post.createDate : post.date;
+                    const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
+                    const capitalizedTitle = capitalize(post.title);
+
+                    $post.innerHTML = `
+                        <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
+                    `;
+                    $pageContentWrapper.appendChild($post);
+            });            
+        }
+
+        printIndexByCategory(category);
+
+    } catch (error) {
+        $pageContentWrapper.style.display = "none";
+    }
+}
+
+function capitalize(str) {
+  return str
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+</script>
+</html>

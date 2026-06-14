@@ -1,7 +1,7 @@
 ---
 layout: images
 title-name: 
-prev-link: the%20weeknd
+prev-link: The%20Weeknd
 next-link: 
 page-name: Impressionism
 page-name-ko: 인상주의
