@@ -1,6 +1,6 @@
 ---
 layout: sunrise
-prev-link: May
+prev-link: may
 next-link: 
 page-name-ko: 6월
 nomiation: Seoul Mongchontoseong Earthen Fortification 

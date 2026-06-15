@@ -2,7 +2,7 @@
 layout: images
 title-name: 
 prev-link: season
-next-link: film
+next-link: Film
 page-name-ko: 공간
 createDate: 2026-05-31
 ---

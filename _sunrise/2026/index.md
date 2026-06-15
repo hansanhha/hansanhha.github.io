@@ -12,6 +12,6 @@ idx-name-ko: 2026
 
 <a href="./April" data-display-ko="4월">April</a>
 
-<a href="./May" data-display-ko="5월">May</a>
+<a href="./may" data-display-ko="5월">May</a>
 
-<a href="./June" data-display-ko="6월">June</a>
+<a href="./june" data-display-ko="6월">June</a>

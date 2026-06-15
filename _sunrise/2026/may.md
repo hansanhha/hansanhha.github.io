@@ -1,7 +1,7 @@
 ---
 layout: sunrise
 prev-link: April
-next-link: June
+next-link: june
 page-name-ko: 5월
 nomiation: Yongyangbongjeojeong Park
 address: San3-9, Bon-dong, Dongjak-gu, Seoul
