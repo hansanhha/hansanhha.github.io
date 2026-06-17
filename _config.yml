@@ -1,5 +1,6 @@
 title: hansanhha
 description: Internet Notebook
+url: https://hansanhha.github.io
 
 plugins:
   - jekyll-feed
