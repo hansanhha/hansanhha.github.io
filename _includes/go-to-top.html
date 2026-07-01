@@ -1,17 +1,26 @@
-<div id="go-to-top-box" style="display: none; margin-top: 20px; margin-bottom: 10px;">
-    <span id="go-to-top" class="cursor-pointer"></span>
+<div id="go-to-top-box" style="display: none; margin-top: 20px; margin-bottom: 10px;" class="cursor-pointer">
+    <span id="go-to-top"></span>
 </div>
 <script>
     const $goToTopBox = document.getElementById("go-to-top-box");
     const $goToTop = document.getElementById("go-to-top");
-    if (document.documentElement.scrollHeight > window.innerHeight) {
-        $goToTopBox.style.display = "flex";
-        $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기" : "go to top";    
-    } else {
-        $goToTopBox.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기" : "go to top";    
-        $goToTop.style.display = "flex";
-    }
 
+    window.addEventListener("load", () => {
+        if (document.documentElement.scrollHeight > window.innerHeight) {
+            $goToTopBox.style.display = "flex";
+            $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기" : "go to top";    
+        } else {
+            $goToTopBox.style.display = "none";
+        }
+
+        $goToTopBox.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    });
+    
     function toggleGoToTopByResizing() {
             // const $mainContainer = document.getElementsByClassName("main-container");
             // const mainContainerStyle = getComputedStyle($mainContainer[0]);
@@ -25,10 +34,4 @@
         }
 
     window.addEventListener("resize", toggleGoToTopByResizing);
-    $goToTop.addEventListener("click", () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
 </script>
