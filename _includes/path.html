@@ -39,7 +39,10 @@
 const pathLinks = document.querySelectorAll(".path-link");
 pathLinks.forEach((link) => {
   link.href = window.location.origin + link.dataset.path;
-  link.textContent = "/" + capitalize(link.dataset.pathName);
+
+  const linkname = localStorage.getItem("lang") === "ko" ? link.dataset.pathNameKo ? link.dataset.pathNameKo : convertLinknameToKo(link.dataset.pathName) : link.dataset.pathName;
+
+  link.textContent = "/" + capitalize(linkname);
 });
 
 const pageIndexLinks = document.querySelectorAll(".page-index-link");
@@ -65,5 +68,75 @@ function capitalize(str) {
     .split(" ")
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+}
+
+function convertLinknameToKo(linkname) {
+  const linknameLowercase = linkname.toLowerCase();
+  switch (linknameLowercase) {
+    case 'projects':
+      return '프로젝트';
+    case 'code':
+      return '프로그래밍';
+    case 'daily':
+      return '일상';
+    case 'archives':
+      return '아카이브';
+    case 'text':
+      return '글 귀'
+    case 'images':
+      return '이미지'
+    case 'objects':
+      return '사물'
+    case 'season':
+      return '계절'
+    case 'room':
+      return '공간'
+    case 'film':
+      return '영화'
+    case 'the weeknd':
+      return '위켄드'
+    case 'impressionism':
+      return '인상주의'
+    case 'videos':
+      return '동영상'
+    case 'sky':
+      return '하늘'
+    case 'wave':
+      return '물결'
+    case 'forest':
+      return '숲 속'
+    case 'piano':
+      return '피아노'
+    case 'web pages':
+      return '웹 페이지'
+    case 'sunrise':
+      return '해맞이';
+    case 'january':
+      return '1월';
+    case 'february':
+      return '2월';
+    case 'march':
+      return '3월';
+    case 'april':
+      return '4월';
+    case 'may':
+      return '5월';
+    case 'june':
+      return '6월';
+    case 'july':
+      return '7월';
+    case 'august':
+      return '8월';
+    case 'september':
+      return '9월';
+    case 'october':
+      return '10월';
+    case 'november':
+      return '11월';
+    case 'december':
+      return '12월';
+    default:
+      return linkname;
+  }
 }
 </script>

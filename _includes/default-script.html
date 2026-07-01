@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/ua-parser-js@2.0.10/dist/ua-parser.pack.min.js"></script>
+
 <script>
 if (localStorage.getItem("lang") === undefined && navigator.language.startsWith("ko")) {
     localStorage.setItem("lang", "ko");
@@ -5,12 +7,40 @@ if (localStorage.getItem("lang") === undefined && navigator.language.startsWith(
     localStorage.setItem("lang", "en");
 }
 
-localStorage.getItem("lang") === "en" ? printEnLang() : printKoLang()
+const parser = new UAParser();
 
-document.getElementById("user_agent").innerText = "User-Agent: " + navigator.userAgent;
+// 현재 접속한 유저의 User-Agent 파싱
+const result = parser.getResult();
 
 const today = new Date();
-document.getElementById("user_visit_day").innerText = today.toLocaleDateString('en-US', {
+let blogInfoDateLocale = "en-US";
+if (localStorage.getItem("lang") === "en") {
+    printEnLang();
+    document.getElementById("user_agent").innerText = "User-Agent: " + result.device.vendor + " " + result.os.name  + ", " + result.browser.name;
+    document.getElementById("user_layout").textContent = "Layout: Default";
+    document.getElementById("user_appearance").textContent = "Appearance: ";
+    document.getElementById("user_appearance_brightly").textContent = "Brightly";
+    document.getElementById("user_appearance_darkly").textContent = "Darkly";
+    document.getElementById("user_lang").textContent = "Locale: ";
+    document.getElementById("internet-usernames").textContent = "Others";
+    document.getElementById("github").textContent = "GitHub: ";
+    document.getElementById("instagram").textContent = "Instagram: ";
+    document.getElementById("pinterest").textContent = "Pinterest: ";
+} else {
+    printKoLang();
+    document.getElementById("user_agent").innerText = "접속 환경: " + result.device.vendor + " " + result.os.name  + ", " + result.browser.name;
+    blogInfoDateLocale = 'ko-KR';
+    document.getElementById("user_layout").textContent = "화면 구성: 기본";
+    document.getElementById("user_appearance").textContent = "배경: ";
+    document.getElementById("user_appearance_brightly").textContent = "밝게";
+    document.getElementById("user_appearance_darkly").textContent = "어둡게";
+    document.getElementById("user_lang").textContent = "선호하는 언어: ";
+    document.getElementById("internet-usernames").textContent = "인터넷";
+    document.getElementById("github").textContent = "깃허브: ";
+    document.getElementById("instagram").textContent = "인스타그램: ";
+    document.getElementById("pinterest").textContent = "핀터레스트: ";
+}
+document.getElementById("user_visit_day").innerText = today.toLocaleDateString(blogInfoDateLocale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -28,23 +58,23 @@ helloUserPreferTheme.addEventListener?.("change", (e) => {
 });
 
 function printDarklyAppearance() {
-    document.getElementById("user_appearance_darkly").classList.add("text-underline-black", "cursor-pointer");
+    document.getElementById("user_appearance_darkly").classList.add("selected-highlight", "cursor-pointer");
     document.getElementById("user_appearance_brightly").classList = "cursor-pointer";
 }
 
 function printBrightlyAppearance() {
     document.getElementById("user_appearance_darkly").classList = "cursor-pointer";
-    document.getElementById("user_appearance_brightly").classList.add("text-underline-black", "cursor-pointer");
+    document.getElementById("user_appearance_brightly").classList.add("selected-highlight", "cursor-pointer");
 }
 
 function printEnLang() {
-    document.getElementById("user_lang_en").classList.add("text-underline-black", "cursor-pointer");
+    document.getElementById("user_lang_en").classList.add("selected-highlight", "cursor-pointer");
     document.getElementById("user_lang_ko").classList = "cursor-pointer";
 }
 
 function printKoLang() {
     document.getElementById("user_lang_en").classList = "cursor-pointer";
-    document.getElementById("user_lang_ko").classList.add("text-underline-black", "cursor-pointer");
+    document.getElementById("user_lang_ko").classList.add("selected-highlight", "cursor-pointer");
 }
 
 function changeTheme(theme) {

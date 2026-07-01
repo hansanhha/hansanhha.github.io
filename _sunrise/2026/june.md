@@ -1,7 +1,7 @@
 ---
 layout: sunrise
 prev-link: may
-next-link: 
+next-link: July
 page-name-ko: 6월
 nomiation: Seoul Mongchontoseong Earthen Fortification 
 address: 424, Olympic-ro, Songpa-gu, Seoul

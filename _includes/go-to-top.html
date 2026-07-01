@@ -1,34 +1,34 @@
-<div style="display: flex; margin-top: 10px;">
+<div id="go-to-top-box" style="display: none; margin-top: 20px; margin-bottom: 10px;">
     <span id="go-to-top" class="cursor-pointer"></span>
 </div>
 <script>
+    const $goToTopBox = document.getElementById("go-to-top-box");
     const $goToTop = document.getElementById("go-to-top");
-    if (localStorage.getItem("lang") === "ko") {
-        $goToTop.textContent = "위로 가기";
+    if (document.documentElement.scrollHeight > window.innerHeight) {
+        $goToTopBox.style.display = "flex";
+        $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기" : "go to top";    
     } else {
-        $goToTop.textContent = "go to top";
+        $goToTopBox.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기" : "go to top";    
+        $goToTop.style.display = "flex";
     }
 
-    function toggleGoToTop() {
-        // const $mainContainer = document.getElementsByClassName("main-container");
-        // const mainContainerStyle = getComputedStyle($mainContainer[0]);
-        // const marginTop = parseFloat(mainContainerStyle.marginTop);
-        // const marginBottom = parseFloat(mainContainerStyle.marginBottom);
-        const scrollHeight = document.documentElement.scrollHeight;
-        // const adjustedHeight = scrollHeight - marginTop - marginBottom;
-        const adjustedHeight = scrollHeight;
-        const exceeds = adjustedHeight > (window.innerHeight + 100);
-        $goToTop.style.display = exceeds ? "block" : "none";
-    }
+    function toggleGoToTopByResizing() {
+            // const $mainContainer = document.getElementsByClassName("main-container");
+            // const mainContainerStyle = getComputedStyle($mainContainer[0]);
+            // const marginTop = parseFloat(mainContainerStyle.marginTop);
+            // const marginBottom = parseFloat(mainContainerStyle.marginBottom);
+            // const adjustedHeight = scrollHeight - marginTop - marginBottom;
+            const scrollHeight = document.documentElement.scrollHeight;
+            const adjustedHeight = scrollHeight;
+            const exceeds = adjustedHeight > (window.innerHeight + 100);
+            $goToTopBox.style.display = exceeds ? "flex" : "none";
+        }
 
-    window.addEventListener("load", toggleGoToTop);
-    window.addEventListener("resize", toggleGoToTop);
+    window.addEventListener("resize", toggleGoToTopByResizing);
     $goToTop.addEventListener("click", () => {
         window.scrollTo({
             top: 0,
-            behavior: "instant"
+            behavior: "smooth"
         });
     });
-
-    toggleGoToTop();
 </script>

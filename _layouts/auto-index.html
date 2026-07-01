@@ -20,6 +20,7 @@
             </div>
             <div id="page-sort" style="display: none;" data-idx-sort="{{ page.idx-sort }}"></div>
             <div id="page-category" style="display: none;" data-category="{{ page.category-name }}"></div>
+            <div id="page-idx-name" style="display: none;" data-idx-name="{{ page.idx-name }}"></div>
             {% include internet-usernames.html %}
         </div>
     </div>
@@ -32,10 +33,12 @@ async function loadIndexByCategory() {
     const $pageContentWrapper = document.getElementById("page-content-wrapper");
     const $pageSort = document.getElementById("page-sort");
     const $pageCategory = document.getElementById("page-category");
+    const $pageIdxName = document.getElementById("page-idx-name");
     $pageContentWrapper.style.innerHTML = "";
 
     const sort = $pageSort.dataset.idxSort;
     const category = $pageCategory.dataset.category;
+    const idxName = $pageIdxName.dataset.idxName;
     const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
     const options = { 
             year: 'numeric', 
@@ -47,27 +50,25 @@ async function loadIndexByCategory() {
         const response = await fetch("/search.json");
         const textData = await response.text();
         const jsonData = JSON.parse(textData);
-        
-        const filteredCategory = jsonData
-            .filter((post) => post.title.toLowerCase() != "index")
-            .filter((post) => post.category.toLowerCase() === category)
-            .sort((a, b) => {
-                const aDate = a.createDate ? a.createDate : a.date;
-                const bDate = b.createDate ? b.createDate : b.date;
 
-                if (sort && sort === "asc")  return new Date(aDate.replace(/-/g, '/')) - new Date(bDate.replace(/-/g, '/'));
-                else return new Date(bDate.replace(/-/g, '/')) - new Date(aDate.replace(/-/g, '/'));
-            });
+        const categorisedIndexes = category === "sunrise" 
+            ? getSunriseIndexesByYear(getCategorisedIndexes(jsonData, category, sort), idxName) 
+            : getCategorisedIndexes(jsonData, category, sort);
 
         const printIndexByCategory = (category) => {
-            filteredCategory
+            categorisedIndexes
                 .forEach((post) => {
                     const $post = document.createElement("p");
                     const postDate = post.createDate ? post.createDate : post.date;
                     const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
-                    const capitalizedTitle = capitalize(post.title);
+                    const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.title : post.title;
+                    const capitalizedTitle = capitalize(title);
 
-                    $post.innerHTML = `
+                    $post.innerHTML = category === "sunrise" 
+                    ? `
+                        <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
+                    `
+                    : `
                         <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
                     `;
                     $pageContentWrapper.appendChild($post);
@@ -79,6 +80,24 @@ async function loadIndexByCategory() {
     } catch (error) {
         $pageContentWrapper.style.display = "none";
     }
+}
+
+function getCategorisedIndexes(indexes, category, sort) {
+    return indexes
+            .filter((post) => post.title.toLowerCase() != "index")
+            .filter((post) => post.category.toLowerCase() === category)
+            .sort((a, b) => {
+                const aDate = a.createDate ? a.createDate : a.date;
+                const bDate = b.createDate ? b.createDate : b.date;
+
+                if ((sort && sort === "asc") || category === "sunrise")  return new Date(aDate.replace(/-/g, '/')) - new Date(bDate.replace(/-/g, '/'));
+                else return new Date(bDate.replace(/-/g, '/')) - new Date(aDate.replace(/-/g, '/'));
+            });
+}
+
+function getSunriseIndexesByYear(indexes, year) {
+    return indexes
+            .filter((post) => post.createDate >= `${year}-01-01` && post.createDate <= `${year}-12-31`);
 }
 
 function capitalize(str) {

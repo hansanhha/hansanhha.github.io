@@ -65,6 +65,12 @@
     margin-top: 10px;
     margin-bottom: 7px;
   }
+
+  .page-link {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 5px;
+  }
 }
 
 @media (min-width: 769px) {
@@ -76,6 +82,12 @@
     /* margin-top: 10%; */
     margin-top: 10px;
     margin-bottom: 7x;
+  }
+
+  .page-link {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 15px;
   }
 }
 
@@ -94,10 +106,4 @@
 
 .category {
     font-weight: 600;
-}
-
-.page-link {
-    display: flex;
-    gap: 7px;
-    margin-bottom: 15px;
 }

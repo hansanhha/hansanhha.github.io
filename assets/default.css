@@ -7,8 +7,10 @@ body {
 ::-webkit-scrollbar { 
   display: none; 
 }
-html::-webkit-scrollbar {
+body::-webkit-scrollbar {
   display: none;
+  width: 0; 
+  height: 0;
 }
 
 :root {
@@ -244,6 +246,8 @@ html::-webkit-scrollbar {
   }
 
   video {
+    margin-left: 0;
+    margin-right: auto;
     display: block;
     max-width: 99%;
     max-height: 95vh;
@@ -340,15 +344,15 @@ html::-webkit-scrollbar {
 .main-content p:first-of-type {
   display: block;
   margin-block-start: 0px;
-  margin-block-end: 1.5em;
+  margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
 
 .main-content p {
   display: block;
-  margin-block-start: 1.5em;
-  margin-block-end: 1.5em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
@@ -453,6 +457,12 @@ h5 {
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
+}
+
+.selected-highlight::after {
+  /* content: '✓'; */
+  content: '*';
+  margin-left: 2px;
 }
 
 .cursor-pointer {
