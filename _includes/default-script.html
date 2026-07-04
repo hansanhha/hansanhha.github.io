@@ -22,10 +22,10 @@ if (localStorage.getItem("lang") === "en") {
     document.getElementById("user_appearance_brightly").textContent = "Brightly";
     document.getElementById("user_appearance_darkly").textContent = "Darkly";
     document.getElementById("user_lang").textContent = "Locale: ";
-    document.getElementById("internet-usernames").textContent = "Others";
+    document.getElementById("internet-usernames").textContent = "Internet";
     document.getElementById("github").textContent = "GitHub: ";
     document.getElementById("instagram").textContent = "Instagram: ";
-    document.getElementById("pinterest").textContent = "Pinterest: ";
+    document.getElementById("cosmos").textContent = "Cosmos: ";
 } else {
     printKoLang();
     document.getElementById("user_agent").innerText = "접속 환경: " + result.device.vendor + " " + result.os.name  + ", " + result.browser.name;
@@ -38,7 +38,7 @@ if (localStorage.getItem("lang") === "en") {
     document.getElementById("internet-usernames").textContent = "인터넷";
     document.getElementById("github").textContent = "깃허브: ";
     document.getElementById("instagram").textContent = "인스타그램: ";
-    document.getElementById("pinterest").textContent = "핀터레스트: ";
+    document.getElementById("cosmos").textContent = "코스모스: ";
 }
 document.getElementById("user_visit_day").innerText = today.toLocaleDateString(blogInfoDateLocale, {
     year: 'numeric',
@@ -122,5 +122,4 @@ hyperlinks.forEach((link) => {
         link.textContent = link.textContent;
     }
 });
-
 </script>
