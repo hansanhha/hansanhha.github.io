@@ -2,7 +2,7 @@
     <li><a id="projects_link">Projects</a></li>
     <li><a id="code_link">Code</a></li>
     <li><a id="daily_link">Daily</a></li>
-    <li><a id="archives_link">Archives</a></li>   
+    <li><a id="archives_link">Archives</a></li>
     <li><a id="sunrise_link">Sunrise</a></li>
 </ul>
 
@@ -32,48 +32,50 @@ document.getElementById("sunrise_link").href = window.location.origin + "/sunris
 const windowPathname = window.location.pathname;
 const pathnames = windowPathname.split("/").filter((p) => p !== "");
 
-const userLang = localStorage.getItem("lang") !== undefined
-    ? localStorage.getItem("lang") === "en" ? "en" : "ko"
-    : navigator.language.startsWith("en") ? "en" : "ko";
+const userLang = !localStorage.getItem("lang")
+    ? navigator.language.startsWith("en") ? "en" : "ko"
+    : localStorage.getItem("lang") === "en" ? "en" : "ko";
 
 document.querySelectorAll("#blog_categories li a").forEach((category) => {
     if (pathnames.includes(category.textContent.toLowerCase())) {
         category.textContent = `[${category.textContent}]`;
     }
 
-    if (userLang === "ko") {
-        switch (category.textContent) {
-            case "Projects":
-                category.textContent = "프로젝트";
-                break;
-            case "[Projects]":
-                category.textContent = "[프로젝트]";
-                break;
-            case "Code":
-                category.textContent = "프로그래밍";
-                break;
-            case "[Code]":
-                category.textContent = "[프로그래밍]";
-                break;
-            case "Daily":
-                category.textContent = "일상";
-                break;
-            case "[Daily]":
-                category.textContent = "[일상]";
-                break;
-            case "Archives":
-                category.textContent = "아카이브";
-                break;
-            case "[Archives]":
-                category.textContent = "[아카이브]";
-                break;
-            case "Sunrise":
-                category.textContent = "해맞이";
-                break;
-            case "[Sunrise]":
-                category.textContent = "[해맞이]";
-                break;
-        }   
+    if (userLang !== "ko") {
+      return;
+    }
+
+    switch (category.textContent) {
+        case "Projects":
+            category.textContent = "프로젝트";
+            break;
+        case "[Projects]":
+            category.textContent = "[프로젝트]";
+            break;
+        case "Code":
+            category.textContent = "프로그래밍";
+            break;
+        case "[Code]":
+            category.textContent = "[프로그래밍]";
+            break;
+        case "Daily":
+            category.textContent = "일상";
+            break;
+        case "[Daily]":
+            category.textContent = "[일상]";
+            break;
+        case "Archives":
+            category.textContent = "아카이브";
+            break;
+        case "[Archives]":
+            category.textContent = "[아카이브]";
+            break;
+        case "Sunrise":
+            category.textContent = "해맞이";
+            break;
+        case "[Sunrise]":
+            category.textContent = "[해맞이]";
+            break;
     }
 });
 

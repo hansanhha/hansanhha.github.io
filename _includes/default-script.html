@@ -1,9 +1,9 @@
 <script src="https://cdn.jsdelivr.net/npm/ua-parser-js@2.0.10/dist/ua-parser.pack.min.js"></script>
 
 <script>
-if (localStorage.getItem("lang") === undefined && navigator.language.startsWith("ko")) {
+if (!localStorage.getItem("lang") && navigator.language.startsWith("ko")) {
     localStorage.setItem("lang", "ko");
-} else if (localStorage.getItem("lang") === undefined) {
+} else if (!localStorage.getItem("lang")) {
     localStorage.setItem("lang", "en");
 }
 
@@ -47,10 +47,10 @@ document.getElementById("user_visit_day").innerText = today.toLocaleDateString(b
     weekday: 'long'
 });
 
-localStorage.getItem("theme") !== undefined 
+localStorage.getItem("theme") !== undefined
     ? (localStorage.getItem("theme") === "dark") ? printDarklyAppearance() : printBrightlyAppearance()
     : (window.matchMedia("(prefers-color-scheme: dark)").matches) ? printDarklyAppearance() : printBrightlyAppearance();
-    
+
 const helloUserPreferTheme = window.matchMedia("(prefers-color-scheme: dark)");
 helloUserPreferTheme.addEventListener?.("change", (e) => {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
