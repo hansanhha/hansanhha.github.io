@@ -1,7 +1,7 @@
 ---
 layout: sunrise
 prev-link: june
-next-link: 
+next-link: August
 page-name-ko: 7월
 nomiation: Umyeonsan
 address: San34-1, Umyeon-dong, Seocho-gu, Seoul
