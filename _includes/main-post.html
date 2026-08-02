@@ -1,5 +1,5 @@
 <div id="latest-posts-box" class="post-list">
-    
+
 </div>
 
 <script>
@@ -10,17 +10,17 @@ async function loadLatestPosts() {
     $latestPostsBox.style.innerHTML = "";
 
     const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
-    const options = { 
-            year: 'numeric', 
-            month: '2-digit', 
-            day: '2-digit',  
+    const options = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
         };
 
     try {
         const response = await fetch("/search.json");
         const textData = await response.text();
         const jsonData = JSON.parse(textData);
-        
+
         const top10Posts = jsonData
             .filter((post) => post.title.toLowerCase() != "index")
             .sort((a, b) => {
@@ -51,12 +51,13 @@ async function loadLatestPosts() {
                     const postDate = post.createDate ? post.createDate : post.date;
                     const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
                     const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.title : post.title;
+                    const capitalizedTitle = capitalize(title);
 
                     $post.innerHTML = `
-                        <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${title}</a></span>
+                        <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
                     `;
                     $category.appendChild($post);
-            });            
+            });
         }
 
         printPostsByCategory("projects");

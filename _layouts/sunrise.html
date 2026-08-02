@@ -32,7 +32,7 @@
     const $nomiation = document.getElementById("nomiation");
     const $address = document.getElementById("address");
 
-    if (localStorage.getItem("lang") && localStorage.getItem("lang") === "ko") {
+    if (localStorage.getItem("lang") === "ko") {
         $nomiation.textContent = $nomiation.dataset.nomiationKo;
         $address.textContent = $address.dataset.addressKo;
     } else {
@@ -40,18 +40,18 @@
         $address.textContent = $address.dataset.address;
     }
 
-	const images = Array.from(document.getElementsByTagName("img"));
+	const images = Array.from(document.getElementsByTagName("img")); 
     images.forEach(img => {
         function limitImageHeight() {
             const viewportHeight = window.innerHeight;
             const maxHeight = viewportHeight * 0.98;
-
+            
             if (img.naturalHeight > viewportHeight) {
                 img.style.maxHeight = maxHeight + "px";
                 img.style.width = "auto";
             }
         }
-
+        
         if (img.complete) {
             limitImageHeight();
         } else {
@@ -60,3 +60,4 @@
     });
 </script>
 </html>
+
