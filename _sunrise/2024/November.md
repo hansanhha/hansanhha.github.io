@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: July
 next-link: December
-page-name-ko: 11월
+page-name: November - Han River-Seonyudo Park
+page-name-ko: 11월 - 선유도공원
 nomiation: Han River-Seonyudo Park
 address: 343, Seonyu-ro, Yeongdeungpo-gu, Seoul
 nomiation-ko: 한강 선유도공원

@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: July
 next-link: 
-page-name-ko: 8월
+page-name: August - Grass Garden
+page-name-ko: 8월 - 그라스정원
 nomiation: Grass Garden
 address: 221-124, Jamwon-ro, Seocho-gu, Seoul
 nomiation-ko: 그라스정원

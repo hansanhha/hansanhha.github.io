@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: May
 next-link: November
-page-name-ko: 10월
+page-name: October - Eungbongsan
+page-name-ko: 10월 - 응봉산
 nomiation: Eungbongsan
 address: 1540, Geumho-dong 4(sa)-ga, Seongdong-gu, Seoul
 nomiation-ko: 응봉산

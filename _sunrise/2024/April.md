@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: March
 next-link: May
-page-name-ko: 4월
+page-name: April - Guksabong Peak
+page-name-ko: 4월 - 국사봉
 nomiation: Guksabong Peak
 address: Sangdo-dong, Dongjak-gu, Seoul
 nomiation-ko: 국사봉

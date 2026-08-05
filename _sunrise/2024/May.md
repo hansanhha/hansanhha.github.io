@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: April
 next-link: June
-page-name-ko: 5월
+page-name: May - Yongmasan
+page-name-ko: 5월 - 용마산
 nomiation: Yongmasan
 address: Daebang-dong, Dongjak-gu, Seoul
 nomiation-ko: 용마산

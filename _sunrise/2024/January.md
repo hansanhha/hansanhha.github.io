@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: index
 next-link: March
-page-name-ko: 1월
+page-name: January - Seoul Mongchontoseong Earthen Fortification
+page-name-ko: 1월 - 몽촌토성공원 
 nomiation: Seoul Mongchontoseong Earthen Fortification 
 address: 424, Olympic-ro, Songpa-gu, Seoul
 nomiation-ko: 서울 몽촌토성

@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: ../2024/December
 next-link: February
-page-name-ko: 1월
+page-name: January - Site of Moaksan Moutain Beacon Fire East Station
+page-name-ko: 1월 - 무악산 동봉수대
 nomiation: Site of Moaksan Moutain Beacon Fire East Station
 address: Bongwon-dong, Seodaemun-gu, Seoul
 nomiation-ko: 무악산 동봉수대

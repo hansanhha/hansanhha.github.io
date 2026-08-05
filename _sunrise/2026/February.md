@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: January
 next-link: March
-page-name-ko: 2월
+page-name: February - Myeong-dong Cathedral
+page-name-ko: 2월 - 명동대성당
 nomiation: Myeong-dong Cathedral
 address: 74, Myeongdong-gil, Jung-gu, Seoul
 nomiation-ko: 명동대성당

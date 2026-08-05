@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: june
 next-link: August
-page-name-ko: 7월
+page-name: July - Umyeonsan
+page-name-ko: 7월 - 우면산
 nomiation: Umyeonsan
 address: San34-1, Umyeon-dong, Seocho-gu, Seoul
 nomiation-ko: 우면산

@@ -40,10 +40,10 @@ async function loadIndexByCategory() {
     const category = $pageCategory.dataset.category;
     const idxName = $pageIdxName.dataset.idxName;
     const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
-    const options = { 
-            year: 'numeric', 
-            month: '2-digit', 
-            day: '2-digit',  
+    const options = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
         };
 
     try {
@@ -51,8 +51,8 @@ async function loadIndexByCategory() {
         const textData = await response.text();
         const jsonData = JSON.parse(textData);
 
-        const categorisedIndexes = category === "sunrise" 
-            ? getSunriseIndexesByYear(getCategorisedIndexes(jsonData, category, sort), idxName) 
+        const categorisedIndexes = category === "sunrise"
+            ? getSunriseIndexesByYear(getCategorisedIndexes(jsonData, category, sort), idxName)
             : getCategorisedIndexes(jsonData, category, sort);
 
         const printIndexByCategory = (category) => {
@@ -61,10 +61,11 @@ async function loadIndexByCategory() {
                     const $post = document.createElement("p");
                     const postDate = post.createDate ? post.createDate : post.date;
                     const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
-                    const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.title : post.title;
-                    const capitalizedTitle = capitalize(title);
+                    const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
+                    const nonUndefinedTitle = title ? title : post.title;
+                    const capitalizedTitle = capitalize(nonUndefinedTitle);
 
-                    $post.innerHTML = category === "sunrise" 
+                    $post.innerHTML = category === "sunrise"
                     ? `
                         <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
                     `
@@ -72,7 +73,7 @@ async function loadIndexByCategory() {
                         <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
                     `;
                     $pageContentWrapper.appendChild($post);
-            });            
+            });
         }
 
         printIndexByCategory(category);

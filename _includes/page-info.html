@@ -10,10 +10,10 @@
     {% include path.html %}
 </div>
 
-{% if page.title-name != nil %}
-    <div id="page-info-title" class="text-left-align" style="margin-bottom: 5px;">{{ page.title-name }}</div>
+{% if page.layout != "sunrise" and page.title-name != nil or page.title-name-ko != nil %}
+    <div id="page-info-title" class="text-left-align" style="margin-bottom: 5px;" data-title-name="{{ page.title-name }}" data-title-name-ko="{{ page.title-name-ko }}"></div>
 {% endif %}
-{% if page.name != "index.md" and page.date != nil %}
+{% if page.name != "index.md" and page.createDate != nil and page.layout != "sunrise" %}
     <div id="page-info-date" class="text-left-align" style="margin-bottom: 5px;"> {{ page.createDate }} </div>
 {% endif %}
 
@@ -35,6 +35,17 @@ const pathnames = windowPathname.split("/").filter((p) => p !== "");
 const userLang = !localStorage.getItem("lang")
     ? navigator.language.startsWith("en") ? "en" : "ko"
     : localStorage.getItem("lang") === "en" ? "en" : "ko";
+
+const $pageInfoTitle = document.getElementById("page-info-title");
+const $pageInfoDate = document.getElementById("page-info-date");
+
+if ($pageInfoTitle) {
+  $pageInfoTitle.textContent = userLang === "ko" ? $pageInfoTitle.dataset.titleNameKo ? $pageInfoTitle.dataset.titleNameKo : $pageInfoTitle.dataset.titleName : $pageInfoTitle.dataset.titleName;
+}
+
+if ($pageInfoDate && window.innerWidth <= 768) {
+  $pageInfoDate.style.marginBottom = "10px";
+}
 
 document.querySelectorAll("#blog_categories li a").forEach((category) => {
     if (pathnames.includes(category.textContent.toLowerCase())) {

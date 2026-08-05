@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: May
 next-link: July
-page-name-ko: 6월
+page-name: June - Nodeul Island
+page-name-ko: 6월 - 노들섬
 nomiation: Nodeul Island
 address: 445, Yangnyeong-ro, Yongsan-gu, Seoul
 nomiation-ko: 노들섬

@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: November
 next-link: ../2025/January
-page-name-ko: 12월
+page-name: December - Sky Park
+page-name-ko: 12월 - 하늘공원
 nomiation: Sky Park
 address: 95, Haneulgongwon-ro, Mapo-gu, Seoul
 nomiation-ko: 하늘공원

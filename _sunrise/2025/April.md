@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: March
 next-link: May
-page-name-ko: 4월
+page-name: April - Jamsil Hangang Park
+page-name-ko: 4월 - 잠실 한강공원
 nomiation: Jamsil Hangang Park
 address: 65, Hangaram-ro, Songpa-gu, Seoul
 nomiation-ko: 잠실 한강공원

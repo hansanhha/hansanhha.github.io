@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: February
 next-link: April
-page-name-ko: 3월
+page-name: March - Sayukshin Park
+page-name-ko: 3월 - 사육신공원
 nomiation: Sayukshin Park
 address: 191, Noryangjin-ro, Dongjak-gu, Seoul
 nomiation-ko: 사육신공원

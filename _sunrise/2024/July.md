@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: June
 next-link: November
-page-name-ko: 7월
+page-name: July - Boramae Park
+page-name-ko: 7월 - 보라매공원
 nomiation: Boramae Park
 address: 33, Yeouidaebang-ro 20-gil, Dongjak-gu, Seoul
 nomiation-ko: 보라매공원

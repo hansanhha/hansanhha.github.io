@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: may
 next-link: July
-page-name-ko: 6월
+page-name: June - Seoul Mongchontoseong Earthen Fortification 
+page-name-ko: 6월 - 올림픽공원
 nomiation: Seoul Mongchontoseong Earthen Fortification 
 address: 424, Olympic-ro, Songpa-gu, Seoul
 nomiation-ko: 올림픽공원

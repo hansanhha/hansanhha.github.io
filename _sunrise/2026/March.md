@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: February
 next-link: April
-page-name-ko: 3월
+page-name: March - Sky Park
+page-name-ko: 3월 - 하늘공원
 nomiation: Sky Park
 address: 95, Haneulgongwon-ro, Mapo-gu, Seoul
 nomiation-ko: 하늘공원

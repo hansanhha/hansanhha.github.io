@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: January
 next-link: March
-page-name-ko: 2월
+page-name: February - Samseong Haemaji Park
+page-name-ko: 2월 - 삼성 해맞이공원
 nomiation: Samseong Haemaji Park
 address: 39, Yeongdong-daero 128-gil, Gangnam-gu, Seoul
 nomiation-ko: 삼성 해맞이공원

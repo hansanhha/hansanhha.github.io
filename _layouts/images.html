@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     const $imageContainer = document.getElementById("image-container");
-    const images = Array.from($imageContainer.querySelectorAll("img")); 
+    const images = Array.from($imageContainer.querySelectorAll("img"));
     images.forEach(img => {
         originalImgs.push(img);
         img.addEventListener("click", () => focus(img));
@@ -56,13 +56,13 @@ document.addEventListener("DOMContentLoaded", function() {
         function limitImageHeight() {
             const viewportHeight = window.innerHeight;
             const maxHeight = viewportHeight * 0.98;
-            
+
             if (img.naturalHeight > viewportHeight) {
                 img.style.maxHeight = maxHeight + "px";
                 img.style.width = "auto";
             }
         }
-        
+
         if (img.complete) {
             limitImageHeight();
         } else {
@@ -98,7 +98,7 @@ function configureDisplayOptions() {
         originalImgs.forEach(img => {
             const $imgBox = document.createElement("p");
             $imgBox.appendChild(img);
-            $imageContainer.appendChild($imgBox);  
+            $imageContainer.appendChild($imgBox);
         });
     });
 
@@ -125,7 +125,7 @@ function configureDisplayOptions() {
         }
 
         if (currentRow.length > 0) rows.push(currentRow);
-        
+
         $imageContainer.innerHTML = "";
 
         rows.forEach(row => {
@@ -168,7 +168,7 @@ function focus($img) {
     const $imgBox = document.createElement("div");
     Object.assign($imgBox.style, {
         width: "100%",
-        height: "95%",
+        height: "100%",
         display: "flex",
         alignItems: "start",
         justifyContent: "center",
@@ -178,7 +178,7 @@ function focus($img) {
     const $focusedImg = $img.cloneNode(true);
     Object.assign($focusedImg.style, {
         maxWidth: ($img.dataset.desc || $img.dataset.descKo) ? window.innerWidth <= 768 ? "100%" : "65%" : "100%",
-        height: "auto",
+        height: "100%",
         boxShadow: "0 10px 20px rgba(0,0,0,0.8)",
         cursor: "normal",
         flexShrink: 0,
@@ -277,11 +277,11 @@ function focus($img) {
     function onKey(e) {
         if (e.key === "Escape") close();
     }
-    
+
     $focusedImg.addEventListener("click", close);
     $overlay.addEventListener("click", close);
     document.addEventListener("keydown", onKey);
-    
+
     $imgBox.appendChild($focusedImg);
     $imgBox.appendChild($imgDescriptionBox);
     $overlay.appendChild($imgBox);
@@ -291,4 +291,3 @@ function focus($img) {
 }
 </script>
 </html>
-

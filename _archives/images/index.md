@@ -14,4 +14,4 @@ idx-name-ko: 이미지
 
 <a href="./The%20Weeknd" data-display-ko="위켄드">The Weeknd</a>
 
-<a href="./impressionism" data-display-ko="인상주의">Impressionism</a>
+<a href="./painting" data-display-ko="그림">Painting</a>

@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: ../2025/December
 next-link: February
-page-name-ko: 1월
+page-name: January - Yongbongsan Mountain Natural Recreation Forest
+page-name-ko: 1월 - 용봉산 자연휴양림
 nomiation: Yongbongsan Mountain Natural Recreation Forest
 address: 87, Yongbongsan 2-gil, Hongbuk-eup, Hongseong-gun, Chungcheongnam-do
 nomiation-ko: 용봉산 자연휴양림

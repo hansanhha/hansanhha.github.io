@@ -2,7 +2,8 @@
 layout: sunrise
 prev-link: April
 next-link: june
-page-name-ko: 5월
+page-name: May - Yongyangbongjeojeong Park
+page-name-ko: 5월 - 용양봉저정공원
 nomiation: Yongyangbongjeojeong Park
 address: San3-9, Bon-dong, Dongjak-gu, Seoul
 nomiation-ko: 용양봉저정공원
