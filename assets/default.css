@@ -371,6 +371,7 @@ body::-webkit-scrollbar {
 .image-view-selector {
   display: flex;
   gap: 0.3em;
+  margin-top: 5px;
   margin-bottom: 5px;
 }
 
@@ -382,12 +383,20 @@ body::-webkit-scrollbar {
   align-items: flex-start;
 }
 
-#image-container > .image-row {
-  margin-bottom: 1em;
+#image-container > p:first-of-type {
+  margin-top: 0px;
 }
 
-#image-container > p:first-of-type {
-  margin-top: 0.3em;
+#image-container > div:first-of-type {
+  margin-top: 0px;
+}
+
+#image-container > div:first-of-type > p {
+  margin-top: 0px;
+}
+
+#image-container > div  > p {
+  margin-bottom: 0px;
 }
 
 #image-container > p {
@@ -396,7 +405,7 @@ body::-webkit-scrollbar {
 
 .image-row {
   display: flex;
-  gap: 8px;
+  gap: 4px;
   justify-content: flex-start;
 }
 

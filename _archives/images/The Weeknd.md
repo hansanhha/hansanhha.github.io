@@ -2,7 +2,7 @@
 layout: images
 title-name: 
 prev-link: Film
-next-link: painting
+next-link: paintings
 page-name-ko: 위켄드
 createDate: 2025-10-31
 ---

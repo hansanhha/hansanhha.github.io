@@ -79,7 +79,7 @@ function configureDisplayOptions() {
     const $multi = document.getElementById("multi");
     const $imageContainer = document.getElementById("image-container");
 
-    $single.classList.add("cursor-pointer");
+    $single.classList.add("selected-highlight", "cursor-pointer");
     $multi.classList.add("cursor-pointer");
     if (localStorage.getItem("lang") === "ko") {
         $view.textContent = "표시: ";
@@ -92,6 +92,8 @@ function configureDisplayOptions() {
     }
 
     $single.addEventListener("click", () => {
+        $single.classList.add("selected-highlight", "cursor-pointer");
+        $multi.classList = "cursor-pointer";
         const images = Array.from($imageContainer.querySelectorAll("img"));
         $imageContainer.innerHTML = "";
 
@@ -103,6 +105,8 @@ function configureDisplayOptions() {
     });
 
     $multi.addEventListener("click", () => {
+        $multi.classList.add("selected-highlight", "cursor-pointer");
+        $single.classList = "cursor-pointer";
         const $imageContainer = document.getElementById("image-container");
         const containerWidth = $imageContainer.clientWidth;
         const images = Array.from($imageContainer.querySelectorAll("img"));
@@ -135,10 +139,12 @@ function configureDisplayOptions() {
             const totalAspect = row.reduce((sum, {aspectRatio}) => sum + aspectRatio, 0);
 
             row.forEach(({img, aspectRatio}) => {
+                const $imgBox = document.createElement("p");
                 const cloned = img.cloneNode();
-                cloned.addEventListener("click", () => focus(originalImgs.filter(i => i.src === img.src)[0]));
-                cloned.style.maxWidth = isMobile ? `${(aspectRatio / totalAspect) * 94}%` : `${(aspectRatio / totalAspect) * 97.7}%`;
-                $row.appendChild(cloned);
+                $imgBox.addEventListener("click", () => focus(originalImgs.filter(i => i.src === img.src)[0]));
+                $imgBox.style.maxWidth = isMobile ? `${(aspectRatio / totalAspect) * 94}%` : `${(aspectRatio / totalAspect) * 97.7}%`;
+                $imgBox.appendChild(cloned);
+                $row.appendChild($imgBox);
             });
 
             $imageContainer.appendChild($row);
