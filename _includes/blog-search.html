@@ -11,7 +11,7 @@
 
 <script>
 document.getElementById("hansanhha").addEventListener("click", () => {
-        location.href = window.origin; 
+        location.href = window.origin;
 });
 
 document.getElementById("input_search").addEventListener('keydown', (e) => {
@@ -54,10 +54,10 @@ function printSearchResult(searchQuery, posts) {
     if ($pageInfoDate) $pageInfoDate.innerHTML = "";
 
     const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
-    const options = { 
-            year: 'numeric', 
-            month: '2-digit', 
-            day: '2-digit',  
+    const options = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
         };
 
     const matchedPosts = posts.filter((post) => {
@@ -71,7 +71,7 @@ function printSearchResult(searchQuery, posts) {
         const addressMatch = post.address ? post.address.toLowerCase().includes(searchQuery) : false;
         const nomiationKoMatch = post.nomiationKo ? post.nomiationKo.toLowerCase().includes(searchQuery) : false;
         const addressKoMatch = post.addressKo ? post.addressKo.toLowerCase().includes(searchQuery) : false;
-        return titleMatch || contentMatch || pagenameMatch || pagenameKoMatch 
+        return titleMatch || contentMatch || pagenameMatch || pagenameKoMatch
             || nomiationMatch || addressMatch || nomiationKoMatch || addressKoMatch;
     });
 
@@ -107,13 +107,15 @@ function printSearchResult(searchQuery, posts) {
                     const $post = document.createElement("div");
                     const postDate = post.createDate ? post.createDate : post.date;
                     const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
-                    const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.title : post.title;
+                    const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
+                    const nonUndefinedTitle = title ? title : post.title;
+                    const capitalizedTitle = capitalize(nonUndefinedTitle);
 
                     $post.innerHTML = `
-                        <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${title}</a></span>
+                        <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
                     `;
                     $category.appendChild($post);
-            });            
+            });
         }
 
     printPostsByCategory("projects");

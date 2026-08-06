@@ -50,8 +50,9 @@ async function loadLatestPosts() {
                     const $post = document.createElement("div");
                     const postDate = post.createDate ? post.createDate : post.date;
                     const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
-                    const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.title : post.title;
-                    const capitalizedTitle = capitalize(title);
+                    const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
+                    const nonUndefinedTitle = title ? title : post.title;
+                    const capitalizedTitle = capitalize(nonUndefinedTitle);
 
                     $post.innerHTML = `
                         <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
