@@ -33,9 +33,10 @@ async function search() {
         const jsonData = JSON.parse(textData);
         printSearchResult(searchQuery, jsonData);
     } catch (error) {
-        console.log(error);
         printErrorResult();
     }
+
+    toggleGoToTopByResizing();
 }
 
 function printSearchResult(searchQuery, posts) {
@@ -76,7 +77,8 @@ function printSearchResult(searchQuery, posts) {
     });
 
     if (matchedPosts.length === 0) {
-        $searchResultBox.textContent = localStorage.getItem("lang") === "ko" ? "검색 결과가 없습니다" : "none";
+        $searchResultBox.style.marginTop = "10px";
+        $searchResultBox.textContent = localStorage.getItem("lang") === "ko" ? "검색 결과가 없습니다" : "None";
         return;
     }
 
@@ -128,7 +130,16 @@ function printSearchResult(searchQuery, posts) {
 function printErrorResult() {
     const $pageContentWrapper = document.getElementById("page-content-wrapper");
     $pageContentWrapper.innerHTML = "";
-    $pageContentWrapper.textContent = localStorage.getItem("lang") === "ko" ? "검색에 실패했습니다" : "Failed search";
+    $pageContentWrapper.textContent = localStorage.getItem("lang") === "ko" ? "검색에 실패했습니다" : "Failed Searching";
+}
+
+function toggleGoToTopByResizing() {
+    const $goToTopBox = document.getElementById("go-to-top-box");
+    if (!$goToTopBox) return;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const adjustedHeight = scrollHeight;
+    const exceeds = adjustedHeight > (window.innerHeight + 10);
+    $goToTopBox.style.display = exceeds ? "flex" : "none";
 }
 
 function localize(category) {
