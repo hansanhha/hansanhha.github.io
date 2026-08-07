@@ -22,10 +22,11 @@ if (localStorage.getItem("lang") === "en") {
     document.getElementById("user_appearance_brightly").textContent = "Brightly";
     document.getElementById("user_appearance_darkly").textContent = "Darkly";
     document.getElementById("user_lang").textContent = "Locale: ";
-    document.getElementById("internet-usernames").textContent = "Internet";
-    document.getElementById("github").textContent = "GitHub: ";
-    document.getElementById("instagram").textContent = "Instagram: ";
-    document.getElementById("cosmos").textContent = "Cosmos: ";
+    document.getElementById("footer").textContent = "Miscellany";
+    document.getElementById("internet-usernames").textContent = "Internet: ";
+    document.getElementById("github").textContent = "GitHub";
+    document.getElementById("instagram").textContent = "Instagram";
+    document.getElementById("cosmos").textContent = "Cosmos";
 } else {
     printKoLang();
     document.getElementById("user_agent").innerText = "접속 환경: " + result.device.vendor + " " + result.os.name  + ", " + result.browser.name;
@@ -35,10 +36,11 @@ if (localStorage.getItem("lang") === "en") {
     document.getElementById("user_appearance_brightly").textContent = "밝게";
     document.getElementById("user_appearance_darkly").textContent = "어둡게";
     document.getElementById("user_lang").textContent = "선호하는 언어: ";
-    document.getElementById("internet-usernames").textContent = "인터넷";
-    document.getElementById("github").textContent = "깃허브: ";
-    document.getElementById("instagram").textContent = "인스타그램: ";
-    document.getElementById("cosmos").textContent = "코스모스: ";
+    document.getElementById("footer").textContent = "정보";
+    document.getElementById("internet-usernames").textContent = "인터넷: ";
+    document.getElementById("github").textContent = "깃허브";
+    document.getElementById("instagram").textContent = "인스타그램";
+    document.getElementById("cosmos").textContent = "코스모스";
 }
 document.getElementById("user_visit_day").innerText = today.toLocaleDateString(blogInfoDateLocale, {
     year: 'numeric',
@@ -101,7 +103,7 @@ if ($empty) {
     $empty.textContent = localStorage.getItem("lang") === "ko" ? "빈 페이지" : "Empty Page";
 } else if (window.location.pathname !== "/" && $pageContentWrapper && $pageContentWrapper.childElementCount === 0) {
     const $span = document.createElement("div");
-    $span.style.marginTop = "10px";
+    $span.style.marginBottom = "3px";
     $span.textContent = localStorage.getItem("lang") === "ko" ? "빈 페이지" : "Empty Page";
     $pageContentWrapper.innerHTML = "";
     $pageContentWrapper.appendChild($span);

@@ -26,7 +26,7 @@
             {% else %}
                 <span id="empty"></span>
             {% endif %}
-            {% include internet-usernames.html %}
+            {% include footer.html %}
         </div>
     </div>
 </body>
@@ -44,12 +44,12 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     $loadingIndicator.style.alignItems = "center";
     $videoBox.style.display = "none";
     if (document.documentElement.getAttribute("data-theme") === "light" || localStorage.getItem("theme") === "light") {
-        $loadingIndicator.innerHTML = localStorage.getItem("lang") === "ko" 
-        ? "<span>비디오 다운로드 중</span><img src='/assets/img/loading-windows98.gif' style='width: 30px; height: 30px;'/>" 
+        $loadingIndicator.innerHTML = localStorage.getItem("lang") === "ko"
+        ? "<span>비디오 다운로드 중</span><img src='/assets/img/loading-windows98.gif' style='width: 30px; height: 30px;'/>"
         : "<span>loading video</span><img src='/assets/img/loading-windows98.gif' style='width: 30px; height: 30px;'/>";
     } else {
-        $loadingIndicator.innerHTML = localStorage.getItem("lang") === "ko" 
-        ? "<span>비디오 다운로드 중</span>" 
+        $loadingIndicator.innerHTML = localStorage.getItem("lang") === "ko"
+        ? "<span>비디오 다운로드 중</span>"
         : "<span>loading video</span>";
     }
 
@@ -64,8 +64,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
             }
         });
     }
-    
+
 });
 </script>
 </html>
-

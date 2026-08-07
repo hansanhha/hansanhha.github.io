@@ -264,6 +264,10 @@ body::-webkit-scrollbar {
   margin-top: 10px;
 }
 
+#latest-posts-box {
+  margin-bottom: 5px;
+}
+
 .post-list {
   display: flex;
   flex-direction: column;
@@ -436,7 +440,8 @@ a[target="_blank"]::after {
   content: " ↗";
   font-size: 0.8em;
   display: inline-block;
-  margin-left: 4px;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 
 thead {
