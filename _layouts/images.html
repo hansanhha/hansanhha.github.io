@@ -169,6 +169,8 @@ function focus($img) {
         cursor: "normal",
         overflow: "hidden",
         padding: window.innerWidth <= 768 ? "10px" : "40px",
+        opacity: "0",
+        transition: "opacity 250ms ease",
     });
 
     const $imgBox = document.createElement("div");
@@ -183,11 +185,16 @@ function focus($img) {
 
     const $focusedImg = $img.cloneNode(true);
     Object.assign($focusedImg.style, {
+        width: "auto",
+        height: "auto",
         maxWidth: ($img.dataset.desc || $img.dataset.descKo) ? window.innerWidth <= 768 ? "100%" : "65%" : "100%",
-        height: "100%",
+        maxHeight: "100%",
         boxShadow: "0 10px 20px rgba(0,0,0,0.8)",
         cursor: "normal",
         flexShrink: 0,
+        opacity: "0",
+        transform: "scale(0.92)",
+        transition: "opacity 250ms ease, transform 250ms ease",
     });
 
     if (window.innerWidth <= 768) {
@@ -207,6 +214,11 @@ function focus($img) {
         scrollbarWidth: "none",
         fontSize: "17px",
         color: "#e3dfdf",
+        opacity: "0",
+        transform: window.innerWidth <= 768
+            ? "translateY(0px)"
+            : "translateX(0px)",
+        transition: "opacity .3s ease, transform .3s cubic-bezier(.22,.61,.36,1)",
     });
 
     const style = document.createElement("style");
@@ -276,9 +288,23 @@ function focus($img) {
     }
 
     function close() {
-        if ($overlay.parentNode) $overlay.parentNode.removeChild($overlay);
-        document.body.style.overflow = "";
-        document.removeEventListener("keydown", onKey);
+        $overlay.style.opacity = "0";
+
+        $focusedImg.style.opacity = "0";
+        $focusedImg.style.transform = "scale(.96)";
+
+        $imgDescriptionBox.style.opacity = "0";
+        $imgDescriptionBox.style.transform = window.innerWidth <= 768
+            ? "translateY(0px)"
+            : "translateX(0px)";
+
+        setTimeout(() => {
+            if ($overlay.parentNode) {
+                $overlay.parentNode.removeChild($overlay);
+            }
+            document.body.style.overflow = "";
+            document.removeEventListener("keydown", onKey);
+        }, 300);
     }
     function onKey(e) {
         if (e.key === "Escape") close();
@@ -292,6 +318,20 @@ function focus($img) {
     $imgBox.appendChild($imgDescriptionBox);
     $overlay.appendChild($imgBox);
     document.body.appendChild($overlay);
+    requestAnimationFrame(() => {
+        $overlay.style.opacity = "1";
+
+        $focusedImg.style.opacity = "1";
+        $focusedImg.style.transform = "scale(1)";
+
+        setTimeout(() => {
+            $imgDescriptionBox.style.opacity = "1";
+            $imgDescriptionBox.style.transform = "translateX(0)";
+            if (window.innerWidth <= 768) {
+                $imgDescriptionBox.style.transform = "translateY(0)";
+            }
+        }, 70);
+    });
 
     document.body.style.overflow = "hidden";
 }
