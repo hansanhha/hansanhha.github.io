@@ -1,18 +1,28 @@
+.win95-input::selection {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.win95-input::-moz-selection {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
 @media (max-width: 768px) {
     .win95-input {
         display: inline-block;
         width: 160px;
         padding: 4px 6px;
-        background-color: #ffffff; 
+        background-color: #ffffff;
         color: #000000;
-        
+
         font-family: '돋움', dotum, 'MS Sans Serif', sans-serif;
         font-size: 12px;
-        outline: none; 
+        outline: none;
 
-        border-top: 2px solid #808080;    
-        border-left: 2px solid #808080;   
-        border-right: 2px solid #ffffff;  
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #ffffff;
         border-bottom: 2px solid #ffffff;
 
         box-shadow: inset 1px 1px 0px 0px #000000;
@@ -24,7 +34,7 @@
     .win95-btn {
         display: inline-block;
         padding: 4px 15px;
-        background-color: #c0c0c0; 
+        background-color: #c0c0c0;
         color: #000000;
         font-family: '돋움', dotum, 'MS Sans Serif', sans-serif;
         font-size: 12px;
@@ -37,7 +47,7 @@
         border-left: 2px solid #ffffff;
         border-right: 2px solid #808080;
         border-bottom: 2px solid #808080;
-        
+
         box-shadow: 1px 1px 0px 0px #000000;
         }
 }
@@ -47,28 +57,28 @@
         display: inline-block;
         width: 200px;
         padding: 4px 6px;
-        background-color: #ffffff; 
+        background-color: #ffffff;
         color: #000000;
-        
+
         font-family: '돋움', dotum, 'MS Sans Serif', sans-serif;
         font-size: 12px;
-        outline: none; 
+        outline: none;
 
-        border-top: 2px solid #808080;    
-        border-left: 2px solid #808080;   
-        border-right: 2px solid #ffffff;  
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #ffffff;
         border-bottom: 2px solid #ffffff;
 
         box-shadow: inset 1px 1px 0px 0px #000000;
 
         user-select: text !important;
         -webkit-user-select: text !important;
-    }  
+    }
 
     .win95-btn {
         display: inline-block;
         padding: 4px 20px;
-        background-color: #c0c0c0; 
+        background-color: #c0c0c0;
         color: #000000;
         font-family: '돋움', dotum, 'MS Sans Serif', sans-serif;
         font-size: 12px;
@@ -81,7 +91,7 @@
         border-left: 2px solid #ffffff;
         border-right: 2px solid #808080;
         border-bottom: 2px solid #808080;
-        
+
         box-shadow: 1px 1px 0px 0px #000000;
     }
 }
@@ -91,7 +101,7 @@
   border-left: 2px solid #808080;
   border-right: 2px solid #ffffff;
   border-bottom: 2px solid #ffffff;
-  
+
   box-shadow: -1px -1px 0px 0px #000000;
   padding: 5px 19px 3px 21px;
 }

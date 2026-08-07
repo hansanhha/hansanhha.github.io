@@ -71,7 +71,7 @@ body::-webkit-scrollbar {
 
   .main-content :not(img):not(video)::selection {
     background: transparent;
-    color: #9CAF88;
+    color: #3b82f6;
   }
 }
 
@@ -111,12 +111,12 @@ body::-webkit-scrollbar {
 
   .main-content :not(img):not(video)::selection {
     background: transparent;
-    color: green;
+    color: #3b82f6;
   }
 
   .img-desc::selection {
     background: transparent;
-    color: green;
+    color: #3b82f6;
   }
 }
 
@@ -169,7 +169,7 @@ body::-webkit-scrollbar {
 
   .main-content :not(img):not(video)::selection {
     background: transparent;
-    color: #9CAF88;
+    color: #3b82f6;
   }
 }
 
@@ -207,7 +207,7 @@ body::-webkit-scrollbar {
 
   .main-content :not(img):not(video)::selection {
     background: transparent;
-    color: green;
+    color: #3b82f6;
   }
 }
 
