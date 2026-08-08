@@ -22,7 +22,8 @@ async function loadLatestPosts() {
         const jsonData = JSON.parse(textData);
 
         const top10Posts = jsonData
-            .filter((post) => post.title.toLowerCase() != "index")
+            .filter((post) => !post.url.includes("legacy"))
+            .filter((post) => post.title.toLowerCase() != "index" || post.url.toLowerCase() == "/archives/images/index.html")
             .sort((a, b) => {
                 const aDate = a.createDate ? a.createDate : a.date;
                 const bDate = b.createDate ? b.createDate : b.date;

@@ -16,7 +16,8 @@ permalink: /search.json
     "pagenameKo": {{ post.page-name-ko | jsonify}},
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
-    "category": "projects"
+    "category": "projects",
+    "tags": {{ post.tags | jsonify }}
   }
   {% assign first = false %}
 {% endfor %}
@@ -31,7 +32,8 @@ permalink: /search.json
     "pagenameKo": {{ post.page-name-ko | jsonify}},
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
-    "category": "code"
+    "category": "code",
+    "tags": {{ post.tags | jsonify }}
   }
   {% assign first = false %}
 {% endfor %}
@@ -46,7 +48,8 @@ permalink: /search.json
     "pagenameKo": {{ post.page-name-ko | jsonify}},
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
-    "category": "daily"
+    "category": "daily",
+    "tags": {{ post.tags | jsonify }}
   }
   {% assign first = false %}
 {% endfor %}
@@ -61,7 +64,8 @@ permalink: /search.json
     "pagenameKo": {{ post.page-name-ko | jsonify}},
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
-    "category": "archives"
+    "category": "archives",
+    "tags": {{ post.tags | jsonify }}
   }
   {% assign first = false %}
 {% endfor %}
@@ -80,7 +84,8 @@ permalink: /search.json
     "addressKo": {{ post.address-ko | jsonify}},
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
-    "category": "sunrise"
+    "category": "sunrise",
+    "tags": {{ post.tags | jsonify }}
   }
   {% assign first = false %}
 {% endfor %}

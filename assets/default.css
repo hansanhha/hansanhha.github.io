@@ -514,3 +514,14 @@ h5 {
 .horizontal-list li {
   cursor: pointer;
 }
+
+.images-list {
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+}
+
+.images-list img {
+  height: 700px;
+  width: auto;
+}

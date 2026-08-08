@@ -15,11 +15,11 @@
             {% include common.html %}
 			{% if page.content != nil and page.content != "" %}
                 <div id="page-content-wrapper">
-                    <div class="image-view-selector">
+                    <!--<div class="image-view-selector">
                         <span id="view"></span>
                         <span id="single"></span>
                         <span id="multi"></span>
-                    </div>
+                    </div>-->
                     <div id="image-container">
                         {{ content }}
                     </div>
@@ -70,7 +70,54 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    configureDisplayOptions();
+    //configureDisplayOptions();
+
+    const $imagesOjbect = document.getElementById("images-objects");
+    const $imagesSeason = document.getElementById("images-season");
+    const $imagesFilm = document.getElementById("images-film");
+    const $imagesRoom = document.getElementById("images-room");
+    const $imagesWeeknd = document.getElementById("images-weeknd");
+    const $imagesPaintings = document.getElementById("images-paintings");
+
+    $imagesOjbect.style.fontSize = "1.5rem";
+    $imagesSeason.style.fontSize = "1.5rem";
+    $imagesFilm.style.fontSize = "1.5rem";
+    $imagesRoom.style.fontSize = "1.5rem";
+    $imagesWeeknd.style.fontSize = "1.5rem";
+    $imagesPaintings.style.fontSize = "1.5rem";
+
+    $imagesSeason.style.marginTop = "50px";
+    $imagesFilm.style.marginTop = "50px";
+    $imagesRoom.style.marginTop = "50px";
+    $imagesWeeknd.style.marginTop = "50px";
+    $imagesPaintings.style.marginTop = "50px";
+
+    if (localStorage.getItem("lang") === "ko") {
+      $imagesOjbect.textContent = "사물";
+      $imagesSeason.textContent = "계절";
+      $imagesFilm.textContent = "영화";
+      $imagesRoom.textContent = "공간";
+      $imagesWeeknd.textContent = "위켄드";
+      $imagesPaintings.textContent = "그림";
+    } else {
+      $imagesOjbect.textContent = "Objects";
+      $imagesSeason.textContent = "Season";
+      $imagesFilm.textContent = "Film";
+      $imagesRoom.textContent = "Room";
+      $imagesWeeknd.textContent = "The Weeknd";
+      $imagesPaintings.textContent = "Paintings";
+    }
+
+    document.querySelectorAll(".images-list img").forEach(img => {
+        if (window.innerWidth <= 768) {
+          img.style.height = "350px";
+          img.style.width = "auto";
+        } else {
+          img.style.height = "700px";
+          img.style.width = "auto";
+        }
+    });
+
 });
 
 function configureDisplayOptions() {
@@ -189,7 +236,8 @@ function focus($img) {
         height: "auto",
         maxWidth: ($img.dataset.desc || $img.dataset.descKo) ? window.innerWidth <= 768 ? "100%" : "65%" : "100%",
         maxHeight: "100%",
-        boxShadow: "0 10px 20px rgba(0,0,0,0.8)",
+        objectFit: "contain",
+        alignItems: "center",
         cursor: "normal",
         flexShrink: 0,
         opacity: "0",
@@ -200,8 +248,12 @@ function focus($img) {
     if (window.innerWidth <= 768) {
         $imgBox.style.flexDirection = "column";
         $imgBox.style.justifyContent = ($img.dataset.desc || $img.dataset.descKo) ? "start" : "center";
+
+        $focusedImg.style.width = "auto";
         $focusedImg.style.height = "auto";
+        $focusedImg.style.maxWidth = "100%";
         $focusedImg.style.maxHeight = "65%";
+        $focusedImg.style.objectFit = "contain";
     }
 
     const $imgDescriptionBox = document.createElement("div");
@@ -212,6 +264,7 @@ function focus($img) {
         overflowY: "auto",
         overflowX: "hidden",
         scrollbarWidth: "none",
+        alignItems: "start",
         fontSize: "17px",
         color: "#e3dfdf",
         opacity: "0",
@@ -330,7 +383,7 @@ function focus($img) {
             if (window.innerWidth <= 768) {
                 $imgDescriptionBox.style.transform = "translateY(0)";
             }
-        }, 70);
+        }, 40);
     });
 
     document.body.style.overflow = "hidden";
