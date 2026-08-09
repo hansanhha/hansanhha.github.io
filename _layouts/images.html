@@ -225,7 +225,7 @@ function focus($img) {
         width: "100%",
         height: "100%",
         display: "flex",
-        alignItems: "start",
+        alignItems: !($img.dataset.desc || $img.dataset.descKo) && window.innerWidth <= 768 ? "center" : window.innerWidth <= 768 ? "start" : "center",
         justifyContent: "center",
         overflow: "hidden",
     });
@@ -237,7 +237,7 @@ function focus($img) {
         maxWidth: ($img.dataset.desc || $img.dataset.descKo) ? window.innerWidth <= 768 ? "100%" : "65%" : "100%",
         maxHeight: "100%",
         objectFit: "contain",
-        alignItems: "center",
+        alignItems: "start",
         cursor: "normal",
         flexShrink: 0,
         opacity: "0",
@@ -369,6 +369,17 @@ function focus($img) {
 
     $imgBox.appendChild($focusedImg);
     $imgBox.appendChild($imgDescriptionBox);
+    if (window.innerWidth > 768) {
+        const setDescriptionHeight = () => {
+            const imgHeight = $focusedImg.height;
+            $imgDescriptionBox.style.height = `${imgHeight}px`;
+        };
+        if ($focusedImg.complete) {
+            setDescriptionHeight();
+        } else {
+            $focusedImg.addEventListener("load", setDescriptionHeight, { once: true });
+        }
+    }
     $overlay.appendChild($imgBox);
     document.body.appendChild($overlay);
     requestAnimationFrame(() => {
