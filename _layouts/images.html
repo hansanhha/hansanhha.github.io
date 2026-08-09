@@ -72,41 +72,140 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //configureDisplayOptions();
 
-    const $imagesOjbect = document.getElementById("images-objects");
-    const $imagesSeason = document.getElementById("images-season");
-    const $imagesFilm = document.getElementById("images-film");
-    const $imagesRoom = document.getElementById("images-room");
-    const $imagesWeeknd = document.getElementById("images-weeknd");
-    const $imagesPaintings = document.getElementById("images-paintings");
+    const $imageObjects = document.getElementById("images-objects");
+    const $imageSeason = document.getElementById("images-season");
+    const $imageFilm = document.getElementById("images-film");
+    const $imageRoom = document.getElementById("images-room");
+    const $imageWeeknd = document.getElementById("images-weeknd");
+    const $imagePaintings = document.getElementById("images-paintings");
 
-    $imagesOjbect.style.fontSize = "1.5rem";
-    $imagesSeason.style.fontSize = "1.5rem";
-    $imagesFilm.style.fontSize = "1.5rem";
-    $imagesRoom.style.fontSize = "1.5rem";
-    $imagesWeeknd.style.fontSize = "1.5rem";
-    $imagesPaintings.style.fontSize = "1.5rem";
-
-    $imagesSeason.style.marginTop = "50px";
-    $imagesFilm.style.marginTop = "50px";
-    $imagesRoom.style.marginTop = "50px";
-    $imagesWeeknd.style.marginTop = "50px";
-    $imagesPaintings.style.marginTop = "50px";
+    const $imageObjectTextContent = document.createElement("div");
+    const $imageSeasonTextContent = document.createElement("div");
+    const $imageFilmTextContent = document.createElement("div");
+    const $imageRoomTextContent = document.createElement("div");
+    const $imageWeekndTextContent = document.createElement("div");
+    const $imagePaintingsTextContent = document.createElement("div");
 
     if (localStorage.getItem("lang") === "ko") {
-      $imagesOjbect.textContent = "사물";
-      $imagesSeason.textContent = "계절";
-      $imagesFilm.textContent = "영화";
-      $imagesRoom.textContent = "공간";
-      $imagesWeeknd.textContent = "위켄드";
-      $imagesPaintings.textContent = "그림";
+      $imageObjectTextContent.textContent = "사물";
+      $imageSeasonTextContent.textContent = "계절";
+      $imageFilmTextContent.textContent = "영화";
+      $imageRoomTextContent.textContent = "공간";
+      $imageWeekndTextContent.textContent = "위켄드";
+      $imagePaintingsTextContent.textContent = "그림";
     } else {
-      $imagesOjbect.textContent = "Objects";
-      $imagesSeason.textContent = "Season";
-      $imagesFilm.textContent = "Film";
-      $imagesRoom.textContent = "Room";
-      $imagesWeeknd.textContent = "The Weeknd";
-      $imagesPaintings.textContent = "Paintings";
+      $imageObjectTextContent.textContent = "Objects";
+      $imageSeasonTextContent.textContent = "Season";
+      $imageFilmTextContent.textContent = "Film";
+      $imageRoomTextContent.textContent = "Room";
+      $imageWeekndTextContent.textContent = "The Weeknd";
+      $imagePaintingsTextContent.textContent = "Paintings";
     }
+
+    const imageTextContents = new Array();
+    imageTextContents.push($imageObjectTextContent, $imageSeasonTextContent, $imageFilmTextContent, $imageRoomTextContent, $imageWeekndTextContent, $imagePaintingsTextContent);
+    imageTextContents.forEach(($imageTextContent) => {
+      $imageTextContent.style.fontSize = "1.3rem";
+      if ($imageTextContent.textContent === "사물" || $imageTextContent.textContent === "Objects") {
+          $imageTextContent.style.fontSize = "1.3rem";
+        } else {
+          $imageTextContent.style.fontSize = "1.3rem";
+        }
+    });
+
+    $imageObjects.appendChild($imageObjectTextContent);
+    $imageSeason.appendChild($imageSeasonTextContent);
+    $imageFilm.appendChild($imageFilmTextContent);
+    $imageRoom.appendChild($imageRoomTextContent);
+    $imageWeeknd.appendChild($imageWeekndTextContent);
+    $imagePaintings.appendChild($imagePaintingsTextContent);
+
+    const imageTitles = new Array();
+    imageTitles.push($imageObjects, $imageSeason, $imageFilm, $imageRoom, $imageWeeknd, $imagePaintings);
+    imageTitles.forEach(($imageTitle) => {
+        if (!($imageTitle.textContent === "사물" || $imageTitle.textContent === "Objects")) {
+            $imageTitle.style.marginTop = "35px";
+        }
+
+        $imageTitle.style.display = "flex";
+        $imageTitle.style.alignItems = "center";
+        $imageTitle.style.gap = "7px";
+
+        const $prevBtn = document.createElement("div");
+        const $nextBtn = document.createElement("div");
+
+        $prevBtn.textContent = "←";
+        $nextBtn.textContent = "→";
+
+        $prevBtn.style.fontWeight = "500";
+        $nextBtn.style.fontWeight = "500";
+
+        $prevBtn.classList.add("cursor-pointer");
+        $nextBtn.classList.add("cursor-pointer");
+
+        let $imageList;
+
+        switch (true) {
+            case ($imageTitle.textContent === "사물" || $imageTitle.textContent === "Objects"):
+                $imageList = document.querySelector("#images-objects-list");
+                break;
+            case ($imageTitle.textContent === "계절" || $imageTitle.textContent === "Season"):
+                $imageList = document.querySelector("#images-season-list");
+                break;
+            case ($imageTitle.textContent === "영화" || $imageTitle.textContent === "Film"):
+                $imageList = document.querySelector("#images-film-list");
+                break;
+            case ($imageTitle.textContent === "공간" || $imageTitle.textContent === "Room"):
+                $imageList = document.querySelector("#images-room-list");
+                break;
+            case ($imageTitle.textContent === "위켄드" || $imageTitle.textContent === "The Weeknd"):
+                $imageList = document.querySelector("#images-weeknd-list");
+                break;
+            case ($imageTitle.textContent === "그림" || $imageTitle.textContent === "Paintings"):
+                $imageList = document.querySelector("#images-paintings-list");
+                break;
+        }
+
+        $prevBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+
+            if ($imageList.scrollLeft <= 0) {
+                return;
+            }
+
+            const moveDistance = Math.min(
+                $imageList.clientWidth,
+                $imageList.scrollLeft
+            );
+
+            $imageList.scrollBy({
+                left: -moveDistance,
+                behavior: "smooth"
+            });
+        });
+
+        $nextBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+
+            const maxScrollLeft = $imageList.scrollWidth - $imageList.clientWidth;
+            if ($imageList.scrollLeft >= maxScrollLeft) {
+                return;
+            }
+
+            const remainingDistance = maxScrollLeft - $imageList.scrollLeft;
+            if (remainingDistance <= 0) {
+                return;
+            }
+
+            $imageList.scrollBy({
+                left: Math.min($imageList.clientWidth, remainingDistance),
+                behavior: "smooth"
+            });
+        });
+
+        $imageTitle.appendChild($prevBtn);
+        $imageTitle.appendChild($nextBtn);
+    });
 
     document.querySelectorAll(".images-list img").forEach(img => {
         if (window.innerWidth <= 768) {
