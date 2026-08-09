@@ -9,7 +9,7 @@
             {% if dir contains ".md" %}
               {% assign dirFilename = dir | replace: ".md" | "" %}
               {% assign dirPath = dirPath | append: "/" | append: dirFilename %}
-              <span class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dirFilename }}" data-path-name-ko="{{ dir.page-name-ko }}"></span>
+              <span class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dirFilename }}" data-path-name-ko="{{ page.page-name-ko }}" ></span>
             {% else %}
               {% assign dirPath = dirPath | append: "/" | append: dir %}
               <a class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dir }}"></a>

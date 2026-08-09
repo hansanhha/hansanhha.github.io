@@ -16,6 +16,7 @@ const today = new Date();
 let blogInfoDateLocale = "en-US";
 if (localStorage.getItem("lang") === "en") {
     printEnLang();
+    document.getElementById("blog-search-btn").textContent = "Search";
     document.getElementById("user_agent").innerText = "User-Agent: " + result.device.vendor + " " + result.os.name  + ", " + result.browser.name;
     document.getElementById("user_layout").textContent = "Layout: Default";
     document.getElementById("user_appearance").textContent = "Appearance: ";
@@ -29,6 +30,7 @@ if (localStorage.getItem("lang") === "en") {
     document.getElementById("cosmos").textContent = "Cosmos";
 } else {
     printKoLang();
+    document.getElementById("blog-search-btn").textContent = "검색";
     document.getElementById("user_agent").innerText = "접속 환경: " + result.device.vendor + " " + result.os.name  + ", " + result.browser.name;
     blogInfoDateLocale = 'ko-KR';
     document.getElementById("user_layout").textContent = "화면 구성: 기본";
