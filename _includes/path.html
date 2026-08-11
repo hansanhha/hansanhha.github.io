@@ -9,7 +9,7 @@
             {% if dir contains ".md" %}
               {% assign dirFilename = dir | replace: ".md" | "" %}
               {% assign dirPath = dirPath | append: "/" | append: dirFilename %}
-              <span class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dirFilename }}" data-path-name-ko="{{ page.page-name-ko }}" ></span>
+              <span class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dirFilename }}" data-path-name-ko="{{ page.page-name-ko }}" data-layout="{{ page.layout }}"></span>
             {% else %}
               {% assign dirPath = dirPath | append: "/" | append: dir %}
               <a class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dir }}"></a>
@@ -40,8 +40,12 @@ const pathLinks = document.querySelectorAll(".path-link");
 pathLinks.forEach((link) => {
   link.href = window.location.origin + link.dataset.path;
 
-  const linkname = localStorage.getItem("lang") === "ko" ? link.dataset.pathNameKo ? link.dataset.pathNameKo : convertLinknameToKo(link.dataset.pathName) : link.dataset.pathName;
+  let linkname = localStorage.getItem("lang") === "ko" ? link.dataset.pathNameKo ? link.dataset.pathNameKo : convertLinknameToKo(link.dataset.pathName) : link.dataset.pathName;
 
+  console.log(link.dataset);
+  if (link.dataset.layout === "sunrise") {
+    linkname = localStorage.getItem("lang") === "ko" ? convertLinknameToKo(link.dataset.pathName) : link.dataset.pathName;
+  }
   link.textContent = "/" + capitalize(linkname);
 });
 
