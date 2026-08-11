@@ -4,7 +4,11 @@
     {% if page.dir == "/" %}
       {{ site.title }}
     {% elsif page.title %}
-      {{ site.title }} - {{ page.title }}
+        {% if page.title == "Index" %}
+            {{ site.title }} - {{ page.collection }}
+        {% else %}
+            {{ site.title }} - {{ page.title }}
+        {% endif %}
     {% else %}
       {{ site.title }}
     {% endif %}
