@@ -58,6 +58,17 @@
 .idx-path-list {
     display: flex;
     gap: 0.4px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.path-link {
+    overflow-wrap: break-word;
+}
+
+#page-info-date {
+    overflow-wrap: break-word;
+    margin-left: 4px;
 }
 
 @media (max-width: 768px) {

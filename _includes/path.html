@@ -11,7 +11,7 @@
               {% assign dirPath = dirPath | append: "/" | append: dirFilename %}
               <span class="path-link" data-path="{{ dirPath }}" data-default-path-name="{{ dirFilename }}" data-path-name="{{ page.page-name }}" data-path-name-ko="{{ page.page-name-ko }}" data-layout="{{ page.layout }}"></span>
               {% if page.name != "index.md" and page.createDate != nil and page.layout == "default" %}
-                  <span id="page-info-date" style="margin-left: 4px" data-create-date="{{ page.createDate }}"></span>
+                  <span id="page-info-date" data-create-date="{{ page.createDate }}"></span>
               {% endif %}
             {% else %}
               {% if dir == "images" or dir == "text" or dir == "web pages" %}
