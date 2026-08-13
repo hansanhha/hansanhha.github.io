@@ -1,7 +1,15 @@
-<div>
+<div class="blog-info">
     <p id="user_visit_day"></p>
     <p id="user_agent"></p>
     <p id="user_layout">Layout: Default</p>
+    <div id="user_font_size_box">
+        <div id="user_font_size"></div>
+        <div id="user_font_size_menu">
+            <div id="user_font_size_default" class="cursor-pointer" onclick="changeFontSize(0)"></div>
+            <div id="user_font_size_bigger" class="cursor-pointer" onclick="changeFontSize(1)"></div>
+            <div id="user_font_size_smaller" class="cursor-pointer" onclick="changeFontSize(-1)"></div>
+        </div>
+    </div>
     <p>
         <span id="user_appearance">Appearance: </span>
         <span id="user_appearance_brightly" style='margin-right: 2px;' onclick="changeTheme('brightly')">Brightly</span>

@@ -3,6 +3,7 @@
 body {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  font-size: 16px;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -21,9 +22,33 @@ body::-webkit-scrollbar {
   background: transparent;
 }
 
+.common-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.blog-info p:first-child {
+  display: block;
+  margin-block-start: 16px;
+  margin-block-end: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.blog-info p:last-child {
+  display: block;
+  margin-block-start: 0px;
+  margin-block-end: 16px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
 .main-content {
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -529,7 +554,6 @@ h5 {
     display: flex;
     align-items: center;
     overflow-x: scroll;
-    padding-right: 10px;
 }
 
 .images-list img {
@@ -540,4 +564,21 @@ h5 {
 .video-container {
   margin-top: 8px;
   margin-bottom: 8px;
+}
+
+#search-result-box {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+#user_font_size_box {
+  display: flex;
+  gap: 4px;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+}
+
+#user_font_size_menu {
+  display: flex;
+  gap: 8px;
 }

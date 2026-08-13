@@ -11,11 +11,15 @@
               {% assign dirPath = dirPath | append: "/" | append: dirFilename %}
               <span class="path-link" data-path="{{ dirPath }}" data-default-path-name="{{ dirFilename }}" data-path-name="{{ page.page-name }}" data-path-name-ko="{{ page.page-name-ko }}" data-layout="{{ page.layout }}"></span>
               {% if page.name != "index.md" and page.createDate != nil and page.layout == "default" %}
-                  <span id="page-info-date" style="margin-left: 4px">| {{ page.createDate }}</span>
+                  <span id="page-info-date" style="margin-left: 4px" data-create-date="{{ page.createDate }}"></span>
               {% endif %}
             {% else %}
-              {% assign dirPath = dirPath | append: "/" | append: dir %}
-              <a class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dir }}"></a>
+              {% if dir == "images" or dir == "text" or dir == "web pages" %}
+              <span class="archive-path-link" data-path-name="{{ dir }}"></span>
+              {% else %}
+                {% assign dirPath = dirPath | append: "/" | append: dir %}
+                <a class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dir }}"></a>
+              {% endif %}
             {% endif %}
           {% endunless %}
         {% endfor %}
@@ -39,6 +43,27 @@
 </div>
 
 <script>
+const $createDate = document.querySelector("#page-info-date");
+if ($createDate) {
+  const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
+
+  const createDate = new Date($createDate.dataset.createDate);
+  const dateInfo = createDate.toLocaleDateString(locale, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long'
+  });
+
+  $createDate.innerText = "| " +  dateInfo;
+}
+
+const archivesPathLinks = document.querySelectorAll(".archive-path-link");
+archivesPathLinks.forEach((link) => {
+  link.style.marginLeft = "0.4px";
+  link.textContent = "/" + (localStorage.getItem("lang") === "ko" ? convertLinknameToKo(link.dataset.pathName) : capitalize(link.dataset.pathName));
+});
+
 const pathLinks = document.querySelectorAll(".path-link");
 pathLinks.forEach((link) => {
   link.href = window.location.origin + link.dataset.path;

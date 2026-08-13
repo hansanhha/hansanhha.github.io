@@ -65,6 +65,10 @@ if (localStorage.getItem("lang") === "en") {
     document.getElementById("blog-search-btn").textContent = "Search";
     document.getElementById("user_agent").innerText = "User-Agent: Checking...";
     document.getElementById("user_layout").textContent = "Layout: Default";
+    document.getElementById("user_font_size").textContent = "Font Size: ";
+    document.getElementById("user_font_size_default").textContent = "Default";
+    document.getElementById("user_font_size_smaller").textContent = "A-";
+    document.getElementById("user_font_size_bigger").textContent = "A+";
     document.getElementById("user_appearance").textContent = "Appearance: ";
     document.getElementById("user_appearance_brightly").textContent = "Brightly";
     document.getElementById("user_appearance_darkly").textContent = "Darkly";
@@ -80,6 +84,10 @@ if (localStorage.getItem("lang") === "en") {
     document.getElementById("user_agent").innerText = "접속 환경: 확인 중...";
     blogInfoDateLocale = 'ko-KR';
     document.getElementById("user_layout").textContent = "화면 구성: 기본";
+    document.getElementById("user_font_size").textContent = "글꼴 크기: ";
+    document.getElementById("user_font_size_default").textContent = "기본";
+    document.getElementById("user_font_size_smaller").textContent = "가-";
+    document.getElementById("user_font_size_bigger").textContent = "가+";
     document.getElementById("user_appearance").textContent = "배경: ";
     document.getElementById("user_appearance_brightly").textContent = "밝게";
     document.getElementById("user_appearance_darkly").textContent = "어둡게";
@@ -96,6 +104,15 @@ document.getElementById("user_visit_day").innerText = today.toLocaleDateString(b
     day: 'numeric',
     weekday: 'long'
 });
+
+function changeFontSize(delta) {
+    const $pageContentWrapper = document.getElementById("page-content-wrapper");
+    const currentFontSize = parseFloat(getComputedStyle($pageContentWrapper).fontSize);
+
+    let newFontSize = currentFontSize + delta;
+    if (delta === 0) newFontSize = 16;
+    $pageContentWrapper.style.fontSize = `${newFontSize}px`;
+}
 
 localStorage.getItem("theme") !== undefined
     ? (localStorage.getItem("theme") === "dark") ? printDarklyAppearance() : printBrightlyAppearance()
@@ -172,4 +189,13 @@ hyperlinks.forEach((link) => {
         link.textContent = link.textContent;
     }
 });
+
+function moveToSearchPage() {
+  const params = new URLSearchParams(location.search);
+  const q = params.get("q");
+
+  if (q) {
+    search();
+  }
+}
 </script>

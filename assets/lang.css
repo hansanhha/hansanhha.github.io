@@ -3,9 +3,9 @@ div[class^="language-"] {
     margin: 12px 0;
     overflow: auto;
     font-family: "Courier New", monospace;
-    background-color: #f4f4f4; 
-    color: black; 
-    font-size: 0.95em; 
+    background-color: #f4f4f4;
+    color: black;
+    font-size: 0.95em;
     white-space: pre-wrap;
     word-wrap: break-word;
 }
@@ -22,7 +22,7 @@ div[class^="language-"] {
     code {
         --bg-color: #454545;
         --text-color: #ddd;
-        
+
         background-color: var(--bg-color);
         color: var(--text-color);
     }
@@ -33,18 +33,18 @@ pre > code {
 }
 
 code {
-    padding: 1px;
-    margin: 1px 5px;
+    /*padding: 1px;*/
+    /*margin: 1px 5px;*/
     font-family: "Courier New", monospace;
-    background-color: #f4f4f4; 
-    color: black; 
-    font-size: 0.95em; 
+    background-color: #f4f4f4;
+    color: black;
+    font-size: 0.95em;
     white-space: pre-wrap;
     word-wrap: break-word;
 }
 
 .c1 {
-    color: gray;    
+    color: gray;
     font-style: italic;
 }
 
