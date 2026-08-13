@@ -15,7 +15,7 @@ Address: <a href="https://hansanhha.github.io/sunrise" target="_blank" rel="noop
 
 ---
 
-23 Times, 18 Places
+24 Times, 19 Places
 
 Seoul Mongchontoseong Earthen Fortification [January 2024](https://hansanhha.github.io/sunrise/2024/January) [June 2026](https://hansanhha.github.io/sunrise/2026/June)
 
