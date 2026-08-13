@@ -45,7 +45,6 @@ async function init() {
           document.getElementById("user_agent").innerText = "접속 환경: " + convertedResult.device.vendor + " " + convertedResult.os.name + ", " + convertedResult.browser.name
         }
     } catch (error) {
-      console.log(error);
       if (localStorage.getItem("lang") === "en") {
         document.getElementById("user_agent").innerText = "User-Agent: Checking Failed";
       } else {
@@ -75,11 +74,13 @@ if (localStorage.getItem("lang") === "en") {
     document.getElementById("user_appearance_brightly").textContent = "Brightly";
     document.getElementById("user_appearance_darkly").textContent = "Darkly";
     document.getElementById("user_lang").textContent = "Locale: ";
-    document.getElementById("footer").textContent = "Miscellany";
+    document.getElementById("footer").textContent = "Miscellaneous";
     document.getElementById("internet-usernames").textContent = "Internet: ";
     document.getElementById("github").textContent = "GitHub";
     document.getElementById("instagram").textContent = "Instagram";
     document.getElementById("cosmos").textContent = "Cosmos";
+    if (document.getElementById("not-found")) document.getElementById("not-found").textContent = "404 Not Found";
+    if (document.getElementById("not-found-text")) document.getElementById("not-found-text").textContent = "Cannot find the page.";
 } else {
     printKoLang();
     document.getElementById("blog-search-btn").textContent = "검색";
@@ -99,6 +100,8 @@ if (localStorage.getItem("lang") === "en") {
     document.getElementById("github").textContent = "깃허브";
     document.getElementById("instagram").textContent = "인스타그램";
     document.getElementById("cosmos").textContent = "코스모스";
+    if (document.getElementById("not-found")) document.getElementById("not-found").textContent = "404 Not Found";
+    if (document.getElementById("not-found-text")) document.getElementById("not-found-text").textContent = "페이지를 찾을 수 없습니다.";
 }
 document.getElementById("user_visit_day").innerText = today.toLocaleDateString(blogInfoDateLocale, {
     year: 'numeric',
@@ -107,12 +110,17 @@ document.getElementById("user_visit_day").innerText = today.toLocaleDateString(b
     weekday: 'long'
 });
 
+const fontSize = localStorage.getItem("fontSize");
+if (fontSize && document.getElementById("page-content-wrapper")) document.getElementById("page-content-wrapper").style.fontSize = `${fontSize}px`;
+
 function changeFontSize(delta) {
     const $pageContentWrapper = document.getElementById("page-content-wrapper");
     const currentFontSize = parseFloat(getComputedStyle($pageContentWrapper).fontSize);
 
     let newFontSize = currentFontSize + delta;
     if (delta === 0) newFontSize = 16;
+
+    localStorage.setItem("fontSize", newFontSize);
     $pageContentWrapper.style.fontSize = `${newFontSize}px`;
 }
 
@@ -155,13 +163,45 @@ function changeTheme(theme) {
     location.reload();
 }
 
+const autoIndexesMenu = ["projects", "code", "daily"];
 function changeLang(lang) {
     if (lang === "en") {
+        if (localStorage.getItem("lang") === "en") return;
+
         localStorage.setItem("lang", "en");
+        if (window.location.href === window.location.origin + "/") {
+          location.reload();
+          return;
+        }
+
+        originHref = window.location.href;
+        if (autoIndexesMenu.some(menu => originHref.includes(menu)))  {
+          const lastIdx = originHref.lastIndexOf("/");
+          location.href = originHref.substring(0, lastIdx) + "/en/" + originHref.substring(lastIdx + 1);
+        } else {
+          location.reload();
+        }
     } else {
-        localStorage.setItem("lang", "ko");
+      if (localStorage.getItem("lang") === "ko") return;
+
+      localStorage.setItem("lang", "ko");
+      if (window.location.href === window.location.origin + "/") {
+        location.reload();
+        return;
+      }
+
+      originHref = window.location.href;
+      if (autoIndexesMenu.some(menu => originHref.includes(menu))) {
+        const lastIdx = originHref.lastIndexOf("/en/");
+        if (lastIdx === -1) {
+          location.reload();
+        } else {
+          location.href = originHref.substring(0, lastIdx) + "/" + originHref.substring(lastIdx + 4);
+        }
+      } else {
+        location.reload();
+      }
     }
-    location.reload();
 }
 
 const $empty = document.getElementById("empty");
@@ -219,8 +259,6 @@ function convertToKoreanUserAgent(userAgent) {
         name: browser,
       },
     }
-
-    console.log(koreanUserAgent);
 
     switch (vendor) {
       case "apple":
@@ -389,7 +427,7 @@ function convertToKoreanUserAgent(userAgent) {
       case "facebook":
         koreanUserAgent.browser.name = "페이스북";
         break;
-      case "kakotalk":
+      case "kakaotalk":
         koreanUserAgent.browser.name = "카카오톡";
         break;
       case "line":
@@ -415,7 +453,6 @@ function convertToKoreanUserAgent(userAgent) {
         break;
     }
 
-    console.log(koreanUserAgent);
     return koreanUserAgent;
 }
 

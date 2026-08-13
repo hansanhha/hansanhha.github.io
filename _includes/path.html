@@ -8,18 +8,24 @@
           {% unless dir == "index.md" %}
             {% if dir contains ".md" %}
               {% assign dirFilename = dir | replace: ".md" | "" %}
-              {% assign dirPath = dirPath | append: "/" | append: dirFilename %}
-              <span class="path-link" data-path="{{ dirPath }}" data-default-path-name="{{ dirFilename }}" data-path-name="{{ page.page-name }}" data-path-name-ko="{{ page.page-name-ko }}" data-layout="{{ page.layout }}"></span>
+              {% if dir == "404.md" %}
+              <a id="path-error-back-prev-page"></a>
+              {% else %}
+                {% assign dirPath = dirPath | append: "/" | append: dirFilename %}
+                <span class="path-link" data-path="{{ dirPath }}" data-default-path-name="{{ dirFilename }}" data-path-name="{{ page.page-name }}" data-path-name-ko="{{ page.page-name-ko }}" data-layout="{{ page.layout }}"></span>
+              {% endif %}
               {% if page.name != "index.md" and page.createDate != nil and page.layout == "default" %}
                   <span id="page-info-date" data-create-date="{{ page.createDate }}"></span>
               {% endif %}
             {% else %}
-              {% if dir == "images" or dir == "text" or dir == "web pages" %}
-              <span class="archive-path-link" data-path-name="{{ dir }}"></span>
-              {% else %}
-                {% assign dirPath = dirPath | append: "/" | append: dir %}
-                <a class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dir }}"></a>
-              {% endif %}
+              {% unless dir == "en" %}
+                {% if dir == "images" or dir == "text" or dir == "web pages" %}
+                <span class="archive-path-link" data-path-name="{{ dir }}"></span>
+                {% else %}
+                    {% assign dirPath = dirPath | append: "/" | append: dir %}
+                    <a class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dir }}"></a>
+                {% endif %}
+              {% endunless %}
             {% endif %}
           {% endunless %}
         {% endfor %}
@@ -102,6 +108,19 @@ pageNextLinks.forEach((link) => {
   lang === "ko" ? link.textContent = "다음 페이지" : link.textContent = "Next";
   link.href = link.dataset.layout === "sunrise" ? capitalize(link.dataset.nextPath) : link.dataset.nextPath.toLowerCase();
 });
+
+const pageErrorBackPrevPage = document.getElementById("path-error-back-prev-page");
+if (pageErrorBackPrevPage) {
+  if (localStorage.getItem("lang") === "ko") {
+    pageErrorBackPrevPage.textContent = "← 이전 페이지로 돌아가기";
+  } else {
+    pageErrorBackPrevPage.textContent = "← Back to the previous page";
+  }
+  pageErrorBackPrevPage.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.history.back();
+  });
+}
 
 function capitalize(str) {
   return str

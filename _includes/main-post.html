@@ -5,6 +5,12 @@
 <script>
 loadLatestPosts();
 
+if (!localStorage.getItem("lang") && navigator.language.startsWith("ko")) {
+    localStorage.setItem("lang", "ko");
+} else if (!localStorage.getItem("lang")) {
+    localStorage.setItem("lang", "en");
+}
+
 async function loadLatestPosts() {
     const $latestPostsBox = document.getElementById("latest-posts-box");
     $latestPostsBox.style.innerHTML = "";
@@ -24,6 +30,8 @@ async function loadLatestPosts() {
         const top10Posts = jsonData
             .filter((post) => !post.url.includes("legacy"))
             .filter((post) => post.title.toLowerCase() != "index" || post.url.toLowerCase() == "/archives/images/index.html")
+            .filter((post) => post.url.includes("/sunrise/") || post.url.includes("/archives/")
+                || (localStorage.getItem("lang") === "en" ? post.url.includes("/en/") : !post.url.includes("/en/")))
             .sort((a, b) => {
                 const aDate = a.createDate ? a.createDate : a.date;
                 const bDate = b.createDate ? b.createDate : b.date;

@@ -8,7 +8,7 @@
     window.addEventListener("load", () => {
         if (document.documentElement.scrollHeight > window.innerHeight) {
             $goToTopBox.style.display = "flex";
-            $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기" : "go to top";
+            $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "go to top ↑";
         } else {
             $goToTopBox.style.display = "none";
         }

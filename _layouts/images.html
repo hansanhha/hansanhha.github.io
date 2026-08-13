@@ -105,12 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const imageTextContents = new Array();
     imageTextContents.push($imageObjectTextContent, $imageSeasonTextContent, $imageFilmTextContent, $imageRoomTextContent, $imageWeekndTextContent, $imagePaintingsTextContent);
     imageTextContents.forEach(($imageTextContent) => {
-      $imageTextContent.style.fontSize = "1.3rem";
-      if ($imageTextContent.textContent === "사물" || $imageTextContent.textContent === "Objects") {
-          $imageTextContent.style.fontSize = "1.3rem";
-        } else {
-          $imageTextContent.style.fontSize = "1.3rem";
-        }
+      $imageTextContent.style.fontSize = "20px";
     });
 
     $imageObjects.appendChild($imageObjectTextContent);
@@ -123,10 +118,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const imageTitles = new Array();
     imageTitles.push($imageObjects, $imageSeason, $imageFilm, $imageRoom, $imageWeeknd, $imagePaintings);
     imageTitles.forEach(($imageTitle) => {
-        if (!($imageTitle.textContent === "사물" || $imageTitle.textContent === "Objects")) {
-            $imageTitle.style.marginTop = "32px";
-        } else {
+        if (($imageTitle.textContent === "사물" || $imageTitle.textContent === "Objects")) {
             $imageTitle.style.marginTop = "8px";
+        } else {
+            $imageTitle.style.marginTop = "16px";
         }
 
         $imageTitle.style.display = "flex";
@@ -210,8 +205,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.querySelectorAll(".images-list img").forEach(img => {
-        if (window.innerWidth <= 768) {
-          img.style.height = "350px";
+        if (window.innerWidth <= 960) {
+          img.style.height = "340px";
           img.style.width = "auto";
         } else {
           img.style.height = "700px";
@@ -262,7 +257,7 @@ function configureDisplayOptions() {
         const rows = [];
         let currentRow = [];
         let currentRowWidth = 0;
-        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+        const isMobile = window.matchMedia('(max-width: 960px)').matches;
 
         for (const img of images) {
             const aspectRatio = img.naturalWidth / img.naturalHeight;
@@ -316,7 +311,7 @@ function focus($img) {
         zIndex: "9999",
         cursor: "normal",
         overflow: "hidden",
-        padding: window.innerWidth <= 768 ? "10px" : "40px",
+        padding: window.innerWidth <= 960 ? "16px" : "40px",
         opacity: "0",
         transition: "opacity 250ms ease",
     });
@@ -326,7 +321,7 @@ function focus($img) {
         width: "100%",
         height: "100%",
         display: "flex",
-        alignItems: !($img.dataset.desc || $img.dataset.descKo) && window.innerWidth <= 768 ? "center" : window.innerWidth <= 768 ? "start" : "center",
+        alignItems: !($img.dataset.desc || $img.dataset.descKo) && window.innerWidth <= 960 ? "center" : window.innerWidth <= 960 ? "start" : "center",
         justifyContent: "center",
         overflow: "hidden",
     });
@@ -335,7 +330,7 @@ function focus($img) {
     Object.assign($focusedImg.style, {
         width: "auto",
         height: "auto",
-        maxWidth: ($img.dataset.desc || $img.dataset.descKo) ? window.innerWidth <= 768 ? "100%" : "65%" : "100%",
+        maxWidth: ($img.dataset.desc || $img.dataset.descKo) ? window.innerWidth <= 960 ? "100%" : "65%" : "100%",
         maxHeight: "100%",
         objectFit: "contain",
         alignItems: "start",
@@ -346,7 +341,7 @@ function focus($img) {
         transition: "opacity 250ms ease, transform 250ms ease",
     });
 
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 960) {
         $imgBox.style.flexDirection = "column";
         $imgBox.style.justifyContent = ($img.dataset.desc || $img.dataset.descKo) ? "start" : "center";
 
@@ -366,10 +361,10 @@ function focus($img) {
         overflowX: "hidden",
         scrollbarWidth: "none",
         alignItems: "start",
-        fontSize: "17px",
+        fontSize: localStorage.getItem("fontSize") ? parseInt(localStorage.getItem("fontSize")) + 2 + "px" : "18px",
         color: "#e3dfdf",
         opacity: "0",
-        transform: window.innerWidth <= 768
+        transform: window.innerWidth <= 960
             ? "translateY(0px)"
             : "translateX(0px)",
         transition: "opacity .3s ease, transform .3s cubic-bezier(.22,.61,.36,1)",
@@ -382,11 +377,11 @@ function focus($img) {
     document.head.appendChild(style);
     $imgDescriptionBox.className = "img-desc-box";
 
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 960) {
         Object.assign($imgDescriptionBox.style, {
             maxWidth: "98%",
             maxHeight: "100%",
-            marginTop: "20px",
+            marginTop: "8px",
             paddingRight: "10px",
         });
     } else {
@@ -448,7 +443,7 @@ function focus($img) {
         $focusedImg.style.transform = "scale(.96)";
 
         $imgDescriptionBox.style.opacity = "0";
-        $imgDescriptionBox.style.transform = window.innerWidth <= 768
+        $imgDescriptionBox.style.transform = window.innerWidth <= 960
             ? "translateY(0px)"
             : "translateX(0px)";
 
@@ -470,7 +465,7 @@ function focus($img) {
 
     $imgBox.appendChild($focusedImg);
     $imgBox.appendChild($imgDescriptionBox);
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 960) {
         const setDescriptionHeight = () => {
             const imgHeight = $focusedImg.height;
             $imgDescriptionBox.style.height = `${imgHeight}px`;
@@ -492,7 +487,7 @@ function focus($img) {
         setTimeout(() => {
             $imgDescriptionBox.style.opacity = "1";
             $imgDescriptionBox.style.transform = "translateX(0)";
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 960) {
                 $imgDescriptionBox.style.transform = "translateY(0)";
             }
         }, 40);

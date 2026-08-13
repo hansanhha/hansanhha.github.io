@@ -53,7 +53,14 @@ async function loadIndexByCategory() {
 
         const categorisedIndexes = category === "sunrise"
             ? getSunriseIndexesByYear(getCategorisedIndexes(jsonData, category, sort), idxName)
-            : getCategorisedIndexes(jsonData, category, sort);
+            : filterIndexesByLocale(getCategorisedIndexes(jsonData, category, sort));
+
+        if (categorisedIndexes.length === 0) {
+            const $none = document.createElement("p");
+            $none.textContent = localStorage.getItem("lang") === "ko" ? "작성된 게시글이 없습니다." : "No posts.";
+            $pageContentWrapper.appendChild($none);
+            return;
+        }
 
         const printIndexByCategory = (category) => {
             categorisedIndexes
@@ -99,6 +106,11 @@ function getCategorisedIndexes(indexes, category, sort) {
 function getSunriseIndexesByYear(indexes, year) {
     return indexes
             .filter((post) => post.createDate >= `${year}-01-01` && post.createDate <= `${year}-12-31`);
+}
+
+function filterIndexesByLocale(indexes) {
+    if (localStorage.getItem("lang") === "en") return indexes.filter((post) => post.url.includes("/en/"));
+    return indexes.filter((post) => !post.url.includes("/en/"));
 }
 
 function capitalize(str) {
