@@ -1,7 +1,7 @@
 <div class="idx-container">
   <div class="idx-path-box">
     <div class="idx-path">
-      <div style="display: flex;">
+      <div class="idx-path-list">
         {% assign dirs = page.path | replace_first: "_", "" | split: "/" %}
         {% assign dirPath = "" %}
         {% for dir in dirs %}
@@ -9,7 +9,10 @@
             {% if dir contains ".md" %}
               {% assign dirFilename = dir | replace: ".md" | "" %}
               {% assign dirPath = dirPath | append: "/" | append: dirFilename %}
-              <span class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dirFilename }}" data-path-name-ko="{{ page.page-name-ko }}" data-layout="{{ page.layout }}"></span>
+              <span class="path-link" data-path="{{ dirPath }}" data-default-path-name="{{ dirFilename }}" data-path-name="{{ page.page-name }}" data-path-name-ko="{{ page.page-name-ko }}" data-layout="{{ page.layout }}"></span>
+              {% if page.name != "index.md" and page.createDate != nil and page.layout == "default" %}
+                  <span id="page-info-date" style="margin-left: 4px">| {{ page.createDate }}</span>
+              {% endif %}
             {% else %}
               {% assign dirPath = dirPath | append: "/" | append: dir %}
               <a class="path-link" data-path="{{ dirPath }}" data-path-name="{{ dir }}"></a>
@@ -23,13 +26,13 @@
     <div class="page-link">
       {% if page.prev-link %}
         {% if page.prev-link == "./index" or page.prev-link == ".index" or page.prev-link == "index" %}
-          <a href={{ page.prev-link }} class="page-index-link">Index</a >
+          <a class="page-index-link" data-prev-path="{{ page.prev-link }}">Index</a >
         {% else %}
-          <a href={{ page.prev-link }} class="page-prev-link"></a>
+          <a class="page-prev-link" data-prev-path="{{ page.prev-link }}" data-layout="{{ page.layout }}"></a>
         {% endif %}
       {% endif %}
       {% if page.next-link %}
-        <a href={{ page.next-link }} class="page-next-link"></a>
+        <a class="page-next-link" data-next-path="{{ page.next-link }}" data-layout="{{ page.layout }}"></a>
       {% endif %}
     </div>
   {% endif %}
@@ -40,12 +43,17 @@ const pathLinks = document.querySelectorAll(".path-link");
 pathLinks.forEach((link) => {
   link.href = window.location.origin + link.dataset.path;
 
-  let linkname = localStorage.getItem("lang") === "ko" ? link.dataset.pathNameKo ? link.dataset.pathNameKo : convertLinknameToKo(link.dataset.pathName) : link.dataset.pathName;
+  let linkname = "";
 
-  console.log(link.dataset);
-  if (link.dataset.layout === "sunrise") {
-    linkname = localStorage.getItem("lang") === "ko" ? convertLinknameToKo(link.dataset.pathName) : link.dataset.pathName;
+  if (localStorage.getItem("lang") === "ko") {
+    linkname = link.dataset.pathNameKo ? link.dataset.pathNameKo : convertLinknameToKo(link.dataset.pathName);
+  } else {
+    linkname = link.dataset.pathName;
   }
+
+  if (link.dataset.layout === "sunrise") linkname = localStorage.getItem("lang") === "ko" ? convertLinknameToKo(link.dataset.defaultPathName) : link.dataset.defaultPathName;
+  if (linkname === "") linkname = link.dataset.defaultPathName;
+
   link.textContent = "/" + capitalize(linkname);
 });
 
@@ -53,18 +61,21 @@ const pageIndexLinks = document.querySelectorAll(".page-index-link");
 pageIndexLinks.forEach((link) => {
   const lang = localStorage.getItem("lang");
   lang === "ko" ? link.textContent = "인덱스 페이지" : link.textContent = "Index";
+  link.href = link.dataset.prevPath.toLowerCase();
 });
 
 const pagePrevLinks = document.querySelectorAll(".page-prev-link");
 pagePrevLinks.forEach((link) => {
   const lang = localStorage.getItem("lang");
   lang === "ko" ? link.textContent = "이전 페이지" : link.textContent = "Prev";
+  link.href = link.dataset.layout === "sunrise" ? capitalize(link.dataset.prevPath) : link.dataset.prevPath.toLowerCase();
 });
 
 const pageNextLinks = document.querySelectorAll(".page-next-link");
 pageNextLinks.forEach((link) => {
   const lang = localStorage.getItem("lang");
   lang === "ko" ? link.textContent = "다음 페이지" : link.textContent = "Next";
+  link.href = link.dataset.layout === "sunrise" ? capitalize(link.dataset.nextPath) : link.dataset.nextPath.toLowerCase();
 });
 
 function capitalize(str) {

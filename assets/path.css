@@ -40,7 +40,7 @@
 
 .idx-path-box {
     width: fit-content;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .idx-path {
@@ -55,6 +55,11 @@
     to { width: 100%; }
 } */
 
+.idx-path-list {
+    display: flex;
+    gap: 0.4px;
+}
+
 @media (max-width: 768px) {
   .idx-container {
     display: flex;
@@ -62,8 +67,8 @@
     /* align-items: center; */
     /* justify-items: center; */
     /* margin-top: 20%; */
-    margin-top: 10px;
-    margin-bottom: 7px;
+    margin-top: 12px;
+    margin-bottom: 4px;
   }
 
   .page-link {
@@ -80,8 +85,8 @@
     /* align-items: center; */
     /* justify-items: center; */
     /* margin-top: 10%; */
-    margin-top: 10px;
-    margin-bottom: 8px;
+    margin-top: 12px;
+    margin-bottom: 4px;
   }
 
   .page-link {

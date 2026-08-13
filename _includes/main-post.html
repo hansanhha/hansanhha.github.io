@@ -43,7 +43,7 @@ async function loadLatestPosts() {
                         $category.classList = "post-list";
                         const $categoryTextContent = document.createElement("span");
                         $categoryTextContent.textContent = capitalize(localize(category));
-                        $categoryTextContent.style.fontWeight = 600;
+                        $categoryTextContent.style.fontWeight = 400;
                         $category.appendChild($categoryTextContent)
                         $latestPostsBox.appendChild($category);
                     }

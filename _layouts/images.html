@@ -124,7 +124,9 @@ document.addEventListener("DOMContentLoaded", function() {
     imageTitles.push($imageObjects, $imageSeason, $imageFilm, $imageRoom, $imageWeeknd, $imagePaintings);
     imageTitles.forEach(($imageTitle) => {
         if (!($imageTitle.textContent === "사물" || $imageTitle.textContent === "Objects")) {
-            $imageTitle.style.marginTop = "35px";
+            $imageTitle.style.marginTop = "32px";
+        } else {
+            $imageTitle.style.marginTop = "8px";
         }
 
         $imageTitle.style.display = "flex";

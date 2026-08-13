@@ -1,4 +1,4 @@
-<ul id="blog_categories" class="horizontal-list" style="margin-top: 7px;">
+<ul id="blog_categories" class="horizontal-list" style="margin-top: 8px;">
     <li><a id="projects_link">Projects</a></li>
     <li><a id="code_link">Code</a></li>
     <li><a id="daily_link">Daily</a></li>
@@ -11,10 +11,7 @@
 </div>
 
 {% if page.layout != "sunrise" and page.title-name != nil or page.title-name-ko != nil %}
-    <div id="page-info-title" class="text-left-align" style="margin-bottom: 5px;" data-title-name="{{ page.title-name }}" data-title-name-ko="{{ page.title-name-ko }}"></div>
-{% endif %}
-{% if page.name != "index.md" and page.createDate != nil and page.layout != "sunrise" %}
-    <div id="page-info-date" class="text-left-align" style="margin-bottom: 5px;">{{ page.createDate }} </div>
+    <div id="page-info-title" class="text-left-align" style="margin-bottom: 4px;" data-title-name="{{ page.title-name }}" data-title-name-ko="{{ page.title-name-ko }}"></div>
 {% endif %}
 
 <script>
@@ -41,10 +38,6 @@ const $pageInfoDate = document.getElementById("page-info-date");
 
 if ($pageInfoTitle) {
   $pageInfoTitle.textContent = userLang === "ko" ? $pageInfoTitle.dataset.titleNameKo ? $pageInfoTitle.dataset.titleNameKo : $pageInfoTitle.dataset.titleName : $pageInfoTitle.dataset.titleName;
-}
-
-if ($pageInfoDate && window.innerWidth <= 768) {
-  $pageInfoDate.style.marginBottom = "10px";
 }
 
 document.querySelectorAll("#blog_categories li a").forEach((category) => {
