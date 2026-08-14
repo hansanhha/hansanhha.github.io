@@ -506,3 +506,30 @@ h5 {
   display: flex;
   gap: 8px;
 }
+
+.video-description-box {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  gap: 4px;
+}
+
+.video-name-desc-box {
+  display: flex;
+  gap: 4px;
+}
+
+.video-shooting-desc-box {
+  display: flex;
+  gap: 4px;
+}
+
+.webpage-link-desc-box {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  margin-left: 4px;
+  margin-bottom: 16px;
+  gap: 4px;
+}

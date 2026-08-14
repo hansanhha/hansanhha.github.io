@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="stylesheet" href="/assets/item.css">
+	<link rel="stylesheet" href="/assets/default.css">
+	<link rel="stylesheet" href="/assets/path.css">
+	<link rel="stylesheet" href="/assets/lang.css">
+	{% include meta.html %}
+	{% include theme.html %}
+</head>
+<head>
+</head>
+<body>
+    <div class="common-wrapper">
+        {% include blog-search.html %}
+        <div style="display: flex; flex-direction: column;">
+            {% include common.html %}
+            {% if page.content != nil and page.content != "" %}
+                <div id="page-content-wrapper">
+                    {{ content }}
+                </div>
+            {% else %}
+                <div id="empty"></div>
+            {% endif %}
+            {% include footer.html %}
+        </div>
+    </div>
+</body>
+{% include default-script.html %}
+<script>
+const $webPageLinks = document.querySelectorAll(".webpage-link");
+
+$webPageLinks.forEach(link => {
+  let linkDesc, linkURL, linkTags;
+
+  if (localStorage.getItem("lang") === "ko") {
+    linkDesc = link.dataset.descKo;
+    linkTags = link.dataset.tagsKo;
+  } else {
+    linkDesc = link.dataset.desc;
+    linkTags = link.dataset.tags;
+  }
+
+  const $linkDescBox = document.createElement("div");
+  $linkDescBox.classList.add("webpage-link-desc-box");
+
+  if (linkDesc) {
+    const $linkDesc = document.createElement("div");
+    $linkDesc.textContent = "└ " + linkDesc;
+    $linkDescBox.appendChild($linkDesc);
+  }
+
+  if (linkTags) {
+    const $linkTags = document.createElement("div");
+    $linkTags.textContent = "└ " + linkTags;
+    $linkDescBox.appendChild($linkTags);
+  }
+
+  link.after($linkDescBox);
+});
+
+</script>
+</html>

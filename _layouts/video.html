@@ -65,6 +65,99 @@ document.addEventListener("DOMContentLoaded", async (event) => {
         });
     }
 
+    const $videos = document.querySelectorAll(".archive-video");
+    $videos.forEach($video => {
+        $video.addEventListener("loadedmetadata", () => {
+          printVideoMeatadata($video);
+        });
+    });
 });
+
+function printVideoMeatadata($video) {
+  if (!$video.dataset) {
+    return;
+  }
+  const $videoDescriptionBox = document.createElement("div");
+  const $videoNameBox = document.createElement("div");
+  const $videoShootingDescBox = document.createElement("div");
+  $videoDescriptionBox.classList.add("video-description-box");
+  $videoNameBox.classList.add("video-name-desc-box");
+  $videoShootingDescBox.classList.add("video-shooting-desc-box");
+  let videoName, videoPlace, videoDevice, videoDate, videoRunningTime, videoDesc = "";
+  if (localStorage.getItem("lang") === "ko") {
+    videoName = $video.dataset.nameKo;
+    videoPlace = $video.dataset.placeKo;
+    videoDevice = $video.dataset.deviceKo;
+    videoDesc = $video.dataset.descKo;
+    if ($video.dataset.date) {
+        videoDateInfo = new Date($video.dataset.date);
+        videoDate = videoDateInfo.toLocaleDateString("ko-KR", {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            weekday: 'long'
+        });
+    }
+  } else {
+    videoName = $video.dataset.name;
+    videoPlace = $video.dataset.place;
+    videoDevice = $video.dataset.device;
+    videoDesc = $video.dataset.desc;
+    if ($video.dataset.date) {
+        videoDateInfo = new Date($video.dataset.date);
+        videoDate = videoDateInfo.toLocaleDateString("en-US", {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            weekday: 'long'
+        });
+    }
+  }
+
+  const duration = $video.duration;
+  const minutes = Math.floor(duration / 60);
+  const seconds = Math.floor(duration % 60);
+  videoRunningTime = `${minutes}:${String(seconds).padStart(2, "0")}`;
+
+  if (videoName) {
+    const $videoName = document.createElement("div");
+    $videoName.innerText = videoName;
+    $videoNameBox.appendChild($videoName);
+  }
+
+  if (videoDesc) {
+    const $videoDesc = document.createElement("div");
+    $videoDesc.innerText = videoDesc;
+    $videoNameBox.appendChild($videoDesc);
+  }
+
+  if (videoPlace) {
+    const $videoPlace = document.createElement("div");
+    $videoPlace.innerText = videoPlace;
+    $videoDescriptionBox.appendChild($videoPlace);
+  }
+
+  if (videoDate) {
+    const $videoDate = document.createElement("div");
+    $videoDate.innerText = videoDate + ", ";
+    $videoShootingDescBox.appendChild($videoDate);
+  }
+
+  if (videoDevice) {
+    const $videoDevice = document.createElement("div");
+    $videoDevice.innerText = videoDevice + ", ";
+    $videoShootingDescBox.appendChild($videoDevice);
+  }
+
+  if (videoRunningTime) {
+    const $videoRunningTime = document.createElement("div");
+    $videoRunningTime.innerText = videoRunningTime;
+    $videoShootingDescBox.appendChild($videoRunningTime);
+  }
+
+  $videoDescriptionBox.appendChild($videoNameBox);
+  $videoDescriptionBox.appendChild($videoShootingDescBox);
+  $video.after($videoDescriptionBox);
+}
 </script>
 </html>
