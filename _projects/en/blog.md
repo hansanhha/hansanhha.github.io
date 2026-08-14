@@ -27,7 +27,7 @@ Projects
 
 프로젝트를 설명하는 양식은 다음과 같다.
 
-시작일시는 ISO-8601 UTC 형식으로 표시하고, 상태는 진행 중/일시 중단/종료 중 하나로 표시한다. 일시 중단과 종료 상태인 경우엔 그 시작 시점을 명시한다.
+시작일시는 ISO-8601 UTC 형식으로 표시하고, 상태는 진행 중/일시 중단/종료 중 하나로 표시한다. 일시 중단과 종료 상태인 경우엔 그 시점을 명시한다.
 
 주소는 인터넷 웹 주소 또는 실제 공간 주소를 입력한다.
 
@@ -63,9 +63,11 @@ Sunrise
 
 ---
 
-Blog design concepts
+블로그 디자인에 관하여: 기본 화면 구성에 대한 설명
 
-How to organize default screen
+콘텐츠를 감싸고 있는 상단과 하단의 영역은 고정적으로 유지되며 콘텐츠의 내용만 동적으로 변경된다. 유틸리티의 글꼴 크기 조절 기능은 콘텐츠 영역의 글꼴 크기에만 영향을 미친다.
+
+콘텐츠의 종류는 크게 네 가지로 분류된다. 인덱스 페이지와 게시글 페이지는 현재 페이지의 경로를 나타내는데, 링크를 통해 특정 페이지로 이동할 수 있다.
 
 ```text
 Home Button and Search Bar
@@ -76,11 +78,11 @@ Menu: 블로그 메뉴를 표시하는 구역 (프로젝트, 프로그래밍, �
 
 ---
 
-Content
-├─ Home Page: 가장 최근에 작성한 글 10개를 표시하는 페이지
-├─ Index: 특정 카테고리에 속한 글들을 작성일 기준 내림차순으로 정렬하는 페이지. '/카테고리/' 형태로 페이지의 계층을 표시하며 계층의 링크를 클릭하여 이동할 수 있다. 선택적으로 제목이 나타난다.
-└─ Post: 선택한 글의 내용을 나타내는 페이지. 현재 페이지의 계층이 '/카테고리/페이지 | 작성일' 형태로 표시하며 페이지의 이름과 작성일은 일반 문자열로 취급된다. 선택적으로 제목이 나타난다.
-
+콘텐츠
+├─ 홈페이지: 가장 최근에 작성한 글 10개를 표시하는 페이지. 한글과 영문에 따라 다르게 표시될 수 있다
+├─ 인덱스: 특정 카테고리에 속한 글들을 작성일 기준 내림차순으로 정렬하는 페이지. '/카테고리/' 형태로 페이지의 계층을 표시하며 계층의 링크를 클릭하여 이동할 수 있다. 선택적으로 제목이 나타난다.
+├─ 게시글: 선택한 글의 내용을 나타내는 페이지. 현재 페이지에 대한 경로를 '/카테고리/페이지 | 작성일' 형태로 표시하며 페이지의 이름과 작성일은 링크가 아닌 일반 문자열로 취급된다. 선택적으로 제목이 나타난다.
+└─ 유틸리티: 검색 결과나 페이지 찾을 수 없음을 표시하는 페이지
 ---
 
 Miscellaneous: 블로그에 표시할 공통된 정보나 외부 링크
@@ -92,7 +94,9 @@ Fonts: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, 
 
 Default font size: 16px
 
-영감받은 페이지
+---
+
+블로그 디자인에 영감을 준 페이지
 
 <a href="https://catern.com" target="_blank" rel="noopener noreferrer">catern</a> 위에서 아래로 자연스럽게 이어지는 수직적인 흐름과 불필요한 장식을 덜어낸 투박하고 직관적인 인터페이스를 참고하였다.
 
@@ -102,9 +106,11 @@ Default font size: 16px
 
 ![blainsmith](../images/blainsmith.png)
 
-<a href="https://khakis2020.com/blog" target="_blank" rel="noopener noreferrer">Khakis</a>  아카이브 이미지들을 가로로 나열하는 표시 방식을 참고하였다.
+<a href="https://khakis2020.com/blog" target="_blank" rel="noopener noreferrer">Khakis</a>  이미지들을 가로로 표시한 디자인으로부터 영감을 받아 아카이브에 모아둔 이미지들을 가로로 스크롤할 수 있도록 구현하였다.
 
 ![khakis](../images/khakis.png)
+
+---
 
 Roadmap:
 
@@ -123,3 +129,9 @@ Redesign archives menu
 Organize default layout design system
 
 Refactor source code
+
+---
+
+아카이브
+
+[디자인 개편 이전 블로그](https://hansanhha.github.io/legacy)

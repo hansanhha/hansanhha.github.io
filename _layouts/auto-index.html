@@ -53,8 +53,8 @@ async function loadIndexByCategory() {
         const jsonData = JSON.parse(textData);
 
         const categorisedIndexes = category === "sunrise"
-            ? getSunriseIndexesByYear(getCategorisedIndexes(jsonData, category, sort), idxName)
-            : filterIndexesByLocale(getCategorisedIndexes(jsonData, category, sort));
+            ? getSunriseIndexesByYear(getCategorisedIndexes(idxName, jsonData, category, sort), idxName)
+            : filterIndexesByLocale(getCategorisedIndexes(idxName, jsonData, category, sort));
 
         if (categorisedIndexes.length === 0) {
             const $none = document.createElement("p");
@@ -91,9 +91,11 @@ async function loadIndexByCategory() {
     }
 }
 
-function getCategorisedIndexes(indexes, category, sort) {
+function getCategorisedIndexes(idxName, indexes, category, sort) {
     return indexes
-            .filter((post) => post.title.toLowerCase() != "index")
+          .filter((post) => !(post.url.toLowerCase() === "/" + idxName.toLowerCase() + "/index.html"
+                              || post.url.toLowerCase() === "/" + idxName.toLowerCase() + "/en/index.html")
+                            && !post.url.includes("/legacy/"))
             .filter((post) => post.category.toLowerCase() === category)
             .sort((a, b) => {
                 const aDate = a.createDate ? a.createDate : a.date;

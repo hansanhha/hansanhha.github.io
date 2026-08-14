@@ -353,6 +353,7 @@ function focus($img) {
     }
 
     const $imgDescriptionBox = document.createElement("div");
+    const imgDescFontSizeAdjust = window.innerWidth <= 960 ? 1 : 2;
     Object.assign($imgDescriptionBox.style, {
         display: "flex",
         flexDirection: "column",
@@ -361,7 +362,7 @@ function focus($img) {
         overflowX: "hidden",
         scrollbarWidth: "none",
         alignItems: "start",
-        fontSize: localStorage.getItem("fontSize") ? parseInt(localStorage.getItem("fontSize")) + 2 + "px" : "18px",
+        fontSize: localStorage.getItem("fontSize") ? parseInt(localStorage.getItem("fontSize")) + imgDescFontSizeAdjust + "px" : "18px",
         color: "#e3dfdf",
         opacity: "0",
         transform: window.innerWidth <= 960

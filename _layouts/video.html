@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
     const $videos = document.querySelectorAll(".archive-video");
     $videos.forEach($video => {
+        $video.playsInline = true;
         $video.addEventListener("loadedmetadata", () => {
           printVideoMeatadata($video);
         });
