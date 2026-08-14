@@ -164,13 +164,13 @@ body::-webkit-scrollbar {
 
 @media (max-width: 768px) {
   img {
-    max-width: 97%;
+    max-width: 100%;
     height: auto;
   }
 
   video {
     display: block;
-    max-width: 97%;
+    max-width: 100%;
     height: auto;
     margin-bottom: 10px;
   }
@@ -195,7 +195,7 @@ body::-webkit-scrollbar {
 @media (min-width: 769px) {
   img {
     display: block;
-    max-width: 99%;
+    max-width: 100%;
     height: auto;
   }
 
@@ -203,7 +203,7 @@ body::-webkit-scrollbar {
     margin-left: 0;
     margin-right: auto;
     display: block;
-    max-width: 99%;
+    max-width: 100%;
     max-height: 95vh;
     margin-bottom: 10px;
   }
@@ -214,7 +214,7 @@ body::-webkit-scrollbar {
 }
 
 #latest-posts-box {
-  margin-top: 8px;
+  /*margin-top: 8px;*/
   margin-bottom: 8px;
 }
 
@@ -320,7 +320,7 @@ body::-webkit-scrollbar {
 
 .main-content img {
   /* max-width: 100vw; */
-  max-height: 98vh;
+  max-height: 100vh;
   object-fit: scale-down;
 }
 
@@ -517,11 +517,13 @@ h5 {
 
 .video-name-desc-box {
   display: flex;
+  flex-wrap: wrap;
   gap: 4px;
 }
 
 .video-shooting-desc-box {
   display: flex;
+  flex-wrap: wrap;
   gap: 4px;
 }
 

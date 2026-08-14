@@ -3,6 +3,7 @@ layout: webpages
 idx-name: Web
 idx-name-ko: 웹 페이지
 createDate: 2026-05-31
+tags: ikea catalogue mmca web design meseum mmca research lab inifinte mac the electric company 이케아 카탈로그 국현미 국립현대미술관 웹 디자인 뮤지엄 리서치랩 인피니트 맥
 ---
 
 <a class="webpage-link" href="https://ikeamuseum.com/en/explore/ikea-catalogue/" data-display-ko="이케아 카탈로그" data-desc="Archive pages of IKEA catalogs from the 1950s to the 2020s" data-desc-ko="1950년부터 2020년대까지 이케아 카탈로그의 아카이브 페이지" data-tags="Magazines" data-tags-ko="잡지" target="_blank" rel="noopener noreferrer">IKEA catalogue</a>

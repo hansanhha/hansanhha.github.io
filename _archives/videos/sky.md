@@ -12,7 +12,7 @@ createDate: 2024-12-01
     <source src="./data/blue%20sky.mov">
 </video>
 
-<video class="archive-video" data-date="2025-03-01" data-device="Apple iPhone" data-device-ko="애플 아이팟" data-place="Sayukshin Park" data-place-ko="사육신공원" controls>
+<video class="archive-video" data-date="2025-03-01" data-device="Apple iPod" data-device-ko="애플 아이팟" data-place="Sayukshin Park" data-place-ko="사육신공원" controls>
     <source src="./data/hazy%20sky.mov">
 </video>
 
