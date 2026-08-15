@@ -62,7 +62,7 @@ body::-webkit-scrollbar {
 
   a {
     color: #70B5F9;
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   a:visited {
@@ -94,6 +94,10 @@ body::-webkit-scrollbar {
   :root {
     --bg-color: white;
     --text-color: black;
+  }
+
+  a {
+      text-decoration-line: none;
   }
 
   a:hover {
@@ -128,7 +132,7 @@ body::-webkit-scrollbar {
 
   a {
     color: #70B5F9;
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   a:visited {
@@ -160,6 +164,10 @@ body::-webkit-scrollbar {
 :root[data-theme="light"] {
   --bg-color: white;
   --text-color: black;
+
+  a {
+      text-decoration-line: none;
+  }
 
   a:hover {
     cursor: pointer;

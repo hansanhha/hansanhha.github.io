@@ -92,14 +92,14 @@ document.addEventListener("DOMContentLoaded", function() {
       $imageFilmTextContent.textContent = "영화";
       $imageRoomTextContent.textContent = "공간";
       $imageWeekndTextContent.textContent = "위켄드";
-      $imagePaintingsTextContent.textContent = "그림";
+      $imagePaintingsTextContent.textContent = "미술";
     } else {
       $imageObjectTextContent.textContent = "Objects";
       $imageSeasonTextContent.textContent = "Season";
       $imageFilmTextContent.textContent = "Film";
       $imageRoomTextContent.textContent = "Room";
       $imageWeekndTextContent.textContent = "The Weeknd";
-      $imagePaintingsTextContent.textContent = "Paintings";
+      $imagePaintingsTextContent.textContent = "Art";
     }
 
     const imageTextContents = new Array();
@@ -206,8 +206,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.querySelectorAll(".images-list img").forEach(img => {
         if (window.innerWidth <= 960) {
-          img.style.height = "340px";
+          img.style.height = "450px";
           img.style.width = "auto";
+          img.style.objectFit = "cover";
         } else {
           img.style.height = "700px";
           img.style.width = "auto";
@@ -295,206 +296,206 @@ function configureDisplayOptions() {
     });
 }
 
-function focus($img) {
-    const $overlay = document.createElement("div");
-    Object.assign($overlay.style, {
-        position: "fixed",
-        maxWidth: "100vw",
-        maxHeight: "100vh",
-        display: "flex",
-        inset: "0",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "rgba(0,0,0,0.7)",
-        backdropFilter: "blur(2px)",
-        WebkitBackdropFilter: "blur(2px)",
-        zIndex: "9999",
-        cursor: "normal",
-        overflow: "hidden",
-        padding: window.innerWidth <= 960 ? "16px" : "40px",
-        opacity: "0",
-        transition: "opacity 250ms ease",
-    });
+// function focus($img) {
+//     const $overlay = document.createElement("div");
+//     Object.assign($overlay.style, {
+//         position: "fixed",
+//         maxWidth: "100vw",
+//         maxHeight: "100vh",
+//         display: "flex",
+//         inset: "0",
+//         alignItems: "center",
+//         justifyContent: "center",
+//         background: "rgba(0,0,0,0.7)",
+//         backdropFilter: "blur(2px)",
+//         WebkitBackdropFilter: "blur(2px)",
+//         zIndex: "9999",
+//         cursor: "normal",
+//         overflow: "hidden",
+//         padding: window.innerWidth <= 960 ? "16px" : "40px",
+//         opacity: "0",
+//         transition: "opacity 250ms ease",
+//     });
 
-    const $imgBox = document.createElement("div");
-    Object.assign($imgBox.style, {
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        alignItems: !($img.dataset.desc || $img.dataset.descKo) && window.innerWidth <= 960 ? "center" : window.innerWidth <= 960 ? "start" : "center",
-        justifyContent: "center",
-        overflow: "hidden",
-    });
+//     const $imgBox = document.createElement("div");
+//     Object.assign($imgBox.style, {
+//         width: "100%",
+//         height: "100%",
+//         display: "flex",
+//         alignItems: !($img.dataset.desc || $img.dataset.descKo) && window.innerWidth <= 960 ? "center" : window.innerWidth <= 960 ? "start" : "center",
+//         justifyContent: "center",
+//         overflow: "hidden",
+//     });
 
-    const $focusedImg = $img.cloneNode(true);
-    Object.assign($focusedImg.style, {
-        width: "auto",
-        height: "auto",
-        maxWidth: ($img.dataset.desc || $img.dataset.descKo) ? window.innerWidth <= 960 ? "100%" : "65%" : "100%",
-        maxHeight: "100%",
-        objectFit: "contain",
-        alignItems: "start",
-        cursor: "normal",
-        flexShrink: 0,
-        opacity: "0",
-        transform: "scale(0.92)",
-        transition: "opacity 250ms ease, transform 250ms ease",
-    });
+//     const $focusedImg = $img.cloneNode(true);
+//     Object.assign($focusedImg.style, {
+//         width: "auto",
+//         height: "auto",
+//         maxWidth: ($img.dataset.desc || $img.dataset.descKo) ? window.innerWidth <= 960 ? "100%" : "65%" : "100%",
+//         maxHeight: "100%",
+//         objectFit: "contain",
+//         alignItems: "start",
+//         cursor: "normal",
+//         flexShrink: 0,
+//         opacity: "0",
+//         transform: "scale(0.92)",
+//         transition: "opacity 250ms ease, transform 250ms ease",
+//     });
 
-    if (window.innerWidth <= 960) {
-        $imgBox.style.flexDirection = "column";
-        $imgBox.style.justifyContent = ($img.dataset.desc || $img.dataset.descKo) ? "start" : "center";
+//     if (window.innerWidth <= 960) {
+//         $imgBox.style.flexDirection = "column";
+//         $imgBox.style.justifyContent = ($img.dataset.desc || $img.dataset.descKo) ? "start" : "center";
 
-        $focusedImg.style.width = "auto";
-        $focusedImg.style.height = "auto";
-        $focusedImg.style.maxWidth = "100%";
-        $focusedImg.style.maxHeight = "65%";
-        $focusedImg.style.objectFit = "contain";
-    }
+//         $focusedImg.style.width = "auto";
+//         $focusedImg.style.height = "auto";
+//         $focusedImg.style.maxWidth = "100%";
+//         $focusedImg.style.maxHeight = "65%";
+//         $focusedImg.style.objectFit = "contain";
+//     }
 
-    const $imgDescriptionBox = document.createElement("div");
-    const imgDescFontSizeAdjust = window.innerWidth <= 960 ? 1 : 2;
-    Object.assign($imgDescriptionBox.style, {
-        display: "flex",
-        flexDirection: "column",
-        gap: "0.5em",
-        overflowY: "auto",
-        overflowX: "hidden",
-        scrollbarWidth: "none",
-        alignItems: "start",
-        fontSize: localStorage.getItem("fontSize") ? parseInt(localStorage.getItem("fontSize")) + imgDescFontSizeAdjust + "px" : "18px",
-        color: "#e3dfdf",
-        opacity: "0",
-        transform: window.innerWidth <= 960
-            ? "translateY(0px)"
-            : "translateX(0px)",
-        transition: "opacity .3s ease, transform .3s cubic-bezier(.22,.61,.36,1)",
-    });
+//     const $imgDescriptionBox = document.createElement("div");
+//     const imgDescFontSizeAdjust = window.innerWidth <= 960 ? 1 : 2;
+//     Object.assign($imgDescriptionBox.style, {
+//         display: "flex",
+//         flexDirection: "column",
+//         gap: "0.5em",
+//         overflowY: "auto",
+//         overflowX: "hidden",
+//         scrollbarWidth: "none",
+//         alignItems: "start",
+//         fontSize: localStorage.getItem("fontSize") ? parseInt(localStorage.getItem("fontSize")) + imgDescFontSizeAdjust + "px" : "18px",
+//         color: "#e3dfdf",
+//         opacity: "0",
+//         transform: window.innerWidth <= 960
+//             ? "translateY(0px)"
+//             : "translateX(0px)",
+//         transition: "opacity .3s ease, transform .3s cubic-bezier(.22,.61,.36,1)",
+//     });
 
-    const style = document.createElement("style");
-    style.textContent = `
-        .img-desc-box::-webkit-scrollbar { display: none; width: 0; height: 0; }
-    `;
-    document.head.appendChild(style);
-    $imgDescriptionBox.className = "img-desc-box";
+//     const style = document.createElement("style");
+//     style.textContent = `
+//         .img-desc-box::-webkit-scrollbar { display: none; width: 0; height: 0; }
+//     `;
+//     document.head.appendChild(style);
+//     $imgDescriptionBox.className = "img-desc-box";
 
-    if (window.innerWidth <= 960) {
-        Object.assign($imgDescriptionBox.style, {
-            maxWidth: "98%",
-            maxHeight: "100%",
-            marginTop: "8px",
-            paddingRight: "10px",
-        });
-    } else {
-        Object.assign($imgDescriptionBox.style, {
-            maxWidth: "35%",
-            maxHeight: "100%",
-            marginLeft: "30px",
-            paddingRight: "10px",
-        });
-    }
+//     if (window.innerWidth <= 960) {
+//         Object.assign($imgDescriptionBox.style, {
+//             maxWidth: "98%",
+//             maxHeight: "100%",
+//             marginTop: "8px",
+//             paddingRight: "10px",
+//         });
+//     } else {
+//         Object.assign($imgDescriptionBox.style, {
+//             maxWidth: "35%",
+//             maxHeight: "100%",
+//             marginLeft: "30px",
+//             paddingRight: "10px",
+//         });
+//     }
 
-    if ($img.dataset.desc || $img.dataset.descKo) {
-        let descriptions;
-        if (localStorage.getItem("lang") === "ko") {
-            descriptions = ($img.dataset.descKo || $img.dataset.desc).split(" ");
-        } else {
-            descriptions = ($img.dataset.desc || $img.dataset.descKo).split(" ");
-        }
+//     if ($img.dataset.desc || $img.dataset.descKo) {
+//         let descriptions;
+//         if (localStorage.getItem("lang") === "ko") {
+//             descriptions = ($img.dataset.descKo || $img.dataset.desc).split(" ");
+//         } else {
+//             descriptions = ($img.dataset.desc || $img.dataset.descKo).split(" ");
+//         }
 
-        const nextLineIdxs = [];
-        let index = descriptions.indexOf("\\n");
+//         const nextLineIdxs = [];
+//         let index = descriptions.indexOf("\\n");
 
-        while (index !== -1) {
-            nextLineIdxs.push(index);
-            index = descriptions.indexOf("\\n", index + 1);
-        }
+//         while (index !== -1) {
+//             nextLineIdxs.push(index);
+//             index = descriptions.indexOf("\\n", index + 1);
+//         }
 
-        if (nextLineIdxs.length === 0) {
-            const $desc = document.createElement("div");
-            descriptions.forEach(d => {
-                $desc.textContent += (d + " ");
-            });
-            $imgDescriptionBox.appendChild($desc);
-        } else {
-            let start = 0;
-            for (let i = 0; i < nextLineIdxs.length; i++) {
-                const $desc = document.createElement("div");
-                const idx = nextLineIdxs[i];
-                const slices = descriptions.slice(start, idx);
-                slices.forEach(s => {
-                    $desc.textContent += (s + " ");
-                });
-                start = idx + 1;
-                $imgDescriptionBox.appendChild($desc);
-            }
-            const slices = descriptions.slice(start);
-            const $desc = document.createElement("div");
-            slices.forEach(s => {
-                $desc.textContent += (s + " ");
-            });
-            $imgDescriptionBox.appendChild($desc);
-        }
-    }
+//         if (nextLineIdxs.length === 0) {
+//             const $desc = document.createElement("div");
+//             descriptions.forEach(d => {
+//                 $desc.textContent += (d + " ");
+//             });
+//             $imgDescriptionBox.appendChild($desc);
+//         } else {
+//             let start = 0;
+//             for (let i = 0; i < nextLineIdxs.length; i++) {
+//                 const $desc = document.createElement("div");
+//                 const idx = nextLineIdxs[i];
+//                 const slices = descriptions.slice(start, idx);
+//                 slices.forEach(s => {
+//                     $desc.textContent += (s + " ");
+//                 });
+//                 start = idx + 1;
+//                 $imgDescriptionBox.appendChild($desc);
+//             }
+//             const slices = descriptions.slice(start);
+//             const $desc = document.createElement("div");
+//             slices.forEach(s => {
+//                 $desc.textContent += (s + " ");
+//             });
+//             $imgDescriptionBox.appendChild($desc);
+//         }
+//     }
 
-    function close() {
-        $overlay.style.opacity = "0";
+//     function close() {
+//         $overlay.style.opacity = "0";
 
-        $focusedImg.style.opacity = "0";
-        $focusedImg.style.transform = "scale(.96)";
+//         $focusedImg.style.opacity = "0";
+//         $focusedImg.style.transform = "scale(.96)";
 
-        $imgDescriptionBox.style.opacity = "0";
-        $imgDescriptionBox.style.transform = window.innerWidth <= 960
-            ? "translateY(0px)"
-            : "translateX(0px)";
+//         $imgDescriptionBox.style.opacity = "0";
+//         $imgDescriptionBox.style.transform = window.innerWidth <= 960
+//             ? "translateY(0px)"
+//             : "translateX(0px)";
 
-        setTimeout(() => {
-            if ($overlay.parentNode) {
-                $overlay.parentNode.removeChild($overlay);
-            }
-            document.body.style.overflow = "";
-            document.removeEventListener("keydown", onKey);
-        }, 300);
-    }
-    function onKey(e) {
-        if (e.key === "Escape") close();
-    }
+//         setTimeout(() => {
+//             if ($overlay.parentNode) {
+//                 $overlay.parentNode.removeChild($overlay);
+//             }
+//             document.body.style.overflow = "";
+//             document.removeEventListener("keydown", onKey);
+//         }, 300);
+//     }
+//     function onKey(e) {
+//         if (e.key === "Escape") close();
+//     }
 
-    $focusedImg.addEventListener("click", close);
-    $overlay.addEventListener("click", close);
-    document.addEventListener("keydown", onKey);
+//     $focusedImg.addEventListener("click", close);
+//     $overlay.addEventListener("click", close);
+//     document.addEventListener("keydown", onKey);
 
-    $imgBox.appendChild($focusedImg);
-    $imgBox.appendChild($imgDescriptionBox);
-    if (window.innerWidth > 960) {
-        const setDescriptionHeight = () => {
-            const imgHeight = $focusedImg.height;
-            $imgDescriptionBox.style.height = `${imgHeight}px`;
-        };
-        if ($focusedImg.complete) {
-            setDescriptionHeight();
-        } else {
-            $focusedImg.addEventListener("load", setDescriptionHeight, { once: true });
-        }
-    }
-    $overlay.appendChild($imgBox);
-    document.body.appendChild($overlay);
-    requestAnimationFrame(() => {
-        $overlay.style.opacity = "1";
+//     $imgBox.appendChild($focusedImg);
+//     $imgBox.appendChild($imgDescriptionBox);
+//     if (window.innerWidth > 960) {
+//         const setDescriptionHeight = () => {
+//             const imgHeight = $focusedImg.height;
+//             $imgDescriptionBox.style.height = `${imgHeight}px`;
+//         };
+//         if ($focusedImg.complete) {
+//             setDescriptionHeight();
+//         } else {
+//             $focusedImg.addEventListener("load", setDescriptionHeight, { once: true });
+//         }
+//     }
+//     $overlay.appendChild($imgBox);
+//     document.body.appendChild($overlay);
+//     requestAnimationFrame(() => {
+//         $overlay.style.opacity = "1";
 
-        $focusedImg.style.opacity = "1";
-        $focusedImg.style.transform = "scale(1)";
+//         $focusedImg.style.opacity = "1";
+//         $focusedImg.style.transform = "scale(1)";
 
-        setTimeout(() => {
-            $imgDescriptionBox.style.opacity = "1";
-            $imgDescriptionBox.style.transform = "translateX(0)";
-            if (window.innerWidth <= 960) {
-                $imgDescriptionBox.style.transform = "translateY(0)";
-            }
-        }, 40);
-    });
+//         setTimeout(() => {
+//             $imgDescriptionBox.style.opacity = "1";
+//             $imgDescriptionBox.style.transform = "translateX(0)";
+//             if (window.innerWidth <= 960) {
+//                 $imgDescriptionBox.style.transform = "translateY(0)";
+//             }
+//         }, 40);
+//     });
 
-    document.body.style.overflow = "hidden";
-}
+//     document.body.style.overflow = "hidden";
+// }
 </script>
 </html>
