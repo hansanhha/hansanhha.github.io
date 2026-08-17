@@ -22,6 +22,9 @@
             <div id="page-sort" style="display: none;" data-idx-sort="{{ page.idx-sort }}"></div>
             <div id="page-category" style="display: none;" data-category="{{ page.category-name }}"></div>
             <div id="page-idx-name" style="display: none;" data-idx-name="{{ page.idx-name }}"></div>
+            <div id="page-page-name" style="display: none;" data-page-name="{{ page.page-name }}"></div>
+            <div id="page-page-name-ko" style="display: none;" data-page-name-ko="{{ page.page-name-ko }}"></div>
+            <div id="page-is-grouped" style="display: none;" data-is-grouped="{{ page.grouped }}"></div>
             {% include footer.html %}
         </div>
     </div>
@@ -35,11 +38,17 @@ async function loadIndexByCategory() {
     const $pageSort = document.getElementById("page-sort");
     const $pageCategory = document.getElementById("page-category");
     const $pageIdxName = document.getElementById("page-idx-name");
+    const $pagePageName = document.getElementById("page-page-name");
+    const $pagePageNameKo = document.getElementById("page-page-name-ko");
+    const $pageIsGrouped = document.getElementById("page-is-grouped");
     $pageContentWrapper.style.innerHTML = "";
 
     const sort = $pageSort.dataset.idxSort;
     const category = $pageCategory.dataset.category;
     const idxName = $pageIdxName.dataset.idxName;
+    const pageName = $pagePageName.dataset.pageName;
+    const pageNameKo = $pagePageNameKo.dataset.pageNameKo;
+    const isGrouped = $pageIsGrouped.dataset.isGrouped;
     const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
     const options = {
             year: 'numeric',
@@ -53,14 +62,19 @@ async function loadIndexByCategory() {
         const jsonData = JSON.parse(textData);
 
         const categorisedIndexes = category === "sunrise"
-            ? getSunriseIndexesByYear(getCategorisedIndexes(idxName, jsonData, category, sort), idxName)
-            : filterIndexesByLocale(getCategorisedIndexes(idxName, jsonData, category, sort));
+            ? getCategorisedIndexes(pageName, jsonData, category, sort)
+            : filterNestedIndexes(pageName, filterIndexesByLocale(getCategorisedIndexes(pageName, jsonData, category, sort)));
 
         if (categorisedIndexes.length === 0) {
             const $none = document.createElement("p");
             $none.textContent = localStorage.getItem("lang") === "ko" ? "작성된 게시글이 없습니다." : "No posts.";
             $pageContentWrapper.appendChild($none);
             return;
+        }
+
+        if (isGrouped) {
+          printGroupedIndexes(categorisedIndexes, locale, options);
+          return;
         }
 
         const printIndexByCategory = (category) => {
@@ -91,29 +105,105 @@ async function loadIndexByCategory() {
     }
 }
 
-function getCategorisedIndexes(idxName, indexes, category, sort) {
+function getCategorisedIndexes(pageName, indexes, category, sort) {
     return indexes
-          .filter((post) => !(post.url.toLowerCase() === "/" + idxName.toLowerCase() + "/index.html"
-                              || post.url.toLowerCase() === "/" + idxName.toLowerCase() + "/en/index.html")
-                            && !post.url.includes("/legacy/"))
-            .filter((post) => post.category.toLowerCase() === category)
-            .sort((a, b) => {
-                const aDate = a.createDate ? a.createDate : a.date;
-                const bDate = b.createDate ? b.createDate : b.date;
+          .filter((post) => !(post.url.toLowerCase().includes(pageName.toLowerCase() + "/index.html")
+                            || post.url.toLowerCase().includes(pageName.toLowerCase() + "/en/index.html"))
+                          && !post.url.includes("/legacy/"))
+          .filter((post) => post.category.toLowerCase() === category)
+          .filter((post) => post.url.includes(pageName.toLowerCase()))
+          .sort((a, b) => {
+              const aDate = a.createDate ? a.createDate : a.date;
+              const bDate = b.createDate ? b.createDate : b.date;
 
-                if ((sort && sort === "asc") || category === "sunrise")  return new Date(aDate.replace(/-/g, '/')) - new Date(bDate.replace(/-/g, '/'));
-                else return new Date(bDate.replace(/-/g, '/')) - new Date(aDate.replace(/-/g, '/'));
-            });
+              if ((sort && sort === "asc") || category === "sunrise")  return new Date(aDate.replace(/-/g, '/')) - new Date(bDate.replace(/-/g, '/'));
+              else return new Date(bDate.replace(/-/g, '/')) - new Date(aDate.replace(/-/g, '/'));
+          });
 }
 
-function getSunriseIndexesByYear(indexes, year) {
-    return indexes
-            .filter((post) => post.createDate >= `${year}-01-01` && post.createDate <= `${year}-12-31`);
-}
+// function getSunriseIndexesByYear(indexes, year) {
+//     return indexes
+//             .filter((post) => post.createDate >= `${year}-01-01` && post.createDate <= `${year}-12-31`);
+// }
 
 function filterIndexesByLocale(indexes) {
     if (localStorage.getItem("lang") === "en") return indexes.filter((post) => post.url.includes("/en/"));
     return indexes.filter((post) => !post.url.includes("/en/"));
+}
+
+function printGroupedIndexes(indexes, locale, options) {
+    const $pageContentWrapper = document.getElementById("page-content-wrapper");
+    const groupedIndexes = groupIndexes(indexes, "group");
+
+    const defaultGroup = groupedIndexes["default"];
+    if (defaultGroup) {
+        const $group = document.createElement("div");
+        const groupedPosts = organizeGroup(defaultGroup, $group, locale, options);
+        $pageContentWrapper.appendChild(groupedPosts);
+    }
+    delete groupedIndexes["default"];
+
+    Object.keys(groupedIndexes).forEach(group => {
+      const $group = document.createElement("div");
+      const $groupName = document.createElement("div");
+
+      $groupName.innerText = group;
+      $groupName.classList.add("post-group-name");
+      $group.appendChild($groupName);
+      $group.classList.add("post-group");
+
+      const groupedPosts = organizeGroup(groupedIndexes[group], $group, locale, options);
+      $pageContentWrapper.appendChild(groupedPosts);
+    });
+}
+
+function filterNestedIndexes(pageName, indexes) {
+  const path = window.location.pathname;
+  const basePath = path.replace(/(?:\/en)?\/index\.html$/, "");
+  const escapedBasePath = basePath.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  const currentPageRegex = new RegExp(`^${escapedBasePath}/(?:en/)?(?!index\.html$)[^/]+\.html$`);
+  const subPageOnlyIndexRegex = new RegExp(`^${escapedBasePath}/[^/]+/(?:en/)?index\.html$`);
+  const currentPageRegex2 = new RegExp(`^${escapedBasePath}(?:en/)?(?!index\.html$)[^/]+\.html$`);
+  const subPageOnlyIndexRegex2 = new RegExp(`^${escapedBasePath}[^/]+/(?:en/)?index\.html$`);
+
+  if (escapedBasePath === "/" + pageName.toLowerCase() + "/en/") {
+    const subPageOnlyIndexRegex3 = new RegExp(`^/${pageName.toLowerCase()}/[^/]+/(?:en/)index\.html$`);
+    return indexes.filter((post) => currentPageRegex.test(post.url) || subPageOnlyIndexRegex.test(post.url)
+            || currentPageRegex2.test(post.url) || subPageOnlyIndexRegex2.test(post.url) || subPageOnlyIndexRegex3.test(post.url));
+  } else {
+    return indexes.filter((post) => currentPageRegex.test(post.url) || subPageOnlyIndexRegex.test(post.url)
+            || currentPageRegex2.test(post.url) || subPageOnlyIndexRegex2.test(post.url));
+  }
+}
+
+function groupIndexes(indexes, groupBy) {
+  return Object.groupBy(indexes, post => post[groupBy]);
+}
+
+function organizeGroup(groupedIndexesMap, $group, locale, options) {
+  const subGroupedIndexesMap = groupIndexes(groupedIndexesMap, "subgroup");
+  Object.keys(subGroupedIndexesMap);
+
+  let subGroupCount = 1;
+  for (const indexKey of Object.keys(subGroupedIndexesMap)) {
+    const $subGroup = document.createElement("div");
+    if (subGroupCount > 1) $subGroup.classList.add("post-subgroup");
+    for (const post of subGroupedIndexesMap[indexKey]) {
+      const $post = document.createElement("p");
+      const postDate = post.createDate ? post.createDate : post.date;
+      const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
+      const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
+      const nonUndefinedTitle = title ? title : post.title;
+      const capitalizedTitle = capitalize(nonUndefinedTitle);
+      $post.innerHTML = `<span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>`;
+      $subGroup.appendChild($post);
+    }
+    $group.appendChild($subGroup);
+    subGroupCount++;
+  }
+
+  return $group;
 }
 
 function capitalize(str) {

@@ -29,12 +29,12 @@ async function loadLatestPosts() {
 
         const top10Posts = jsonData
             .filter((post) => !post.url.includes("legacy"))
-            .filter((post) => post.title.toLowerCase() != "index" || post.url.toLowerCase() == "/archives/images/index.html")
-            .filter((post) => post.url.includes("/sunrise/") || post.url.includes("/archives/")
-                || (localStorage.getItem("lang") === "en" ? post.url.includes("/en/") : !post.url.includes("/en/")))
+            .filter((post) => !isTopMenuIndex(post.url))
+            .filter((post) => post.url.startsWith("/archives") || post.url.startsWith("/sunrise")
+                              || (localStorage.getItem("lang") === "en" ? post.url.includes("/en/") : !post.url.includes("/en/")))
             .sort((a, b) => {
-                const aDate = a.createDate ? a.createDate : a.date;
-                const bDate = b.createDate ? b.createDate : b.date;
+                const aDate = a.createDate ? a.createDate : "1930-01-01";
+                const bDate = b.createDate ? b.createDate : "1930-01-01";
                 return new Date(bDate.replace(/-/g, '/')) - new Date(aDate.replace(/-/g, '/'));
             })
             .slice(0, 10);
@@ -79,6 +79,19 @@ async function loadLatestPosts() {
     } catch (error) {
         $latestPostsBox.style.display = "none";
     }
+}
+
+function isTopMenuIndex(url) {
+  return url === "/projects/index.html"
+  || url === "/code/index.html"
+  || url === "/daily/index.html"
+  || url === "/archives/index.html"
+  || url === "/sunrise/index.html"
+  || url === "/projects/en/index.html"
+  || url === "/code/en/index.html"
+  || url === "/daily/en/index.html"
+  || url === "/archives/en/index.html"
+  || url === "/sunrise/en/index.html";
 }
 
 function localize(category) {

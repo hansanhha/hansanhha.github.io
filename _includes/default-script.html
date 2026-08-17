@@ -1,4 +1,22 @@
 <script>
+const $empty = document.getElementById("empty");
+const $pageContentWrapper = document.getElementById("page-content-wrapper");
+const $mainContent = document.getElementsByClassName("main-content");
+if ($empty) {
+    $empty.textContent = localStorage.getItem("lang") === "ko" ? "빈 페이지" : "Empty Page";
+} else if (window.location.pathname !== "/" && $pageContentWrapper && $pageContentWrapper.childElementCount === 0) {
+    const $span = document.createElement("div");
+    $span.style.marginBottom = "3px";
+    $span.textContent = localStorage.getItem("lang") === "ko" ? "빈 페이지" : "Empty Page";
+    $pageContentWrapper.innerHTML = "";
+    $pageContentWrapper.appendChild($span);
+} else if ($mainContent && $mainContent[0] && $mainContent[0].childElementCount === 0) {
+    const $span = document.createElement("div");
+    $span.textContent = localStorage.getItem("lang") === "ko" ? "빈 페이지" : "Empty Page";
+    $mainContent[0].innerHTML = "";
+    $mainContent[0].appendChild($span);
+}
+
 init();
 
 function loadScript(src, timeout = 5000) {
@@ -210,18 +228,6 @@ function changeLang(lang) {
         location.reload();
       }
     }
-}
-
-const $empty = document.getElementById("empty");
-const $pageContentWrapper = document.getElementById("page-content-wrapper");
-if ($empty) {
-    $empty.textContent = localStorage.getItem("lang") === "ko" ? "빈 페이지" : "Empty Page";
-} else if (window.location.pathname !== "/" && $pageContentWrapper && $pageContentWrapper.childElementCount === 0) {
-    const $span = document.createElement("div");
-    $span.style.marginBottom = "3px";
-    $span.textContent = localStorage.getItem("lang") === "ko" ? "빈 페이지" : "Empty Page";
-    $pageContentWrapper.innerHTML = "";
-    $pageContentWrapper.appendChild($span);
 }
 
 const hyperlinks = Array.from(document.getElementsByTagName("a"));

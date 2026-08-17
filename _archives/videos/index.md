@@ -1,7 +1,7 @@
 ---
 layout: index
-idx-name: Videos
-idx-name-ko: 동영상
+page-name: Videos
+page-name-ko: 동영상
 ---
 
 <a href="./sky" data-display-ko="하늘">Sky</a>

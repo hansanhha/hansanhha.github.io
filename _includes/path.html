@@ -12,7 +12,7 @@
               <a id="path-error-back-prev-page"></a>
               {% else %}
                 {% assign dirPath = dirPath | append: "/" | append: dirFilename %}
-                <span class="path-link" data-path="{{ dirPath }}" data-default-path-name="{{ dirFilename }}" data-path-name="{{ page.page-name }}" data-path-name-ko="{{ page.page-name-ko }}" data-layout="{{ page.layout }}"></span>
+                <span class="path-link" data-path="{{ dirPath }}" data-default-path-name="{{ dirFilename }}" data-page-title="{{ page.page-title }}" data-path-name="{{ page.page-name }}" data-path-name-ko="{{ page.page-name-ko }}" data-layout="{{ page.layout }}"></span>
               {% endif %}
               {% if page.name != "index.md" and page.createDate != nil and page.layout == "default" %}
                   <span id="page-info-date" data-create-date="{{ page.createDate }}"></span>
@@ -84,6 +84,7 @@ pathLinks.forEach((link) => {
 
   if (link.dataset.layout === "sunrise") linkname = localStorage.getItem("lang") === "ko" ? convertLinknameToKo(link.dataset.defaultPathName) : link.dataset.defaultPathName;
   if (linkname === "") linkname = link.dataset.defaultPathName;
+  if (link.dataset.pageTitle) linkname = link.dataset.pageTitle;
 
   link.textContent = "/" + capitalize(linkname);
 });
@@ -134,6 +135,10 @@ function convertLinknameToKo(linkname) {
   switch (linknameLowercase) {
     case 'projects':
       return '프로젝트';
+    case 'blog':
+      return '블로그';
+    case 'walk':
+      return '산책';
     case 'code':
       return '프로그래밍';
     case 'daily':

@@ -1,6 +1,6 @@
 ---
 layout: auto-index
 category-name: sunrise
-idx-name: 2024
-idx-name-ko: 2024
+page-name: 2024
+page-name-ko: 2024
 ---

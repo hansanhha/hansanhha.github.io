@@ -17,7 +17,9 @@ permalink: /search.json
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
     "category": "projects",
-    "tags": {{ post.tags | jsonify }}
+    "tags": {{ post.tags | jsonify }},
+    "group": {{ post.group | jsonify }},
+    "subgroup": {{ post.subgroup | jsonify }}
   }
   {% assign first = false %}
 {% endfor %}
@@ -33,7 +35,9 @@ permalink: /search.json
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
     "category": "code",
-    "tags": {{ post.tags | jsonify }}
+    "tags": {{ post.tags | jsonify }},
+    "group": {{ post.group | jsonify }},
+    "subgroup": {{ post.subgroup | jsonify }}
   }
   {% assign first = false %}
 {% endfor %}
@@ -49,7 +53,9 @@ permalink: /search.json
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
     "category": "daily",
-    "tags": {{ post.tags | jsonify }}
+    "tags": {{ post.tags | jsonify }},
+    "group": {{ post.group | jsonify }},
+    "subgroup": {{ post.subgroup | jsonify }}
   }
   {% assign first = false %}
 {% endfor %}
@@ -65,7 +71,9 @@ permalink: /search.json
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
     "category": "archives",
-    "tags": {{ post.tags | jsonify }}
+    "tags": {{ post.tags | jsonify }},
+    "group": {{ post.group | jsonify }},
+    "subgroup": {{ post.subgroup | jsonify }}
   }
   {% assign first = false %}
 {% endfor %}
@@ -85,7 +93,8 @@ permalink: /search.json
     "createDate": {{ post.createDate | jsonify }},
     "date": {{ post.date | jsonify }},
     "category": "sunrise",
-    "tags": {{ post.tags | jsonify }}
+    "tags": {{ post.tags | jsonify }},
+    "group": {{ post.group | jsonify }}
   }
   {% assign first = false %}
 {% endfor %}

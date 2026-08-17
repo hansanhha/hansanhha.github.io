@@ -563,3 +563,11 @@ h5 {
   margin-bottom: 16px;
   gap: 4px;
 }
+
+.post-group {
+  margin-top: 24px;
+}
+
+.post-subgroup {
+  margin-top: 12px;
+}
