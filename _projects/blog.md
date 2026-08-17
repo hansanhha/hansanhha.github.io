@@ -13,6 +13,8 @@ createDate: 2026-08-09
 
 주소: <a href="https://hansanhha.github.io" target="_blank" rel="noopener noreferrer">https://hansanhha.github.io</a>
 
+업데이트: <span id="blog-update-info"></span>
+
 ---
 
 블로그 메뉴에 대하여
@@ -31,6 +33,8 @@ createDate: 2026-08-09
 
 주소는 인터넷 웹 주소 또는 실제 공간 주소를 입력한다.
 
+업데이트는 깃허브 서버에 푸시된 마지막 커밋 일시를 표시하여 가장 최근의 블로그 업데이트 시점을 나타낸다. 다른 프로젝트의 소개글에서는 제외된다.
+
 ```text
 간단한 소개
 
@@ -39,6 +43,8 @@ createDate: 2026-08-09
 상태
 
 주소
+
+업데이트
 
 ---
 

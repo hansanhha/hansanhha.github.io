@@ -46,6 +46,37 @@ function loadScript(src, timeout = 5000) {
     });
 }
 
+async function fetchAPI(url, options = {}, timeout = 5000) {
+    const controller = new AbortController();
+
+    const timer = setTimeout(() => {
+        controller.abort();
+    }, timeout);
+
+    try {
+        const response = await fetch(url, {
+            ...options,
+            signal: controller.signal
+        });
+
+        if (!response.ok) {
+            throw new Error(
+                `Fetch failed: ${response.status} ${response.statusText}`
+            );
+        }
+
+        return response;
+    } catch (error) {
+        if (error.name === "AbortError") {
+            throw new Error(`Fetch timeout: ${url}`);
+        }
+
+        throw error;
+    } finally {
+        clearTimeout(timer);
+    }
+}
+
 async function init() {
     try {
         await loadScript(
@@ -68,6 +99,27 @@ async function init() {
       } else {
         document.getElementById("user_agent").innerText = "접속 환경: 알 수 없음";
       }
+    }
+
+    const $blogUpdateInfo = document.getElementById("blog-update-info");
+    if ($blogUpdateInfo) {
+        try {
+            const response = await fetchAPI(
+                "https://api.github.com/repos/hansanhha/hansanhha.github.io/commits?sha=blog",
+                {},
+                5000
+            );
+
+            const data = await response.json();
+            $blogUpdateInfo.textContent = data[0].commit.committer.date;
+            localStorage.setItem("lastUpdateDate", data[0].commit.committer.date);
+        } catch (error) {
+            if (localStorage.getItem("lastUpdateDate")) $blogUpdateInfo.textContent = localStorage.getItem("lastUpdateDate");
+            else {
+              if (localStorage.getItem("lang") === "en") $blogUpdateInfo.textContent = "알 수 없음";
+              else $blogUpdateInfo.textContent = "Unknown";
+            }
+        }
     }
 }
 
