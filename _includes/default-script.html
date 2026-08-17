@@ -129,17 +129,30 @@ if (localStorage.getItem("lang") === "en") {
 // });
 
 const fontSize = localStorage.getItem("fontSize");
+const contentLineHeight = localStorage.getItem("content-line-height");
 if (fontSize) {
     if (document.getElementById("page-content-wrapper")) document.getElementById("page-content-wrapper").style.fontSize = `${fontSize}px`;
     if (document.getElementById("page-info-title")) document.getElementById("page-info-title").style.fontSize = `${fontSize}px`;
     if (document.getElementsByClassName("idx-container")) document.getElementsByClassName("idx-container")[0].style.fontSize = `${fontSize}px`;
+}
+if (contentLineHeight) {
+    document.documentElement.style.setProperty("--main-content-p", contentLineHeight+"px");
 }
 
 function changeFontSize(delta) {
     const $idxContainer = document.getElementsByClassName("idx-container");
     const $pageContentWrapper = document.getElementById("page-content-wrapper");
     const $pageInfoTitle = document.getElementById("page-info-title");
+    const root = document.documentElement;
+    const mainContentP = getComputedStyle(root).getPropertyValue("--main-content-p");
     const currentFontSize = parseFloat(getComputedStyle($pageContentWrapper).fontSize);
+    
+    let newMainContentP = parseInt(mainContentP.slice(0, -2))+parseInt(delta);
+    if (delta === 0) {
+      newMainContentP = 24;
+    }
+    localStorage.setItem("content-line-height", newMainContentP);
+    document.documentElement.style.setProperty("--main-content-p", newMainContentP+"px");
 
     let newFontSize = currentFontSize + delta;
     if (delta === 0) newFontSize = 16;

@@ -1,5 +1,9 @@
 div[class^="language-"] {
-    padding: 12px;
+    width: fit-content;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 100px;
     margin: 12px 0;
     overflow: auto;
     font-family: "Courier New", monospace;
