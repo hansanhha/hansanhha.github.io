@@ -58,6 +58,7 @@ body::-webkit-scrollbar {
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #343232;
+    --lang-bg-color: #454141;
     --text-color: #e3dfdf;
   }
 
@@ -94,6 +95,7 @@ body::-webkit-scrollbar {
 @media (prefers-color-scheme: light) {
   :root {
     --bg-color: white;
+    --lang-bg-color: #f4f4f4;
     --text-color: black;
   }
 
@@ -129,6 +131,7 @@ body::-webkit-scrollbar {
 
 :root[data-theme="dark"] {
   --bg-color: #343232;
+  --lang-bg-color: #454141;
   --text-color: #e3dfdf;
 
   a {
@@ -164,6 +167,7 @@ body::-webkit-scrollbar {
 
 :root[data-theme="light"] {
   --bg-color: white;
+  --lang-bg-color: #f4f4f4;
   --text-color: black;
 
   a {

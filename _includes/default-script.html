@@ -1,4 +1,7 @@
 <script>
+if (!document.getElementById("not-found")) {
+  localStorage.setItem("updateLang", "false");
+}
 const $empty = document.getElementById("empty");
 const $pageContentWrapper = document.getElementById("page-content-wrapper");
 const $mainContent = document.getElementsByClassName("main-content");
@@ -104,6 +107,10 @@ async function init() {
     const $blogUpdateInfo = document.getElementById("blog-update-info");
     if ($blogUpdateInfo) {
         try {
+          $blogUpdateInfo.textContent = localStorage.getItem("lang") === "ko" 
+              ? "정보를 가져오는 중"
+              : "Fetching the information";
+            
             const response = await fetchAPI(
                 "https://api.github.com/repos/hansanhha/hansanhha.github.io/commits?sha=blog",
                 {},
@@ -260,6 +267,7 @@ function changeLang(lang) {
         if (localStorage.getItem("lang") === "en") return;
 
         localStorage.setItem("lang", "en");
+        localStorage.setItem("updateLang", "true");
         if (window.location.href === window.location.origin + "/") {
           location.reload();
           return;
@@ -276,6 +284,7 @@ function changeLang(lang) {
       if (localStorage.getItem("lang") === "ko") return;
 
       localStorage.setItem("lang", "ko");
+      localStorage.setItem("updateLang", "true");
       if (window.location.href === window.location.origin + "/") {
         location.reload();
         return;
@@ -640,52 +649,155 @@ function printSearchResult(searchQuery, posts) {
            if (localStorage.getItem("lang") === "ko") {
              return !post.url.includes("/en/");
            } else {
-              return post.url.includes("/en/");
+              return post.url.startsWith("/archives") || post.url.startsWith("/sunrise") ||  post.url.includes("/en/");
            }
         });
 
+    const groupedPostsByCategory = Object.groupBy(filteredPostsByLocale, post => post["category"]);
     const printPostsByCategory = (category) => {
-        filteredPostsByLocale
-                .filter((post) => post.category === category)
-                .forEach((post) => {
-                    let $category = document.getElementById(category);
-                    if (!$category) {
-                        $category = document.createElement("div");
-                        $category.id = category;
-                        $category.style.marginTop = "12px";
-                        $category.classList = "post-list";
-                        const $categoryTextContent = document.createElement("span");
-                        $categoryTextContent.textContent = capitalize(localize(category));
-                        $categoryTextContent.style.fontWeight = 400;
-                        $category.appendChild($categoryTextContent)
-                        $searchResultBox.appendChild($category);
-                    }
-
-                    const $post = document.createElement("div");
-                    const postDate = post.createDate ? post.createDate : post.date;
-                    const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
-                    const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
-                    const nonUndefinedTitle = title ? title : post.title;
-                    const capitalizedTitle = capitalize(nonUndefinedTitle);
-
-                    $post.innerHTML = `
-                        <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
-                    `;
-                    $category.appendChild($post);
-            });
+      if (groupedPostsByCategory[category]) {
+        const subcategoryIdx = localStorage.getItem("lang") === "ko" ? "subcategoryKo" : "subcategory";
+        const groupedPostsBySubcategory = Object.groupBy(groupedPostsByCategory[category], post => post[subcategoryIdx]);
+        if (groupedPostsBySubcategory[null]) {
+          printPosts($searchResultBox, locale, options, groupedPostsBySubcategory[null], category);
         }
+        delete groupedPostsBySubcategory[null];
+        for (const subcategory of Object.keys(groupedPostsBySubcategory)) {
+          printPosts($searchResultBox, locale, options, groupedPostsBySubcategory[subcategory], category, subcategory);
+        }
+      }
+    };
 
     printPostsByCategory("projects");
     printPostsByCategory("code");
     printPostsByCategory("daily");
     printPostsByCategory("archives");
     printPostsByCategory("sunrise");
+
+    // const printPostsByCategory = (category) => {
+    //     filteredPostsByLocale
+    //             .filter((post) => post.category === category)
+    //             .forEach((post) => {
+    //                 let $category = document.getElementById(category);
+    //                 if (!$category) {
+    //                     $category = document.createElement("div");
+    //                     $category.id = category;
+    //                     $category.style.marginTop = "12px";
+    //                     $category.classList = "post-list";
+    //                     const $categoryTextContent = document.createElement("span");
+    //                     $categoryTextContent.textContent = capitalize(localize(category));
+    //                     $categoryTextContent.style.fontWeight = 400;
+    //                     $category.appendChild($categoryTextContent)
+    //                     $searchResultBox.appendChild($category);
+    //                 }
+
+    //                 const $post = document.createElement("div");
+    //                 const postDate = post.createDate ? post.createDate : post.date;
+    //                 const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
+    //                 const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
+    //                 const nonUndefinedTitle = title ? title : post.title;
+    //                 const capitalizedTitle = capitalize(nonUndefinedTitle);
+
+    //                 $post.innerHTML = `
+    //                     <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
+    //                 `;
+    //                 $category.appendChild($post);
+    //         });
+    //     }
+}
+
+function printPosts($searchResultBox, locale, options, posts, category, subcategory) {
+  const $category = document.createElement("div");
+  $category.style.marginTop = "12px";
+  $category.classList = "post-list";
+  const $categoryTextContent = document.createElement("span");
+  if (subcategory) {
+    $category.id = category + "-" + subcategory;
+    $categoryTextContent.textContent = capitalize(localize(category) + " " + localize(subcategory));
+  } else {
+    $category.id = category;
+    $categoryTextContent.textContent = capitalize(localize(category));
+  }
+  $categoryTextContent.style.fontWeight = 400;
+  $category.appendChild($categoryTextContent);
+  $searchResultBox.appendChild($category);
+
+  const groupedPosts = Object.groupBy(posts, post => post["group"]);
+  if (Object.keys(groupedPosts).length > 1) {
+    const defaultGroup = groupedPosts["default"];
+    if (defaultGroup) {
+      const $group = document.createElement("div");
+      const groupedPosts = organizeGroup(defaultGroup, $group, locale, options, true);
+      $category.appendChild(groupedPosts);
+    }
+    delete groupedPosts["default"];
+
+    for (const group of Object.keys(groupedPosts)) {
+      const $group = document.createElement("div");
+      const $groupName = document.createElement("div");
+
+      $groupName.innerText = "- " + group;
+      $groupName.classList.add("post-group-name");
+      $group.appendChild($groupName);
+
+      const subgroupedPosts = organizeGroup(groupedPosts[group], $group, locale, options);
+      $category.appendChild(subgroupedPosts);
+    }
+  } else {
+      for (const post of posts) {
+        const $post = document.createElement("div");
+        const postDate = post.createDate ? post.createDate : post.date;
+        const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
+        const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
+        const nonUndefinedTitle = title ? title : post.title;
+        const capitalizedTitle = capitalize(nonUndefinedTitle);
+
+        $post.innerHTML = `
+            <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
+        `;
+        $category.appendChild($post);
+      }
+  }
+}
+
+function organizeGroup(groupedPosts, $group, locale, options, defaultGroup) {
+  const subGroupedPosts = Object.groupBy(groupedPosts, post => post["subgroup"]);
+  
+  let subGroupCount = 1;
+  for (const indexKey of Object.keys(subGroupedPosts)) {
+    const $subGroup = document.createElement("div");
+    if (subGroupCount > 1) $subGroup.classList.add("post-subgroup");
+    for (const post of subGroupedPosts[indexKey]) {
+      let $post;
+      if (defaultGroup) {
+        $post = document.createElement("div");
+        $post.style.marginBottom = "4px";
+      } else {
+        $post = document.createElement("p");
+      }
+      const postDate = post.createDate ? post.createDate : post.date;
+      const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
+      const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
+      const nonUndefinedTitle = title ? title : post.title;
+      const capitalizedTitle = capitalize(nonUndefinedTitle);
+      $post.innerHTML = `<span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>`;
+      $subGroup.appendChild($post);
+    }
+    $group.appendChild($subGroup);
+    subGroupCount++;
+  }
+
+  return $group;
 }
 
 function printErrorResult() {
     const $pageContentWrapper = document.getElementById("page-content-wrapper");
+    const $pageErrorResult = document.createElement("div");
     $pageContentWrapper.innerHTML = "";
-    $pageContentWrapper.textContent = localStorage.getItem("lang") === "ko" ? "검색에 실패했습니다" : "Failed Searching";
+    $pageErrorResult.textContent = localStorage.getItem("lang") === "ko" ? "검색에 실패했습니다" : "Failed Searching";
+    $pageErrorResult.style.marginTop = "12px";
+    $pageErrorResult.style.marginBottom = "8px";
+    $pageContentWrapper.appendChild($pageErrorResult);
 }
 
 function toggleGoToTopByResizing() {
@@ -721,6 +833,9 @@ function localize(category) {
         case "sunrise":
         localized = "해맞이";
         break;
+
+        default:
+        localized = category;
     }
 
     return localized

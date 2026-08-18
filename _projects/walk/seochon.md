@@ -1,5 +1,7 @@
 ---
 layout: default
+subcategory: walk
+subcategory-ko: 산책
 page-name: Seochon
 page-name-ko: 서촌
 createDate: 2026-08-16
@@ -85,7 +87,13 @@ subgroup: 서촌
 
 폐결핵을 치료하고자 들린 온천에서 만난 여성(금홍)과 함께 다방을 차리고 동거를 한 점, 장사가 잘 되지 않자 여성이 가출하고 일탈하여 이를 소설 '날개'에서 나타낸 점.
 
-자신의 친구(정인택)와 또 다른 여성(권순옥)과의 삼각 관계 - 정인택과 권순옥이 결혼하고 이상이 결혼 사회를 봤다는 이야기. <a href="https://ko.wikipedia.org/wiki/이상_(작가)#이상의_연인들" target="_blank" rel="noopener noreferrer">자세한 내용</a>
+자신의 친구(정인택)와 또 다른 여성(권순옥)과의 삼각 관계 - 결국 정인택과 권순옥이 결혼하고 이상이 결혼 사회를 봤다는 이야기.
+
+그리고 이상과 김환기의 아내가 동일한 인물이라는 점. 자세한 내용은 링크 참고
+
+<a href="https://ko.wikipedia.org/wiki/이상_(작가)#이상의_연인들" target="_blank" rel="noopener noreferrer">이상의 연인들에 대한 이야기</a>
+
+<a href="https://m.blog.naver.com/leesobia/222816971079" target="_blank" rel="noopener noreferrer">이상의 변동림, 김환기의 김향안에 대한 이야기</a>
 
 천재 시인이라고 들었던 인물에게서 생각보다 인간적인 면모를 보였던 점이 재밌었다.
 

@@ -9,7 +9,7 @@
             {% if dir contains ".md" %}
               {% assign dirFilename = dir | replace: ".md" | "" %}
               {% if dir == "404.md" %}
-              <a id="path-error-back-prev-page"></a>
+                <a id="path-error-back-prev-page"></a>
               {% else %}
                 {% assign dirPath = dirPath | append: "/" | append: dirFilename %}
                 <span class="path-link" data-path="{{ dirPath }}" data-default-path-name="{{ dirFilename }}" data-page-title="{{ page.page-title }}" data-path-name="{{ page.page-name }}" data-path-name-ko="{{ page.page-name-ko }}" data-layout="{{ page.layout }}"></span>
@@ -112,13 +112,13 @@ pageNextLinks.forEach((link) => {
 
 const pageErrorBackPrevPage = document.getElementById("path-error-back-prev-page");
 if (pageErrorBackPrevPage) {
-  if (localStorage.getItem("lang") === "ko") {
-    pageErrorBackPrevPage.textContent = "← 이전 페이지로 돌아가기";
-  } else {
-    pageErrorBackPrevPage.textContent = "← Back to the previous page";
-  }
+  pageErrorBackPrevPage.textContent = localStorage.getItem("lang") === "ko" ? "← 이전 페이지로 돌아가기" : "← Back to the previous page";
   pageErrorBackPrevPage.addEventListener("click", (e) => {
     e.preventDefault();
+    if (localStorage.getItem("updateLang") === "true") {
+      localStorage.getItem("lang") === "ko" ? localStorage.setItem("lang", "en") : localStorage.setItem("lang", "ko");
+    }
+    localStorage.setItem("updateLang", "false");
     window.history.back();
   });
 }

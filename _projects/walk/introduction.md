@@ -1,5 +1,7 @@
 ---
 layout: default
+subcategory: walk
+subcategory-ko: 산책
 page-name: Introduction
 page-name-ko: 산책에 대한 소개
 page-title: 소개
@@ -10,7 +12,7 @@ subgroup: default
 
 걸어서 동네속으로. 궁금하거나 알아보고 싶은 곳이 있으면 찾아가서 살펴본다.
 
-시작일시: 2026-08-16T14:12:01Z
+시작일시: 2026-08-16T05:12:01Z
 
 상태: 진행 중
 
