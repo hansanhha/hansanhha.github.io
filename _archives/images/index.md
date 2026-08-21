@@ -32,13 +32,13 @@ tags: objects film room season weeknd paintings henry matisse utagawa ando hiros
     <div id="images-season"></div>
     
     <div id="images-season-list" class="images-list">
-        <img src="./data/spring.JPG" alt="">
+        <img src="./data/spring.JPG" alt="" data-desc="Daejeon Temi Park \n April 2, 2024" data-desc-ko="대전 벚꽃동산 \n 2024년 4월 2일 \n" />
         
-        <img src="./data/summer.jpg" alt="">
+        <img src="./data/summer.jpg" alt="" data-desc="Gyeongju Daereungwon Tomb Complex \n October 9, 2025" data-desc-ko="경주 대릉원 \n 2025년 10월 9일"/>
         
-        <img src="./data/autumn.jpeg" alt="">
+        <img src="./data/autumn.jpeg" alt="" data-desc="Seoul Arts Center \n November 8, 2025" data-desc-ko="서울 예술의 전당 \n 2025년 11월 8일" />
         
-        <img src="./data/winter.JPG" alt="">
+        <img src="./data/winter.JPG" alt="" data-desc="Seoul Boramae Park \n December 20, 2023" data-desc-ko="서울 보라매공원 \n 2023년 12월 20일"/>
     </div>
 
     <div id="images-room"></div>

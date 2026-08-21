@@ -128,6 +128,40 @@ async function init() {
             }
         }
     }
+
+    const $goToTopBox = document.getElementById("go-to-top-box");
+    const $goToTop = document.getElementById("go-to-top");
+
+    window.addEventListener("load", () => {
+        if (document.documentElement.scrollHeight > window.innerHeight) {
+            $goToTopBox.style.display = "flex";
+            $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "go to top ↑";
+        } else {
+            $goToTopBox.style.display = "none";
+        }
+
+        $goToTopBox.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    });
+
+    window.addEventListener("resize", toggleGoToTopByResizing);
+
+    document.querySelectorAll("h1, h2, h3, h4, h5").forEach(heading => {
+      heading.addEventListener("click", () => {
+          if (!heading.id) return;
+
+          history.pushState(null, '', `#${heading.id}`);
+
+          heading.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+          });
+      });
+    });
 }
 
 if ((!localStorage.getItem("lang") && navigator.language.startsWith("ko")) || localStorage.getItem("lang") === "korean" || localStorage.getItem("lang") === "한글") {
@@ -1061,4 +1095,14 @@ function focusImg($img) {
 
     document.body.style.overflow = "hidden";
 }
+
+function toggleGoToTopByResizing() {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const adjustedHeight = scrollHeight;
+    const exceeds = adjustedHeight > (window.innerHeight + 100);
+    const $goToTopBox = document.getElementById("go-to-top-box");
+    $goToTopBox.style.display = exceeds ? "flex" : "none";
+}
+
+
 </script>

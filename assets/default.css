@@ -1,5 +1,9 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');*/
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -502,6 +506,17 @@ h4 {
 h5 {
   margin-top: 4px;
   font-weight: bold;
+}
+
+h1, h2, h3, h4, h5 {
+  scroll-margin-top: 20px;
+}
+
+h2:hover, 
+h3:hover,
+h4:hover,
+h5:hover {
+  cursor: pointer;
 }
 
 .text-underline-black {
