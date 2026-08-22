@@ -141,6 +141,9 @@ async function init() {
         }
 
         $goToTopBox.addEventListener("click", () => {
+            if (location.hash) {
+                history.replaceState(null, '', location.pathname + location.search);
+            }
             window.scrollTo({
                 top: 0,
                 behavior: "smooth"
