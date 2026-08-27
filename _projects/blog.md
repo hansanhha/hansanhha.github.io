@@ -140,4 +140,4 @@ createDate: 2026-08-09
 
 아카이브
 
-[디자인 개편 이전 블로그](https://hansanhha.github.io/legacy)
+<a rel="noopener noreferrer" target="_blank" href="https://hansanhha.github.io/legacy">디자인 개편 이전 블로그</a>

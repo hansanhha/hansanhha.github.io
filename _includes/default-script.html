@@ -20,6 +20,32 @@ if ($empty) {
     $mainContent[0].appendChild($span);
 }
 
+const $goToTopBox = document.getElementById("go-to-top-box");
+const $goToTop = document.getElementById("go-to-top");
+
+if ($goToTopBox && $goToTop) {
+  window.addEventListener("load", () => {
+      if (document.documentElement.scrollHeight > window.innerHeight) {
+          $goToTopBox.style.display = "flex";
+          $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "go to top ↑";
+      } else {
+          $goToTopBox.style.display = "none";
+      }
+  });
+
+  $goToTopBox.addEventListener("click", () => {
+      if (location.hash) {
+          history.replaceState(null, '', location.pathname + location.search);
+      }
+      window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+      });
+  });
+
+  window.addEventListener("resize", toggleGoToTopByResizing);
+}
+
 init();
 
 function loadScript(src, timeout = 5000) {
@@ -129,29 +155,7 @@ async function init() {
         }
     }
 
-    const $goToTopBox = document.getElementById("go-to-top-box");
-    const $goToTop = document.getElementById("go-to-top");
-
-    window.addEventListener("load", () => {
-        if (document.documentElement.scrollHeight > window.innerHeight) {
-            $goToTopBox.style.display = "flex";
-            $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "go to top ↑";
-        } else {
-            $goToTopBox.style.display = "none";
-        }
-
-        $goToTopBox.addEventListener("click", () => {
-            if (location.hash) {
-                history.replaceState(null, '', location.pathname + location.search);
-            }
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
-    });
-
-    window.addEventListener("resize", toggleGoToTopByResizing);
+    
 
     document.querySelectorAll("h1, h2, h3, h4, h5").forEach(heading => {
       heading.addEventListener("click", () => {
