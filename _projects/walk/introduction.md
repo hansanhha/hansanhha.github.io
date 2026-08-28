@@ -8,6 +8,7 @@ page-title: 소개
 createDate: 2026-08-16
 group: default
 subgroup: default
+description: 프로젝트 산책에 대한 소개
 ---
 
 걸어서 동네속으로. 짧은 여행기이자 나들이, 가볍게 떠나는 소풍

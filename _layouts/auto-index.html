@@ -73,7 +73,7 @@ async function loadIndexByCategory() {
         }
 
         if (isGrouped) {
-          printGroupedIndexes(categorisedIndexes, locale, options);
+          printGroupedIndexes(pageName, pageNameKo, categorisedIndexes, locale, options);
           return;
         }
 
@@ -131,7 +131,7 @@ function filterIndexesByLocale(indexes) {
     return indexes.filter((post) => !post.url.includes("/en/"));
 }
 
-function printGroupedIndexes(indexes, locale, options) {
+function printGroupedIndexes(pageName, pageNameKo, indexes, locale, options) {
     const $pageContentWrapper = document.getElementById("page-content-wrapper");
     const groupedIndexes = groupIndexes(indexes, "group");
 
@@ -143,10 +143,26 @@ function printGroupedIndexes(indexes, locale, options) {
     }
     delete groupedIndexes["default"];
 
+    const nullGroup = groupedIndexes["null"];
+    if (nullGroup) {
+        let groupName = "";
+        if (pageName.toLowerCase() === "daily" || pageNameKo === "일상") {
+            groupName = localStorage.getItem("lang") === "ko" ? "경험과 생각을 간단하게 담은 글" : "Text";
+        }
+        const $group = document.createElement("div");
+        const $groupName = document.createElement("div");
+        $groupName.innerText = groupName;
+        $groupName.classList.add("post-group-name");
+        $group.appendChild($groupName);
+        $group.classList.add("post-group");
+        const groupedPosts = organizeGroup(nullGroup, $group, locale, options);
+        $pageContentWrapper.appendChild(groupedPosts);
+    }
+    delete groupedIndexes["null"];
+
     Object.keys(groupedIndexes).forEach(group => {
       const $group = document.createElement("div");
       const $groupName = document.createElement("div");
-
       $groupName.innerText = group;
       $groupName.classList.add("post-group-name");
       $group.appendChild($groupName);

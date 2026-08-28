@@ -3,6 +3,7 @@ layout: default
 page-name: Hello, Sunrise
 page-name-ko: Hello, Sunrise
 createDate: 2026-08-13
+description: 해맞이에 대한 소개
 ---
 
 매월 초 떠오르는 해와 하늘을 바라보며 새로운 한 달을 맞이한다. 이 달의 첫 순간을 기록하고 지켜보며 반복되는 시간 속에서 새로운 시작을 의식한다.

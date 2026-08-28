@@ -3,6 +3,7 @@ layout: default
 page-name: Blog
 page-name-ko: 블로그
 createDate: 2026-08-09
+description: 블로그에 대한 소개
 ---
 
 좋아하는 것들을 모아두거나 기록하는 공간

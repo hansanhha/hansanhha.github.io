@@ -1,0 +1,14 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% for post in site.documents %}
+    {% assign current_url = site.url | append: post.url %}
+    {% if current_url != "http://localhost:4000" or current_url != "https://hansanhha.github.io"%}
+    <url>
+        <loc>{{ site.url }}{{ post.url }}</loc>
+    </url>
+    {% endif %}
+    {% endfor %}
+</urlset>

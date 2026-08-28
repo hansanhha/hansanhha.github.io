@@ -7,6 +7,7 @@ page-name-ko: 북촌
 createDate: 2026-08-19
 group: 종로구
 subgroup: 북촌
+description: 프로젝트 산책 - 종로구 북촌
 ---
 
 글의 순서

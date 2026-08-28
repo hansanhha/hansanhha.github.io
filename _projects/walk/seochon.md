@@ -7,6 +7,7 @@ page-name-ko: 서촌
 createDate: 2026-08-16
 group: 종로구
 subgroup: 서촌
+description: 프로젝트 산책 - 종로구 서촌
 ---
 
 글의 순서

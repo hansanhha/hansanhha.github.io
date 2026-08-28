@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://hansanhha.github.io/sitemap.xml
+
+Sitemap: https://hansanhha.github.io

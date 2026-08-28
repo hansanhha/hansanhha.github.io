@@ -3,8 +3,8 @@ description: Internet Notebook
 url: https://hansanhha.github.io
 
 plugins:
-  - jekyll-feed
-  - jekyll-sitemap
+  # - jekyll-feed
+  # - jekyll-sitemap
   - jekyll-seo-tag
 
 collections:
