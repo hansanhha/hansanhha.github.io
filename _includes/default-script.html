@@ -677,6 +677,8 @@ function printSearchResult(searchQuery, posts) {
         $searchResultBox.style.marginTop = "16px";
         $searchResultBox.textContent = localStorage.getItem("lang") === "ko" ? "검색 결과가 없습니다" : "No search results";
         return;
+    } else {
+      $searchResultBox.style.marginTop = "0px";
     }
 
     const orderedPosts = matchedPosts
@@ -696,6 +698,11 @@ function printSearchResult(searchQuery, posts) {
            }
         });
 
+
+    const $searchResultName = document.createElement("div");
+    $searchResultName.innerText = localStorage.getItem("lang") === "ko" ? "총 " + filteredPostsByLocale.length + "페이지": "Total " + filteredPostsByLocale.length + " Pages";
+    $searchResultName.style.marginTop = "4px";
+    $searchResultBox.appendChild($searchResultName);
     const groupedPostsByCategory = Object.groupBy(filteredPostsByLocale, post => post["category"]);
     const printPostsByCategory = (category) => {
       if (groupedPostsByCategory[category]) {
@@ -1110,7 +1117,9 @@ function toggleGoToTopByResizing() {
     const adjustedHeight = scrollHeight;
     const exceeds = adjustedHeight > (window.innerHeight + 100);
     const $goToTopBox = document.getElementById("go-to-top-box");
-    $goToTopBox.style.display = exceeds ? "flex" : "none";
+    if ($goToTopBox) {
+      $goToTopBox.style.display = exceeds ? "flex" : "none";
+    }
 }
 
 
