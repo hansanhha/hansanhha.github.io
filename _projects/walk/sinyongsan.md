@@ -387,7 +387,7 @@ description: 프로젝트 산책 - 용산구 신용산
 영상에 사용한 음악: On Track - Tame Impala
 
 <video controls>
-    <source src="./videos/Sinyonsan260829.mp4">
+    <source src="./videos/Sinyongsan_260829.mp4">
 </video>
 
 집 근처에서 신림별빛거리축제를 하고 있었다.
