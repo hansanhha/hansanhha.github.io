@@ -364,17 +364,18 @@ hyperlinks.forEach((link) => {
 });
 
 function convertToKoreanUserAgent(userAgent) {
-    let vendor, os, browser;
+    let vendor = "", os = "", browser = "";
     let deviceType = "";
 
-    if (!userAgent.device || !userAgent.device.vendor || !userAgent.os || !userAgent.os.name || !userAgent.browser || !userAgent.browser.name) {
-      return userAgent;
+    if (userAgent.device.vendor) {
+      vendor = userAgent.device.vendor.toLocaleLowerCase();
     }
-
-    vendor = userAgent.device.vendor.toLocaleLowerCase();
-    os = userAgent.os.name.toLocaleLowerCase();
-    browser = userAgent.browser.name.toLocaleLowerCase();
-
+    if (userAgent.os.name) {
+      os = userAgent.os.name.toLocaleLowerCase();
+    }
+    if (userAgent.browser.name) {
+      browser = userAgent.browser.name.toLocaleLowerCase();
+    }
     if (userAgent.device.type) {
       deviceType = userAgent.device.type.toLocaleLowerCase();
     }
@@ -391,198 +392,14 @@ function convertToKoreanUserAgent(userAgent) {
       },
     }
 
-    switch (vendor) {
-      case "apple":
-        koreanUserAgent.device.vendor = "애플";
-        break;
-      case "google":
-        koreanUserAgent.device.vendor = "구글";
-        break;
-      case "samsung":
-        koreanUserAgent.device.vendor = "삼성";
-        break;
-      case "facebook":
-        koreanUserAgent.device.vendor = "페이스북";
-        break;
-      case "amazon":
-        koreanUserAgent.device.vendor = "아마존";
-        break;
-      case "dell":
-        koreanUserAgent.device.vendor = "델";
-        break;
-      case "lenovo":
-        koreanUserAgent.device.vendor = "레노보";
-        break;
-      case "lg":
-        koreanUserAgent.device.vendor = "LG";
-        break;
-      case "nintendo":
-        koreanUserAgent.device.vendor = "닌텐도";
-        break;
-      case "panasonic":
-        koreanUserAgent.device.vendor = "파나소닉";
-        break;
-      case "tesla":
-        koreanUserAgent.device.vendor = "테슬라";
-        break;
-      case "xbox":
-        koreanUserAgent.device.vendor = "엑스박스";
-        break;
-      case "asus":
-        koreanUserAgent.device.vendor = "에이수스";
-        break;
-      case "microsoft":
-        koreanUserAgent.device.vendor = "마이크로소프트";
-        break;
-      default:
-        koreanUserAgent.device.vendor = vendor;
-        break;
-    }
-
-    switch (os) {
-      case "macos":
-        koreanUserAgent.os.name = "맥";
-        break;
-      case "ios":
-        koreanUserAgent.os.name = "아이폰";
-        break;
-      case "ipad":
-        koreanUserAgent.os.name = "아이패드";
-        break;
-      case "windows":
-      case "windows rt":
-      case "windowsrt":
-      case "windows mobile":
-        koreanUserAgent.os.name = "윈도우";
-        break;
-      case "android":
-        koreanUserAgent.os.name = "안드로이드";
-        break;
-      case "chrome os":
-      case "chromeos":
-      case "chromecast android":
-      case "chromecast fuchsia":
-      case "chromecast linux":
-        koreanUserAgent.os.name = "크롬OS";
-        break;
-      case "linux":
-      case "centos":
-      case "debian":
-      case "ubuntu":
-      case "fedora":
-      case "suse":
-      case "opensuse":
-      case "gentoo":
-      case "manjaro":
-      case "mint":
-      case "minix":
-        koreanUserAgent.os.name = "리눅스";
-        break;
-      default:
-        koreanUserAgent.os.name = os;
-    }
-
     if (deviceType === "tablet") {
-      switch (vendor) {
-        case "apple":
-          koreanUserAgent.os.name = "아이패드";
-          break;
-        case "samsung":
-          koreanUserAgent.os.name = "갤럭시 탭";
-          break;
-        case "google":
-          koreanUserAgent.os.name = "구글 태블릿";
-          break;
-        case "microsoft":
-          koreanUserAgent.os.name = "윈도우 태블릿";
-          break;
-        default:
-          koreanUserAgent.device.type = "태블릿";
-          break;
-      }
+      koreanUserAgent.device.vendor = convertDeviceNameToKorean(vendor);
+      koreanUserAgent.os.name = convertDeviceNameToKorean(vendor);
+    } else {
+      koreanUserAgent.device.vendor = convertDeviceNameToKorean(vendor);
+      koreanUserAgent.os.name = convertDeviceNameToKorean(os);
     }
-
-    switch (browser) {
-      case "chrome":
-      case "chromium webview":
-      case "chromium":
-      case "mobile chrome":
-        koreanUserAgent.browser.name = "크롬";
-        break;
-      case "firefox":
-      case "firefox focus":
-      case "firefox reality":
-      case "mobile firefox":
-        koreanUserAgent.browser.name = "파이어폭스";
-        break;
-      case "safari":
-      case "mobile safari":
-        koreanUserAgent.browser.name = "사파리";
-        break;
-      case "edge":
-      case "edge webview":
-      case "edge webview2":
-        koreanUserAgent.browser.name = "엣지";
-        break;
-      case "opera":
-      case "opera coast":
-      case "opera gx":
-      case "opera mobi":
-      case "opera neon":
-      case "opera tablet":
-      case "opera touch":
-        koreanUserAgent.browser.name = "오페라";
-        break;
-      case "whale":
-      case "naver":
-        koreanUserAgent.browser.name = "네이버 웨일";
-        break;
-      case "electron":
-        koreanUserAgent.browser.name = "일렉트론";
-        break;
-      case "brave":
-        koreanUserAgent.browser.name = "브레이브";
-        break;
-      case "atlas":
-        koreanUserAgent.browser.name = "아틀라스";
-        break;
-      case "samsung internet":
-        koreanUserAgent.browser.name = "삼성 인터넷";
-        break;
-      case "android browser":
-        koreanUserAgent.browser.name = "안드로이드 브라우저";
-        break;
-      case "duckduckgo":
-        koreanUserAgent.browser.name = "덕덕고";
-        break;
-      case "facebook":
-        koreanUserAgent.browser.name = "페이스북";
-        break;
-      case "kakaotalk":
-        koreanUserAgent.browser.name = "카카오톡";
-        break;
-      case "line":
-        koreanUserAgent.browser.name = "라인";
-        break;
-      case "linkedin":
-        koreanUserAgent.browser.name = "링크드인";
-        break;
-      case "tesla":
-        koreanUserAgent.browser.name = "테슬라 브라우저";
-        break;
-      case "tiktok":
-        koreanUserAgent.browser.name = "틱톡";
-        break;
-      case "vivaldi":
-        koreanUserAgent.browser.name = "비발디";
-        break;
-      case "yandex":
-        koreanUserAgent.browser.name = "얀덱스";
-        break;
-      default:
-        koreanUserAgent.browser.name = browser;
-        break;
-    }
+    koreanUserAgent.browser.name = convertDeviceNameToKorean(browser);    
 
     return koreanUserAgent;
 }
@@ -1120,6 +937,179 @@ function toggleGoToTopByResizing() {
     if ($goToTopBox) {
       $goToTopBox.style.display = exceeds ? "flex" : "none";
     }
+}
+
+function convertDeviceNameToKorean(name) {
+  if (name === "") {
+    return "";
+  }
+  let nameKo = "";
+
+  switch (name) {
+    case "apple":
+        nameKo = "애플";
+        break;
+      case "google":
+        nameKo = "구글";
+        break;
+      case "samsung":
+        nameKo = "삼성";
+        break;
+      case "facebook":
+        nameKo = "페이스북";
+        break;
+      case "amazon":
+        nameKo = "아마존";
+        break;
+      case "dell":
+        nameKo = "델";
+        break;
+      case "lenovo":
+        nameKo = "레노보";
+        break;
+      case "lg":
+        nameKo = "LG";
+        break;
+      case "nintendo":
+        nameKo = "닌텐도";
+        break;
+      case "panasonic":
+        nameKo = "파나소닉";
+        break;
+      case "tesla":
+        nameKo = "테슬라";
+        break;
+      case "xbox":
+        nameKo = "엑스박스";
+        break;
+      case "asus":
+        nameKo = "에이수스";
+        break;
+      case "microsoft":
+        nameKo = "마이크로소프트";
+        break;
+      case "chrome":
+      case "chromium webview":
+      case "chromium":
+      case "mobile chrome":
+        nameKo = "크롬";
+        break;
+      case "firefox":
+      case "firefox focus":
+      case "firefox reality":
+      case "mobile firefox":
+        nameKo = "파이어폭스";
+        break;
+      case "safari":
+      case "mobile safari":
+        nameKo = "사파리";
+        break;
+      case "edge":
+      case "edge webview":
+      case "edge webview2":
+        nameKo = "엣지";
+        break;
+      case "opera":
+      case "opera coast":
+      case "opera gx":
+      case "opera mobi":
+      case "opera neon":
+      case "opera tablet":
+      case "opera touch":
+        nameKo = "오페라";
+        break;
+      case "whale":
+      case "naver":
+        nameKo = "네이버 웨일";
+        break;
+      case "electron":
+        nameKo = "일렉트론";
+        break;
+      case "brave":
+        nameKo = "브레이브";
+        break;
+      case "atlas":
+        nameKo = "아틀라스";
+        break;
+      case "samsung internet":
+        nameKo = "삼성 인터넷";
+        break;
+      case "android browser":
+        nameKo = "안드로이드 브라우저";
+        break;
+      case "duckduckgo":
+        nameKo = "덕덕고";
+        break;
+      case "facebook":
+        nameKo = "페이스북";
+        break;
+      case "kakaotalk":
+        nameKo = "카카오톡";
+        break;
+      case "line":
+        nameKo = "라인";
+        break;
+      case "linkedin":
+        nameKo = "링크드인";
+        break;
+      case "tesla":
+        nameKo = "테슬라 브라우저";
+        break;
+      case "tiktok":
+        nameKo = "틱톡";
+        break;
+      case "vivaldi":
+        nameKo = "비발디";
+        break;
+      case "yandex":
+        nameKo = "얀덱스";
+        break;
+        case "macos":
+        nameKo = "맥";
+        break;
+      case "ios":
+        nameKo = "아이폰";
+        break;
+      case "ipad":
+        nameKo = "아이패드";
+        break;
+      case "windows":
+      case "windows rt":
+      case "windowsrt":
+      case "windows mobile":
+        nameKo = "윈도우";
+        break;
+      case "android":
+        nameKo = "안드로이드";
+        break;
+      case "chrome os":
+      case "chromeos":
+      case "chromecast android":
+      case "chromecast fuchsia":
+      case "chromecast linux":
+        nameKo = "크롬OS";
+        break;
+      case "linux":
+      case "centos":
+      case "debian":
+      case "ubuntu":
+      case "fedora":
+      case "suse":
+      case "opensuse":
+      case "gentoo":
+      case "manjaro":
+      case "mint":
+      case "minix":
+        nameKo = "리눅스";
+        break;
+      default:
+        nameKo = name;
+  }
+
+  if (!nameKo || nameKo === "undefined") {
+    return "";
+  }
+  return nameKo;
 }
 
 

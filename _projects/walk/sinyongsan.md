@@ -386,9 +386,20 @@ description: 프로젝트 산책 - 용산구 신용산
 
 영상에 사용한 음악: On Track - Tame Impala
 
-<video controls>
-    <source src="./videos/Sinyongsan_260829.mp4">
-</video>
+<div style="position: relative; max-width: 560px; width: 100%; margin-top: 10px;">
+    <div style="width: 100%; padding-bottom: 56.25%">
+        <iframe 
+            style="position: absolute; width: 100%; height: 100%"
+            src="https://www.youtube.com/embed/xt3FfLKsTWw?si=_8LiaTPiSz-ixkXc" 
+            title="Sinyongsan" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen 
+            playsinline="1" 
+            rel="0"></iframe>
+    </div>
+</div>
 
 집 근처에서 신림별빛거리축제를 하고 있었다.
 

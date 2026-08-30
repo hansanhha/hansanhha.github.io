@@ -127,15 +127,13 @@ document.addEventListener("DOMContentLoaded", function() {
         $imageTitle.style.display = "flex";
         $imageTitle.style.alignItems = "center";
         $imageTitle.style.gap = "7px";
+        $imageTitle.style.marginBlockEnd = "0px";
 
         const $prevBtn = document.createElement("div");
         const $nextBtn = document.createElement("div");
 
         $prevBtn.textContent = "←";
         $nextBtn.textContent = "→";
-
-        $prevBtn.style.fontWeight = "500";
-        $nextBtn.style.fontWeight = "500";
 
         $prevBtn.classList.add("cursor-pointer");
         $nextBtn.classList.add("cursor-pointer");

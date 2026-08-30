@@ -9,7 +9,7 @@ tags: objects film room season weeknd paintings henry matisse utagawa ando hiros
 
 <div style="display: flex; flex-direction: column; gap: 10px;">
 
-    <div id="images-objects"></div>
+    <h2 id="images-objects"></h2>
 
     <div id="images-objects-list" class="images-list">
         <img src="./data/self-made-map.jpeg" alt="self-made-map.jpeg" />
@@ -29,7 +29,7 @@ tags: objects film room season weeknd paintings henry matisse utagawa ando hiros
         <img src="./data/cigarette.jpeg" alt="cigarette.jpeg" />
     </div>
 
-    <div id="images-season"></div>
+    <h2 id="images-season"></h2>
     
     <div id="images-season-list" class="images-list">
         <img src="./data/spring.JPG" alt="" data-desc="Daejeon Temi Park \n April 2, 2024" data-desc-ko="대전 벚꽃동산 \n 2024년 4월 2일 \n" />
@@ -41,7 +41,7 @@ tags: objects film room season weeknd paintings henry matisse utagawa ando hiros
         <img src="./data/winter.JPG" alt="" data-desc="Seoul Boramae Park \n December 20, 2023" data-desc-ko="서울 보라매공원 \n 2023년 12월 20일"/>
     </div>
 
-    <div id="images-room"></div>
+    <h2 id="images-room"></h2>
     
     <div id="images-room-list" class="images-list">
         <img src="./data/Adam Kubert.jpg" alt="Adam Kubert.jpg" data-desc="THINK LESS DRAW MORE ! \n it looks like he's drawing a picture of someone men's faces \n a stand and chair for comfortable drawing, freely movable lightning \n a desk that looks messy but still has the space to display your resources and store the thing you need, even the sculptures were placed to enhance the understanding of movement in order to naturally melt the human form \n fetched by pinterest" data-desc-ko="THINK LESS DRAW MORE ! \n 어떤 남자들의 얼굴이 담겨있는 사진을 그리는 모양이다 \n 그림을 편히 그릴 수 있는 받침대와 의자, 자유롭게 이동할 수 있는 조명 \n 너저분해보이면서도 자료들을 보기 좋게 두고 필요한 것들을 비치할 수 있는 책상, 사람의 형상을 자연스럽게 녹여내기 위해 움직임에 대한 이해도를 높이고자 둔 조형물까지 \n"/>
@@ -55,7 +55,7 @@ tags: objects film room season weeknd paintings henry matisse utagawa ando hiros
         <img src="./data/r4.jpg">
     </div>
 
-    <div id="images-paintings"></div>
+    <h2 id="images-paintings"></h2>
     
     <div id="images-paintings-list" class="images-list">
         <img src="./data/bouquet-in-a-theater-box.jpg" alt="bouquet-in-a-theater-box.jpg" data-desc="Title: Bouquet in a theater box \n Artist: Pierre-Auguste Renoir \n Period: Association with Impressionists \n Genre: still life \n Date: c.1871 \n " data-desc-ko="제목: 극장 관람석의 꽃다발 \n 예술가: 피에르 오귀스트 르누아르 \n 시대: 인상주의 \n 장르: 정물화 \n 제작 시기: 1871년 \n ">
@@ -73,7 +73,7 @@ tags: objects film room season weeknd paintings henry matisse utagawa ando hiros
         <img src="./data/nothinking.jpeg" alt="nothinking.jpeg" data-desc="Title: No Thinking \n Artist: Hong soonmo \n Period: Contemporary Art \n Genre: Sculpture \n Date: 2002 \n " data-desc-ko="제목: 무념 \n 예술가: 홍순모 \n 시대: 현대미술 \n 장르: 조각 \n 제작 시기: 2002년  \n ">
     </div>
 
-    <div id="images-film"></div>
+    <h2 id="images-film"></h2>
     
     <div id="images-film-list" class="images-list">
         <img src="./data/Papillon.jpg" alt="Papillon.jpg" data-desc="Title: Papillon \n Genre: Drama \n Director: Franklin J. Schaffner \n Starring: Steve McQueen, Dustin Hoffman \n Release Date: December 16, 1973 \n Running Time: 150 minutes" data-desc-ko="제목: 빠삐용 \n 장르: 드라마 \n 감독: 프랭클린 J. 샤프너 \n 주연: 스티브 맥퀸, 더스틴 호프먼 \n 개봉일: 1973년 12월 16일  \n 상영 시간: 150분"/>
@@ -87,7 +87,7 @@ tags: objects film room season weeknd paintings henry matisse utagawa ando hiros
         <img src="./data/Princess Mononoke.jpg" alt="Princess Mononoke.jpg" data-desc="Title: Princess Mononoke \n Genre: Adventure \n Director: Hayao Miyazaki \n Starring: Ashitaka, San \n Release Date: July 12, 1997 \n Running Time: 133 minutes" data-desc-ko="제목: 모노노케 히메 \n 장르: 어드벤처 \n 감독: 미야자키 하야오 \n 주연: 아시타카, 산 \n 개봉일: 1997년 7월 12일 \n 상영 시간: 133분"/>
     </div>
 
-    <div id="images-weeknd"></div>
+    <h2 id="images-weeknd"></h2>
     
     <div id="images-weeknd-list" class="images-list">
         <img src="./data/where%20are%20you%20now%20when%20i%20need%20you%20most.png" alt="where are you now when i need you most.png" data-desc="Thought I almost died in my dream again (Baby, almost died) \n Fightin' for my life, I couldn't breathe again \n I'm fallin' in too deep (Oh, oh) \n Without you, I can't sleep (Fallin' in) \n 'Cause my heart belongs to you \n I'll risk it all for you \n I want you next to me \n This time, I'll never leave \n I wanna share babies \n Protection, we won't need \n Your body next to me \n Is just a memory \n I'm fallin' in too deep, oh \n Without you, I can't sleep \n Insomnia relieve, oh \n Talk to me, without you, I can't breathe \n \n My darkest hours \n Girl, I felt so alone inside of this crowded room \n Different girls on the floor, distractin' my thoughts of you \n I turned into the man I used to be, to be \n Put myself to sleep \n Just so I can get closer to you inside my dreams \n Didn't wanna wake up 'less you were beside me \n I just wanted to call you and say, and say \n \n Oh, baby \n Where are you now when I need you most? \n I'd give it all just to hold you close \n Sorry that I broke your heart, your heart \n \n Never comin' down, uh \n I was running away from facin' reality, uh \n Wastin' all of my time out living my fantasies \n Spendin' money to compensate, compensate \n 'Cause I want you, baby, uh \n I be livin' in heaven when I'm inside of you \n It was simply a blessing wakin' beside you \n I'll never let you down again, again \n \n Oh, baby \n Where are you now when I need you most? \n I'd give it all just to hold you close \n Sorry that I broke your heart, your heart \n I said, baby \n I'll treat you better than I did before \n I'll hold you down and not let you go \n This time, I won't break your heart, your heart, yeah \n \n I know it's all my fault \n Made you put down your guard \n I know I made you fall \n Then said you were wrong for me \n I lied to you, I lied to you, I lied to you (To you) \n Can't hide the truth, I'd stay with her in spite of you \n You did some things that you regret, still ride for you \n 'Cause this house is not a home \n \n Without my baby \n Where are you now when I need you most? \n I gave it all just to hold you close \n Sorry that I broke your heart, your heart \n And I said, baby \n I'll treat you better than I did before \n I'll hold you down and not let you go \n This time, I won't break your heart, your heart, no"/>
