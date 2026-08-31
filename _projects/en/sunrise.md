@@ -15,7 +15,7 @@ Address: <a href="https://hansanhha.github.io/sunrise" target="_blank" rel="noop
 
 ---
 
-24 Times, 19 Places
+25 Times, 20 Places
 
 Seoul Mongchontoseong Earthen Fortification [January 2024](https://hansanhha.github.io/sunrise/2024/January) [June 2026](https://hansanhha.github.io/sunrise/2026/June)
 
@@ -54,5 +54,7 @@ Yongyangbongjeojeong Park [May 2026](https://hansanhha.github.io/sunrise/2026/Ma
 Umyeonsan [July 2026](https://hansanhha.github.io/sunrise/2026/July)
 
 Grass Garden [August 2026](https://hansanhha.github.io/sunrise/2026/August)
+
+Dongnimmun Arch [2026년 9월](https://hansanhha.github.io/sunrise/2026/September)
 
 ---

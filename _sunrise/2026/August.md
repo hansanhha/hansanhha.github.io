@@ -1,7 +1,7 @@
 ---
 layout: sunrise
 prev-link: July
-next-link: 
+next-link: September
 page-name: August - Grass Garden
 page-name-ko: 8월 - 그라스정원
 nomiation: Grass Garden

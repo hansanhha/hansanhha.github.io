@@ -16,7 +16,7 @@ description: 해맞이에 대한 소개
 
 ---
 
-24차례, 19곳
+25차례, 20곳
 
 몽촌토성공원 [2024년 1월](https://hansanhha.github.io/sunrise/2024/January) [2026년 6월](https://hansanhha.github.io/sunrise/2026/June)
 
@@ -55,5 +55,7 @@ description: 해맞이에 대한 소개
 우면산 [2026년 7월](https://hansanhha.github.io/sunrise/2026/July)
 
 그라스정원 [2026년 8월](https://hansanhha.github.io/sunrise/2026/August)
+
+독립문 [2026년 9월](https://hansanhha.github.io/sunrise/2026/September)
 
 ---
