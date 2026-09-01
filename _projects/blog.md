@@ -18,11 +18,11 @@ description: 블로그에 대한 소개
 
 ---
 
-블로그 메뉴에 대하여
+메뉴에 대한 소개
 
 검색
 
-제목, 내용 또는 키워드를 기반으로 블로그 내의 게시글들을 검색할 수 있는 기능이다. Jekyll의 Liquid 템플릿과 빌드 과정을 이용하여 search.json 파일을 만든 후 자바스크립트로 페치하고 필터링한 결과를 표시한다. [search.json](https://hansanhha.github.io/search.json)
+제목, 내용 또는 키워드를 기반으로 블로그 내의 게시글들을 검색할 수 있는 기능이다. Jekyll의 Liquid 템플릿과 빌드 과정을 이용하여 검색용 파일을 만든 후 자바스크립트로 페치하고 필터링한 결과를 표시한다.
 
 프로젝트
 
@@ -70,7 +70,7 @@ description: 블로그에 대한 소개
 
 ---
 
-블로그 디자인에 관하여: 기본 화면 구성에 대한 설명
+인터페이스에 대한 소개
 
 콘텐츠를 감싸고 있는 상단과 하단의 영역은 고정적으로 유지되며 콘텐츠의 내용만 동적으로 변경된다. 유틸리티의 글꼴 크기 조절 기능은 콘텐츠 영역의 글꼴 크기에만 영향을 미친다.
 
@@ -103,17 +103,23 @@ description: 블로그에 대한 소개
 
 ---
 
-블로그 디자인에 영감을 준 페이지
+영감을 준 페이지
 
-<a href="https://catern.com" target="_blank" rel="noopener noreferrer">catern</a> 위에서 아래로 자연스럽게 이어지는 수직적인 흐름과 불필요한 장식을 덜어낸 투박하고 직관적인 인터페이스를 참고하였다.
+<a href="https://catern.com" target="_blank" rel="noopener noreferrer">catern</a> 
+
+위에서 아래로 자연스럽게 이어지는 수직적인 흐름과 불필요한 장식을 덜어낸 투박하고 직관적인 인터페이스를 참고하였다.
 
 ![catern](./images/catern.png)
 
-<a href="https://blainsmith.com" target="_blank" rel="noopener noreferrer">blainsmith</a> 상단 메뉴 나열 방법과 게시글의 '일자 - 제목' 표시 형태를 참고하였다.
+<a href="https://blainsmith.com" target="_blank" rel="noopener noreferrer">blainsmith</a> 
+
+상단 메뉴 나열 방법과 게시글의 '일자 - 제목' 표시 형태를 참고하였다.
 
 ![blainsmith](./images/blainsmith.png)
 
-<a href="https://khakis2020.com/blog" target="_blank" rel="noopener noreferrer">Khakis</a>  이미지들을 가로로 표시한 디자인으로부터 영감을 받아 아카이브에 모아둔 이미지들을 가로로 스크롤할 수 있도록 구현하였다.
+<a href="https://khakis2020.com/blog" target="_blank" rel="noopener noreferrer">Khakis</a>  
+
+이미지들을 가로로 표시한 디자인으로부터 영감을 받아 아카이브에 모아둔 이미지들을 가로로 스크롤할 수 있도록 구현하였다.
 
 ![khakis](./images/khakis.png)
 

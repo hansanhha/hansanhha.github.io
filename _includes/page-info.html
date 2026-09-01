@@ -10,6 +10,8 @@
     {% include path.html %}
 </div>
 
+<div id="page-update-date" data-update-date="{{ page.updateDate}}"  style="display: none;"></div>
+
 {% if page.layout != "sunrise" and page.title-name != nil or page.title-name-ko != nil %}
     <div id="page-info-title" class="text-left-align" style="margin-top: 4px; margin-bottom: 4px;" data-title-name="{{ page.title-name }}" data-title-name-ko="{{ page.title-name-ko }}"></div>
 {% endif %}
@@ -33,8 +35,24 @@ const userLang = !localStorage.getItem("lang")
     ? navigator.language.startsWith("en") ? "en" : "ko"
     : localStorage.getItem("lang") === "en" ? "en" : "ko";
 
+const $pageUpdateDate = document.getElementById("page-update-date");
 const $pageInfoTitle = document.getElementById("page-info-title");
 const $pageInfoDate = document.getElementById("page-info-date");
+
+if ($pageUpdateDate.dataset.updateDate) {
+    const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
+    const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            weekday: 'long'
+        };
+    const formattedDate = new Date($pageUpdateDate.dataset.updateDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
+    $pageUpdateDate.innerText = "수정일: " + formattedDate;
+    $pageUpdateDate.style.display = "block";
+} else {
+    $pageUpdateDate.style.display = "none";
+}
 
 if ($pageInfoTitle) {
   $pageInfoTitle.textContent = userLang === "ko" ? $pageInfoTitle.dataset.titleNameKo ? $pageInfoTitle.dataset.titleNameKo : $pageInfoTitle.dataset.titleName : $pageInfoTitle.dataset.titleName;

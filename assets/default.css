@@ -511,13 +511,17 @@ h5 {
 
 h1, h2, h3, h4, h5 {
   scroll-margin-top: 20px;
+  transform-origin: left center;
 }
 
+h1:hover, 
 h2:hover, 
 h3:hover,
 h4:hover,
 h5:hover {
   cursor: pointer;
+  font-weight: 600;
+  transform: scale(1.01);
 }
 
 .text-underline-black {
