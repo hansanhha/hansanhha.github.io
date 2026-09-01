@@ -147,7 +147,7 @@ function printGroupedIndexes(pageName, pageNameKo, indexes, locale, options) {
     if (nullGroup) {
         let groupName = "";
         if (pageName.toLowerCase() === "daily" || pageNameKo === "일상") {
-            groupName = localStorage.getItem("lang") === "ko" ? "뒤돌아보고, 멈추고, 앞으로 가고" : "Text";
+            groupName = localStorage.getItem("lang") === "ko" ? "뒤돌아보고, 멈추고, 앞으로 가고" : "Looking Back, Stopping, Going Forward";
         }
         const $group = document.createElement("div");
         const $groupName = document.createElement("div");

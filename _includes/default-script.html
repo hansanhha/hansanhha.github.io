@@ -410,10 +410,14 @@ function moveToSearchPageIfExistSearchParam() {
 
   if (searchParam) {
     document.getElementById("input_search").value = searchParam;
-    search(searchParam);
+    search(searchParam, true);
   }
 }
+
 moveToSearchPageIfExistSearchParam();
+window.addEventListener("popstate", () => {
+    moveToSearchPageIfExistSearchParam();
+});
 
 document.getElementById("hansanhha").addEventListener("click", () => {
         location.href = window.origin;
@@ -428,7 +432,7 @@ document.getElementById("input_search").addEventListener('keydown', (e) => {
 
 document.getElementById("search-result-box").style.display="none";
 
-async function search(searchQuery) {
+async function search(searchQuery, moveOnToSearchPage) {
     if (!searchQuery) searchQuery = document.getElementById("input_search").value.trim().toLowerCase();
     if (!searchQuery) return;
 
@@ -438,11 +442,13 @@ async function search(searchQuery) {
         const jsonData = JSON.parse(textData);
         printSearchResult(searchQuery, jsonData);
         const q = searchQuery;
-        history.pushState(
+        if (!moveOnToSearchPage) {
+          history.pushState(
             null,
             "",
             `/?search=${encodeURIComponent(q)}`
-        );
+          );
+        }
     } catch (error) {
         printErrorResult();
     }
@@ -523,7 +529,7 @@ function printSearchResult(searchQuery, posts) {
     const groupedPostsByCategory = Object.groupBy(filteredPostsByLocale, post => post["category"]);
     const printPostsByCategory = (category) => {
       if (groupedPostsByCategory[category]) {
-        const subcategoryIdx = localStorage.getItem("lang") === "ko" ? "subcategoryKo" : "subcategory";
+        const subcategoryIdx = localStorage.getItem("lang") === "ko" ? "subcategory" : "subcategory";
         const groupedPostsBySubcategory = Object.groupBy(groupedPostsByCategory[category], post => post[subcategoryIdx]);
         if (groupedPostsBySubcategory[null]) {
           printPosts($searchResultBox, locale, options, groupedPostsBySubcategory[null], category);
@@ -598,6 +604,22 @@ function printPosts($searchResultBox, locale, options, posts, category, subcateg
       $category.appendChild(groupedPosts);
     }
     delete groupedPosts["default"];
+
+    const nullGroup = groupedPosts["null"];
+    if (nullGroup) {
+      const $group = document.createElement("div");
+      const $groupName = document.createElement("div");
+
+      let group = "기본";
+      if (category == "daily") group = localStorage.getItem("lang") === "ko" ? "뒤돌아보고, 멈추고, 앞으로 가고" : "Looking Back, Stopping, Going Forward";
+      $groupName.innerText = "- " + group;
+      $groupName.classList.add("post-group-name");
+      $group.appendChild($groupName);
+
+      const subgroupedPosts = organizeGroup(groupedPosts["null"], $group, locale, options);
+      $category.appendChild(subgroupedPosts);
+    }
+    delete groupedPosts["null"];
 
     for (const group of Object.keys(groupedPosts)) {
       const $group = document.createElement("div");
@@ -683,6 +705,10 @@ function localize(category) {
     switch(category) {
         case "projects":
         localized = "프로젝트";
+        break;
+
+        case "walk":
+        localized = "산책";
         break;
 
         case "code":
