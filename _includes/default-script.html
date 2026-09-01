@@ -26,7 +26,7 @@ const $goToTop = document.getElementById("go-to-top");
 if ($goToTopBox && $goToTop) {
   window.addEventListener("load", () => {
       if (document.documentElement.scrollHeight > window.innerHeight) {
-          $goToTopBox.style.display = "flex";
+          $goToTopBox.style.display = "block";
           $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "go to top ↑";
       } else {
           $goToTopBox.style.display = "none";
@@ -441,6 +441,7 @@ async function search(searchQuery, moveOnToSearchPage) {
         const textData = await response.text();
         const jsonData = JSON.parse(textData);
         printSearchResult(searchQuery, jsonData);
+        toggleGoToTopByResizing();
         const q = searchQuery;
         if (!moveOnToSearchPage) {
           history.pushState(
@@ -451,9 +452,7 @@ async function search(searchQuery, moveOnToSearchPage) {
         }
     } catch (error) {
         printErrorResult();
-    }
-
-    toggleGoToTopByResizing();
+    } 
 }
 
 function printSearchResult(searchQuery, posts) {
@@ -687,15 +686,6 @@ function printErrorResult() {
     $pageErrorResult.style.marginTop = "12px";
     $pageErrorResult.style.marginBottom = "8px";
     $pageContentWrapper.appendChild($pageErrorResult);
-}
-
-function toggleGoToTopByResizing() {
-    const $goToTopBox = document.getElementById("go-to-top-box");
-    if (!$goToTopBox) return;
-    const scrollHeight = document.documentElement.scrollHeight;
-    const adjustedHeight = scrollHeight;
-    const exceeds = adjustedHeight > (window.innerHeight + 10);
-    $goToTopBox.style.display = exceeds ? "flex" : "none";
 }
 
 function localize(category) {
@@ -956,13 +946,14 @@ function focusImg($img) {
 }
 
 function toggleGoToTopByResizing() {
+    const $goToTopBox = document.getElementById("go-to-top-box");
+    const $goToTop = document.getElementById("go-to-top");
+    if (!$goToTopBox) return;
     const scrollHeight = document.documentElement.scrollHeight;
     const adjustedHeight = scrollHeight;
-    const exceeds = adjustedHeight > (window.innerHeight + 100);
-    const $goToTopBox = document.getElementById("go-to-top-box");
-    if ($goToTopBox) {
-      $goToTopBox.style.display = exceeds ? "flex" : "none";
-    }
+    const exceeds = adjustedHeight > (window.innerHeight + 10);
+    $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "go to top ↑";
+    $goToTopBox.style.display = exceeds ? "block" : "none";
 }
 
 function convertDeviceNameToKorean(name) {
