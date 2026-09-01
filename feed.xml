@@ -12,7 +12,21 @@ layout: null
     <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
     <generator>Jekyll v{{ jekyll.version }}</generator>
-    {% for post in site.documents limit:10 %}
+    {% assign contents = site.projects
+    | concat: site.code
+    | concat: site.daily
+    | concat: site.archives
+    | concat: site.sunrise
+    %}
+    {% assign filtered_contents = "" | split: "" %}
+    {% for item in contents %}
+        {% unless item.path contains "/index.md" %}
+            {% assign filtered_contents = filtered_contents | push: item %}
+        {% endunless %}
+    {% endfor %}
+    {% assign posts = filtered_contents | sort: "createDate" | reverse %}
+    {% for post in posts limit: 15 %}
+      {% unless post.title == "Index" %}
       <item>
         <title>{{ post.title | xml_escape }}</title>
         <description>{{ post.content | xml_escape }}</description>
@@ -30,6 +44,7 @@ layout: null
         <category>{{ cat | xml_escape }}</category>
         {% endfor %}
       </item>
+      {% endunless %}
     {% endfor %}
   </channel>
 </rss>
