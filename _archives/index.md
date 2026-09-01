@@ -1,7 +1,7 @@
 ---
 layout: index
-idx-name: Archives
-idx-name-ko: 아카이브
+page-name: Archives
+page-name-ko: 아카이브
 ---
 
 <a href="./text" data-display-ko="글 귀">Text</a>

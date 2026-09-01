@@ -1,5 +1,6 @@
 ---
 layout: default
+title: 산책에 대한 소개
 subcategory: walk
 subcategory-ko: 산책
 page-name: Introduction

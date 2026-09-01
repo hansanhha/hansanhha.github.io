@@ -1,7 +1,7 @@
 ---
 layout: text
-idx-name: Text
-idx-name-ko: 글 귀
+page-name: Text
+page-name-ko: 글 귀
 ---
 
 <span class="archive-text" data-desc="A line from No Yeon-yang's poem 'Gok I-yeong-dan-gong'. Life is but a spring dream." data-desc-ko="시인 노연양의 '곡이영단공'의 구절. 인생은 한낱 봄철의 꿈에 불과하다.">一場春夢越王城.</span>

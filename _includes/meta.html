@@ -3,12 +3,14 @@
 <title>
     {% if page.dir == "/" %}
       {{ site.title }}
-    {% elsif page.title %}
-        {% if page.title == "Index" %}
-            {{ site.title }} - {{ page.collection }}
-        {% else %}
-            {{ site.title }} - {{ page.title }}
-        {% endif %}
+    {% elsif page.page-name != nil and page.page-name-ko != nil %}
+        {{ page.page-name-ko }}, {{ page.page-name }}
+    {% elsif page.page-name-ko != nil %}
+        {{ page.page-name-ko }}
+    {% elsif page.page-name != nil %}
+        {{ page.page-name }}
+    {% elsif page.title != nil %}
+        {{ page.title }}
     {% else %}
       {{ site.title }}
     {% endif %}

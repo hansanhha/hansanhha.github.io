@@ -1,5 +1,6 @@
 ---
 layout: default
+title: 신용산 Sinyongsan
 subcategory: walk
 subcategory-ko: 산책
 page-name: Sinyongsan

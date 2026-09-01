@@ -1,5 +1,6 @@
 ---
 layout: default
+title: 북촌 Bukchon
 subcategory: walk
 subcategory-ko: 산책
 page-name: Bukchon

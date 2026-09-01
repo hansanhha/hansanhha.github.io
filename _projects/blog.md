@@ -1,5 +1,6 @@
 ---
 layout: default
+title: 블로그 Blog
 page-name: Blog
 page-name-ko: 블로그
 createDate: 2026-08-09

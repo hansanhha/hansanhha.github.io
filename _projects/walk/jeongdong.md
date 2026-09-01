@@ -1,5 +1,6 @@
 ---
 layout: default
+title: 정동/시청 Jeongdong
 subcategory: walk
 subcategory-ko: 산책
 page-name: Jeondong

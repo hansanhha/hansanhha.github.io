@@ -23,7 +23,7 @@ if ($empty) {
 const $goToTopBox = document.getElementById("go-to-top-box");
 const $goToTop = document.getElementById("go-to-top");
 
-if ($goToTopBox && $goToTop) {
+if ($goToTopBox && $goToTop && location.pathname !== "/") {
   window.addEventListener("load", () => {
       if (document.documentElement.scrollHeight > window.innerHeight) {
           $goToTopBox.style.display = "block";
@@ -946,6 +946,7 @@ function focusImg($img) {
 }
 
 function toggleGoToTopByResizing() {
+    if (location.pathname === "/") return;
     const $goToTopBox = document.getElementById("go-to-top-box");
     const $goToTop = document.getElementById("go-to-top");
     if (!$goToTopBox) return;

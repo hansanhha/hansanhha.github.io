@@ -1,5 +1,6 @@
 ---
 layout: auto-index
+title: 산책 Walk
 subcategory: walk
 subcategory-ko: 산책
 page-name: walk

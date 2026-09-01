@@ -1,5 +1,6 @@
 ---
 layout: default
+title: 해맞이에 대한 소개 Hello, Sunrise
 page-name: Hello, Sunrise
 page-name-ko: Hello, Sunrise
 createDate: 2026-08-13

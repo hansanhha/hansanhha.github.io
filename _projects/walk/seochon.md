@@ -1,5 +1,6 @@
 ---
 layout: default
+title: 서촌 Seochon
 subcategory: walk
 subcategory-ko: 산책
 page-name: Seochon
