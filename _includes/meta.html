@@ -1,8 +1,15 @@
+<link rel="stylesheet" href="/assets/item.css">
+<link rel="stylesheet" href="/assets/default.css">
+<link rel="stylesheet" href="/assets/path.css">
+<link rel="stylesheet" href="/assets/lang.css">
+
+<meta createDate="{{ page.createDate}}">
+<meta updateDate="{{ page.updateDate}}">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>
+<title data-page-name="{{ page.page-name }}" data-page-name-ko="{{ page.page-name-ko }}" data-page-title="{{ page.title }}">
     {% if page.dir == "/" %}
-      {{ site.title }}
+      한산하 HANSANHHA
     {% elsif page.page-name != nil and page.page-name-ko != nil %}
         {{ page.page-name-ko }}, {{ page.page-name }} | HANSANHHA
     {% elsif page.page-name-ko != nil %}

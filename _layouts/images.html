@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-	<link rel="stylesheet" href="/assets/item.css">
-	<link rel="stylesheet" href="/assets/default.css">
-	<link rel="stylesheet" href="/assets/path.css">
-	<link rel="stylesheet" href="/assets/lang.css">
 	{% include meta.html %}
-    {% include theme.html %}
 </head>
 <body>
-    <div class="common-wrapper">
+    <main class="common-wrapper">
         {% include blog-search.html %}
         <div style="display: flex; flex-direction: column;">
             {% include common.html %}
@@ -30,7 +25,7 @@
             {% endif %}
             {% include footer.html %}
         </div>
-    </div>
+    </main>
 </body>
 {% include default-script.html %}
 <script>

@@ -1,7 +1,7 @@
 ---
 layout: default
 page-name: Blog
-page-name-ko: 블로그
+page-name-ko: 블로그에 대한 소개
 createDate: 2026-08-09
 description: 블로그에 대한 소개
 ---
@@ -70,7 +70,7 @@ description: 블로그에 대한 소개
 
 ---
 
-인터페이스에 대한 소개
+기본 인터페이스에 대한 소개
 
 콘텐츠를 감싸고 있는 상단과 하단의 영역은 고정적으로 유지되며 콘텐츠의 내용만 동적으로 변경된다. 유틸리티의 글꼴 크기 조절 기능은 콘텐츠 영역의 글꼴 크기에만 영향을 미친다.
 
@@ -95,7 +95,7 @@ description: 블로그에 대한 소개
 기타 정보: 블로그에 표시할 공통된 정보나 외부 링크
 ```
 
-시맨틱 태그 미사용, 8px 간격 시스템 사용
+8px 간격 시스템 사용
 
 글꼴: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif
 
@@ -136,6 +136,8 @@ description: 블로그에 대한 소개
 ✓ 디자인 전면 개편
 
 ✓ 게시글 한글/영문 전환
+
+✓ 단순한 화면 구성 추가
 
 아카이브 메뉴 개편
 

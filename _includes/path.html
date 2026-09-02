@@ -49,78 +49,84 @@
 </div>
 
 <script>
-const $createDate = document.querySelector("#page-info-date");
-if ($createDate) {
-  const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
-
-  const createDate = new Date($createDate.dataset.createDate);
-  const dateInfo = createDate.toLocaleDateString(locale, {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      weekday: 'long'
-  });
-
-  $createDate.innerText = "| " +  dateInfo;
+if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "default") {
+  printPaths();
 }
 
-const archivesPathLinks = document.querySelectorAll(".archive-path-link");
-archivesPathLinks.forEach((link) => {
-  link.style.marginLeft = "0.4px";
-  link.textContent = "/" + (localStorage.getItem("lang") === "ko" ? convertLinknameToKo(link.dataset.pathName) : capitalize(link.dataset.pathName));
-});
+function printPaths() {
+  const $createDate = document.querySelector("#page-info-date");
+  if ($createDate) {
+    const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
 
-const pathLinks = document.querySelectorAll(".path-link");
-pathLinks.forEach((link) => {
-  link.href = window.location.origin + link.dataset.path;
+    const createDate = new Date($createDate.dataset.createDate);
+    const dateInfo = createDate.toLocaleDateString(locale, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        weekday: 'long'
+    });
 
-  let linkname = "";
-
-  if (localStorage.getItem("lang") === "ko") {
-    linkname = link.dataset.pathNameKo ? link.dataset.pathNameKo : convertLinknameToKo(link.dataset.pathName);
-  } else {
-    linkname = link.dataset.pathName;
+    $createDate.innerText = "| " +  dateInfo;
   }
 
-  if (link.dataset.layout === "sunrise") linkname = localStorage.getItem("lang") === "ko" ? convertLinknameToKo(link.dataset.defaultPathName) : link.dataset.defaultPathName;
-  if (linkname === "") linkname = link.dataset.defaultPathName;
-  if (link.dataset.pageTitle) linkname = link.dataset.pageTitle;
-
-  link.textContent = "/" + capitalize(linkname);
-});
-
-const pageIndexLinks = document.querySelectorAll(".page-index-link");
-pageIndexLinks.forEach((link) => {
-  const lang = localStorage.getItem("lang");
-  lang === "ko" ? link.textContent = "인덱스 페이지" : link.textContent = "Index";
-  link.href = link.dataset.prevPath.toLowerCase();
-});
-
-const pagePrevLinks = document.querySelectorAll(".page-prev-link");
-pagePrevLinks.forEach((link) => {
-  const lang = localStorage.getItem("lang");
-  lang === "ko" ? link.textContent = "이전 페이지" : link.textContent = "Prev";
-  link.href = link.dataset.layout === "sunrise" ? capitalize(link.dataset.prevPath) : link.dataset.prevPath.toLowerCase();
-});
-
-const pageNextLinks = document.querySelectorAll(".page-next-link");
-pageNextLinks.forEach((link) => {
-  const lang = localStorage.getItem("lang");
-  lang === "ko" ? link.textContent = "다음 페이지" : link.textContent = "Next";
-  link.href = link.dataset.layout === "sunrise" ? capitalize(link.dataset.nextPath) : link.dataset.nextPath.toLowerCase();
-});
-
-const pageErrorBackPrevPage = document.getElementById("path-error-back-prev-page");
-if (pageErrorBackPrevPage) {
-  pageErrorBackPrevPage.textContent = localStorage.getItem("lang") === "ko" ? "← 이전 페이지로 돌아가기" : "← Back to the previous page";
-  pageErrorBackPrevPage.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (localStorage.getItem("updateLang") === "true") {
-      localStorage.getItem("lang") === "ko" ? localStorage.setItem("lang", "en") : localStorage.setItem("lang", "ko");
-    }
-    localStorage.setItem("updateLang", "false");
-    window.history.back();
+  const archivesPathLinks = document.querySelectorAll(".archive-path-link");
+  archivesPathLinks.forEach((link) => {
+    link.style.marginLeft = "0.4px";
+    link.textContent = "/" + (localStorage.getItem("lang") === "ko" ? convertLinknameToKo(link.dataset.pathName) : capitalize(link.dataset.pathName));
   });
+
+  const pathLinks = document.querySelectorAll(".path-link");
+  pathLinks.forEach((link) => {
+    link.href = window.location.origin + link.dataset.path;
+
+    let linkname = "";
+
+    if (localStorage.getItem("lang") === "ko") {
+      linkname = link.dataset.pathNameKo ? link.dataset.pathNameKo : convertLinknameToKo(link.dataset.pathName);
+    } else {
+      linkname = link.dataset.pathName;
+    }
+
+    if (link.dataset.layout === "sunrise") linkname = localStorage.getItem("lang") === "ko" ? convertLinknameToKo(link.dataset.defaultPathName) : link.dataset.defaultPathName;
+    if (linkname === "") linkname = link.dataset.defaultPathName;
+    if (link.dataset.pageTitle) linkname = link.dataset.pageTitle;
+
+    link.textContent = "/" + capitalize(linkname);
+  });
+
+  const pageIndexLinks = document.querySelectorAll(".page-index-link");
+  pageIndexLinks.forEach((link) => {
+    const lang = localStorage.getItem("lang");
+    lang === "ko" ? link.textContent = "인덱스 페이지" : link.textContent = "Index";
+    link.href = link.dataset.prevPath.toLowerCase();
+  });
+
+  const pagePrevLinks = document.querySelectorAll(".page-prev-link");
+  pagePrevLinks.forEach((link) => {
+    const lang = localStorage.getItem("lang");
+    lang === "ko" ? link.textContent = "이전 페이지" : link.textContent = "Prev";
+    link.href = link.dataset.layout === "sunrise" ? capitalize(link.dataset.prevPath) : link.dataset.prevPath.toLowerCase();
+  });
+
+  const pageNextLinks = document.querySelectorAll(".page-next-link");
+  pageNextLinks.forEach((link) => {
+    const lang = localStorage.getItem("lang");
+    lang === "ko" ? link.textContent = "다음 페이지" : link.textContent = "Next";
+    link.href = link.dataset.layout === "sunrise" ? capitalize(link.dataset.nextPath) : link.dataset.nextPath.toLowerCase();
+  });
+
+  const pageErrorBackPrevPage = document.getElementById("path-error-back-prev-page");
+  if (pageErrorBackPrevPage) {
+    pageErrorBackPrevPage.textContent = localStorage.getItem("lang") === "ko" ? "← 이전 페이지로 돌아가기" : "← Back to the previous page";
+    pageErrorBackPrevPage.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (localStorage.getItem("updateLang") === "true") {
+        localStorage.getItem("lang") === "ko" ? localStorage.setItem("lang", "en") : localStorage.setItem("lang", "ko");
+      }
+      localStorage.setItem("updateLang", "false");
+      window.history.back();
+    });
+  }
 }
 
 function capitalize(str) {

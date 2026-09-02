@@ -1,4 +1,4 @@
-<ul id="blog_categories" class="horizontal-list">
+<ul id="blog_categories" style="display: none" class="horizontal-list">
     <li><a id="projects_link">Projects</a></li>
     <li><a id="code_link">Code</a></li>
     <li><a id="daily_link">Daily</a></li>
@@ -17,88 +17,96 @@
 {% endif %}
 
 <script>
-if (window.location.pathname !== "/") {
-    const $idxPathsBox = document.getElementById("idx-paths-box");
-    $idxPathsBox.style.display = "";
-}
+if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "default") printCategories();
 
-document.getElementById("projects_link").href = window.location.origin + "/projects/";
-document.getElementById("code_link").href = window.location.origin + "/code/";
-document.getElementById("daily_link").href = window.location.origin + "/daily/";
-document.getElementById("archives_link").href = window.location.origin + "/archives/";
-document.getElementById("sunrise_link").href = window.location.origin + "/sunrise/";
+function printCategories() {
+    const $blogCategories = document.getElementById("blog_categories");
+    $blogCategories.style.display = "";
 
-const windowPathname = window.location.pathname;
-const pathnames = windowPathname.split("/").filter((p) => p !== "");
-
-const userLang = !localStorage.getItem("lang")
-    ? navigator.language.startsWith("en") ? "en" : "ko"
-    : localStorage.getItem("lang") === "en" ? "en" : "ko";
-
-const $pageUpdateDate = document.getElementById("page-update-date");
-const $pageInfoTitle = document.getElementById("page-info-title");
-const $pageInfoDate = document.getElementById("page-info-date");
-
-if ($pageUpdateDate.dataset.updateDate) {
-    const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
-    const options = {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            weekday: 'long'
-        };
-    const formattedDate = new Date($pageUpdateDate.dataset.updateDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
-    $pageUpdateDate.innerText = "수정일: " + formattedDate;
-    $pageUpdateDate.style.display = "block";
-} else {
-    $pageUpdateDate.style.display = "none";
-}
-
-if ($pageInfoTitle) {
-  $pageInfoTitle.textContent = userLang === "ko" ? $pageInfoTitle.dataset.titleNameKo ? $pageInfoTitle.dataset.titleNameKo : $pageInfoTitle.dataset.titleName : $pageInfoTitle.dataset.titleName;
-}
-
-document.querySelectorAll("#blog_categories li a").forEach((category) => {
-    if (pathnames.includes(category.textContent.toLowerCase())) {
-        category.textContent = `[${category.textContent}]`;
+    if (window.location.pathname !== "/") {
+        const $idxPathsBox = document.getElementById("idx-paths-box");
+        $idxPathsBox.style.display = "";
     }
 
-    if (userLang !== "ko") {
-      return;
+    document.getElementById("projects_link").href = window.location.origin + "/projects/";
+    document.getElementById("code_link").href = window.location.origin + "/code/";
+    document.getElementById("daily_link").href = window.location.origin + "/daily/";
+    document.getElementById("archives_link").href = window.location.origin + "/archives/";
+    document.getElementById("sunrise_link").href = window.location.origin + "/sunrise/";
+
+    const windowPathname = window.location.pathname;
+    const pathnames = windowPathname.split("/").filter((p) => p !== "");
+
+    const userLang = !localStorage.getItem("lang")
+        ? navigator.language.startsWith("en") ? "en" : "ko"
+        : localStorage.getItem("lang") === "en" ? "en" : "ko";
+
+    const $pageUpdateDate = document.getElementById("page-update-date");
+    const $pageInfoTitle = document.getElementById("page-info-title");
+    const $pageInfoDate = document.getElementById("page-info-date");
+
+    if ($pageUpdateDate.dataset.updateDate) {
+        const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
+        const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                weekday: 'long'
+            };
+        const formattedDate = new Date($pageUpdateDate.dataset.updateDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
+        $pageUpdateDate.innerText = "수정일: " + formattedDate;
+        $pageUpdateDate.style.display = "block";
+    } else {
+        $pageUpdateDate.style.display = "none";
     }
 
-    switch (category.textContent) {
-        case "Projects":
-            category.textContent = "프로젝트";
-            break;
-        case "[Projects]":
-            category.textContent = "[프로젝트]";
-            break;
-        case "Code":
-            category.textContent = "프로그래밍";
-            break;
-        case "[Code]":
-            category.textContent = "[프로그래밍]";
-            break;
-        case "Daily":
-            category.textContent = "일상";
-            break;
-        case "[Daily]":
-            category.textContent = "[일상]";
-            break;
-        case "Archives":
-            category.textContent = "아카이브";
-            break;
-        case "[Archives]":
-            category.textContent = "[아카이브]";
-            break;
-        case "Sunrise":
-            category.textContent = "해맞이";
-            break;
-        case "[Sunrise]":
-            category.textContent = "[해맞이]";
-            break;
+    if ($pageInfoTitle) {
+    $pageInfoTitle.textContent = userLang === "ko" ? $pageInfoTitle.dataset.titleNameKo ? $pageInfoTitle.dataset.titleNameKo : $pageInfoTitle.dataset.titleName : $pageInfoTitle.dataset.titleName;
     }
-});
+
+    document.querySelectorAll("#blog_categories li a").forEach((category) => {
+        if (pathnames.includes(category.textContent.toLowerCase())) {
+            category.textContent = `[${category.textContent}]`;
+        }
+
+        if (userLang !== "ko") {
+        return;
+        }
+
+        switch (category.textContent) {
+            case "Projects":
+                category.textContent = "프로젝트";
+                break;
+            case "[Projects]":
+                category.textContent = "[프로젝트]";
+                break;
+            case "Code":
+                category.textContent = "프로그래밍";
+                break;
+            case "[Code]":
+                category.textContent = "[프로그래밍]";
+                break;
+            case "Daily":
+                category.textContent = "일상";
+                break;
+            case "[Daily]":
+                category.textContent = "[일상]";
+                break;
+            case "Archives":
+                category.textContent = "아카이브";
+                break;
+            case "[Archives]":
+                category.textContent = "[아카이브]";
+                break;
+            case "Sunrise":
+                category.textContent = "해맞이";
+                break;
+            case "[Sunrise]":
+                category.textContent = "[해맞이]";
+                break;
+        }
+    });
+}
+
 
 </script>

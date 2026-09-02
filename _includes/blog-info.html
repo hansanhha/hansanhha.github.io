@@ -1,7 +1,10 @@
-<div class="blog-info">
-    <!--<p id="user_visit_day"></p>-->
+<div id="blog-info" style="display: none">
     <p id="user_agent"></p>
-    <p id="user_layout">Layout: Default</p>
+    <div id="user_layout_box">
+        <div id="user_layout"></div>
+        <div id="user_layout_default" class="cursor-pointer" onclick="changeLayout('default')"></div>
+        <div id="user_layout_simple" class="cursor-pointer" onclick="changeLayout('simple')"></div>
+    </div>
     <div id="user_font_size_box">
         <div id="user_font_size"></div>
         <div id="user_font_size_menu">
@@ -12,8 +15,8 @@
     </div>
     <p>
         <span id="user_appearance">Appearance: </span>
-        <span id="user_appearance_brightly" style='margin-right: 4px;' onclick="changeTheme('brightly')">Brightly</span>
-        <span id="user_appearance_darkly" onclick="changeTheme('darkly')">Darkly</span>
+        <span id="user_appearance_brightly" style='margin-right: 4px;' onclick="changeTheme('light')">Brightly</span>
+        <span id="user_appearance_darkly" onclick="changeTheme('dark')">Darkly</span>
     </p>
     <p>
         <span id="user_lang">Locale: </span>

@@ -1,5 +1,6 @@
 ---
 layout: index
+createDate: 2024-01-01
 page-name: Sunrise
 page-name-ko: 해맞이
 title-name: 25 Times, 20 Places

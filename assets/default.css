@@ -33,24 +33,24 @@ body::-webkit-scrollbar {
 .common-wrapper {
   display: flex;
   flex-direction: column;
-  margin-top: 4px;
-  margin-bottom: 10px;
+  margin-top: 12px;
+  margin-bottom: 12px;
   margin-left: var(--layout-margin-left);
   margin-right: var(--layout-margin-right);
 }
 
-.blog-info p:first-child {
+#blog-info p:first-child {
   display: block;
-  margin-block-start: 16px;
+  margin-block-start: 12px;
   margin-block-end: 0px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
 
-.blog-info p:last-child {
+#blog-info p:last-child {
   display: block;
   margin-block-start: 0px;
-  margin-block-end: 16px;
+  margin-block-end: 12px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
@@ -201,6 +201,10 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 768px) {
+  .post-link-simple-layout {
+    font-size: 24px;
+  }
+
   img {
     max-width: 100%;
     height: auto;
@@ -231,6 +235,10 @@ body::-webkit-scrollbar {
 }
 
 @media (min-width: 769px) {
+  .post-link-simple-layout {
+    font-size: 28px;
+  }
+
   img {
     display: block;
     max-width: 100%;
@@ -260,6 +268,40 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.index-description-simple-layout {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 9998;
+  top: 20px;
+  right: 20px;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: right;
+}
+
+#simple-layout-info-box {
+  background-color: var(--bg-color);
+  width: auto;
+  max-width: 100%;
+  margin-top: 10px;
+  margin-left: var(--layout-margin-left);
+}
+
+.post-list-simple-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.post-link-simple-layout:hover {
+  font-weight: 800;
+}
+
+.hover-font-weight-800:hover {
+  font-weight: 800;
 }
 
 .post-date {
@@ -511,7 +553,6 @@ h5 {
 
 h1, h2, h3, h4, h5 {
   scroll-margin-top: 20px;
-  transform-origin: left center;
 }
 
 h1:hover, 
@@ -520,8 +561,7 @@ h3:hover,
 h4:hover,
 h5:hover {
   cursor: pointer;
-  font-weight: 600;
-  transform: scale(1.01);
+  font-weight: 800;
 }
 
 .text-underline-black {
@@ -574,6 +614,13 @@ h5:hover {
 #search-result-box {
   /* margin-top: 8px; */
   margin-bottom: 8px;
+}
+
+#user_layout_box {
+  display: flex;
+  gap: 4px;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
 }
 
 #user_font_size_box {

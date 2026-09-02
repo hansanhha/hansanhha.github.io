@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <link rel="stylesheet" href="/assets/item.css">
-	<link rel="stylesheet" href="/assets/default.css">
-	<link rel="stylesheet" href="/assets/path.css">
-	<link rel="stylesheet" href="/assets/lang.css">
-	{% include meta.html %}
-	{% include theme.html %}
+    {% include meta.html %}
 </head>
 <head>
 </head>
 <body>
-    <div class="common-wrapper">
+    <main class="common-wrapper">
         {% include blog-search.html %}
         <div style="display: flex; flex-direction: column;">
             {% include common.html %}
@@ -27,13 +22,111 @@
             <div id="page-is-grouped" style="display: none;" data-is-grouped="{{ page.grouped }}"></div>
             {% include footer.html %}
         </div>
-    </div>
+    </main>
 </body>
 {% include default-script.html %}
 <script>
-loadIndexByCategory();
+if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "default") loadIndexByCategoryInDefaultLayout();
+else loadIndexInSimpleLayout();
 
-async function loadIndexByCategory() {
+async function loadIndexInSimpleLayout() {
+    const $pageContentWrapper = document.getElementById("page-content-wrapper");
+    const $pageCategory = document.getElementById("page-category");
+    const $pageSort = document.getElementById("page-sort");
+    const $pageIdxName = document.getElementById("page-idx-name");
+    const $pagePageName = document.getElementById("page-page-name");
+    const $pagePageNameKo = document.getElementById("page-page-name-ko");
+
+    const sort = $pageSort.dataset.idxSort;
+    const category = $pageCategory.dataset.category;
+    const idxName = $pageIdxName.dataset.idxName;
+    const pageName = $pagePageName.dataset.pageName;
+    const pageNameKo = $pagePageNameKo.dataset.pageNameKo;
+    const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    
+    try {
+        const response = await fetch("/search.json");
+        const textData = await response.text();
+        const jsonData = JSON.parse(textData);
+
+        const categorisedIndexes = category === "sunrise"
+            ? getCategorisedIndexes(idxName, jsonData, category, sort)
+            : filterNestedIndexes(pageName, filterIndexesByLocale(getCategorisedIndexes(idxName, jsonData, category, sort)));
+
+        if (categorisedIndexes.length === 0) {
+            const $none = document.createElement("div");
+            $none.style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "64px" : "80px";
+            $none.style.fontWeight = "600";
+            $none.textContent = localStorage.getItem("lang") === "ko" ? "작성된 게시글이 없습니다." : "No posts.";
+            $pageContentWrapper.appendChild($none);
+            return;
+        }
+
+        $pageContentWrapper.style.display = "flex";
+        $pageContentWrapper.style.flexDirection = "column";
+        $pageContentWrapper.style.gap = "16px";
+
+        if (document.getElementById("auto_index_error")) document.getElementById("auto_index_error").remove();
+
+        categorisedIndexes.forEach(post => {
+            const $post = document.createElement("div");
+            const postDate = post.createDate ? post.createDate : post.date;
+            const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
+            const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
+            const nonUndefinedTitle = title ? title : post.title;
+            const capitalizedTitle = capitalize(String(nonUndefinedTitle));
+
+            $post.innerHTML = 
+            `
+                <div class='post-link-simple-layout'>
+                    <div class='post-link' style="width: 100%;">
+                            <a class='post-link-hover' href="${post.url}" style="color: var(--text-color); display: inline-block; width: 100%"> 
+                                ${capitalizedTitle}
+                            </a>
+                    </div>
+                </div>
+            `;
+            $pageContentWrapper.appendChild($post);
+        })
+    } catch (error) {
+        const $errorBox = document.createElement("div");
+        const $error = document.createElement("div");
+        const $errorGuide = document.createElement("div");
+        const $errorMsg = document.createElement("div");
+        $errorBox.id = "auto_index_error";
+        $errorBox.style.display = "flex";
+        $errorBox.style.flexDirection = "column";
+        $errorBox.style.wordBreak = "break-all";
+        $errorBox.style.overflowWrap = "anywhere";
+        $errorBox.style.gap = "4px";
+        $errorBox.style.fontSize = "96px";
+        $errorBox.style.fontWeight = "600";
+        $error.innerText = "SORRY, ERROR";
+        $errorGuide.innerText = "HERE ARE SOME EXPLANATION";
+        $errorMsg.innerText = "➞ " + error;
+        $errorBox.appendChild($error);
+        $errorBox.appendChild($errorGuide);
+        $errorBox.appendChild($errorMsg);
+        $pageContentWrapper.appendChild($errorBox);
+    }
+
+    if (!window.matchMedia('(max-width: 960px)').matches && (location.pathname.endsWith("/") || location.pathname.endsWith("/index.html"))) {
+        const postLinkHyperlinks = Array.from(document.getElementsByClassName("post-link-hover"));
+        postLinkHyperlinks.forEach(link => {
+            link.addEventListener("mouseover", () => {
+                const $pageInfoGuide = document.getElementById("page_info_guide");
+                $pageInfoGuide.innerText = link.innerText + " 페이지로 이동합니다.";
+            });
+            link.addEventListener("mouseleave", () => {
+                const $pageInfoGuide = document.getElementById("page_info_guide");
+                $pageInfoGuide.innerText = "";
+            });
+        });
+    }
+}
+
+async function loadIndexByCategoryInDefaultLayout() {
     const $pageContentWrapper = document.getElementById("page-content-wrapper");
     const $pageSort = document.getElementById("page-sort");
     const $pageCategory = document.getElementById("page-category");
@@ -42,6 +135,7 @@ async function loadIndexByCategory() {
     const $pagePageNameKo = document.getElementById("page-page-name-ko");
     const $pageIsGrouped = document.getElementById("page-is-grouped");
     $pageContentWrapper.style.innerHTML = "";
+    $pageContentWrapper.style.display = "block";
 
     const sort = $pageSort.dataset.idxSort;
     const category = $pageCategory.dataset.category;
@@ -50,11 +144,7 @@ async function loadIndexByCategory() {
     const pageNameKo = $pagePageNameKo.dataset.pageNameKo;
     const isGrouped = $pageIsGrouped.dataset.isGrouped;
     const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
-    const options = {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-        };
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
     try {
         const response = await fetch("/search.json");
@@ -85,7 +175,7 @@ async function loadIndexByCategory() {
                     const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
                     const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
                     const nonUndefinedTitle = title ? title : post.title;
-                    const capitalizedTitle = capitalize(nonUndefinedTitle);
+                    const capitalizedTitle = capitalize(String(nonUndefinedTitle));
 
                     $post.innerHTML = category === "sunrise"
                     ? `
@@ -105,13 +195,13 @@ async function loadIndexByCategory() {
     }
 }
 
-function getCategorisedIndexes(pageName, indexes, category, sort) {
+function getCategorisedIndexes(idxName, indexes, category, sort) {
     return indexes
-          .filter((post) => !(post.url.toLowerCase().includes(pageName.toLowerCase() + "/index.html")
-                            || post.url.toLowerCase().includes(pageName.toLowerCase() + "/en/index.html"))
+          .filter((post) => !(post.url.toLowerCase().includes(idxName.toLowerCase() + "/index.html")
+                            || post.url.toLowerCase().includes(idxName.toLowerCase() + "/en/index.html"))
                           && !post.url.includes("/legacy/"))
           .filter((post) => post.category.toLowerCase() === category)
-          .filter((post) => post.url.includes(pageName.toLowerCase()))
+          .filter((post) => post.url.includes(idxName.toLowerCase()))
           .sort((a, b) => {
               const aDate = a.createDate ? a.createDate : a.date;
               const bDate = b.createDate ? b.createDate : b.date;
@@ -213,7 +303,7 @@ function organizeGroup(groupedIndexesMap, $group, locale, options) {
       const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
       const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
       const nonUndefinedTitle = title ? title : post.title;
-      const capitalizedTitle = capitalize(nonUndefinedTitle);
+      const capitalizedTitle = capitalize(String(nonUndefinedTitle));
       $post.innerHTML = `<span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>`;
       $subGroup.appendChild($post);
     }

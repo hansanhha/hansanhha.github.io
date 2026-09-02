@@ -1,4 +1,4 @@
-<div id="latest-posts-box" class="post-list">
+<div id="latest-posts-box">
 
 </div>
 
@@ -16,68 +16,137 @@ async function loadLatestPosts() {
     $latestPostsBox.style.innerHTML = "";
 
     const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
-    const options = {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-        };
+    const options = { year: 'numeric', month: 'long', day: 'numeric' }
 
     try {
         const response = await fetch("/search.json");
         const textData = await response.text();
         const jsonData = JSON.parse(textData);
 
-        const top10Posts = jsonData
-            .filter((post) => !post.url.includes("legacy"))
-            .filter((post) => !isTopMenuIndex(post.url))
-            .filter((post) => post.url.startsWith("/archives") || post.url.startsWith("/sunrise")
-                              || (localStorage.getItem("lang") === "en" ? post.url.includes("/en/") : !post.url.includes("/en/")))
-            .sort((a, b) => {
-                const aDate = a.createDate ? a.createDate : "1930-01-01";
-                const bDate = b.createDate ? b.createDate : "1930-01-01";
-                return new Date(bDate.replace(/-/g, '/')) - new Date(aDate.replace(/-/g, '/'));
-            })
-            .slice(0, 10);
-
-        const printPostsByCategory = (category) => {
-            top10Posts
-                .filter((post) => post.category === category)
-                .forEach((post) => {
-                    let $category = document.getElementById(category);
-                    if (!$category) {
-                        $category = document.createElement("div");
-                        $category.id = category;
-                        $category.style.marginTop = "12px";
-                        $category.classList = "post-list";
-                        const $categoryTextContent = document.createElement("span");
-                        $categoryTextContent.textContent = capitalize(localize(category));
-                        $categoryTextContent.style.fontWeight = 400;
-                        $category.appendChild($categoryTextContent)
-                        $latestPostsBox.appendChild($category);
-                    }
-
-                    const $post = document.createElement("div");
-                    const postDate = post.createDate ? post.createDate : post.date;
-                    const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
-                    const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
-                    const nonUndefinedTitle = title ? title : post.title;
-                    const capitalizedTitle = capitalize(nonUndefinedTitle);
-
-                    $post.innerHTML = `
-                        <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
-                    `;
-                    $category.appendChild($post);
-            });
-        }
-
-        printPostsByCategory("projects");
-        printPostsByCategory("code");
-        printPostsByCategory("daily");
-        printPostsByCategory("archives");
-        printPostsByCategory("sunrise");
-
+        if (document.getElementById("latest_posts_error")) document.getElementById("latest_posts_error").remove();
+        if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "default") listPostsInDefaultLayout($latestPostsBox, jsonData, locale, options);
+        else listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options);
     } catch (error) {
-        $latestPostsBox.style.display = "none";
+        const $errorBox = document.createElement("div");
+        const $error = document.createElement("div");
+        const $errorGuide = document.createElement("div");
+        const $errorMsg = document.createElement("div");
+        $errorBox.id = "latest_posts_error";
+        $errorBox.style.display = "flex";
+        $errorBox.style.flexDirection = "column";
+        $errorBox.style.gap = "4px";
+        $errorBox.style.wordBreak = "break-all";
+        $errorBox.style.overflowWrap = "anywhere";
+        $errorBox.style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "64px" : "80px";
+        $errorBox.style.fontWeight = "600";
+        $error.innerText = "SORRY, ERROR";
+        $errorGuide.innerText = "HERE ARE SOME EXPLANATION";
+        $errorMsg.innerText = error;
+        $errorBox.appendChild($error);
+        $errorBox.appendChild($errorGuide);
+        $errorBox.appendChild($errorMsg);
+        $latestPostsBox.appendChild($errorBox);
+    }
+}
+
+function listPostsInDefaultLayout($latestPostsBox, jsonData, locale, options) {
+    $latestPostsBox.classList = "post-list";
+    const top10Posts = jsonData
+        .filter((post) => !post.url.includes("legacy"))
+        .filter((post) => !isTopMenuIndex(post.url))
+        .filter((post) => post.url.startsWith("/archives") || post.url.startsWith("/sunrise")
+                            || (localStorage.getItem("lang") === "en" ? post.url.includes("/en/") : !post.url.includes("/en/")))
+        .sort((a, b) => {
+            const aDate = a.createDate ? a.createDate : "1930-01-01";
+            const bDate = b.createDate ? b.createDate : "1930-01-01";
+            return new Date(bDate.replace(/-/g, '/')) - new Date(aDate.replace(/-/g, '/'));
+        })
+        .slice(0, 10);
+
+    const printPostsByCategory = (category) => {
+        top10Posts
+            .filter((post) => post.category === category)
+            .forEach((post) => {
+                let $category = document.getElementById(category);
+                if (!$category) {
+                    $category = document.createElement("div");
+                    $category.id = category;
+                    $category.style.marginTop = "12px";
+                    $category.classList = "post-list";
+                    const $categoryTextContent = document.createElement("span");
+                    $categoryTextContent.textContent = capitalize(localize(category));
+                    $categoryTextContent.style.fontWeight = 400;
+                    $category.appendChild($categoryTextContent)
+                    $latestPostsBox.appendChild($category);
+                }
+
+                const $post = document.createElement("div");
+                const postDate = post.createDate ? post.createDate : post.date;
+                const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
+                const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
+                const nonUndefinedTitle = title ? title : post.title;
+                const capitalizedTitle = capitalize(nonUndefinedTitle);
+
+                $post.innerHTML = `
+                    <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
+                `;
+                $category.appendChild($post);
+        });
+    }
+
+    printPostsByCategory("projects");
+    printPostsByCategory("code");
+    printPostsByCategory("daily");
+    printPostsByCategory("archives");
+    printPostsByCategory("sunrise");
+}
+
+function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
+    $latestPostsBox.classList = "post-list-simple-layout";
+    const posts = jsonData
+        .filter((post) => !post.url.includes("legacy"))
+        .filter((post) => localStorage.getItem("lang") === "en" ? post.url.includes("/en/") : !post.url.includes("/en/"))
+        .sort((a, b) => {
+            const aDate = a.createDate ? a.createDate : "1930-01-01";
+            const bDate = b.createDate ? b.createDate : "1930-01-01";
+            return new Date(bDate.replace(/-/g, '/')) - new Date(aDate.replace(/-/g, '/'));
+        });
+
+    posts.forEach(post => {
+        const $post = document.createElement("div");
+        const postDate = post.createDate ? post.createDate : post.date;
+        const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
+        const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
+        const nonUndefinedTitle = title ? title : post.title;
+        const capitalizedTitle = capitalize(String(nonUndefinedTitle));
+
+        $post.innerHTML = `
+            <div class='post-link-simple-layout'>
+                <div class='post-link' style="width: 100%;">
+                        <a class='post-link-hover' href="${post.url}" style="color: var(--text-color); display: inline-block; width: 100%"> 
+                            ${capitalizedTitle}
+                        </a>
+                </div>
+            </div>
+        `;
+// (<span class='post-date'>${formattedDate}</span>)
+        $latestPostsBox.appendChild($post);
+    });
+
+    
+    if (!window.matchMedia('(max-width: 960px)').matches && (location.pathname.endsWith("/") || location.pathname.endsWith("/index.html"))) {
+        const postLinkHyperlinks = Array.from(document.getElementsByClassName("post-link-hover"));
+        console.log(postLinkHyperlinks);
+        postLinkHyperlinks.forEach(link => {
+            link.addEventListener("mouseover", () => {
+                const $pageInfoGuide = document.getElementById("page_info_guide");
+                $pageInfoGuide.innerText = link.innerText + " 페이지로 이동합니다.";
+            });
+            link.addEventListener("mouseleave", () => {
+                const $pageInfoGuide = document.getElementById("page_info_guide");
+                $pageInfoGuide.innerText = "";
+            });
+        });
     }
 }
 
@@ -124,6 +193,7 @@ function localize(category) {
 }
 
 function capitalize(str) {
+  if (!str) return;
   return str
     .split(" ")
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
