@@ -1,7 +1,7 @@
 ---
 layout: index
-idx-name: Sunrise
-idx-name-ko: 해맞이
+page-name: Sunrise
+page-name-ko: 해맞이
 title-name: 25 Times, 20 Places
 title-name-ko: 25차례, 20곳
 ---
