@@ -4,13 +4,13 @@
     {% if page.dir == "/" %}
       {{ site.title }}
     {% elsif page.page-name != nil and page.page-name-ko != nil %}
-        {{ page.page-name-ko }}, {{ page.page-name }}
+        {{ page.page-name-ko }}, {{ page.page-name }} | HANSANHHA
     {% elsif page.page-name-ko != nil %}
-        {{ page.page-name-ko }}
+        {{ page.page-name-ko }} | HANSANHHA
     {% elsif page.page-name != nil %}
-        {{ page.page-name }}
+        {{ page.page-name }} | HANSANHHA
     {% elsif page.title != nil %}
-        {{ page.title }}
+        {{ page.title }} | HANSANHHA
     {% else %}
       {{ site.title }}
     {% endif %}
