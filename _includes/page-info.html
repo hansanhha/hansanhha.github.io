@@ -17,7 +17,7 @@
 {% endif %}
 
 <script>
-if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "default") printCategories();
+if (localStorage.getItem("layout") === "verbose") printCategories();
 
 function printCategories() {
     const $blogCategories = document.getElementById("blog_categories");

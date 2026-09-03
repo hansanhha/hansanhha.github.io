@@ -205,6 +205,11 @@ body::-webkit-scrollbar {
     font-size: 24px;
   }
 
+  .utiltiy-box-simple-layout {
+    gap: 8px;
+    line-height: 16px;
+  }
+
   img {
     max-width: 100%;
     height: auto;
@@ -219,7 +224,7 @@ body::-webkit-scrollbar {
 
   :root[data-theme="light"] {
     hr {
-      width: 80%;
+      width: 100%;
       margin: 10px 0;
       border: 1px solid #121212;
     }
@@ -227,7 +232,7 @@ body::-webkit-scrollbar {
 
   :root[data-theme="dark"] {
     hr {
-      width: 80%;
+      width: 100%;
       margin: 10px 0;
       border: 1px solid #e3dfdf;
     }
@@ -237,6 +242,10 @@ body::-webkit-scrollbar {
 @media (min-width: 769px) {
   .post-link-simple-layout {
     font-size: 28px;
+  }
+
+  .utiltiy-box-simple-layout {
+    gap: 16px;
   }
 
   img {
@@ -270,6 +279,27 @@ body::-webkit-scrollbar {
   gap: 8px;
 }
 
+.utiltiy-box-simple-layout {
+  display: flex;
+  font-size: 20px;
+  /* font-weight: 500; */
+  margin-bottom: 8px;
+  word-break: break-all;
+  width: auto;
+  max-width: 100%;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.utiltiy-box-simple-layout > div {
+  display: flex;
+  flex-shrink: 0;
+  gap: 4px;
+}
+
 .index-description-simple-layout {
   display: flex;
   flex-direction: column;
@@ -280,6 +310,33 @@ body::-webkit-scrollbar {
   font-size: 32px;
   font-weight: 600;
   text-align: right;
+  max-width: 60%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.index-description-simple-layout-mobile {
+  font-size: 24px;
+  font-weight: 600;
+  width: 99%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  margin-top: 12px;
+  margin-left: var(--layout-margin-left);
+}
+
+.index-description-simple-layout-mobile > pre {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+#page_info_guide {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 #simple-layout-info-box {

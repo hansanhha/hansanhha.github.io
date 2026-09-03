@@ -9,6 +9,7 @@ permalink: /search.json
 {% for post in site.projects %}
   {% unless first %},{% endunless %}
   {
+    "layout": {{ post.layout | jsonify }}, 
     "title": {{ post.title | jsonify }},
     "url": {{ post.url | jsonify }},
     "content": {{ post.content | strip_html | jsonify }},
@@ -29,6 +30,7 @@ permalink: /search.json
 {% for post in site.code %}
   {% unless first %},{% endunless %}
   {
+    "layout": {{ post.layout | jsonify }}, 
     "title": {{ post.title | jsonify }},
     "url": {{ post.url | jsonify }},
     "content": {{ post.content | strip_html | jsonify }},
@@ -49,6 +51,7 @@ permalink: /search.json
 {% for post in site.daily %}
   {% unless first %},{% endunless %}
   {
+    "layout": {{ post.layout | jsonify }}, 
     "title": {{ post.title | jsonify }},
     "url": {{ post.url | jsonify }},
     "content": {{ post.content | strip_html | jsonify }},
@@ -69,6 +72,7 @@ permalink: /search.json
 {% for post in site.archives %}
   {% unless first %},{% endunless %}
   {
+    "layout": {{ post.layout | jsonify }}, 
     "title": {{ post.title | jsonify }},
     "url": {{ post.url | jsonify }},
     "content": {{ post.content  | jsonify}},
@@ -89,6 +93,7 @@ permalink: /search.json
 {% for post in site.sunrise %}
   {% unless first %},{% endunless %}
   {
+    "layout": {{ post.layout | jsonify }}, 
     "title": {{ post.title | jsonify }},
     "url": {{ post.url | jsonify }},
     "content": {{ post.content  | jsonify}},

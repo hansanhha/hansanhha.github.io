@@ -12,9 +12,9 @@
                 <a id="path-error-back-prev-page"></a>
               {% else %}
                 {% assign dirPath = dirPath | append: "/" | append: dirFilename %}
-                <span class="path-link" data-path="{{ dirPath }}" data-default-path-name="{{ dirFilename }}" data-page-title="{{ page.page-title }}" data-path-name="{{ page.page-name }}" data-path-name-ko="{{ page.page-name-ko }}" data-layout="{{ page.layout }}"></span>
+                <span class="path-link" data-path="{{ dirPath }}" data-default-path-name="{{ dirFilename }}" data-page-title="{{ page.page-title }}" data-page-title-ko="{{ page.page-title-ko }}" data-path-name="{{ page.page-name }}" data-path-name-ko="{{ page.page-name-ko }}" data-layout="{{ page.layout }}"></span>
               {% endif %}
-              {% if page.name != "index.md" and page.createDate != nil and page.layout == "default" %}
+              {% if page.name != "index.md" and page.createDate != nil and page.layout == "verbose" %}
                   <span id="page-info-date" data-create-date="{{ page.createDate }}"></span>
               {% endif %}
             {% else %}
@@ -49,7 +49,7 @@
 </div>
 
 <script>
-if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "default") {
+if (localStorage.getItem("layout") === "verbose") {
   printPaths();
 }
 
@@ -89,7 +89,8 @@ function printPaths() {
 
     if (link.dataset.layout === "sunrise") linkname = localStorage.getItem("lang") === "ko" ? convertLinknameToKo(link.dataset.defaultPathName) : link.dataset.defaultPathName;
     if (linkname === "") linkname = link.dataset.defaultPathName;
-    if (link.dataset.pageTitle) linkname = link.dataset.pageTitle;
+    if (localStorage.getItem("lang") === "en" && link.dataset.pageTitle) linkname = link.dataset.pageTitle;
+    if (localStorage.getItem("lang") === "ko" && link.dataset.pageTitleKo) linkname = link.dataset.pageTitleKo;
 
     link.textContent = "/" + capitalize(linkname);
   });

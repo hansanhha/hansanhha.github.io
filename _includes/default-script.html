@@ -6,6 +6,14 @@ if (!document.getElementById("not-found")) {
 init();
 
 function init() {
+  handleEmptyContent();
+
+  if (!localStorage.getItem("layout")) renderSimpleLayout();
+  if (localStorage.getItem("layout") === "verbose") renderVerboseLayout();
+  else renderSimpleLayout();
+}
+
+function handleEmptyContent() {
   const $empty = document.getElementById("empty");
   const $pageContentWrapper = document.getElementById("page-content-wrapper");
   const $mainContent = document.getElementsByClassName("main-content");
@@ -23,10 +31,6 @@ function init() {
       $mainContent[0].innerHTML = "";
       $mainContent[0].appendChild($span);
   }
-
-  if (!localStorage.getItem("layout")) renderDefaultLayout();
-  if (localStorage.getItem("layout") === "simple") renderSimpleLayout();
-  else renderDefaultLayout();
 }
 
 function renderSimpleLayout() {
@@ -56,18 +60,19 @@ function renderSimpleLayout() {
 function notFoundInSimpleLayout() {
   if (document.getElementById("not-found")) {
     document.getElementById("not-found").textContent = "404 Not Found" ;
-    document.getElementById("not-found").style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "64px" : "80px";
+    document.getElementById("not-found").style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "56px" : "72px";
     document.getElementById("not-found").style.fontWeight = "600";
   }
   if (document.getElementById("not-found-text")) {
     document.getElementById("not-found-text").textContent = localStorage.getItem("lang") === "en" ? "Cannot find the page." : "페이지를 찾을 수 없습니다.";
-    document.getElementById("not-found-text").style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "64px" : "80px";
+    document.getElementById("not-found-text").style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "56px" : "72px";
     document.getElementById("not-found-text").style.fontWeight = "600";
   }
 }
 
 function printBlogInfoInSimpleLayout(title) {
-  const $infoBox = document.createElement("div");
+  if (document.getElementById("simple-layout-info-box")) return;
+  const $infoBox = document.createElement("header");
   $infoBox.id = "simple-layout-info-box";
 
   const $title = document.createElement("div");
@@ -88,41 +93,22 @@ function printBlogInfoInSimpleLayout(title) {
   const $themeBox = document.createElement("div");
   const $ko = document.createElement("div");
   const $en = document.createElement("div");
-  const $default = document.createElement("div");
   const $simple = document.createElement("div");
+  const $verbose = document.createElement("div");
   const $dark = document.createElement("div");
   const $light = document.createElement("div");
-  $utilityBox.style.display = "flex";
-  $utilityBox.style.gap = "8px";
-  $utilityBox.style.fontSize = "20px";
-  $utilityBox.style.fontWeight = "500";
-  $utilityBox.style.marginBottom = "16px";
-  $utilityBox.style.wordBreak = "break-all";
-  $utilityBox.style.width = "auto";
-  $utilityBox.style.maxWidth = "100%";
-  $utilityBox.style.overflowWrap = "anywhere";
-  $utilityBox.style.flexWrap = "wrap";
-  $utilityBox.style.alignContent = "flex-start";
-  $langBox.style.display = "flex";
-  $layoutBox.style.display = "flex";
-  $themeBox.style.display = "flex";
-  $langBox.style.flexShrink = "0";
-  $layoutBox.style.flexShrink = "0";
-  $themeBox.style.flexShrink = "0";
-  $langBox.style.gap = "8px";
-  $layoutBox.style.gap = "8px";
-  $themeBox.style.gap = "8px";
+  $utilityBox.classList.add("utiltiy-box-simple-layout");
   $ko.textContent = "ko-KR";
   $en.textContent = "en-US";
-  $default.textContent = localStorage.getItem("lang") === "ko" ? "기본" : "Default";
   $simple.textContent = localStorage.getItem("lang") === "ko" ? "단순한" : "Simple";
+  $verbose.textContent = localStorage.getItem("lang") === "ko" ? "상세한" : "Verbose";
   $light.textContent = localStorage.getItem("lang") === "ko" ? "밝게" : "Brightly";
   $dark.textContent = localStorage.getItem("lang") === "ko" ? "어둡게" : "Darkly";
   $light.id = "user_appearance_brightly";
   $dark.id = "user_appearance_darkly";
   $ko.addEventListener("click", () => changeLang("ko"));
   $en.addEventListener("click", () => changeLang("en"));
-  $default.addEventListener("click", () => changeLayout("default"));
+  $verbose.addEventListener("click", () => changeLayout("verbose"));
   $simple.addEventListener("click", () => changeLayout("simple"));
   $light.addEventListener("click", () => changeTheme("light"));
   $dark.addEventListener("click", () => changeTheme("dark"));
@@ -152,8 +138,8 @@ function printBlogInfoInSimpleLayout(title) {
   }
 
   $simple.classList.add("selected-highlight", "cursor-pointer", "hover-font-weight-800");
-  $default.classList = "";
-  $default.classList.add("cursor-pointer", "hover-font-weight-800");
+  $verbose.classList = "";
+  $verbose.classList.add("cursor-pointer", "hover-font-weight-800");
   
   if (location.pathname !== "/") {
     const $homepage = document.createElement("div");
@@ -162,8 +148,8 @@ function printBlogInfoInSimpleLayout(title) {
     $homepage.addEventListener("click", () => location.href = "/");
     $homepage.classList.add("cursor-pointer", "hover-font-weight-800");
   }
-  $layoutBox.appendChild($default);
   $layoutBox.appendChild($simple);
+  $layoutBox.appendChild($verbose);
   $langBox.appendChild($en);
   $langBox.appendChild($ko);
   $themeBox.appendChild($light);
@@ -176,29 +162,6 @@ function printBlogInfoInSimpleLayout(title) {
   $infoBox.appendChild($title);
   $infoBox.appendChild($utilityBox);
 
-  if (!location.pathname.endsWith("/index.html") && !location.pathname.endsWith("/")) {
-     const createDate = document.querySelector('meta[createDate]').getAttribute("createDate");
-    const updateDate = document.querySelector('meta[updateDate]').getAttribute("updateDate");
-    const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
-    const formattedCreateDate = createDate 
-      ? new Date(createDate).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })
-      : "";
-    const formattedUpdateDate = updateDate 
-      ? new Date(updateDate).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })
-      : "";
-    const $dateBox = document.createElement("div");
-    const $createDate = document.createElement("div");
-    const $updateDate = document.createElement("div");
-    $dateBox.style.display = "flex";
-    $dateBox.style.fontSize =  window.matchMedia('(max-width: 960px)').matches ? "24px" : "28px";
-    $dateBox.style.gap =  "4px";
-    $createDate.textContent = formattedCreateDate;
-    $updateDate.textContent = formattedUpdateDate;
-    $dateBox.appendChild($createDate);
-    $dateBox.appendChild($updateDate);
-    $infoBox.appendChild($dateBox);
-  }
-
   if (location.pathname !== "/" && !document.getElementById("not-found")) {
     const $indexPageWrapper = document.createElement("div");
     $indexPageWrapper.style.wordBreak = "break-all";
@@ -206,8 +169,9 @@ function printBlogInfoInSimpleLayout(title) {
     $indexPageWrapper.style.maxWidth = "100%";
     $indexPageWrapper.style.overflowWrap = "anywhere";
     const $indexPageBtn = document.createElement("a");
-    $indexPageWrapper.classList = "hover-font-weight-800";
-    $indexPageBtn.style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "24px" : "28px";
+    $indexPageBtn.classList.add("hover-font-weight-800");
+    $indexPageBtn.style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "20px" : "20px";
+    // $indexPageBtn.style.fontWeight = "500";
     $indexPageBtn.style.display = "inline-block";
     $indexPageBtn.style.width = "100%";
     $indexPageBtn.id = "index-page-btn-simple-layout";
@@ -229,16 +193,41 @@ function printBlogInfoInSimpleLayout(title) {
     $indexPageBtn.textContent = localStorage.getItem("lang") === "ko"
       ? "인덱스 페이지로 이동"
       : "Go to the index page";
-    $indexPageWrapper.style.marginTop = "4px";
+    $indexPageWrapper.style.marginBottom = "4px";
     $indexPageWrapper.appendChild($indexPageBtn);
     $infoBox.appendChild($indexPageWrapper);
+  }
+
+  if (!location.pathname.endsWith("/index.html") && !location.pathname.endsWith("/")) {
+     const createDate = document.querySelector('meta[createDate]').getAttribute("createDate");
+    const updateDate = document.querySelector('meta[updateDate]').getAttribute("updateDate");
+    const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
+    const formattedCreateDate = createDate 
+      ? new Date(createDate).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })
+      : "";
+    const formattedUpdateDate = updateDate 
+      ? new Date(updateDate).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })
+      : "";
+    const $dateBox = document.createElement("div");
+    const $createDate = document.createElement("div");
+    const $updateDate = document.createElement("div");
+    $dateBox.style.display = "flex";
+    $dateBox.style.flexDirection = "column";
+    $dateBox.style.fontSize =  window.matchMedia('(max-width: 960px)').matches ? "20px" : "24px";
+    $dateBox.style.gap =  "4px";
+    $dateBox.style.marginTop =  "8px";
+    $createDate.textContent = formattedCreateDate ? localStorage.getItem("lang") === "ko" ? formattedCreateDate + "에 작성되었습니다." : "It was written on " + formattedCreateDate : "";
+    $updateDate.textContent = formattedUpdateDate ? localStorage.getItem("lang") === "ko" ? formattedUpdateDate + "에 마지막으로 수정되었습니다." : "Last updated on " + formattedUpdateDate : "";
+    $dateBox.appendChild($createDate);
+    $dateBox.appendChild($updateDate);
+    $infoBox.appendChild($dateBox);
   }
 
   if (document.getElementById("not-found")) {
     const $pageErrorBackPrevPage = document.createElement("div");
     $pageErrorBackPrevPage.textContent = localStorage.getItem("lang") === "ko" ? "← 이전 페이지로 돌아가기" : "← Back to the previous page";
     $pageErrorBackPrevPage.classList = "hover-font-weight-800";
-    $pageErrorBackPrevPage.style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "24px" : "28px";
+    $pageErrorBackPrevPage.style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "20px" : "24px";
     $pageErrorBackPrevPage.addEventListener("click", (e) => {
       e.preventDefault();
       if (localStorage.getItem("updateLang") === "true") {
@@ -263,6 +252,8 @@ function printBlogInfoInSimpleLayout(title) {
   if (!window.matchMedia('(max-width: 960px)').matches && (location.pathname.endsWith("/") || location.pathname.endsWith("/index.html"))) {
     printIdxDescription();
     window.addEventListener("resize", toggleIndexGuideInfo);
+  } else if (window.matchMedia('(max-width: 960px)').matches && location.pathname === "/") {
+    printIdxDescriptionInMobile();
   }
   
   document.body.insertBefore($infoBox, document.body.firstChild);    
@@ -281,7 +272,9 @@ function printIdxDescription() {
   $pageInfoGuide.style.marginBlockEnd = "0";
 
   if (location.pathname === "/") {
-    $currentIdx.innerText = "안녕하세요.\n이 곳은 제가 좋아하는 것들을 모아두거나 일상을 기록하는 공간입니다.";
+    $currentIdx.innerText = localStorage.getItem("lang") === "ko" 
+    ? "안녕하세요.\n이 곳은 제가 좋아하는 것들을 모아두거나 \n일상을 기록하는 곳입니다." 
+    : "Hello.\n This is a space to collect things I love \n nor record my daily life."
   } else {
     $currentIdx.innerText = "";
   }
@@ -290,7 +283,15 @@ function printIdxDescription() {
   postLinkHyperlinks.forEach(link => {
       link.addEventListener("mouseover", () => {
           const $pageInfoGuide = document.getElementById("page_info_guide");
-          $pageInfoGuide.innerText = link.innerText + " 페이지로 이동합니다.";
+          if (link.dataset.layout && (link.dataset.layout === "auto-index" || link.dataset.layout === "index")) {
+              $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
+              ? link.innerText + " 인덱스 페이지로 이동합니다."
+              : "Go to the " + link.innerText + " index page.";    
+          } else {
+              $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
+              ? link.innerText + " 페이지로 이동합니다."
+              : "Go to the " + link.innerText + " Page.";
+          }
       });
       link.addEventListener("mouseleave", () => {
           const $pageInfoGuide = document.getElementById("page_info_guide");
@@ -303,7 +304,22 @@ function printIdxDescription() {
   document.body.appendChild($idxDescriptionBox);
 }
 
-function renderDefaultLayout() {
+function printIdxDescriptionInMobile() {
+  const $commonWrapper = document.getElementsByClassName("common-wrapper")[0];
+  const $idxDescriptionBox = document.createElement("div");
+  const $currentIdx = document.createElement("pre");
+  $currentIdx.innerText = localStorage.getItem("lang") === "ko" 
+    ? " 안녕하세요. 이 곳은 제가 좋아하는 것들을 모아두거나 일상을 기록하는 곳입니다." 
+    : " Hello. This is a space to collect things I love nor record my daily life."
+  $idxDescriptionBox.classList.add("index-description-simple-layout-mobile");
+  $currentIdx.style.marginBlockStart = "0";
+  $currentIdx.style.marginBlockEnd = "0";
+  $idxDescriptionBox.appendChild($currentIdx);
+  document.body.insertBefore($idxDescriptionBox, $commonWrapper);
+}
+
+
+function renderVerboseLayout() {
   const $blogInfo =  document.getElementById("blog-info");
   const $blogFooter =  document.getElementById("blog_footer");
   const $blogSearchBox =  document.getElementById("blog_search_box");
@@ -321,10 +337,10 @@ function renderDefaultLayout() {
   setGoToTop();
   fetchBlogInfo();
   setBlogDefaultConfigs();
-  markBlogSettings();
-  printBlogInfos();
+  markBlogSettingsInVerboseLayout();
+  printBlogInfosInVerboseLayout();
   configHTMLElements();
-  configBlogSearch();
+  configBlogSearchInVerboseLayout();
 }
 
 function setGoToTop() {
@@ -361,7 +377,7 @@ function setGoToTop() {
 }
 
 async function fetchBlogInfo() {
-    if (!localStorage.getItem("layout") || localStorage.getItem("layout") !== "simple") {
+    if (localStorage.getItem("layout") && localStorage.getItem("layout") === "verbose") {
       try {
           await loadScript(
               "https://cdn.jsdelivr.net/npm/ua-parser-js@2.0.10/dist/ua-parser.pack.min.js",
@@ -401,8 +417,10 @@ async function fetchBlogInfo() {
               );
 
               const data = await response.json();
-              $blogUpdateInfo.textContent = data[0].commit.committer.date;
-              localStorage.setItem("lastUpdateDate", data[0].commit.committer.date);
+              const lastCommitDate = data[0].commit.committer.date;
+              const formattedDate = formatToLongDate(lastCommitDate);
+              $blogUpdateInfo.textContent = formattedDate;
+              localStorage.setItem("lastUpdateDate", formattedDate);
           } catch (error) {
               if (localStorage.getItem("lastUpdateDate")) $blogUpdateInfo.textContent = localStorage.getItem("lastUpdateDate");
               else {
@@ -473,13 +491,13 @@ async function fetchAPI(url, options = {}, timeout = 5000) {
 }
 
 function setBlogDefaultConfigs() {
-  if ((!localStorage.getItem("lang") && navigator.language.startsWith("ko")) || localStorage.getItem("lang") === "korean" || localStorage.getItem("lang") === "한글") {
+  if (!localStorage.getItem("lang") || localStorage.getItem("lang") === "korean" || localStorage.getItem("lang") === "한글") {
     localStorage.setItem("lang", "ko");
-  } else if (!localStorage.getItem("lang") || localStorage.getItem("lang") === "english") {
+  } else if ((!localStorage.getItem("lang") && (navigator.language.startsWith("en")) || localStorage.getItem("lang") === "english")) {
       localStorage.setItem("lang", "en");
   }
 
-  if (!localStorage.getItem("layout")) localStorage.setItem("layout", "default");
+  if (!localStorage.getItem("layout")) localStorage.setItem("layout", "simple");
 
   const fontSize = localStorage.getItem("fontSize");
   const contentLineHeight = localStorage.getItem("content-line-height");
@@ -518,17 +536,24 @@ function setBlogDefaultConfigs() {
       printLightTheme();
       location.reload();
   });
+
+  if (location.pathname.includes("/projects/")) {
+    const $projectStartDate = document.getElementById("project-start-date");
+    if ($projectStartDate && $projectStartDate.innerText) {
+      $projectStartDate.innerText = formatToLongDate($projectStartDate.innerText);
+    }
+  }
 }
 
-function printBlogInfos() {
+function printBlogInfosInVerboseLayout() {
   const today = new Date();
   let blogInfoDateLocale = "en-US";
   if (localStorage.getItem("lang") === "en") {
       document.getElementById("blog-search-btn").textContent = "Search";
       document.getElementById("user_agent").innerText = "User-Agent: Checking...";
       document.getElementById("user_layout").textContent = "Layout: ";
-      document.getElementById("user_layout_default").textContent = "Default";
       document.getElementById("user_layout_simple").textContent = "Simple";
+      document.getElementById("user_layout_verbose").textContent = "Verbose";
       document.getElementById("user_font_size").textContent = "Font Size: ";
       document.getElementById("user_font_size_default").textContent = "Default";
       document.getElementById("user_font_size_smaller").textContent = "A-";
@@ -548,9 +573,9 @@ function printBlogInfos() {
       document.getElementById("blog-search-btn").textContent = "검색";
       document.getElementById("user_agent").innerText = "접속 환경: 확인 중...";
       blogInfoDateLocale = 'ko-KR';
-      document.getElementById("user_layout").textContent = "화면 구성: ";
-      document.getElementById("user_layout_default").textContent = "기본";
+      document.getElementById("user_layout").textContent = "인터페이스: ";
       document.getElementById("user_layout_simple").textContent = "단순한";
+      document.getElementById("user_layout_verbose").textContent = "상세한";
       document.getElementById("user_font_size").textContent = "글꼴 크기: ";
       document.getElementById("user_font_size_default").textContent = "기본";
       document.getElementById("user_font_size_smaller").textContent = "가-";
@@ -569,27 +594,45 @@ function printBlogInfos() {
   }
 }
 
-function markBlogSettings() {
+function markBlogSettingsInVerboseLayout() {
   localStorage.getItem("theme") !== undefined
     ? (localStorage.getItem("theme") === "dark") ? printDarkTheme() : printLightTheme()
     : (window.matchMedia("(prefers-color-scheme: dark)").matches) ? printDarkTheme() : printLightTheme();
 
     localStorage.getItem("lang") === "en" ? printEnLang() : printKoLang();
-    localStorage.getItem("layout") === "default" ? printDefaultLayout() : printSimpleLayout();
+    !localStorage.getItem("layout") || localStorage.getItem("layout") === "simple" ? printSimpleLayout() : printVerboseLayout();
 }
 
 function getPageTitle() {
   const $title = document.querySelector("title");
-  if (localStorage.getItem("lang") === "en" && $title.dataset.pageName) {
+  if (localStorage.getItem("lang") === "en" && $title.dataset.pageTitle) {
+    return capitalize(String($title.dataset.pageTitle));
+  } else if (localStorage.getItem("lang") === "ko" && $title.dataset.pageTitleKo) {
+    return capitalize($title.dataset.pageTitleKo);
+  } else if (localStorage.getItem("lang") === "en" && $title.dataset.pageName) {
     return capitalize(String($title.dataset.pageName));
-  } else if ($title.dataset.pageNameKo){
+  } else if (localStorage.getItem("lang") === "ko" && $title.dataset.pageNameKo){
     return $title.dataset.pageNameKo;
+  } else if ($title.dataset.pageDefaultTitle) {
+    return $title.dataset.pageDefaultTitle;
   } else {
     return document.title;
   }
 }
 
 function configHTMLElements() {
+  document.addEventListener("DOMContentLoaded", () => {
+      const $videos = document.querySelectorAll("video");
+      $videos.forEach($video => {
+          $video.playsInline = true;
+      });
+
+      const $imgs = document.querySelectorAll("img");
+      $imgs.forEach($img => {
+          $img.addEventListener("click", () => focusImg($img));
+      });
+  });
+
   document.querySelectorAll("h1, h2, h3, h4, h5").forEach(heading => {
     heading.addEventListener("click", () => {
         if (!heading.id) return;
@@ -620,7 +663,7 @@ function configHTMLElements() {
   });
 }
 
-function configBlogSearch() {
+function configBlogSearchInVerboseLayout() {
   moveToSearchPageIfExistSearchParam();
   window.addEventListener("popstate", () => {
       moveToSearchPageIfExistSearchParam();
@@ -660,13 +703,13 @@ function printKoLang() {
     document.getElementById("user_lang_ko").classList.add("selected-highlight", "cursor-pointer");
 }
 
-function printDefaultLayout() {
+function printVerboseLayout() {
     document.getElementById("user_layout_simple").classList = "cursor-pointer";
-    document.getElementById("user_layout_default").classList.add("selected-highlight", "cursor-pointer");
+    document.getElementById("user_layout_verbose").classList.add("selected-highlight", "cursor-pointer");
 }
 
 function printSimpleLayout() {
-  document.getElementById("user_layout_default").classList = "cursor-pointer";
+  document.getElementById("user_layout_verbose").classList = "cursor-pointer";
   document.getElementById("user_layout_simple").classList.add("selected-highlight", "cursor-pointer");
 }
 
@@ -711,6 +754,10 @@ function changeTheme(theme) {
   } else {
     document.getElementById("user_appearance_brightly").classList = "cursor-pointer";
     document.getElementById("user_appearance_darkly").classList.add("selected-highlight", "cursor-pointer");
+  }
+  if (localStorage.getItem("layout") === "simple") {
+    document.getElementById("user_appearance_darkly").classList.add("hover-font-weight-800");
+    document.getElementById("user_appearance_brightly").classList.add("hover-font-weight-800");
   }
 }
 
@@ -1017,7 +1064,7 @@ function printPosts($searchResultBox, locale, options, posts, category, subcateg
         const capitalizedTitle = capitalize(nonUndefinedTitle);
 
         $post.innerHTML = `
-            <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
+            <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
         `;
         $category.appendChild($post);
       }
@@ -1044,7 +1091,9 @@ function organizeGroup(groupedPosts, $group, locale, options, defaultGroup) {
       const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
       const nonUndefinedTitle = title ? title : post.title;
       const capitalizedTitle = capitalize(nonUndefinedTitle);
-      $post.innerHTML = `<span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>`;
+      $post.innerHTML = `
+            <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
+        `;
       $subGroup.appendChild($post);
     }
     $group.appendChild($subGroup);
@@ -1062,6 +1111,12 @@ function printErrorResult() {
     $pageErrorResult.style.marginTop = "12px";
     $pageErrorResult.style.marginBottom = "8px";
     $pageContentWrapper.appendChild($pageErrorResult);
+}
+
+function formatToLongDate(date) {
+  const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
+  const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', weekday: 'long' }
+  return new Date(date).toLocaleDateString(locale, options);  
 }
 
 function localize(category) {
@@ -1106,18 +1161,6 @@ function capitalize(str) {
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-    const $videos = document.querySelectorAll("video");
-    $videos.forEach($video => {
-        $video.playsInline = true;
-    });
-
-    const $imgs = document.querySelectorAll("img");
-    $imgs.forEach($img => {
-        $img.addEventListener("click", () => focusImg($img));
-    });
-});
 
 function focusImg($img) {
     const $overlay = document.createElement("div");

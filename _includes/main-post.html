@@ -3,13 +3,14 @@
 </div>
 
 <script>
-loadLatestPosts();
-
-if (!localStorage.getItem("lang") && navigator.language.startsWith("ko")) {
+if (!localStorage.getItem("lang") || localStorage.getItem("lang") === "korean" || localStorage.getItem("lang") === "한글") {
     localStorage.setItem("lang", "ko");
-} else if (!localStorage.getItem("lang")) {
+} else if ((!localStorage.getItem("lang") && (navigator.language.startsWith("en")) || localStorage.getItem("lang") === "english")) {
     localStorage.setItem("lang", "en");
 }
+
+loadLatestPosts();
+
 
 async function loadLatestPosts() {
     const $latestPostsBox = document.getElementById("latest-posts-box");
@@ -24,7 +25,8 @@ async function loadLatestPosts() {
         const jsonData = JSON.parse(textData);
 
         if (document.getElementById("latest_posts_error")) document.getElementById("latest_posts_error").remove();
-        if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "default") listPostsInDefaultLayout($latestPostsBox, jsonData, locale, options);
+        if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "simple") listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options);
+        else if (localStorage.getItem("layout") === "verbose") listPostsInVerboseLayout($latestPostsBox, jsonData, locale, options);
         else listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options);
     } catch (error) {
         const $errorBox = document.createElement("div");
@@ -37,7 +39,7 @@ async function loadLatestPosts() {
         $errorBox.style.gap = "4px";
         $errorBox.style.wordBreak = "break-all";
         $errorBox.style.overflowWrap = "anywhere";
-        $errorBox.style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "64px" : "80px";
+        $errorBox.style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "56px" : "72px";
         $errorBox.style.fontWeight = "600";
         $error.innerText = "SORRY, ERROR";
         $errorGuide.innerText = "HERE ARE SOME EXPLANATION";
@@ -49,7 +51,7 @@ async function loadLatestPosts() {
     }
 }
 
-function listPostsInDefaultLayout($latestPostsBox, jsonData, locale, options) {
+function listPostsInVerboseLayout($latestPostsBox, jsonData, locale, options) {
     $latestPostsBox.classList = "post-list";
     const top10Posts = jsonData
         .filter((post) => !post.url.includes("legacy"))
@@ -88,7 +90,7 @@ function listPostsInDefaultLayout($latestPostsBox, jsonData, locale, options) {
                 const capitalizedTitle = capitalize(nonUndefinedTitle);
 
                 $post.innerHTML = `
-                    <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
+                    <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
                 `;
                 $category.appendChild($post);
         });
@@ -105,7 +107,9 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
     $latestPostsBox.classList = "post-list-simple-layout";
     const posts = jsonData
         .filter((post) => !post.url.includes("legacy"))
-        .filter((post) => localStorage.getItem("lang") === "en" ? post.url.includes("/en/") : !post.url.includes("/en/"))
+        .filter((post) => post.url.includes("archives") 
+        || (localStorage.getItem("lang") === "en" ? ((post.url.includes("/sunrise") && !post.url.endsWith("/en/sunrise.html") && !post.url.endsWith("/sunrise.html")) || post.url.endsWith("/en/sunrise.html")) : !post.url.includes("/en/"))
+        || (localStorage.getItem("lang") === "en" ? post.url.includes("/en/") : !post.url.includes("/en/")))
         .sort((a, b) => {
             const aDate = a.createDate ? a.createDate : "1930-01-01";
             const bDate = b.createDate ? b.createDate : "1930-01-01";
@@ -123,7 +127,7 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
         $post.innerHTML = `
             <div class='post-link-simple-layout'>
                 <div class='post-link' style="width: 100%;">
-                        <a class='post-link-hover' href="${post.url}" style="color: var(--text-color); display: inline-block; width: 100%"> 
+                        <a class='post-link-hover' href="${post.url}" style="color: var(--text-color); display: inline-block; width: 100%" data-layout="${post.layout}"> 
                             ${capitalizedTitle}
                         </a>
                 </div>
@@ -136,11 +140,18 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
     
     if (!window.matchMedia('(max-width: 960px)').matches && (location.pathname.endsWith("/") || location.pathname.endsWith("/index.html"))) {
         const postLinkHyperlinks = Array.from(document.getElementsByClassName("post-link-hover"));
-        console.log(postLinkHyperlinks);
         postLinkHyperlinks.forEach(link => {
             link.addEventListener("mouseover", () => {
                 const $pageInfoGuide = document.getElementById("page_info_guide");
-                $pageInfoGuide.innerText = link.innerText + " 페이지로 이동합니다.";
+                if (link.dataset.layout && (link.dataset.layout === "auto-index" || link.dataset.layout === "index")) {
+                    $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
+                    ? link.innerText + " 인덱스 페이지로 이동합니다."
+                    : "Go to the " + link.innerText + " index page.";    
+                } else {
+                    $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
+                    ? link.innerText + " 페이지로 이동합니다."
+                    : "Go to the " + link.innerText + " Page.";
+                }
             });
             link.addEventListener("mouseleave", () => {
                 const $pageInfoGuide = document.getElementById("page_info_guide");

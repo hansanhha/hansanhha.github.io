@@ -1,5 +1,5 @@
 ---
 layout: main
-title: hansanhha
-title-ko: 한산하
+title: 한산하 HANSANHHA
+title-ko: 한산하 HANSANHHA
 ---

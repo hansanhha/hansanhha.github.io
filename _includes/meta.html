@@ -7,7 +7,7 @@
 <meta updateDate="{{ page.updateDate}}">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-page-name="{{ page.page-name }}" data-page-name-ko="{{ page.page-name-ko }}" data-page-title="{{ page.title }}">
+<title data-page-name="{{ page.page-name }}" data-page-name-ko="{{ page.page-name-ko }}" data-page-default-title="{{ page.title }}" data-page-title="{{ page.page-title }}" data-page-title-ko="{{ page.page-title-ko }}" data-page-layout="{{ page.layout }}">
     {% if page.dir == "/" %}
       한산하 HANSANHHA
     {% elsif page.page-name != nil and page.page-name-ko != nil %}
@@ -23,4 +23,28 @@
     {% endif %}
 </title>
 <link rel="alternate" type="application/rss+xml" href="{{ site.url }}/feed.xml" title="{{ site.title }} Feed">
-{% seo %}
+<meta name="generator" content="{{ site.title }}" />
+{% assign og_title = page.page-name-ko %}
+{% if og_title == nil or og_title == "" %}
+  {% assign og_title = page["page-name"] %}
+{% endif %}
+{% if og_title == nil or og_title == "" %}
+  {% assign og_title = page["title"] %}
+{% endif %}
+{% assign og_description = page.description %}
+{% if og_description == nil or og_description == "" %}
+  {% assign og_description = page["title"] %}
+{% endif %}
+<meta property="og:title" content="{{ og_title | escape }}" />
+<meta property="og:locale" content="ko_KR" />
+<meta name="description" content="{{ og_description | escape }}" />
+<meta property="og:description" content="{{ og_description | escape }}" />
+<link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+<meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+<meta property="og:site_name" content="{{ site.title }}" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="{{ page.title}}" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"{{ og_description | escape}}","headline":"Index","url":"{{ site.url }}{{ page.url }}"}
+</script>

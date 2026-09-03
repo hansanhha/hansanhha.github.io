@@ -7,7 +7,7 @@ createDate: 2026-08-13
 
 At the start of each month, I watch the rising sun and the sky to welcome a new beginning. I record these first moments and pause to reflect on the passage of time and the start of another month.
 
-Start Date: 2024-01-01T08:00:17Z
+Start Date: <span id="project-start-date">2023-12-31T22:00:17Z</span>
 
 Status: In Progress
 
@@ -55,6 +55,6 @@ Umyeonsan [July 2026](https://hansanhha.github.io/sunrise/2026/July)
 
 Grass Garden [August 2026](https://hansanhha.github.io/sunrise/2026/August)
 
-Dongnimmun Arch [2026년 9월](https://hansanhha.github.io/sunrise/2026/September)
+Dongnimmun Arch [September 2026](https://hansanhha.github.io/sunrise/2026/September)
 
 ---

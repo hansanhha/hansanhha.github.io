@@ -26,8 +26,8 @@
 </body>
 {% include default-script.html %}
 <script>
-if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "default") loadIndexByCategoryInDefaultLayout();
-else loadIndexInSimpleLayout();
+if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "simple") loadIndexInSimpleLayout();
+else loadIndexByCategoryInVerboseLayout();
 
 async function loadIndexInSimpleLayout() {
     const $pageContentWrapper = document.getElementById("page-content-wrapper");
@@ -56,9 +56,11 @@ async function loadIndexInSimpleLayout() {
 
         if (categorisedIndexes.length === 0) {
             const $none = document.createElement("div");
-            $none.style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "64px" : "80px";
-            $none.style.fontWeight = "600";
-            $none.textContent = localStorage.getItem("lang") === "ko" ? "작성된 게시글이 없습니다." : "No posts.";
+            if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "simple") {
+                $none.style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "48px" : "64px";
+                $none.style.fontWeight = "600";
+            }
+            $none.textContent = localStorage.getItem("lang") === "ko" ? "아직 아무것도 작성되지 않았습니다." : "Sorry, No posts.";
             $pageContentWrapper.appendChild($none);
             return;
         }
@@ -116,7 +118,15 @@ async function loadIndexInSimpleLayout() {
         postLinkHyperlinks.forEach(link => {
             link.addEventListener("mouseover", () => {
                 const $pageInfoGuide = document.getElementById("page_info_guide");
-                $pageInfoGuide.innerText = link.innerText + " 페이지로 이동합니다.";
+                if (link.dataset.layout && (link.dataset.layout === "auto-index" || link.dataset.layout === "index")) {
+                    $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
+                    ? link.innerText + " 인덱스 페이지로 이동합니다."
+                    : "Go to the " + link.innerText + " index page.";    
+                } else {
+                    $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
+                    ? link.innerText + " 페이지로 이동합니다."
+                    : "Go to the " + link.innerText + " Page.";
+                }
             });
             link.addEventListener("mouseleave", () => {
                 const $pageInfoGuide = document.getElementById("page_info_guide");
@@ -126,7 +136,7 @@ async function loadIndexInSimpleLayout() {
     }
 }
 
-async function loadIndexByCategoryInDefaultLayout() {
+async function loadIndexByCategoryInVerboseLayout() {
     const $pageContentWrapper = document.getElementById("page-content-wrapper");
     const $pageSort = document.getElementById("page-sort");
     const $pageCategory = document.getElementById("page-category");
@@ -157,7 +167,11 @@ async function loadIndexByCategoryInDefaultLayout() {
 
         if (categorisedIndexes.length === 0) {
             const $none = document.createElement("p");
-            $none.textContent = localStorage.getItem("lang") === "ko" ? "작성된 게시글이 없습니다." : "No posts.";
+            if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "simple") {
+                $none.style.fontSize = window.matchMedia('(max-width: 960px)').matches ? "48px" : "64px";
+                $none.style.fontWeight = "600";
+            }
+            $none.textContent = localStorage.getItem("lang") === "ko" ? "아직 아무것도 작성되지 않았습니다." : "Sorry, No posts.";
             $pageContentWrapper.appendChild($none);
             return;
         }
@@ -177,13 +191,17 @@ async function loadIndexByCategoryInDefaultLayout() {
                     const nonUndefinedTitle = title ? title : post.title;
                     const capitalizedTitle = capitalize(String(nonUndefinedTitle));
 
-                    $post.innerHTML = category === "sunrise"
-                    ? `
+                    // $post.innerHTML = category === "sunrise"
+                    // ? `
+                    //     <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
+                    // `
+                    // : `
+                    //     <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
+                    // `;
+                    $post.innerHTML = 
+                    `
                         <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
                     `
-                    : `
-                        <span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
-                    `;
                     $pageContentWrapper.appendChild($post);
             });
         }
@@ -304,7 +322,8 @@ function organizeGroup(groupedIndexesMap, $group, locale, options) {
       const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
       const nonUndefinedTitle = title ? title : post.title;
       const capitalizedTitle = capitalize(String(nonUndefinedTitle));
-      $post.innerHTML = `<span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>`;
+    //   $post.innerHTML = `<span class='post-date'>${formattedDate}</span> <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>`;
+      $post.innerHTML = `<span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>`;
       $subGroup.appendChild($post);
     }
     $group.appendChild($subGroup);

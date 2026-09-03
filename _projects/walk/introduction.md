@@ -6,7 +6,7 @@ subcategory-ko: 산책
 page-name: Introduction
 page-name-ko: 산책에 대한 소개
 page-title: 소개
-createDate: 2026-08-16
+createDate: 2026-08-15
 group: default
 subgroup: default
 description: 프로젝트 산책에 대한 소개
@@ -16,7 +16,7 @@ description: 프로젝트 산책에 대한 소개
 
 궁금하거나 알아보고 싶은 곳이 있으면 찾아가서 살펴본다. 기록으로 남기고 싶은 곳을 간다.
 
-시작일시: 2026-08-16T05:12:01Z
+시작일시: <span id="project-start-date">2026-08-16T05:12:01Z</span>
 
 상태: 진행 중
 

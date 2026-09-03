@@ -11,7 +11,7 @@
 @media (max-width: 768px) {
     .win95-input {
         display: inline-block;
-        width: 160px;
+        width: 140px;
         padding: 4px 6px;
         background-color: #ffffff;
         color: #000000;
@@ -55,7 +55,7 @@
 @media (min-width: 769px) {
     .win95-input {
         display: inline-block;
-        width: 200px;
+        width: 180px;
         padding: 4px 6px;
         background-color: #ffffff;
         color: #000000;
