@@ -612,9 +612,9 @@ function getPageTitle() {
   } else if (localStorage.getItem("lang") === "en" && $title.dataset.pageName) {
     return capitalize(String($title.dataset.pageName));
   } else if (localStorage.getItem("lang") === "ko" && $title.dataset.pageNameKo){
-    return $title.dataset.pageNameKo;
+    return capitalize(String($title.dataset.pageNameKo));
   } else if ($title.dataset.pageDefaultTitle) {
-    return $title.dataset.pageDefaultTitle;
+    return capitalize(String($title.dataset.pageDefaultTitle));
   } else {
     return document.title;
   }

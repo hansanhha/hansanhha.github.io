@@ -17,7 +17,16 @@
     {% elsif page.page-name != nil %}
         {{ page.page-name }} | HANSANHHA
     {% elsif page.title != nil %}
-        {{ page.title }} | HANSANHHA
+        {% assign title_words = page.title | split: " " %}
+        {% assign formatted_title = "" %}
+        {% for word in title_words %}
+            {% assign capitalized_word = word | capitalize %}
+            {% assign formatted_title = formatted_title | append: capitalized_word %}
+            {% unless forloop.last %}
+            {% assign formatted_title = formatted_title | append: " " %}
+            {% endunless %}
+            {% endfor %}
+        {{ formatted_title }} | HANSANHHA
     {% else %}
       {{ site.title }}
     {% endif %}
