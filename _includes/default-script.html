@@ -182,13 +182,15 @@ function printBlogInfoInSimpleLayout(title) {
     pathname = location.pathname.endsWith("/index.html") 
       ? location.pathname.slice(0, location.pathname.indexOf("/index.html")) 
       : pathname;
-    pathname = location.pathname.includes("/en") 
-      ? location.pathname.slice(0, location.pathname.indexOf("/en")) 
-      : pathname;
 
-    const lastSlashIndex = pathname.lastIndexOf("/");
-    const parentPath = lastSlashIndex > 0 ? pathname.substring(0, lastSlashIndex) : "/";
-    $indexPageBtn.href = parentPath === '/' ? window.origin : window.origin + parentPath;
+    if (location.pathname.includes("/en")) {
+      pathname = location.pathname.slice(0, location.pathname.indexOf("/en")) ;
+      $indexPageBtn.href = window.origin + pathname;
+    } else {
+      const lastSlashIndex = pathname.lastIndexOf("/");
+      const parentPath = lastSlashIndex > 0 ? pathname.substring(0, lastSlashIndex) : "/";
+      $indexPageBtn.href = parentPath === '/' ? window.origin : window.origin + parentPath;
+    }
     $indexPageBtn.style.color = "var(--text-color)";
     $indexPageBtn.textContent = localStorage.getItem("lang") === "ko"
       ? "인덱스 페이지로 이동"
