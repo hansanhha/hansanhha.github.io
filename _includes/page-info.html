@@ -54,7 +54,9 @@ function printCategories() {
                 weekday: 'long'
             };
         const formattedDate = new Date($pageUpdateDate.dataset.updateDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
-        $pageUpdateDate.innerText = "수정일: " + formattedDate;
+        $pageUpdateDate.innerText = localStorage.getItem("lang") === "ko" 
+            ? "수정일: " + formattedDate
+            : "Updated on: " + formattedDate;
         $pageUpdateDate.style.display = "block";
     } else {
         $pageUpdateDate.style.display = "none";

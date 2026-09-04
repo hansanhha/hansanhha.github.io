@@ -133,8 +133,32 @@ function printPaths() {
 function capitalize(str) {
   return str
     .split(" ")
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map(word => isRequiredCapitalize(word.charAt(0)) 
+                  ? word.charAt(0).toUpperCase() + word.slice(1)
+                  : word)
     .join(" ");
+}
+
+function isRequiredCapitalize(word) {
+  let require = true; 
+  switch (word) {
+    case "or":
+    case "and":
+    case "a":
+    case "an":
+    case "in":
+    case "on":
+    case "at":
+    case "to":
+    case "of":
+    case "with":
+    case "from":
+    case "by":
+      require = false;
+    break;
+  }
+
+  return require;
 }
 
 function convertLinknameToKo(linkname) {

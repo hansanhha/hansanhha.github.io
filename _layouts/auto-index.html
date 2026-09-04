@@ -97,13 +97,7 @@ async function loadIndexInSimpleLayout() {
         const $errorGuide = document.createElement("div");
         const $errorMsg = document.createElement("div");
         $errorBox.id = "auto_index_error";
-        $errorBox.style.display = "flex";
-        $errorBox.style.flexDirection = "column";
-        $errorBox.style.wordBreak = "break-all";
-        $errorBox.style.overflowWrap = "anywhere";
-        $errorBox.style.gap = "4px";
-        $errorBox.style.fontSize = "96px";
-        $errorBox.style.fontWeight = "600";
+        $errorBox.classList.add("error-box-simple-layout");
         $error.innerText = "SORRY, ERROR";
         $errorGuide.innerText = "HERE ARE SOME EXPLANATION";
         $errorMsg.innerText = "➞ " + error;
@@ -336,8 +330,32 @@ function organizeGroup(groupedIndexesMap, $group, locale, options) {
 function capitalize(str) {
   return str
     .split(" ")
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map(word => isRequiredCapitalize(word.charAt(0)) 
+                  ? word.charAt(0).toUpperCase() + word.slice(1)
+                  : word)
     .join(" ");
+}
+
+function isRequiredCapitalize(word) {
+  let require = true; 
+  switch (word) {
+    case "or":
+    case "and":
+    case "a":
+    case "an":
+    case "in":
+    case "on":
+    case "at":
+    case "to":
+    case "of":
+    case "with":
+    case "from":
+    case "by":
+      require = false;
+    break;
+  }
+
+  return require;
 }
 </script>
 </html>

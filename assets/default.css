@@ -210,6 +210,10 @@ body::-webkit-scrollbar {
     line-height: 16px;
   }
 
+  .error-box-simple-layout {
+    font-size: 40px;
+  }
+
   img {
     max-width: 100%;
     height: auto;
@@ -246,6 +250,10 @@ body::-webkit-scrollbar {
 
   .utiltiy-box-simple-layout {
     gap: 16px;
+  }
+  
+  .error-box-simple-layout {
+    font-size: 56px;
   }
 
   img {
@@ -373,6 +381,15 @@ body::-webkit-scrollbar {
 
 .hover-font-weight-800:hover {
   font-weight: 800;
+}
+
+.error-box-simple-layout {
+  display: flex;
+  flex-direction: column;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  gap: 4px;
+  font-weight: 600;
 }
 
 .post-date {
