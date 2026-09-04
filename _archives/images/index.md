@@ -4,6 +4,7 @@ title-name:
 page-name-ko: 이미지
 page-name: Images
 createDate: 2023-12-20
+updateDate: 2026-08-05
 tags: objects film room season weeknd paintings henry matisse utagawa ando hiroshige impressionism ukiyoe after hours 사물 영화 계절 그림 공간 위켄드 앙리 마티스 우키요에 우타가와 안도 히로시게 인상주의
 ---
 

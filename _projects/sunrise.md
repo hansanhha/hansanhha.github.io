@@ -5,6 +5,7 @@ page-name: Hello, Sunrise
 page-title-ko: Hello, Sunrise 해맞이에 대한 소개
 page-name-ko: Hello, Sunrise
 createDate: 2026-08-13
+updateDate: 2026-09-03
 description: 해맞이에 대한 소개
 ---
 

@@ -1,6 +1,7 @@
 ---
 layout: text
 createDate: 2025-08-21
+updateDate: 2026-07-10
 page-name: Text
 page-name-ko: 글 귀
 ---

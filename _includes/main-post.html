@@ -76,7 +76,7 @@ function listPostsInVerboseLayout($latestPostsBox, jsonData, locale, options) {
                     $category.style.marginTop = "12px";
                     $category.classList = "post-list";
                     const $categoryTextContent = document.createElement("span");
-                    $categoryTextContent.textContent = capitalize(localize(category));
+                    $categoryTextContent.textContent = capitalize(localizeToKorean(category));
                     $categoryTextContent.style.fontWeight = 400;
                     $category.appendChild($categoryTextContent)
                     $latestPostsBox.appendChild($category);
@@ -111,8 +111,13 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
         || (localStorage.getItem("lang") === "en" ? ((post.url.includes("/sunrise") && !post.url.endsWith("/en/sunrise.html") && !post.url.endsWith("/sunrise.html")) || post.url.endsWith("/en/sunrise.html")) : !post.url.includes("/en/"))
         || (localStorage.getItem("lang") === "en" ? post.url.includes("/en/") : !post.url.includes("/en/")))
         .sort((a, b) => {
-            const aDate = a.createDate ? a.createDate : "1930-01-01";
-            const bDate = b.createDate ? b.createDate : "1930-01-01";
+            if (a.url.includes ("archives")) {
+                console.log(a);
+            }
+            const aCreateDate = a.createDate ? a.createDate : "1930-01-01";
+            const bCreateDate = b.createDate ? b.createDate : "1930-01-01";
+            const aDate = a.updateDate ? a.updateDate : aCreateDate;
+            const bDate = b.updateDate ? b.updateDate : bCreateDate;
             return new Date(bDate.replace(/-/g, '/')) - new Date(aDate.replace(/-/g, '/'));
         });
 
@@ -123,17 +128,32 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
         const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
         const nonUndefinedTitle = title ? title : post.title;
         const capitalizedTitle = capitalize(String(nonUndefinedTitle));
-
+        let postDescription = localStorage.getItem("lang") === "ko" ? localizeToKorean(post.category) : capitalize(String(post.category));
+        if (post.subcategory && localStorage.getItem("lang") === "en") {
+            postDescription = localizeToEnglish(post.subcategory);
+        }
+        if (post.subcategory && localStorage.getItem("lang") === "ko") {
+            postDescription = post.subcategoryKo;
+        }
+        if ((post.url.endsWith("/index.html") && post.category != "archives") ||  post.title === "Index" && (post.category !== "archives" || post.url.endsWith("/archives/index.html"))) {
+            postDescription = localStorage.getItem("lang") === "ko" ? "인덱스" : "Index";
+        }
+        if (post.category === "daily" && post.group) {
+            postDescription = post.group;
+        }
+        if (post.category === "sunrise" && post.title !== "Index") {
+            postDescription = postDescription + " " + post.createDate.slice(0, 4);
+        }
+        
         $post.innerHTML = `
             <div class='post-link-simple-layout'>
                 <div class='post-link' style="width: 100%;">
-                        <a class='post-link-hover' href="${post.url}" style="color: var(--text-color); display: inline-block; width: 100%" data-layout="${post.layout}"> 
-                            ${capitalizedTitle}
+                        <a class='post-link-hover' href="${post.url}" style="color: var(--text-color); display: inline-block; width: 100%" data-layout="${post.layout}" data-link-name="${capitalizedTitle}"> 
+                            ${capitalizedTitle} <span>(${postDescription})</span>
                         </a>
                 </div>
             </div>
         `;
-// (<span class='post-date'>${formattedDate}</span>)
         $latestPostsBox.appendChild($post);
     });
 
@@ -145,12 +165,12 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
                 const $pageInfoGuide = document.getElementById("page_info_guide");
                 if (link.dataset.layout && (link.dataset.layout === "auto-index" || link.dataset.layout === "index")) {
                     $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
-                    ? link.innerText + " 인덱스 페이지로 이동합니다."
-                    : "Go to the " + link.innerText + " index page.";    
+                    ? link.dataset.linkName + " 인덱스 페이지로 이동합니다."
+                    : "Go to the " + link.dataset.linkName + " index page.";    
                 } else {
                     $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
-                    ? link.innerText + " 페이지로 이동합니다."
-                    : "Go to the " + link.innerText + " Page.";
+                    ? link.dataset.linkName + " 페이지로 이동합니다."
+                    : "Go to the " + link.dataset.linkName + " page.";
                 }
             });
             link.addEventListener("mouseleave", () => {
@@ -174,7 +194,7 @@ function isTopMenuIndex(url) {
   || url === "/sunrise/en/index.html";
 }
 
-function localize(category) {
+function localizeToKorean(category) {
     if (localStorage.getItem("lang") !== "ko") return category;
 
     let localized;
@@ -198,6 +218,22 @@ function localize(category) {
         case "sunrise":
         localized = "해맞이";
         break;
+    }
+
+    return localized
+}
+
+function localizeToEnglish(category) {
+    if (localStorage.getItem("lang") !== "en") return category;
+
+    let localized;
+    switch(category) {
+        case "산책":
+        localized = "Walk";
+        break;
+
+        default:
+        localized = category;
     }
 
     return localized

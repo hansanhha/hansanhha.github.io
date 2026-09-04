@@ -3,6 +3,7 @@ layout: webpages
 page-name: Web Pages
 page-name-ko: 웹 페이지
 createDate: 2026-05-31
+updateDate: 2026-08-17
 tags: ikea catalogue mmca web design meseum mmca research lab inifinte mac the electric company 이케아 카탈로그 국현미 국립현대미술관 웹 디자인 뮤지엄 리서치랩 인피니트 맥
 ---
 

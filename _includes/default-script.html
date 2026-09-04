@@ -155,12 +155,40 @@ function printBlogInfoInSimpleLayout(title) {
   $themeBox.appendChild($light);
   $themeBox.appendChild($dark);
 
-  $utilityBox.appendChild($langBox);
   $utilityBox.appendChild($layoutBox);
   $utilityBox.appendChild($themeBox);
-  
+  $utilityBox.appendChild($langBox);
+
   $infoBox.appendChild($title);
   $infoBox.appendChild($utilityBox);
+
+  if (location.pathname === "/") {
+    const $additionalInfoBox =  document.createElement("div");
+    const $instagram = document.createElement("a");
+    const $rss = document.createElement("a");
+    const $aboutBlog = document.createElement("a");
+    $additionalInfoBox.classList.add("utiltiy-box-simple-layout");
+    $instagram.textContent = localStorage.getItem("lang") === "ko" ? "인스타그램" : "Instagram";
+    $instagram.href = "https://www.instagram.com/hansanhha/";
+    $instagram.style.color = "var(--text-color)";
+    $instagram.classList.add("hover-font-weight-800");
+    $instagram.target = "_blank";
+    $instagram.rel = "noopener noreferrer";
+    $rss.textContent = "RSS";
+    $rss.target = "_blank";
+    $rss.rel = "noopener noreferrer";
+    $rss.href = window.origin + "/feed.xml";
+    $rss.style.color = "var(--text-color)";
+    $rss.classList.add("hover-font-weight-800");
+    $aboutBlog.textContent = localStorage.getItem("lang") === "ko" ? "이 블로그에 대하여" : "About this blog";
+    $aboutBlog.href = localStorage.getItem("lang") === "ko" ? window.origin + "/projects/blog" : window.origin + "/projects/en/blog";
+    $aboutBlog.style.color = "var(--text-color)";
+    $aboutBlog.classList.add("hover-font-weight-800");
+    $additionalInfoBox.appendChild($instagram);
+    $additionalInfoBox.appendChild($rss);
+    $additionalInfoBox.appendChild($aboutBlog);
+    $infoBox.appendChild($additionalInfoBox);
+  }
 
   if (location.pathname !== "/" && !document.getElementById("not-found")) {
     const $indexPageWrapper = document.createElement("div");
@@ -183,14 +211,21 @@ function printBlogInfoInSimpleLayout(title) {
       ? location.pathname.slice(0, location.pathname.indexOf("/index.html")) 
       : pathname;
 
-    if (location.pathname.includes("/en")) {
-      pathname = location.pathname.slice(0, location.pathname.indexOf("/en")) ;
-      $indexPageBtn.href = window.origin + pathname;
+    if (location.pathname.includes("/en/")) {
+      pathname = location.pathname.slice(0, location.pathname.indexOf("/en/"));
+      if (pathname.split("/").length >= 3) {
+        const lastSlashIndex = pathname.lastIndexOf("/");
+        const parentPath = lastSlashIndex > 0 ? pathname.substring(0, lastSlashIndex) : "/";
+        $indexPageBtn.href = parentPath === '/' ? window.origin : window.origin + parentPath;
+      } else {
+        $indexPageBtn.href = window.origin + pathname;
+      }
     } else {
       const lastSlashIndex = pathname.lastIndexOf("/");
       const parentPath = lastSlashIndex > 0 ? pathname.substring(0, lastSlashIndex) : "/";
       $indexPageBtn.href = parentPath === '/' ? window.origin : window.origin + parentPath;
     }
+    
     $indexPageBtn.style.color = "var(--text-color)";
     $indexPageBtn.textContent = localStorage.getItem("lang") === "ko"
       ? "인덱스 페이지로 이동"
@@ -213,11 +248,7 @@ function printBlogInfoInSimpleLayout(title) {
     const $dateBox = document.createElement("div");
     const $createDate = document.createElement("div");
     const $updateDate = document.createElement("div");
-    $dateBox.style.display = "flex";
-    $dateBox.style.flexDirection = "column";
-    $dateBox.style.fontSize =  window.matchMedia('(max-width: 960px)').matches ? "20px" : "24px";
-    $dateBox.style.gap =  "4px";
-    $dateBox.style.marginTop =  "8px";
+    $dateBox.classList.add("date-box-simple-layout");
     $createDate.textContent = formattedCreateDate ? localStorage.getItem("lang") === "ko" ? formattedCreateDate + "에 작성되었습니다." : "It was written on " + formattedCreateDate : "";
     $updateDate.textContent = formattedUpdateDate ? localStorage.getItem("lang") === "ko" ? formattedUpdateDate + "에 마지막으로 수정되었습니다." : "Last updated on " + formattedUpdateDate : "";
     $dateBox.appendChild($createDate);
@@ -258,6 +289,11 @@ function printBlogInfoInSimpleLayout(title) {
     printIdxDescriptionInMobile();
   }
   
+  const $MainContent = document.getElementsByClassName("main-content");
+  if ($MainContent && $MainContent[0]) {
+    $MainContent[0].style.marginTop = "0";
+  }
+  
   document.body.insertBefore($infoBox, document.body.firstChild);    
 }
 
@@ -287,12 +323,12 @@ function printIdxDescription() {
           const $pageInfoGuide = document.getElementById("page_info_guide");
           if (link.dataset.layout && (link.dataset.layout === "auto-index" || link.dataset.layout === "index")) {
               $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
-              ? link.innerText + " 인덱스 페이지로 이동합니다."
-              : "Go to the " + link.innerText + " index page.";    
+              ? link.textContent + " 인덱스 페이지로 이동합니다."
+              : "Go to the " + link.textContent + " index page.";    
           } else {
               $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
-              ? link.innerText + " 페이지로 이동합니다."
-              : "Go to the " + link.innerText + " Page.";
+              ? link.textContent + " 페이지로 이동합니다."
+              : "Go to the " + link.textContent + " page.";
           }
       });
       link.addEventListener("mouseleave", () => {
@@ -568,7 +604,7 @@ function printBlogInfosInVerboseLayout() {
       document.getElementById("github").textContent = "GitHub";
       document.getElementById("instagram").textContent = "Instagram";
       document.getElementById("cosmos").textContent = "Cosmos";
-      document.getElementById("about_blog").textContent = "About";
+      document.getElementById("about_blog").textContent = "About this blog";
       if (document.getElementById("not-found")) document.getElementById("not-found").textContent = "404 Not Found";
       if (document.getElementById("not-found-text")) document.getElementById("not-found-text").textContent = "Cannot find the page.";
   } else {
