@@ -156,8 +156,8 @@ async function loadIndexByCategoryInVerboseLayout() {
         const jsonData = JSON.parse(textData);
 
         const categorisedIndexes = category === "sunrise"
-            ? getCategorisedIndexes(pageName, jsonData, category, sort)
-            : filterNestedIndexes(pageName, filterIndexesByLocale(getCategorisedIndexes(pageName, jsonData, category, sort)));
+            ? getCategorisedIndexes(idxName, jsonData, category, sort)
+            : filterNestedIndexes(pageName, filterIndexesByLocale(getCategorisedIndexes(idxName, jsonData, category, sort)));
 
         if (categorisedIndexes.length === 0) {
             const $none = document.createElement("p");
