@@ -435,9 +435,15 @@ They're partly blocked by the trees, but that's okay. If you think about it as s
 
 ![alt text](../images/여의도_불꽃축제4.jpeg)
 
+<video controls>
+    <source src="../videos/여의도_불꽃축제2.mov">
+</video>
+
 They also played music between the fireworks, and, as luck would have it, The Weeknd's *Out of Time* came on.
 
 Recently, a new version of *Out of Time*, featuring singer-songwriter Tomoko Aran, was released as a single.
+
+Although the melody and The Weeknd’s voice give the song a trendy, atmospheric feel, it’s actually about regret over a past relationship.
 
 <video controls>
    <source src="../videos/여의도_불꽃축제.mov">
