@@ -214,6 +214,11 @@ body::-webkit-scrollbar {
     font-size: 40px;
   }
 
+  .page-guide-font-simple-layout {
+    font-size: 40px;
+    font-weight: 500;
+  }
+
   img {
     max-width: 100%;
     height: auto;
@@ -254,6 +259,11 @@ body::-webkit-scrollbar {
   
   .error-box-simple-layout {
     font-size: 56px;
+  }
+
+  .page-guide-font-simple-layout {
+    font-size: 56px;
+    font-weight: 500;
   }
 
   img {
@@ -380,6 +390,15 @@ body::-webkit-scrollbar {
 }
 
 .hover-font-weight-800:hover {
+  font-weight: 800;
+}
+
+.hashtag-link {
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.hashtag-link:hover {
   font-weight: 800;
 }
 
