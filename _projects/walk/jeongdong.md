@@ -9,6 +9,7 @@ createDate: 2026-08-21
 group: 중구
 subgroup: 정동
 description: 프로젝트 산책 - 중구 정동
+thumbnail: 이대원_할아버지.jpeg
 ---
 
 글의 순서

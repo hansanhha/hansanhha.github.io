@@ -139,7 +139,7 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
         $post.innerHTML = `
             <div class='post-link-simple-layout'>
                 <div class='post-link' style="width: 100%;">
-                        <a class='post-link-hover' href="${post.url}" style="color: var(--text-color); display: inline-block; width: 100%" data-layout="${post.layout}" data-link-name="${capitalizedTitle}"> 
+                        <a class='post-link-hover' href="${post.url}" style="color: var(--text-color); display: inline-block; width: 100%" data-layout="${post.layout}" data-link-name="${capitalizedTitle}" data-category="${post.category}" data-subcategory="${post.subcategory}" data-thumbnail="${post.thumbnail}"> 
                             ${capitalizedTitle} <span>(${postDescription})</span>
                         </a>
                 </div>
@@ -163,10 +163,32 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
                     ? link.dataset.linkName + " 페이지로 이동합니다."
                     : "Go to the " + link.dataset.linkName + " page.";
                 }
+                // if (link.dataset.category && link.dataset.thumbnail !== "null") {
+                //     const $idxDescriptionBox = document.getElementById("idx_description_box");
+                //     if ($idxDescriptionBox && !document.getElementById("idx_description_thumbnail")) {
+                //         const $thumbnail = document.createElement("img");
+                //         $thumbnail.id = "idx_description_thumbnail";
+                //         let imgPath = location.origin + "/" + link.dataset.category;
+                //         if (link.dataset.subcategory !== "null") {
+                //             imgPath = imgPath + "/" + link.dataset.subcategory;
+                //         }
+                //         imgPath = imgPath + "/images/" + link.dataset.thumbnail;
+                //         $thumbnail.src = imgPath;
+                //         $thumbnail.style.marginTop = "10px";
+                //         $thumbnail.style.objectFit = "cover";
+                //         $thumbnail.style.maxWidth = "70%";
+                //         $thumbnail.style.alignSelf = "end";
+                //         $idxDescriptionBox.appendChild($thumbnail);
+                //     }
+                // }
             });
             link.addEventListener("mouseleave", () => {
                 const $pageInfoGuide = document.getElementById("page_info_guide");
+                const $thumbnail  = document.getElementById("idx_description_thumbnail");
                 $pageInfoGuide.innerText = "";
+                if ($thumbnail) {
+                    $thumbnail.remove();
+                }
             });
         });
     }

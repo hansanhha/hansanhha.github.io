@@ -10,6 +10,7 @@ updateDate: 2026-09-06
 group: Jung-gu
 subgroup: Jeongdong
 translatedByAI: true
+thumbnail: 이대원_할아버지.jpeg
 ---
 
 Table of Contents

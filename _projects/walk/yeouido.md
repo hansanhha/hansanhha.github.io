@@ -8,6 +8,7 @@ createDate: 2026-09-06
 group: 영등포구
 subgroup: 여의도
 description: 프로젝트 산책 - 영등포구 여의도
+thumbnail: 여의도_불꽃축제4.jpeg
 ---
 
 글의 순서

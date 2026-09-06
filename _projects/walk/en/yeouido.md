@@ -8,6 +8,7 @@ createDate: 2026-09-06
 group: Yeongdeungpo-gu
 subgroup: Yeouido
 translatedByAI: true
+thumbnail: 여의도_불꽃축제4.jpeg
 ---
 
 Table of Contents

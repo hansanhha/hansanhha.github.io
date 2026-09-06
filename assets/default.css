@@ -95,6 +95,20 @@ body::-webkit-scrollbar {
       margin-bottom: 16px;
       color: #F5F4F0;
   }
+
+  .hashtag-link {
+    color: var(--text-color);
+    font-weight: 500;
+  }
+
+  .hashtag-link:visited {
+    color: var(--text-color);
+    font-weight: 500;
+  }
+
+  .hashtag-link:hover {
+    font-weight: 800;
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -132,6 +146,20 @@ body::-webkit-scrollbar {
       margin-bottom: 16px;
       color: #2B2B2B;
   }
+
+  .hashtag-link {
+    color: var(--text-color);
+    font-weight: 500;
+  }
+
+  .hashtag-link:visited {
+    color: var(--text-color);
+    font-weight: 500;
+  }
+
+  .hashtag-link:hover {
+    font-weight: 800;
+  }
 }
 
 :root[data-theme="dark"] {
@@ -168,6 +196,20 @@ body::-webkit-scrollbar {
       margin-bottom: 16px;
       color: #F5F4F0;
   }
+
+  .hashtag-link {
+    color: var(--text-color);
+    font-weight: 500;
+  }
+
+  .hashtag-link:visited {
+    color: var(--text-color);
+    font-weight: 500;
+  }
+
+  .hashtag-link:hover {
+    font-weight: 800;
+  }
 }
 
 :root[data-theme="light"] {
@@ -197,6 +239,20 @@ body::-webkit-scrollbar {
   .archive-text-desc {
       margin-bottom: 16px;
       color: #2B2B2B;
+  }
+
+  .hashtag-link {
+    color: var(--text-color);
+    font-weight: 500;
+  }
+
+  .hashtag-link:visited {
+    color: var(--text-color);
+    font-weight: 500;
+  }
+
+  .hashtag-link:hover {
+    font-weight: 800;
   }
 }
 
@@ -397,15 +453,6 @@ body::-webkit-scrollbar {
 }
 
 .hover-font-weight-800:hover {
-  font-weight: 800;
-}
-
-.hashtag-link {
-  color: var(--text-color);
-  font-weight: 500;
-}
-
-.hashtag-link:hover {
   font-weight: 800;
 }
 
