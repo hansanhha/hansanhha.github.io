@@ -2,136 +2,218 @@
 layout: default
 page-name: Blog
 page-name-ko: 블로그
+page-title: Blog Introduction
+page-title-ko: 블로그에 대한 소개
 createDate: 2026-08-09
+updateDate: 2026-09-06
+description: Blog Introduction
+translatedByAI: true
 ---
 
-A space to collect the things I love and record my thoughts.
+A place to collect and record the things I like.
 
-Start Date: 2025-07-01T04:42:20Z
+Start Date: <span id="project-start-date">2025-07-01T04:42:20Z</span>
 
 Status: In Progress
 
 Address: <a href="https://hansanhha.github.io" target="_blank" rel="noopener noreferrer">https://hansanhha.github.io</a>
 
+Updated: <span id="blog-update-info"></span>
+
 ---
 
-The menu I categorized
+I created this blog as a place to leave behind thoughts, images, and various other things.
 
-Search
+Although the start date is set to July 1, 2025, the blog actually began sometime before then.
 
-제목, 내용 또는 키워드를 기반으로 블로그 내의 게시글들을 검색할 수 있는 기능이다. Jekyll의 Liquid 템플릿과 빌드 과정을 이용하여 search.json 파일을 만든 후 자바스크립트로 페치하고 필터링한 결과를 표시한다. [search.json](https://hansanhha.github.io/search.json)
+Since I could no longer determine the exact date when I first started it, I use the creation date of the GitHub repository that I recreated after deleting the original one.
 
-Projects
+Every post on the blog belongs to one of five categories: Projects, Programming, Daily Life, Archive, or Sunrise.
 
-관심있는 주제, 만들고 싶은 것 또는 주기적으로 반복하는 공통된 행동을 프로젝트로 정의하고 운영한다. 단순한 생각이나 행동에 이름과 목적을 덧붙이고 실행과 기록을 통해 하나의 의미 있는 단위로 만들어간다. 프로젝트는 생각에서 실행으로 이어지고, 그 과정과 결과가 축적되는 선형적인 흐름을 가지며 흩어진 행위에 견고한 의미를 부여한다.
+Categories serve both as folders that contain posts and as indexes. They are used to organize posts and can also have subcategories.
 
-프로젝트를 설명하는 양식은 다음과 같다.
+The purpose and character of each category are as follows.
 
-시작일시는 ISO-8601 UTC 형식으로 표시하고, 상태는 진행 중/일시 중단/종료 중 하나로 표시한다. 일시 중단과 종료 상태인 경우엔 그 시점을 명시한다.
+**Projects**
 
-주소는 인터넷 웹 주소 또는 실제 공간 주소를 입력한다.
+I define and manage things I am interested in, want to create, or regularly do as projects. By giving simple thoughts or actions a name and a purpose, then developing them through execution and documentation, I turn them into meaningful units.
+
+A project moves from thought to action, accumulating its process and results along the way. This linear flow gives a lasting sense of meaning to otherwise scattered activities.
+
+The blog itself is also a project.
+
+The format used to describe a project is as follows.
 
 ```text
-간단한 소개
+A brief introduction
 
-시작일시
+Start Date
 
-상태
+Status
 
-주소
+Address
 
----
+Updated
 
-프로젝트에 대한 내용
+--- Separator
+
+Details about the project
 ```
 
-Code
+The start date includes the year, month, day, day of the week, and time. The status is indicated as one of three states: In Progress, Paused, or Completed. For paused and completed projects, the date of the status change is also specified.
 
-프로그래밍과 컴퓨터 과학에 대해 학습한 개념이나 직접 경험한 내용을 작성한다. 단순한 사용법부터 특정 도구에 대한 원리와 동작 방식까지 폭넓게 다루며, 구현한 것과 실험한 내용을 남기고자 한다.
+Paused means that I may return to the project someday, while Completed means that I do not intend to continue it.
 
-Daily
+Address refers to either a web address or a physical location.
 
-일상 속에서 경험한 것들과 떠오르는 생각들을 기록하는 공간이다. 주로 월초 또는 월말에 업로드한다.
+Updated shows the date and time of the latest commit pushed to the GitHub server, indicating when the blog was most recently updated. This information is omitted from the introductions of other projects.
 
-Archives
+**Programming**
 
-시간이 지나며 모아온 관심사와 자료들을 한 곳에 담아둔 곳으로 기억에 남기고 싶은 것들을 자료의 형태와 주제별로 구성해놓았다.
+This section contains concepts I have learned about programming and computer science, as well as things I have experienced firsthand.
 
-Sunrise
+It covers a wide range of topics, from basic usage to the underlying principles and mechanisms of specific tools. I also document things I have implemented and experiments I have conducted.
 
-매월 초, 새로운 한 달의 시작을 맞이하기 위해 해를 보러 가는 작은 프로젝트다. 지난 시간을 돌아보며 앞으로의 시간을 생각한다. [해맞이에 대한 설명](https://hansanhha.github.io/projects/en/sunrise)
+**Daily Life**
+
+A space for recording things I experience in everyday life and thoughts that come to mind. Posts are usually uploaded at the beginning or end of each month.
+
+**Archive**
+
+A collection of interests and resources I have gathered over time, organized by format and subject in one place. It is where I keep things that I want to remember.
+
+**Sunrise**
+
+A small project where I go out to watch the sunrise at the beginning of each month to welcome a new month.
+
+I look back on the time that has passed and think about the time ahead. [Introduction to Sunrise](https://hansanhha.github.io/projects/sunrise)
 
 ---
 
-블로그 디자인에 관하여: 기본 화면 구성에 대한 설명
+About the "Simple" Interface
 
-콘텐츠를 감싸고 있는 상단과 하단의 영역은 고정적으로 유지되며 콘텐츠의 내용만 동적으로 변경된다. 유틸리티의 글꼴 크기 조절 기능은 콘텐츠 영역의 글꼴 크기에만 영향을 미친다.
-
-콘텐츠의 종류는 크게 네 가지로 분류된다. 인덱스 페이지와 게시글 페이지는 현재 페이지의 경로를 나타내는데, 링크를 통해 특정 페이지로 이동할 수 있다.
+The blog's structure and posts are presented in a simple and intuitive way.
 
 ```text
-Home Button and Search Bar
+Title
 
-Utility: 블로그에 대한 정보와 기능을 담은 구역 (접속일, 접속 환경, 글꼴 크기, 배경 색상, 선호하는 언어 등)
+Utilities (interface, background color, preferred language, link to index page)
 
-Menu: 블로그 메뉴를 표시하는 구역 (프로젝트, 프로그래밍, 일상, 아카이브, 해맞이)
-
----
-
-콘텐츠
-├─ 홈페이지: 가장 최근에 작성한 글 10개를 표시하는 페이지. 한글과 영문에 따라 다르게 표시될 수 있다
-├─ 인덱스: 특정 카테고리에 속한 글들을 작성일 기준 내림차순으로 정렬하는 페이지. '/카테고리/' 형태로 페이지의 계층을 표시하며 계층의 링크를 클릭하여 이동할 수 있다. 선택적으로 제목이 나타난다.
-├─ 게시글: 선택한 글의 내용을 나타내는 페이지. 현재 페이지에 대한 경로를 '/카테고리/페이지 | 작성일' 형태로 표시하며 페이지의 이름과 작성일은 링크가 아닌 일반 문자열로 취급된다. 선택적으로 제목이 나타난다.
-└─ 유틸리티: 검색 결과나 페이지 찾을 수 없음을 표시하는 페이지
----
-
-Miscellaneous: 블로그에 표시할 공통된 정보나 외부 링크
+Content
+├─ Home: A page listing all posts on the blog, sorted in descending order by date.
+├─ Index: A page listing posts belonging to a specific category, sorted in descending order by date.
+├─ Post: A page displaying the contents of the selected post.
+└─ Utilities: Pages used to display errors or indicate that a page could not be found.
 ```
 
-Not using semantic tags, 8px spacing system
+The title represents the title of the current page. On the home page, it is displayed as "한산하 HANSANHHA."
 
-Fonts: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif
+Posts listed on the home page are sorted in descending order by their most recently modified date. Posts that have never been modified are sorted by their original publication date.
 
-Default font size: 16px
+The category of each post is displayed next to its title. If the post belongs to a subcategory, the subcategory is displayed instead.
+
+The "Go to Index" button takes you to the index page of the current page's parent category.
+
+The common design across all interfaces follows these principles:
+
+- An 8px spacing system
+- Font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif
+- Base font size: 16px
+- Line height: 24px
 
 ---
 
-블로그 디자인에 영감을 준 페이지
+About the "Verbose" Interface
 
-<a href="https://catern.com" target="_blank" rel="noopener noreferrer">catern</a> 위에서 아래로 자연스럽게 이어지는 수직적인 흐름과 불필요한 장식을 덜어낸 투박하고 직관적인 인터페이스를 참고하였다.
+The verbose interface organizes information about the blog, its categories, and its posts in a structured way.
+
+```text
+Home button and search bar
+
+Utilities: A section containing information and features related to the blog
+           (access environment, interface, font size, background color,
+           preferred language, etc.)
+
+Menu: A section displaying the blog's main categories
+      (Projects, Programming, Daily Life, Archive, Sunrise)
+
+Content
+├─ Home: A page displaying the 10 most recently written posts.
+│        The posts may differ depending on whether the page is in Korean or English.
+├─ Index: A page listing posts belonging to a specific category in descending
+│         order by date. The page hierarchy is displayed in the form
+│         "/category/", and each level can be accessed by clicking its link.
+│         The title may optionally be displayed.
+├─ Post: A page displaying the contents of the selected post.
+│        The current page's path is displayed in the form
+│        "/category/page | date". The page name and date are treated as
+│        plain text rather than links. The title may optionally be displayed.
+└─ Utilities: Pages used to display search results or indicate that a page
+              could not be found.
+
+Other Information: Common information or external links displayed on the blog
+```
+
+The areas above and below the content remain fixed, while only the content itself changes dynamically.
+
+The blog supports searching based on post titles and content. Changing the font size affects only the font size within the content area.
+
+On index and post pages, the current page's path is displayed hierarchically. Each level can be accessed through its corresponding link.
+
+Some posts in the Archive and Sunrise categories can also be navigated sequentially using the "Previous Page" and "Next Page" buttons.
+
+---
+
+Pages That Inspired Me
+
+<a href="https://catern.com" target="_blank" rel="noopener noreferrer">catern</a>
+
+I took inspiration from its vertical flow, which naturally leads from top to bottom, and its rough yet intuitive interface with unnecessary decoration stripped away.
 
 ![catern](../images/catern.png)
 
-<a href="https://blainsmith.com" target="_blank" rel="noopener noreferrer">blainsmith</a> 상단 메뉴 나열 방법과 게시글의 '일자 - 제목' 표시 형태를 참고하였다.
+<a href="https://blainsmith.com" target="_blank" rel="noopener noreferrer">blainsmith</a>
+
+I referenced the way the top menu is arranged and the way posts are displayed in an "date - title" format. (The blog now displays titles only.)
 
 ![blainsmith](../images/blainsmith.png)
 
-<a href="https://khakis2020.com/blog" target="_blank" rel="noopener noreferrer">Khakis</a>  이미지들을 가로로 표시한 디자인으로부터 영감을 받아 아카이브에 모아둔 이미지들을 가로로 스크롤할 수 있도록 구현하였다.
+<a href="https://khakis2020.com/blog" target="_blank" rel="noopener noreferrer">Khakis</a>
+
+Inspired by its horizontal image layout, I implemented horizontal scrolling for images collected in the Archive.
 
 ![khakis](../images/khakis.png)
 
----
+<a href="http://kimheecheon.com/works/" target="_blank" rel="noopener noreferrer">Kim Heecheon</a>
 
-Roadmap:
+Inspired by its simple presentation of links, I added the "Simple" interface.
 
-✓ Dark/Light mode
-
-✓ Image descriptions
-
-✓ Search Bar
-
-✓ Restructure the layout
-
-✓ Switch post language (Korean/English)
-
-Redesign archives menu
-
-Organize default layout design system
-
-Refactor source code
+![alt text](../images/kimheecheon.png)
 
 ---
 
-아카이브
+Major Changes
 
-[디자인 개편 이전 블로그](https://hansanhha.github.io/legacy)
+☑︎ Dark/Light Mode
+
+☑︎ Image Descriptions
+
+☑︎ Search
+
+☑︎ Complete Design Overhaul
+
+☑︎ Korean/English Post Switching
+
+☑︎ Added the "Simple" Interface
+
+◻︎ Redesign the Archive Menu
+
+◻︎ Establish a Design System for the Default Layout
+
+◻︎ Clean Up the Source Code
+
+---
+
+Archive
+
+<a rel="noopener noreferrer" target="_blank" href="https://hansanhha.github.io/legacy">Legacy Blog</a>

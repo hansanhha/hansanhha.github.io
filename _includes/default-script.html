@@ -24,6 +24,7 @@ function handleEmptyContent() {
       $empty.textContent = localStorage.getItem("lang") === "ko" ? "아직 아무것도 작성되지 않았습니다." : "It's completely blank";
   } else if (window.location.pathname !== "/" && $pageContentWrapper && $pageContentWrapper.childElementCount === 0) {
       const $span = document.createElement("div");
+      $span.id = "empty-span";
       $span.classList.add("page-guide-font-simple-layout");
       $span.style.marginBottom = "3px";
       $span.textContent = localStorage.getItem("lang") === "ko" ? "아직 아무것도 작성되지 않았습니다." : "It's completely blank";
@@ -31,6 +32,7 @@ function handleEmptyContent() {
       $pageContentWrapper.appendChild($span);
   } else if ($mainContent && $mainContent[0] && $mainContent[0].childElementCount === 0) {
       const $span = document.createElement("div");
+      $span.id = "empty-span";
       $span.classList.add("page-guide-font-simple-layout");
       $span.textContent = localStorage.getItem("lang") === "ko" ? "아직 아무것도 작성되지 않았습니다." : "It's completely blank";
       $mainContent[0].innerHTML = "";
@@ -59,6 +61,7 @@ function renderSimpleLayout() {
   notFoundInSimpleLayout();
   const title = getPageTitle();
   printBlogInfoInSimpleLayout(title);
+  printUseofAITranslating();
   setGoToTop();
 }
 
@@ -220,7 +223,7 @@ function printBlogInfoInSimpleLayout(title) {
 
     if (location.pathname.includes("/en/")) {
       pathname = location.pathname.slice(0, location.pathname.indexOf("/en/"));
-      if (pathname.split("/").length >= 3) {
+      if (pathname.split("/").length >= 4) {
         const lastSlashIndex = pathname.lastIndexOf("/");
         const parentPath = lastSlashIndex > 0 ? pathname.substring(0, lastSlashIndex) : "/";
         $indexPageBtn.href = parentPath === '/' ? window.origin : window.origin + parentPath;
@@ -243,7 +246,7 @@ function printBlogInfoInSimpleLayout(title) {
   }
 
   if (!location.pathname.endsWith("/index.html") && !location.pathname.endsWith("/")) {
-     const createDate = document.querySelector('meta[createDate]').getAttribute("createDate");
+    const createDate = document.querySelector('meta[createDate]').getAttribute("createDate");
     const updateDate = document.querySelector('meta[updateDate]').getAttribute("updateDate");
     const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
     const formattedCreateDate = createDate 
@@ -384,6 +387,7 @@ function renderVerboseLayout() {
   setBlogDefaultConfigs();
   markBlogSettingsInVerboseLayout();
   printBlogInfosInVerboseLayout();
+  printUseofAITranslating();
   configHTMLElements();
   configBlogSearchInVerboseLayout();
 }
@@ -1460,6 +1464,30 @@ function focusImg($img) {
     });
 
     document.body.style.overflow = "hidden";
+}
+
+function printUseofAITranslating() {
+  const transaltedByAI = document.querySelector('meta[translatedByAI]').getAttribute("translatedByAI");
+  if (!transaltedByAI) {
+    return;
+  }
+
+  if (document.getElementById("empty") || document.getElementById("empty-span")) {
+    return;
+  }
+
+  
+  const $mainContent = document.getElementsByClassName("main-content")
+  if ($mainContent && $mainContent[0] && $mainContent[0].firstElementChild) {
+    const $usingAI = document.createElement("p");
+    $usingAI.textContent = localStorage.getItem("lang") === "ko"
+      ? "※ 이 글은 AI를 사용하여 번역한 글입니다."
+      : "※ Originally written in Korean and translated into English with AI.";
+    $usingAI.style.fontWeight = "600";
+    $usingAI.style.textDecoration = "underline";
+    $usingAI.style.textDecorationThickness = "2px";
+    $mainContent[0].prepend($usingAI);
+  }
 }
 
 function toggleIndexGuideInfo() {
