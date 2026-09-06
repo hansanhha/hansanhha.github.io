@@ -698,7 +698,7 @@ function configHTMLElements() {
   const hyperlinks = Array.from(document.getElementsByTagName("a"));
   hyperlinks.forEach((link) => {
       if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "simple") {
-        if (link.href.startsWith(location.href + "#")) {
+        if (link.href.includes(location.pathname + "#")) {
           link.classList.add("hashtag-link");
 
           if (!document.getElementById("idx_description_box")) {
@@ -713,16 +713,35 @@ function configHTMLElements() {
             document.body.appendChild($idxDescriptionBox);
           }
 
-          link.addEventListener("mouseover", () => {
-            const $pageInfoGuide = document.getElementById("page_info_guide");
-              $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
-                  ? link.textContent + " 단락으로 이동합니다."
-                  : "Go to the " + link.textContent + " paragraph.";    
-          });
-          link.addEventListener("mouseleave", () => {
-              const $pageInfoGuide = document.getElementById("page_info_guide");
-              $pageInfoGuide.innerText = "";
+          if (window.matchMedia('(max-width: 960px)').matches) {
+              link.addEventListener("touchstart", () => {
+                const $pageInfoGuide = document.getElementById("page_info_guide");
+                $pageInfoGuide.style.backgroundColor = "var(--bg-color)";
+                $pageInfoGuide.style.color = "var(--text-color)";
+                $pageInfoGuide.style.paddingLeft = "1px";
+                $pageInfoGuide.style.paddingRight = "1px";
+                $pageInfoGuide.style.zIndex = "9999";
+                $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
+                    ? link.textContent + " 단락으로 이동합니다."
+                    : "Go to the " + link.textContent + " paragraph.";    
+
+                setTimeout(() => {
+                    const $pageInfoGuide = document.getElementById("page_info_guide");
+                    $pageInfoGuide.innerText = "";
+                }, 1000);
             });
+          } else {
+            link.addEventListener("mouseover", () => {
+              const $pageInfoGuide = document.getElementById("page_info_guide");
+                $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
+                    ? link.textContent + " 단락으로 이동합니다."
+                    : "Go to the " + link.textContent + " paragraph.";    
+            });
+            link.addEventListener("mouseleave", () => {
+                const $pageInfoGuide = document.getElementById("page_info_guide");
+                $pageInfoGuide.innerText = "";
+              });
+          }
         }
       }
 

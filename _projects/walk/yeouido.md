@@ -433,6 +433,10 @@ IFC몰과 더현대 근처에는 카페꼼마라고 하는 북카페 겸 대형 
 
 ![alt text](./images/여의도_불꽃축제4.jpeg)
 
+<video controls>
+    <source src="./videos/여의도_불꽃축제2.mov">
+</video>
+
 노래도 중간중간 틀어주는데, 마침 위켄드의 Out of Time이 나왔다.
 
 최근에는 Tomoko Aran이라고 하는 싱어송라이터와 콜라보한 Out of Time이 싱글 앨범으로 발매됐다.

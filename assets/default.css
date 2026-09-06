@@ -205,6 +205,10 @@ body::-webkit-scrollbar {
     font-size: 24px;
   }
 
+  .index-description-simple-layout {
+    max-width: 100%;
+  }
+
   .utiltiy-box-simple-layout {
     gap: 8px;
     line-height: 16px;
@@ -251,6 +255,10 @@ body::-webkit-scrollbar {
 @media (min-width: 769px) {
   .post-link-simple-layout {
     font-size: 28px;
+  }
+
+  .index-description-simple-layout {
+    max-width: 55%;
   }
 
   .utiltiy-box-simple-layout {
@@ -334,7 +342,6 @@ body::-webkit-scrollbar {
   font-size: 32px;
   font-weight: 600;
   text-align: right;
-  max-width: 55%;
   overflow-wrap: break-word;
   word-break: break-word;
   white-space: normal;
