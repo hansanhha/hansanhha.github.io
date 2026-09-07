@@ -287,6 +287,10 @@ function printBlogInfoInSimpleLayout(title, parentIndexName) {
       ? "인덱스 페이지로 이동"
       : "Go to the index page";
     $indexPageBtn.addEventListener("mouseover", () => {
+      if (window.matchMedia('(max-width: 960px)').matches) {
+        return;
+      }
+
       let $idxDescriptionBox = document.getElementById("idx_description_box");
       let $pageInfoGuide = document.getElementById("page_info_guide");
       if (!$idxDescriptionBox) {
