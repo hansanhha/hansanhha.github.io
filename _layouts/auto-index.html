@@ -353,7 +353,7 @@ function organizeGroup(groupedIndexesMap, $group, locale, options) {
 function capitalize(str) {
   return str
     .split(" ")
-    .map(word => isRequiredCapitalize(word.charAt(0)) 
+    .map(word => isRequiredCapitalize(word) 
                   ? word.charAt(0).toUpperCase() + word.slice(1)
                   : word)
     .join(" ");

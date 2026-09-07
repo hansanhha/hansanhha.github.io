@@ -753,6 +753,13 @@ function getPageTitleAndParentIndexName() {
     parentIndexName = "homepage";
   }
 
+  if (location.pathname.split("/").filter(path => path).length >= 3) {
+    const lastSlashIndex = location.pathname.lastIndexOf("/");
+    const currentPath = lastSlashIndex > 0 ? location.pathname.substring(0, lastSlashIndex) : "/";
+    const currentPathLastSlashIndex = currentPath.lastIndexOf("/");
+    parentIndexName = currentPath.slice(currentPathLastSlashIndex + 1);
+  }
+
   if (subcategory && subcategory !== "null" 
       && !(location.href.endsWith(subcategory + "/") || location.href.endsWith(subcategory + "/index.html")
           || location.href.endsWith(subcategory + "/en/") || location.href.endsWith(subcategory + "/en/index.html"))) {
@@ -1351,6 +1358,14 @@ function localize(category) {
         localized = "아카이브";
         break;
 
+        case "images":
+        localized = "이미지";
+        break;
+
+        case "videos":
+        localized = "동영상";
+        break;
+
         case "sunrise":
         localized = "해맞이";
         break;
@@ -1405,7 +1420,7 @@ function localizeToEnglish(category) {
 function capitalize(str) {
   return str
     .split(" ")
-    .map(word => isRequiredCapitalize(word.charAt(0)) 
+    .map(word => isRequiredCapitalize(word) 
                   ? word.charAt(0).toUpperCase() + word.slice(1)
                   : word)
     .join(" ");
