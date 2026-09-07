@@ -757,6 +757,12 @@ function getPageTitleAndParentIndexName() {
     ? localize(parentIndexName)
     : capitalize(localizeToEnglish(parentIndexName));
 
+  if (parentIndexName === "Sunrise" || parentIndexName === "해맞이") {
+    if (location.pathname.includes("/sunrise/20") && !(location.pathname.endsWith("/") || location.pathname.endsWith("/index.html"))) {
+      parentIndexName = parentIndexName + " " + location.pathname.slice(location.pathname.indexOf("/sunrise/") + 9, location.pathname.lastIndexOf("/sunrise/") + 13);
+    }
+  }
+
   return [title, parentIndexName];
 }
 
