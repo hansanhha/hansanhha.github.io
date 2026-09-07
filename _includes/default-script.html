@@ -410,8 +410,10 @@ function printIdxDescription() {
               : "Go to the " + link.textContent + " index page.";    
           } else {
               $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
-              ? link.textContent + " 페이지로 이동합니다."
-              : "Go to the " + link.textContent + " page.";
+              ? location.pathname.startsWith("/sunrise/") || location.pathname.startsWith("/sunrise/index.html") 
+                ? "해맞이 " + link.textContent + " 인덱스 페이지로 이동합니다." :  link.textContent + " 페이지로 이동합니다."
+              : location.pathname.startsWith("/sunrise/") || location.pathname.startsWith("/sunrise/index.html") 
+                ? "Go to the Sunrise " + link.textContent + " index page." : "Go to the " + link.textContent + " page.";
           }
       });
       link.addEventListener("mouseleave", () => {
