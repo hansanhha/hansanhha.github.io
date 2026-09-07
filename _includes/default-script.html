@@ -142,7 +142,7 @@ function printBlogInfoInSimpleLayout(title, parentIndexName) {
   $dark.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
 
   function displayPageInfoGuideTextContentOnlyDesktop(korean, english) {
-    if (!window.matchMedia('(max-width: 960px)').matches) {
+    if (window.matchMedia('(max-width: 960px)').matches) {
       return;
     }
 
