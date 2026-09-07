@@ -128,7 +128,7 @@ It's also a great movie for enjoying Meg Ryan and Tom Hanks' performances and st
 
 I liked the final piano outro of the song “No Reply.” It evokes a sense of longing and wistfulness while still having a slightly raw quality to it.
 
-So I cut out just the very end and uploaded it to the blog. [No Reply](../archives/videos/piano)
+So I cut out just the very end and uploaded it to the blog. [No Reply](../archive/videos/piano)
 
 Apparently, “deadbeat” can refer to a dead beat—a lousy or amateurish beat—or to someone who refuses to work, lacks responsibility, and fails to fit into society. In other words, a slacker or someone who's unemployed.
 

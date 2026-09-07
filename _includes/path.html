@@ -69,8 +69,8 @@ function printPaths() {
     $createDate.innerText = "| " +  dateInfo;
   }
 
-  const archivesPathLinks = document.querySelectorAll(".archive-path-link");
-  archivesPathLinks.forEach((link) => {
+  const archivePathLinks = document.querySelectorAll(".archive-path-link");
+  archivePathLinks.forEach((link) => {
     link.style.marginLeft = "0.4px";
     link.textContent = "/" + (localStorage.getItem("lang") === "ko" ? convertLinknameToKo(link.dataset.pathName) : capitalize(link.dataset.pathName));
   });
@@ -174,7 +174,7 @@ function convertLinknameToKo(linkname) {
       return '프로그래밍';
     case 'daily':
       return '일상';
-    case 'archives':
+    case 'archive':
       return '아카이브';
     case 'text':
       return '글 귀'

@@ -158,39 +158,39 @@ function printNormalIndexBox($parent, isContentPage) {
 function printIndexBox($idxBox) {
     const $projects = document.createElement("div");
     const $paper = document.createElement("div");
-    const $archives = document.createElement("div");
+    const $archive = document.createElement("div");
     const $sunrise = document.createElement("div");
     const $options = document.createElement("div");
     
     $projects.className = "no-select";
     $paper.className = "no-select";
-    $archives.className = "no-select";
+    $archive.className = "no-select";
     $sunrise.className = "no-select";
     $options.className = "no-select";
 
     if (localStorage.getItem("lang") === "ko") {
         $projects.textContent = "프로젝트";
         $paper.textContent = "글";
-        $archives.textContent = "아카이브";
+        $archive.textContent = "아카이브";
         $sunrise.textContent = "해맞이";
         $options.textContent = "설정";
     } else {
         $projects.textContent = "Projects";
         $paper.textContent = "Paper";
-        $archives.textContent = "Archives";
+        $archive.textContent = "Archive";
         $sunrise.textContent = "Sunrise";
         $options.textContent = "Options";
     }
 
     $projects.addEventListener("click", () => toggleprojectsIdx($projects));
     $paper.addEventListener("click", () => togglePaperIdx($paper));
-    $archives.addEventListener("click", () => toggleArchivesIdx($archives));
+    $archive.addEventListener("click", () => toggleArchiveIdx($archive));
     $sunrise.addEventListener("click", () => toggleSunriseIdx($sunrise));
     $options.addEventListener("click", () => location.href = "/options");
 
     $idxBox.appendChild($projects);
     $idxBox.appendChild($paper);
-    $idxBox.appendChild($archives);
+    $idxBox.appendChild($archive);
     $idxBox.appendChild($sunrise);
     $idxBox.appendChild($options);
 }
@@ -336,10 +336,10 @@ function togglePaperIdx($paper) {
     toggledList.push("Paper");
 }
 
-function toggleArchivesIdx($archives) {
-    if (toggledList.includes("Archives")) {
-        removeIdxDetailOf($archives);
-        toggledList.splice(toggledList.indexOf("Archives"), 1);
+function toggleArchiveIdx($archive) {
+    if (toggledList.includes("Archive")) {
+        removeIdxDetailOf($archive);
+        toggledList.splice(toggledList.indexOf("Archive"), 1);
         if (toggledList.includes("Images")) {
             toggledList.splice(toggledList.indexOf("Images"), 1);
         }
@@ -349,7 +349,7 @@ function toggleArchivesIdx($archives) {
         return;
     }
 
-    const $archivesIdxBox = document.createElement("ul");
+    const $archiveIdxBox = document.createElement("ul");
     const $text = document.createElement("li");
     const $textLink = document.createElement("a");
     const $images = document.createElement("li");
@@ -357,7 +357,7 @@ function toggleArchivesIdx($archives) {
     const $webpages = document.createElement("li");
     const $webpagesLink = document.createElement("a");
 
-    $archivesIdxBox.className = "idx-box-content";
+    $archiveIdxBox.className = "idx-box-content";
     $text.className = "idx-box-content-detail";
     $images.className = "idx-box-content-detail";
     $videos.className = "idx-box-content-detail";
@@ -375,23 +375,23 @@ function toggleArchivesIdx($archives) {
         $webpagesLink.textContent = "Web Pages";
     }
 
-    $textLink.href = "/archives/text";
-    $images.addEventListener("click", () => toggleArchivesImagesIdx($images));
-    $videos.addEventListener("click", () => toggleArchivesVideosIdx($videos));
-    $webpagesLink.href = "/archives/webpages";
+    $textLink.href = "/archive/text";
+    $images.addEventListener("click", () => toggleArchiveImagesIdx($images));
+    $videos.addEventListener("click", () => toggleArchiveVideosIdx($videos));
+    $webpagesLink.href = "/archive/webpages";
 
     $text.appendChild($textLink);
     $webpages.appendChild($webpagesLink);
-    $archivesIdxBox.appendChild($text);
-    $archivesIdxBox.appendChild($images);
-    $archivesIdxBox.appendChild($videos);
-    $archivesIdxBox.appendChild($webpages);
-    $archives.appendChild($archivesIdxBox);
+    $archiveIdxBox.appendChild($text);
+    $archiveIdxBox.appendChild($images);
+    $archiveIdxBox.appendChild($videos);
+    $archiveIdxBox.appendChild($webpages);
+    $archive.appendChild($archiveIdxBox);
 
-    toggledList.push("Archives");
+    toggledList.push("Archive");
 }
 
-function toggleArchivesImagesIdx($images) {
+function toggleArchiveImagesIdx($images) {
     if (toggledList.includes("Images")) {
         removeIdxDetailOf($images);
         toggledList.splice(toggledList.indexOf("Images"), 1);
@@ -437,12 +437,12 @@ function toggleArchivesImagesIdx($images) {
         $impressionismLink.textContent = "Impressionism";
     }
 
-    $objectsLink.href = "/archives/images/objects";
-    $seasonLink.href = "/archives/images/season";
-    $roomLink.href = "/archives/images/room";
-    $filmLink.href = "/archives/images/film";
-    $weekndLink.href = "/archives/images/the%20weeknd";
-    $impressionismLink.href = "/archives/images/impressionism";
+    $objectsLink.href = "/archive/images/objects";
+    $seasonLink.href = "/archive/images/season";
+    $roomLink.href = "/archive/images/room";
+    $filmLink.href = "/archive/images/film";
+    $weekndLink.href = "/archive/images/the%20weeknd";
+    $impressionismLink.href = "/archive/images/impressionism";
 
     $objects.appendChild($objectsLink);
     $season.appendChild($seasonLink);
@@ -462,7 +462,7 @@ function toggleArchivesImagesIdx($images) {
     event.stopPropagation();
 }
 
-function toggleArchivesVideosIdx($videos) {
+function toggleArchiveVideosIdx($videos) {
     if (toggledList.includes("Videos")) {
         removeIdxDetailOf($videos);
         toggledList.splice(toggledList.indexOf("Videos"), 1);
@@ -504,11 +504,11 @@ function toggleArchivesVideosIdx($videos) {
         $pianoLink.textContent = "Piano";
     }
 
-    $skyLink.href = "/archives/videos/sky";
-    $waveLink.href = "/archives/videos/wave";
-    $forestLink.href = "/archives/videos/forest";
-    $objectsLink.href = "/archives/videos/objects";
-    $pianoLink.href = "/archives/videos/piano";
+    $skyLink.href = "/archive/videos/sky";
+    $waveLink.href = "/archive/videos/wave";
+    $forestLink.href = "/archive/videos/forest";
+    $objectsLink.href = "/archive/videos/objects";
+    $pianoLink.href = "/archive/videos/piano";
 
     $sky.appendChild($skyLink);
     $wave.appendChild($waveLink);

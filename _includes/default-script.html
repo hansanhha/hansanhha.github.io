@@ -1159,7 +1159,7 @@ function printSearchResult(searchQuery, posts) {
            if (localStorage.getItem("lang") === "ko") {
              return !post.url.includes("/en/");
            } else {
-              return post.url.startsWith("/archives") || post.url.startsWith("/sunrise") ||  post.url.includes("/en/");
+              return post.url.startsWith("/archive") || post.url.startsWith("/sunrise") ||  post.url.includes("/en/");
            }
         });
 
@@ -1186,7 +1186,7 @@ function printSearchResult(searchQuery, posts) {
     printPostsByCategory("projects");
     printPostsByCategory("code");
     printPostsByCategory("daily");
-    printPostsByCategory("archives");
+    printPostsByCategory("archive");
     printPostsByCategory("sunrise");
 
     // const printPostsByCategory = (category) => {
@@ -1364,7 +1364,7 @@ function localize(category) {
         localized = "일상";
         break;
 
-        case "archives":
+        case "archive":
         localized = "아카이브";
         break;
 
@@ -1413,7 +1413,7 @@ function localizeToEnglish(category) {
         break;
 
         case "아카이브":
-        localized = "archives";
+        localized = "archive";
         break;
 
         case "해맞이":

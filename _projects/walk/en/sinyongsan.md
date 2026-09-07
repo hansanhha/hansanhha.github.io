@@ -28,7 +28,7 @@ However, Hangang-daero isn't quite as suitable for dividing the neighborhood as 
 1. Yongsan I'Park Mall -> Baekbin Crossing -> Ramen Restaurant -> Yongsan History Museum -> Yongsan Urban Memory Exhibition Center -> Amorepacific
 2. Amorepacific -> Yongsan Children's Garden -> Yongridan-gil -> War Memorial of Korea -> Samgakji Station
 
-**Album for the Walk:** *After Hours* - The Weeknd (<a href="[https://open.spotify.com/album/4yP0hdKOZPNshxUOjY0cZj?si=BdUcuJvVRimB3F\_b8VI4Fw](https://open.spotify.com/album/4yP0hdKOZPNshxUOjY0cZj?si=BdUcuJvVRimB3F_b8VI4Fw)" rel="noopener noreferrer" target="\_blank">Spotify\</a> <a href="[https://music.apple.com/kr/album/after-hours/1499378108](https://music.apple.com/kr/album/after-hours/1499378108)" rel="noopener noreferrer" target="\_blank">Apple Music\</a> <a href="[https://www.youtube.com/watch?v=JH398xAYpZA&list=OLAK5uy\_lwaD8UXRautA8W9eWT4zZOvwf5Ktxpax8](https://www.youtube.com/watch?v=JH398xAYpZA\&list=OLAK5uy_lwaD8UXRautA8W9eWT4zZOvwf5Ktxpax8)" rel="noopener noreferrer" target="\_blank">YouTube\</a>)
+**Album for the Walk:** *After Hours* - The Weeknd (<a href="[https://open.spotify.com/album/4yP0hdKOZPNshxUOjY0cZj?si=BdUcuJvVRimB3F_b8VI4Fw](https://open.spotify.com/album/4yP0hdKOZPNshxUOjY0cZj?si=BdUcuJvVRimB3F_b8VI4Fw)" rel="noopener noreferrer" target="_blank">Spotify\</a> <a href="[https://music.apple.com/kr/album/after-hours/1499378108](https://music.apple.com/kr/album/after-hours/1499378108)" rel="noopener noreferrer" target="_blank">Apple Music\</a> <a href="[https://www.youtube.com/watch?v=JH398xAYpZA&list=OLAK5uy_lwaD8UXRautA8W9eWT4zZOvwf5Ktxpax8](https://www.youtube.com/watch?v=JH398xAYpZA\&list=OLAK5uy_lwaD8UXRautA8W9eWT4zZOvwf5Ktxpax8)" rel="noopener noreferrer" target="_blank">YouTube\</a>)
 
 It's been a while since I last listened to The Weeknd's *After Hours*.
 
@@ -54,7 +54,7 @@ That caramel popcorn looks ridiculously delicious.
 
 If I worked at a movie theater, I'd want to work at the food counter. During my break, I'd grab a huge tub of nothing but caramel popcorn and just shovel it into my mouth.
 
-![alt text](../images/용산cgv\_팝콘.jpeg)
+![alt text](../images/용산cgv_팝콘.jpeg)
 
 They were promoting *Spider-Man*, which I'd watched a few days earlier.
 
@@ -66,13 +66,13 @@ I got to hear it through the movie theater speakers, which produced a completely
 
 At the very end of the movie, there are scenes capturing everyday life in New York. I thought I'd try something similar today and capture the streets I walked through on camera.
 
-![alt text](../images/용산cgv\_스파이더맨.jpeg)
+![alt text](../images/용산cgv_스파이더맨.jpeg)
 
 After watching *The Odyssey*, I saw a poster announcing an animated movie coming out next month.
 
 The art style reminded me of *Summer Wars*, so I think I'll go see it once September comes around.
 
-![alt text](../images/용산cgv\_수상한요괴들.jpeg)
+![alt text](../images/용산cgv_수상한요괴들.jpeg)
 
 I stopped by the Cine Shop and looked around for a while before coming across the Simpsons family, all smiling brightly.
 
@@ -80,7 +80,7 @@ Maggie Simpson's stretched-out mouth looks less like she's sucking on a pacifier
 
 Homer Simpson's feet look like horse hooves.
 
-![alt text](../images/용산cgv\_심슨.jpeg)
+![alt text](../images/용산cgv_심슨.jpeg)
 
 Yongsan I'Park Mall is divided into Living Park (Dopamine Station), Fashion Park, Taste Park, and The Center.
 
@@ -92,9 +92,9 @@ From Bandai Namco, Marvel Store, and POP MART on the sixth floor to Dopamine Sta
 
 I took photos of Gundam and Evangelion.
 
-![alt text](../images/용아몰\_건담.jpeg)
+![alt text](../images/용아몰_건담.jpeg)
 
-![alt text](../images/용아몰\_에반게리온.jpeg)
+![alt text](../images/용아몰_에반게리온.jpeg)
 
 There were more characters I didn't recognize than ones I did, so I kept walking around thinking, "Oh, I see," until I ran into Snorlax.
 
@@ -102,13 +102,13 @@ It was nice to see a familiar face, but I couldn't tell whether it was sleeping 
 
 Maybe it's sleeping with a smile on its face.
 
-![alt text](../images/용아몰\_잠만보.jpeg)
+![alt text](../images/용아몰_잠만보.jpeg)
 
 Inside Dopamine Station on the third floor, there's a Yongsan Tourist Information Center toward the back.
 
 They hand out maps and information about Seoul and Yongsan, so if you're planning to walk around Yongsan, it might be worth picking one up.
 
-![alt text](../images/용아몰\_관광센터.jpeg)
+![alt text](../images/용아몰_관광센터.jpeg)
 
 After entering Yongsan Station and coming out of Exit 3, you can see a large construction site behind the station.
 
@@ -118,7 +118,7 @@ Yongsan-gu also plans to introduce Yongsan Gateway, an underground pedestrian ro
 
 Beyond the construction site, I could see the E-Land building.
 
-![alt text](../images/한창개발중인\_용산국제업무지구.jpeg)
+![alt text](../images/한창개발중인_용산국제업무지구.jpeg)
 
 
 ## Up to Amorepacific
@@ -129,11 +129,11 @@ After crossing Yongsan Station Plaza and walking past the now-closed Dragon Hill
 
 It was the first time in my life I'd seen a vending machine giving away free water.
 
-![alt text](../images/용산구\_무료생수자판기.jpeg)
+![alt text](../images/용산구_무료생수자판기.jpeg)
 
 It was hot and muggy, so I was planning to stop by a convenience store, but thanks to the free water vending machine, I didn't need to and was able to hydrate myself right there.
 
-![alt text](../images/용산구\_무료생수자판기2.jpeg)
+![alt text](../images/용산구_무료생수자판기2.jpeg)
 
 The alleyways next to Yongsan Station are packed with atmospheric cafés and restaurants, just like Yongridan-gil.
 
@@ -143,13 +143,13 @@ This place has an exterior designed with exposed reinforced concrete.
 
 Looking at the door, it reminded me of the Flintstones.
 
-![alt text](../images/용산구골목길\_고인돌가족카페.jpeg)
+![alt text](../images/용산구골목길_고인돌가족카페.jpeg)
 
 This street has both clusters of pretty cafés and restaurants with large signs, as well as places tucked away inside ordinary alleyways like the one below.
 
 It looks like a residential neighborhood, but there are surprisingly quite a few businesses hidden among the houses.
 
-![alt text](../images/용산구골목길\_거리.jpeg)
+![alt text](../images/용산구골목길_거리.jpeg)
 
 After walking through the alley, I headed to Baekbin Crossing.
 
@@ -169,19 +169,19 @@ It was sunny and humid today, which made walking around pretty difficult.
 
 Whenever the clouds stopped blocking the sun, I kept sweating as if a rain shower were pouring straight out of my body.
 
-![alt text](../images/용산\_육교.jpeg)
+![alt text](../images/용산_육교.jpeg)
 
 The sign of the ramen restaurant I arrived at.
 
 They only sell ramen and gimbap. I ordered egg ramen and vegetable gimbap.
 
-![alt text](../images/용산\_뚝배기라면.jpeg)
+![alt text](../images/용산_뚝배기라면.jpeg)
 
 An elderly couple runs the restaurant together.
 
 The wallpaper is covered with traces left behind by people who have visited the place.
 
-![alt text](../images/용산\_뚝배기라면2.jpeg)
+![alt text](../images/용산_뚝배기라면2.jpeg)
 
 Route: Yongsan I'Park Mall -> Baekbin Crossing -> Ramen Restaurant -> **[Yongsan History Museum]** -> Yongsan Urban Memory Exhibition Center -> Amorepacific
 
@@ -189,7 +189,7 @@ After filling up on ramen and gimbap, I headed to the next destination.
 
 I took some time to learn a little about Yongsan's history at the museum.
 
-![alt text](../images/용산\_용산박물관.jpeg)
+![alt text](../images/용산_용산박물관.jpeg)
 
 If I had to pick a few keywords to describe Yongsan, they would be commerce, the military, and railways.
 
@@ -207,7 +207,7 @@ After liberation, the military land once used by Japan was taken over by the U.S
 
 A quick shot from the museum's rooftop garden.
 
-![alt text](../images/용산\_용산박물관2.jpeg)
+![alt text](../images/용산_용산박물관2.jpeg)
 
 Route: Yongsan I'Park Mall -> Baekbin Crossing -> Ramen Restaurant -> Yongsan History Museum -> **[Yongsan Urban Memory Exhibition Center]** -> Amorepacific
 
@@ -225,13 +225,13 @@ After about ten minutes of walking, I reached an entrance leading to the main en
 
 This building looks impressive every time I see it.
 
-![alt text](../images/용산\_아모레퍼시픽.jpeg)
+![alt text](../images/용산_아모레퍼시픽.jpeg)
 
 The Amorepacific headquarters is open to the public from B1 to the third floor.
 
 As soon as I entered the first floor, I saw a giant balloon.
 
-![alt text](../images/용산\_아모레퍼시픽1층.jpeg)
+![alt text](../images/용산_아모레퍼시픽1층.jpeg)
 
 The Amorepacific Museum of Art is located on B1, but it was preparing for a solo exhibition by Sol LeWitt opening in September, so I'll save it for my next visit.
 
@@ -253,7 +253,7 @@ I heard a little child in the photo tell their mother that the flowers were pret
 
 On the far right of the photo, you can see a warning notice from Yongsan-gu.
 
-![alt text](../images/용산어린이정원\_근조화환.jpeg)
+![alt text](../images/용산어린이정원_근조화환.jpeg)
 
 Yongsan Children's Garden is quite large. There are exhibition halls, a library, plazas, and even a shuttle that takes visitors around the site.
 
@@ -263,23 +263,23 @@ I think I'll come back someday when I want to work for an hour or two or just re
 
 This is what Amorepacific looks like from the Children's Garden.
 
-![alt text](../images/용산어린이정원\_아모레퍼시픽.jpeg)
+![alt text](../images/용산어린이정원_아모레퍼시픽.jpeg)
 
 The exhibition hall.
 
-![alt text](../images/용산어린이정원\_전시관입구.jpeg)
+![alt text](../images/용산어린이정원_전시관입구.jpeg)
 
 The plaza.
 
-![alt text](../images/용산어린이정원\_광장.jpeg)
+![alt text](../images/용산어린이정원_광장.jpeg)
 
 Another view of the plaza. You can see a Ministry of National Defense facility and N Seoul Tower.
 
-![alt text](../images/용산어린이정원\_광장2.jpeg)
+![alt text](../images/용산어린이정원_광장2.jpeg)
 
 I took this photo because I liked the sunlight and the composition while walking through the garden.
 
-![alt text](../images/용산어린이정원\_마을.jepg)
+![alt text](../images/용산어린이정원_마을.jepg)
 
 Route: Amorepacific -> Yongsan Children's Garden -> **[Yongridan-gil]** -> War Memorial of Korea -> Samgakji Station
 
@@ -287,7 +287,7 @@ Yongridan-gil begins almost immediately after leaving Yongsan Children's Garden.
 
 I came across Neungdong Minari in Yongsan again for the first time in a while.
 
-![alt text](../images/용산\_능동미나리.jpeg)
+![alt text](../images/용산_능동미나리.jpeg)
 
 As always, I ran into a cat during this walk too.
 
@@ -295,17 +295,17 @@ Not a real cat, though. It was a mural.
 
 I followed the direction the cat was pointing with its eyes.
 
-![alt text](../images/용산\_고양이벽화.jpeg)
+![alt text](../images/용산_고양이벽화.jpeg)
 
 Apparently, Yongsan-gu calls its clothing donation bins "Happy Closets."
 
-![alt text](../images/용산\_행복옷장.jpeg)
+![alt text](../images/용산_행복옷장.jpeg)
 
 I came out onto a wide road lined with old apartment buildings.
 
 If Crayon Shin-chan has Wareru Mansion, then Yongridan-gil has Samgak Mansion.
 
-![alt text](../images/용산\_삼각맨숀.jpeg)
+![alt text](../images/용산_삼각맨숀.jpeg)
 
 Route: Amorepacific -> Yongsan Children's Garden -> Yongridan-gil -> **[War Memorial of Korea]** -> Samgakji Station
 
@@ -321,13 +321,13 @@ They pointed their guns at each other, but after recognizing one another's faces
 
 The pointy thing on top of the statue isn't part of the sculpture. It's a crow.
 
-![alt text](../images/전쟁기념관\_형제.jpeg)
+![alt text](../images/전쟁기념관_형제.jpeg)
 
 This is the view of Namsan from the War Memorial of Korea.
 
 The wind happened to be blowing, so all the flags were fluttering.
 
-![alt text](../images/전쟁기념관\_남산.jpeg)
+![alt text](../images/전쟁기념관_남산.jpeg)
 
 The site of the War Memorial of Korea was also used as a Japanese military base during the colonial period and was later occupied by the U.S. military government after liberation.
 
@@ -335,7 +335,7 @@ It was eventually used as the headquarters of the Republic of Korea Army. After 
 
 It was almost closing time, so I only took a quick look around.
 
-![alt text](../images/전쟁기념관\_전투기.jpeg)
+![alt text](../images/전쟁기념관_전투기.jpeg)
 
 There's also a library-like cultural space here, which looked like another good place for doing some short work or reading, much like the library at Yongsan Children's Garden.
 
@@ -349,29 +349,29 @@ A pro-Japanese collaborator but a war hero who defended South Korea. An independ
 
 What a complicated mess.
 
-![alt text](../images/전쟁기념관\_백선엽장군.jpeg)
+![alt text](../images/전쟁기념관_백선엽장군.jpeg)
 
 There's a staircase at the back of the library that leads upstairs.
 
 This is the view of Namsan from up there.
 
-![alt text](../images/전쟁기념관\_남산2.jpeg)
+![alt text](../images/전쟁기념관_남산2.jpeg)
 
 I stopped by the gift shop to look around and found something I liked.
 
 It was a plum blossom badge, and I thought it would look nice pinned to a jacket, so I bought it.
 
-![alt text](../images/전쟁기념관\_오얏꽃배지.jpeg)
+![alt text](../images/전쟁기념관_오얏꽃배지.jpeg)
 
 Something like this?
 
-![alt text](../images/전쟁기념관\_오얏꽃배지2.jpeg)
+![alt text](../images/전쟁기념관_오얏꽃배지2.jpeg)
 
 After leaving through the entrance and turning right, there's a memorial space dedicated to foreign soldiers who died in the war, as well as members of the South Korean military and police.
 
-![alt text](../images/전쟁기념관\_추모공간.jpeg)
+![alt text](../images/전쟁기념관_추모공간.jpeg)
 
-![alt text](../images/전쟁기념관\_추모공간2.jpeg)
+![alt text](../images/전쟁기념관_추모공간2.jpeg)
 
 Route: Amorepacific -> Yongsan Children's Garden -> Yongridan-gil -> War Memorial of Korea -> **[Samgakji Station]**
 
@@ -379,7 +379,7 @@ I headed to Samgakji Station to make my way home.
 
 Samgakji Station is served only by Line 4 and Line 6. I took Line 6 to Hapjeong, transferred there, and headed to Sillim Station.
 
-![alt text](../images/삼각지역\_지하철.jpeg)
+![alt text](../images/삼각지역_지하철.jpeg)
 
 ## In the End
 
@@ -393,7 +393,7 @@ I think it's fun to show the streets I explored this way too.
    <div style="width: 100%; padding-bottom: 56.25%">
        <iframe
            style="position: absolute; width: 100%; height: 100%"
-           src="[https://www.youtube.com/embed/xt3FfLKsTWw?si=\_8LiaTPiSz-ixkXc](https://www.youtube.com/embed/xt3FfLKsTWw?si=_8LiaTPiSz-ixkXc)"
+           src="https://www.youtube.com/embed/xt3FfLKsTWw?si=_8LiaTPiSz-ixkXc"
            title="Sinyongsan"
            frameborder="0"
            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

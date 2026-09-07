@@ -78,7 +78,7 @@ permalink: /search.json
   {% assign first = false %}
 {% endfor %}
 
-{% for post in site.archives %}
+{% for post in site.archive %}
   {% unless first %},{% endunless %}
   {
     "layout": {{ post.layout | jsonify }}, 
@@ -92,7 +92,7 @@ permalink: /search.json
     "translatedByAI": {{ post.translatedByAI | jsonify }},
     "thumbnail": {{ post.thumbnail | jsonify }},
     "date": {{ post.date | jsonify }},
-    "category": "archives",
+    "category": "archive",
     "subcategory": {{ post.subcategory | jsonify }},
     "subcategoryKo": {{ post.subcategory-ko | jsonify }},
     "tags": {{ post.tags | jsonify }},

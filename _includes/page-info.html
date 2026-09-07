@@ -2,7 +2,7 @@
     <li><a id="projects_link">Projects</a></li>
     <li><a id="code_link">Code</a></li>
     <li><a id="daily_link">Daily</a></li>
-    <li><a id="archives_link">Archives</a></li>
+    <li><a id="archive_link">Archive</a></li>
     <li><a id="sunrise_link">Sunrise</a></li>
 </ul>
 
@@ -31,7 +31,7 @@ function printCategories() {
     document.getElementById("projects_link").href = window.location.origin + "/projects/";
     document.getElementById("code_link").href = window.location.origin + "/code/";
     document.getElementById("daily_link").href = window.location.origin + "/daily/";
-    document.getElementById("archives_link").href = window.location.origin + "/archives/";
+    document.getElementById("archive_link").href = window.location.origin + "/archive/";
     document.getElementById("sunrise_link").href = window.location.origin + "/sunrise/";
 
     const windowPathname = window.location.pathname;
@@ -94,10 +94,10 @@ function printCategories() {
             case "[Daily]":
                 category.textContent = "[일상]";
                 break;
-            case "Archives":
+            case "Archive":
                 category.textContent = "아카이브";
                 break;
-            case "[Archives]":
+            case "[Archive]":
                 category.textContent = "[아카이브]";
                 break;
             case "Sunrise":

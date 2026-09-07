@@ -17,7 +17,7 @@ collections:
   daily:
     output: true
 
-  archives:
+  archive:
     output: true
   
   sunrise:

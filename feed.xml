@@ -15,7 +15,7 @@ layout: null
     {% assign contents = site.projects
     | concat: site.code
     | concat: site.daily
-    | concat: site.archives
+    | concat: site.archive
     | concat: site.sunrise
     %}
     {% assign filtered_contents = "" | split: "" %}

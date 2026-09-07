@@ -50,7 +50,7 @@ function listPostsInVerboseLayout($latestPostsBox, jsonData, locale, options) {
     const top10Posts = jsonData
         .filter((post) => !post.url.includes("legacy"))
         .filter((post) => !isTopMenuIndex(post.url))
-        .filter((post) => post.url.startsWith("/archives") || post.url.startsWith("/sunrise")
+        .filter((post) => post.url.startsWith("/archive") || post.url.startsWith("/sunrise")
                             || (localStorage.getItem("lang") === "en" ? post.url.includes("/en/") : !post.url.includes("/en/")))
         .sort((a, b) => {
             const aDate = a.createDate ? a.createDate : "1930-01-01";
@@ -93,7 +93,7 @@ function listPostsInVerboseLayout($latestPostsBox, jsonData, locale, options) {
     printPostsByCategory("projects");
     printPostsByCategory("code");
     printPostsByCategory("daily");
-    printPostsByCategory("archives");
+    printPostsByCategory("archive");
     printPostsByCategory("sunrise");
 }
 
@@ -101,7 +101,7 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
     $latestPostsBox.classList = "post-list-simple-layout";
     const posts = jsonData
         .filter((post) => !post.url.includes("legacy"))
-        .filter((post) => post.url.includes("archives") 
+        .filter((post) => post.url.includes("archive") 
         || (localStorage.getItem("lang") === "en" ? ((post.url.includes("/sunrise") && !post.url.endsWith("/en/sunrise.html") && !post.url.endsWith("/sunrise.html")) || post.url.endsWith("/en/sunrise.html")) : !post.url.includes("/en/"))
         || (localStorage.getItem("lang") === "en" ? post.url.includes("/en/") : !post.url.includes("/en/")))
         .sort((a, b) => {
@@ -126,7 +126,7 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
         if (post.subcategory && localStorage.getItem("lang") === "ko") {
             postDescription = post.subcategoryKo;
         }
-        if ((post.url.endsWith("/index.html") && post.category != "archives") ||  post.title === "Index" && (post.category !== "archives" || post.url.endsWith("/archives/index.html"))) {
+        if ((post.url.endsWith("/index.html") && post.category != "archive") ||  post.title === "Index" && (post.category !== "archive" || post.url.endsWith("/archive/index.html"))) {
             postDescription = localStorage.getItem("lang") === "ko" ? "인덱스" : "Index";
         }
         if (post.category === "daily" && post.group) {
@@ -199,12 +199,12 @@ function isTopMenuIndex(url) {
   return url === "/projects/index.html"
   || url === "/code/index.html"
   || url === "/daily/index.html"
-  || url === "/archives/index.html"
+  || url === "/archive/index.html"
   || url === "/sunrise/index.html"
   || url === "/projects/en/index.html"
   || url === "/code/en/index.html"
   || url === "/daily/en/index.html"
-  || url === "/archives/en/index.html"
+  || url === "/archive/en/index.html"
   || url === "/sunrise/en/index.html";
 }
 
@@ -225,7 +225,7 @@ function localizeToKorean(category) {
         localized = "일상";
         break;
 
-        case "archives":
+        case "archive":
         localized = "아카이브";
         break;
 
