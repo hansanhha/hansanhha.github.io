@@ -403,6 +403,10 @@ function printIdxDescription() {
   const postLinkHyperlinks = Array.from(document.getElementsByClassName("post-link-hover"));
   postLinkHyperlinks.forEach(link => {
       link.addEventListener("mouseover", () => {
+          if (window.matchMedia('(max-width: 960px)').matches) {
+            return;
+          }
+
           const $pageInfoGuide = document.getElementById("page_info_guide");
           if (link.dataset.layout && (link.dataset.layout === "auto-index" || link.dataset.layout === "index")) {
               $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
