@@ -267,7 +267,7 @@ body::-webkit-scrollbar {
 
   .utiltiy-box-simple-layout {
     gap: 8px;
-    line-height: 16px;
+    line-height: 20px;
   }
 
   .error-box-simple-layout {
