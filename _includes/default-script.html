@@ -305,6 +305,12 @@ function printBlogInfoInSimpleLayout(title, parentIndexName) {
         $pageInfoGuide.textContent = localStorage.getItem("lang") === "ko"
           ? parentIndexName === "홈페이지" ?  parentIndexName + "로 이동합니다." : parentIndexName + " 인덱스 페이지로 이동합니다."
           : parentIndexName === "Homepage" ? "Go to the " + parentIndexName + "." : "Go to the " + parentIndexName + " index page.";
+
+        if (location.pathname.startsWith("/sunrise/") && (location.pathname !== "/sunrise/" || location.pathname !== "/sunrise/index.html")) {
+          $pageInfoGuide.textContent = localStorage.getItem("lang") === "ko"
+            ? parentIndexName === "해맞이" ? "해맞이 인덱스 페이지로 이동합니다." : "해맞이 " + parentIndexName + " 인덱스 페이지로 이동합니다."
+            : parentIndexName === "Sunrise" ? "Go to the Sunrise index page." : "Go to the Sunrise " + parentIndexName + " index page.";
+        }
       }
     });
     $indexPageBtn.addEventListener("mouseleave", () => {
