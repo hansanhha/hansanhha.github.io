@@ -127,12 +127,12 @@ function printBlogInfoInSimpleLayout(title, parentIndexName) {
   $light.addEventListener("click", () => changeTheme("light"));
   $dark.addEventListener("click", () => changeTheme("dark"));
 
-  $ko.addEventListener("mouseover", () => displayPageInfoGuideTextContent("한국어로 전환합니다.", "Switch to Korean."));
-  $en.addEventListener("mouseover", () => displayPageInfoGuideTextContent("영어로 전환합니다.", "Switch to English."));
-  $simple.addEventListener("mouseover", () => displayPageInfoGuideTextContent("단순한 인터페이스로 전환합니다.", "Switch to Simple Interface."));
-  $verbose.addEventListener("mouseover", () => displayPageInfoGuideTextContent("상세한 인터페이스로 전환합니다.", "Switch to Verbose Interface."));
-  $light.addEventListener("mouseover", () => displayPageInfoGuideTextContent("밝은 화면으로 전환합니다.", "Switch to Light mode."));
-  $dark.addEventListener("mouseover", () => displayPageInfoGuideTextContent("어두운 화면으로 전환합니다.", "Switch to Dark mode."));
+  $ko.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("한국어로 전환합니다.", "Switch to Korean."));
+  $en.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("영어로 전환합니다.", "Switch to English."));
+  $simple.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("단순한 인터페이스로 전환합니다.", "Switch to Simple Interface."));
+  $verbose.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("상세한 인터페이스로 전환합니다.", "Switch to Verbose Interface."));
+  $light.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("밝은 화면으로 전환합니다.", "Switch to Light mode."));
+  $dark.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("어두운 화면으로 전환합니다.", "Switch to Dark mode."));
 
   $ko.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
   $en.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
@@ -141,7 +141,11 @@ function printBlogInfoInSimpleLayout(title, parentIndexName) {
   $light.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
   $dark.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
 
-  function displayPageInfoGuideTextContent(korean, english) {
+  function displayPageInfoGuideTextContentOnlyDesktop(korean, english) {
+    if (!window.matchMedia('(max-width: 960px)').matches) {
+      return;
+    }
+
     const $pageInfoGuide = document.getElementById("page_info_guide");
     if ($pageInfoGuide) {
       $pageInfoGuide.textContent = localStorage.getItem("lang") === "ko"
@@ -191,7 +195,7 @@ function printBlogInfoInSimpleLayout(title, parentIndexName) {
     $utilityBox.appendChild($homepage);
     $homepage.addEventListener("click", () => location.href = "/");
     $homepage.classList.add("cursor-pointer", "hover-font-weight-800");
-    $homepage.addEventListener("mouseover", () => displayPageInfoGuideTextContent("홈페이지로 이동합니다.", "Go to the Homepage."));
+    $homepage.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("홈페이지로 이동합니다.", "Go to the Homepage."));
     $homepage.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
   }
   $layoutBox.appendChild($simple);
@@ -229,9 +233,9 @@ function printBlogInfoInSimpleLayout(title, parentIndexName) {
     $aboutBlog.textContent = localStorage.getItem("lang") === "ko" ? "이 블로그에 대하여" : "About this blog";
     $aboutBlog.href = localStorage.getItem("lang") === "ko" ? window.origin + "/projects/blog" : window.origin + "/projects/en/blog";
     $aboutBlog.style.color = "var(--text-color)";
-    $instagram.addEventListener("mouseover", () => displayPageInfoGuideTextContent("한산하 인스타그램으로 이동합니다.", "Go to the hansanhha Instagram."));
-    $rss.addEventListener("mouseover", () => displayPageInfoGuideTextContent("RSS 페이지를 새로운 탭에서 엽니다.", "Open RSS page in new tab."));
-    $aboutBlog.addEventListener("mouseover", () => displayPageInfoGuideTextContent("블로그를 소개하는 페이지로 이동합니다.", "Go to the Blog Introduction page."));
+    $instagram.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("한산하 인스타그램으로 이동합니다.", "Go to the hansanhha Instagram."));
+    $rss.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("RSS 페이지를 새로운 탭에서 엽니다.", "Open RSS page in new tab."));
+    $aboutBlog.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("블로그를 소개하는 페이지로 이동합니다.", "Go to the Blog Introduction page."));
     $instagram.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
     $rss.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
     $aboutBlog.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
