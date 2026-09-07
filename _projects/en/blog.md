@@ -5,7 +5,7 @@ page-name-ko: 블로그
 page-title: Blog Introduction
 page-title-ko: 블로그에 대한 소개
 createDate: 2026-08-09
-updateDate: 2026-09-06
+updateDate: 2026-09-04
 description: Blog Introduction
 translatedByAI: true
 ---

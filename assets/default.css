@@ -96,17 +96,17 @@ body::-webkit-scrollbar {
       color: #F5F4F0;
   }
 
-  .hashtag-link {
+  .link-simple-layout {
     color: var(--text-color);
     font-weight: 500;
   }
 
-  .hashtag-link:visited {
+  .link-simple-layout:visited {
     color: var(--text-color);
     font-weight: 500;
   }
 
-  .hashtag-link:hover {
+  .link-simple-layout:hover {
     font-weight: 800;
   }
 }
@@ -147,17 +147,17 @@ body::-webkit-scrollbar {
       color: #2B2B2B;
   }
 
-  .hashtag-link {
+  .link-simple-layout {
     color: var(--text-color);
     font-weight: 500;
   }
 
-  .hashtag-link:visited {
+  .link-simple-layout:visited {
     color: var(--text-color);
     font-weight: 500;
   }
 
-  .hashtag-link:hover {
+  .link-simple-layout:hover {
     font-weight: 800;
   }
 }
@@ -197,17 +197,17 @@ body::-webkit-scrollbar {
       color: #F5F4F0;
   }
 
-  .hashtag-link {
+  .link-simple-layout {
     color: var(--text-color);
     font-weight: 500;
   }
 
-  .hashtag-link:visited {
+  .link-simple-layout:visited {
     color: var(--text-color);
     font-weight: 500;
   }
 
-  .hashtag-link:hover {
+  .link-simple-layout:hover {
     font-weight: 800;
   }
 }
@@ -241,17 +241,17 @@ body::-webkit-scrollbar {
       color: #2B2B2B;
   }
 
-  .hashtag-link {
+  .link-simple-layout {
     color: var(--text-color);
     font-weight: 500;
   }
 
-  .hashtag-link:visited {
+  .link-simple-layout:visited {
     color: var(--text-color);
     font-weight: 500;
   }
 
-  .hashtag-link:hover {
+  .link-simple-layout:hover {
     font-weight: 800;
   }
 }

@@ -6,7 +6,6 @@ subcategory-ko: 산책
 page-name: Bukchon
 page-name-ko: 북촌 
 createDate: 2026-08-19
-updateDate: 2026-09-06
 group: Jongno-gu
 subgroup: Bukchon
 translatedByAI: true

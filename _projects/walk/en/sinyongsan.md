@@ -6,7 +6,6 @@ subcategory-ko: 산책
 page-name: Sinyongsan
 page-name-ko: 신용산
 createDate: 2026-08-29
-updateDate: 2026-09-06
 group: Yongsan-gu
 subgroup: Sinyongsan
 translatedByAI: true

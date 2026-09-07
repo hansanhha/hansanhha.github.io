@@ -59,8 +59,8 @@ function renderSimpleLayout() {
   configHTMLElements();
   fetchBlogInfo();
   notFoundInSimpleLayout();
-  const title = getPageTitle();
-  printBlogInfoInSimpleLayout(title);
+  const [title, parentIndexName] = getPageTitleAndParentIndexName();
+  printBlogInfoInSimpleLayout(title, parentIndexName);
   printUseofAITranslating();
   setGoToTop();
 }
@@ -78,7 +78,7 @@ function notFoundInSimpleLayout() {
   }
 }
 
-function printBlogInfoInSimpleLayout(title) {
+function printBlogInfoInSimpleLayout(title, parentIndexName) {
   if (document.getElementById("simple-layout-info-box")) return;
   const $infoBox = document.createElement("header");
   $infoBox.id = "simple-layout-info-box";
@@ -94,7 +94,11 @@ function printBlogInfoInSimpleLayout(title) {
   } else if (title == "Not Found") {
     $title.textContent = localStorage.getItem("lang") === "ko" ? "이런!" : "Oops!";
   } else {
-    $title.textContent = title;
+    if (title === "한산하 HANSANHHA" && localStorage.getItem("lang") === "en") {
+      $title.textContent = "HANSANHHA 한산하";  
+    } else {
+      $title.textContent = title;
+    }
   }
 
   const $utilityBox = document.createElement("div");
@@ -122,6 +126,36 @@ function printBlogInfoInSimpleLayout(title) {
   $simple.addEventListener("click", () => changeLayout("simple"));
   $light.addEventListener("click", () => changeTheme("light"));
   $dark.addEventListener("click", () => changeTheme("dark"));
+
+  $ko.addEventListener("mouseover", () => displayPageInfoGuideTextContent("한국어로 전환합니다.", "Switch to Korean."));
+  $en.addEventListener("mouseover", () => displayPageInfoGuideTextContent("영어로 전환합니다.", "Switch to English."));
+  $simple.addEventListener("mouseover", () => displayPageInfoGuideTextContent("단순한 인터페이스로 전환합니다.", "Switch to Simple Interface."));
+  $verbose.addEventListener("mouseover", () => displayPageInfoGuideTextContent("상세한 인터페이스로 전환합니다.", "Switch to Verbose Interface."));
+  $light.addEventListener("mouseover", () => displayPageInfoGuideTextContent("밝은 화면으로 전환합니다.", "Switch to Light mode."));
+  $dark.addEventListener("mouseover", () => displayPageInfoGuideTextContent("어두운 화면으로 전환합니다.", "Switch to Dark mode."));
+
+  $ko.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
+  $en.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
+  $verbose.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
+  $simple.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
+  $light.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
+  $dark.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
+
+  function displayPageInfoGuideTextContent(korean, english) {
+    const $pageInfoGuide = document.getElementById("page_info_guide");
+    if ($pageInfoGuide) {
+      $pageInfoGuide.textContent = localStorage.getItem("lang") === "ko"
+        ? korean
+        : english
+    }
+  }
+
+  function emptyPageInfoGuideTextContent() {
+    const $pageInfoGuide = document.getElementById("page_info_guide");
+    if ($pageInfoGuide) {
+      $pageInfoGuide.textContent = "";
+    }
+  }
 
   if (localStorage.getItem("lang") == "en") {
     $en.classList.add("selected-highlight", "cursor-pointer", "hover-font-weight-800");
@@ -157,6 +191,8 @@ function printBlogInfoInSimpleLayout(title) {
     $utilityBox.appendChild($homepage);
     $homepage.addEventListener("click", () => location.href = "/");
     $homepage.classList.add("cursor-pointer", "hover-font-weight-800");
+    $homepage.addEventListener("mouseover", () => displayPageInfoGuideTextContent("홈페이지로 이동합니다.", "Go to the Homepage."));
+    $homepage.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
   }
   $layoutBox.appendChild($simple);
   $layoutBox.appendChild($verbose);
@@ -193,6 +229,12 @@ function printBlogInfoInSimpleLayout(title) {
     $aboutBlog.textContent = localStorage.getItem("lang") === "ko" ? "이 블로그에 대하여" : "About this blog";
     $aboutBlog.href = localStorage.getItem("lang") === "ko" ? window.origin + "/projects/blog" : window.origin + "/projects/en/blog";
     $aboutBlog.style.color = "var(--text-color)";
+    $instagram.addEventListener("mouseover", () => displayPageInfoGuideTextContent("한산하 인스타그램으로 이동합니다.", "Go to the hansanhha Instagram."));
+    $rss.addEventListener("mouseover", () => displayPageInfoGuideTextContent("RSS 페이지를 새로운 탭에서 엽니다.", "Open RSS page in new tab."));
+    $aboutBlog.addEventListener("mouseover", () => displayPageInfoGuideTextContent("블로그를 소개하는 페이지로 이동합니다.", "Go to the Blog Introduction page."));
+    $instagram.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
+    $rss.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
+    $aboutBlog.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
     $aboutBlog.classList.add("hover-font-weight-800");
     $additionalInfoBox.appendChild($instagram);
     $additionalInfoBox.appendChild($rss);
@@ -240,6 +282,33 @@ function printBlogInfoInSimpleLayout(title) {
     $indexPageBtn.textContent = localStorage.getItem("lang") === "ko"
       ? "인덱스 페이지로 이동"
       : "Go to the index page";
+    $indexPageBtn.addEventListener("mouseover", () => {
+      let $idxDescriptionBox = document.getElementById("idx_description_box");
+      let $pageInfoGuide = document.getElementById("page_info_guide");
+      if (!$idxDescriptionBox) {
+        $idxDescriptionBox = document.createElement("div");
+        $pageInfoGuide = document.createElement("pre");
+        $idxDescriptionBox.id = "idx_description_box";
+        $idxDescriptionBox.classList.add("index-description-simple-layout");
+        $pageInfoGuide.id = "page_info_guide";
+        $pageInfoGuide.style.marginBlockStart = "0";
+        $pageInfoGuide.style.marginBlockEnd = "0";
+        $idxDescriptionBox.appendChild($pageInfoGuide);
+        document.body.appendChild($idxDescriptionBox);
+      }
+
+      if (parentIndexName) {
+        $pageInfoGuide.textContent = localStorage.getItem("lang") === "ko"
+          ? parentIndexName === "홈페이지" ?  parentIndexName + "로 이동합니다." : parentIndexName + " 인덱스 페이지로 이동합니다."
+          : parentIndexName === "Homepage" ? "Go to the " + parentIndexName + "." : "Go to the " + parentIndexName + " index page.";
+      }
+    });
+    $indexPageBtn.addEventListener("mouseleave", () => {
+      const $pageInfoGuide = document.getElementById("page_info_guide");
+      if ($pageInfoGuide) {
+        $pageInfoGuide.textContent = "";
+      }
+    });
     $indexPageWrapper.style.marginBottom = "4px";
     $indexPageWrapper.appendChild($indexPageBtn);
     $infoBox.appendChild($indexPageWrapper);
@@ -652,21 +721,43 @@ function markBlogSettingsInVerboseLayout() {
     !localStorage.getItem("layout") || localStorage.getItem("layout") === "simple" ? printSimpleLayout() : printVerboseLayout();
 }
 
-function getPageTitle() {
+function getPageTitleAndParentIndexName() {
+  let title = "", parentIndexName = "";
   const $title = document.querySelector("title");
   if (localStorage.getItem("lang") === "en" && $title.dataset.pageTitle) {
-    return capitalize(String($title.dataset.pageTitle));
+    title = capitalize(String($title.dataset.pageTitle));
   } else if (localStorage.getItem("lang") === "ko" && $title.dataset.pageTitleKo) {
-    return capitalize($title.dataset.pageTitleKo);
+    title = capitalize($title.dataset.pageTitleKo);
   } else if (localStorage.getItem("lang") === "en" && $title.dataset.pageName) {
-    return capitalize(String($title.dataset.pageName));
+    title = capitalize(String($title.dataset.pageName));
   } else if (localStorage.getItem("lang") === "ko" && $title.dataset.pageNameKo){
-    return capitalize(String($title.dataset.pageNameKo));
+    title = capitalize(String($title.dataset.pageNameKo));
   } else if ($title.dataset.pageDefaultTitle) {
-    return capitalize(String($title.dataset.pageDefaultTitle));
+    title = capitalize(String($title.dataset.pageDefaultTitle));
   } else {
-    return document.title;
+    title = document.title;
   }
+
+  const category = document.querySelector('meta[category]').getAttribute("category");
+  const subcategory = document.querySelector('meta[subcategory]').getAttribute("subcategory");
+
+  parentIndexName = category;
+  if (location.href.endsWith(category + "/") || location.href.endsWith(category + "/index.html")
+      || location.href.endsWith(category + "/en/") || location.href.endsWith(category + "/en/index.html")) {
+    parentIndexName = "homepage";
+  }
+
+  if (subcategory && subcategory !== "null" 
+      && !(location.href.endsWith(subcategory + "/") || location.href.endsWith(subcategory + "/index.html")
+          || location.href.endsWith(subcategory + "/en/") || location.href.endsWith(subcategory + "/en/index.html"))) {
+    parentIndexName = subcategory;
+  }
+
+  parentIndexName = localStorage.getItem("lang") === "ko"
+    ? localize(parentIndexName)
+    : capitalize(localizeToEnglish(parentIndexName));
+
+  return [title, parentIndexName];
 }
 
 function configHTMLElements() {
@@ -674,6 +765,9 @@ function configHTMLElements() {
       const $videos = document.querySelectorAll("video");
       $videos.forEach($video => {
           $video.playsInline = true;
+          $video.addEventListener("loadedmetadata", () => {
+            $video.currentTime = 0.01;
+          });
       });
 
       const $imgs = document.querySelectorAll("img");
@@ -698,8 +792,8 @@ function configHTMLElements() {
   const hyperlinks = Array.from(document.getElementsByTagName("a"));
   hyperlinks.forEach((link) => {
       if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "simple") {
+        link.classList.add("link-simple-layout");
         if (link.href.includes(location.pathname + "#")) {
-          link.classList.add("hashtag-link");
 
           if (!document.getElementById("idx_description_box")) {
             const $idxDescriptionBox = document.createElement("div");
@@ -1221,6 +1315,10 @@ function localize(category) {
 
     let localized;
     switch(category) {
+        case "homepage":
+        localized = "홈페이지";
+        break;
+
         case "projects":
         localized = "프로젝트";
         break;
@@ -1243,6 +1341,46 @@ function localize(category) {
 
         case "sunrise":
         localized = "해맞이";
+        break;
+
+        default:
+        localized = category;
+    }
+
+    return localized
+}
+
+function localizeToEnglish(category) {
+    if (localStorage.getItem("lang") !== "en") return category;
+
+    let localized;
+    switch(category) {
+        case "홈페이지":
+        localized = "homepage";
+        break;
+
+        case "프로젝트":
+        localized = "projects";
+        break;
+
+        case "산책":
+        localized = "walk";
+        break;
+
+        case "프로그래밍":
+        localized = "code";
+        break;
+
+        case "일상":
+        localized = "daily";
+        break;
+
+        case "아카이브":
+        localized = "archives";
+        break;
+
+        case "해맞이":
+        localized = "sunrise";
         break;
 
         default:

@@ -3,6 +3,7 @@ layout: default
 page-name: Hello, Sunrise
 page-name-ko: Hello, Sunrise
 createDate: 2026-08-13
+updateDate: 2026-09-03
 ---
 
 At the start of each month, I watch the rising sun and the sky to welcome a new beginning. I record these first moments and pause to reflect on the passage of time and the start of another month.

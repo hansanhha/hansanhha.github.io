@@ -135,6 +135,7 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
         if (post.category === "sunrise" && post.title !== "Index") {
             postDescription = postDescription + " " + post.createDate.slice(0, 4);
         }
+        postDescription = capitalize(postDescription);
         
         $post.innerHTML = `
             <div class='post-link-simple-layout'>

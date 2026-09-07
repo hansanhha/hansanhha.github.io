@@ -6,7 +6,6 @@ subcategory-ko: 산책
 page-name: Jeondong
 page-name-ko: 정동
 createDate: 2026-08-21
-updateDate: 2026-09-06
 group: Jung-gu
 subgroup: Jeongdong
 translatedByAI: true

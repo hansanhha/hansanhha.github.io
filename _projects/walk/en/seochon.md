@@ -6,7 +6,6 @@ subcategory-ko: 산책
 page-name: Seochon
 page-name-ko: 서촌
 createDate: 2026-08-16
-updateDate: 2026-09-06
 group: Jongno-gu
 subgroup: Seochon
 translatedByAI: true

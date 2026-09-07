@@ -77,7 +77,7 @@ async function loadIndexInSimpleLayout() {
             const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
             const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
             const nonUndefinedTitle = title ? title : post.title;
-            const capitalizedTitle = capitalize(String(nonUndefinedTitle));
+            const capitalizedTitle = nonUndefinedTitle;
 
             $post.innerHTML = 
             `
@@ -362,6 +362,10 @@ function capitalize(str) {
 function isRequiredCapitalize(word) {
   let require = true; 
   switch (word) {
+    case "is":
+    case "was":
+    case "are":
+    case "were":
     case "or":
     case "and":
     case "a":

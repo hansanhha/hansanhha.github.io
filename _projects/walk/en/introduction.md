@@ -5,9 +5,8 @@ subcategory: walk
 subcategory-ko: 산책
 page-name: Walk Introduction
 page-name-ko: 산책에 대한 소개
-page-title: 소개
+# page-title: 소개
 createDate: 2026-08-15
-updateDate: 2026-09-06
 group: default
 subgroup: default
 description: Walk Introduction
@@ -26,7 +25,7 @@ Address: <a href="https://hansanhha.github.io/projects/walk" target="_blank" rel
 
 ---
 
-As I mentioned in a [Daily Life post](../../../daily/Deadbeat.html#산책), I enjoy going for walks and exploring neighborhoods.
+As I mentioned in a [Daily post](../../../daily/en/Deadbeat#walking), I enjoy going for walks and exploring neighborhoods.
 
 Even when there is a route I take often, I sometimes choose a road I have never taken before.
 
