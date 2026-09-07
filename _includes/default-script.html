@@ -741,15 +741,15 @@ function getPageTitleAndParentIndexName() {
   let title = "", parentIndexName = "";
   const $title = document.querySelector("title");
   if (localStorage.getItem("lang") === "en" && $title.dataset.pageTitle) {
-    title = capitalize(String($title.dataset.pageTitle));
+    title = $title.dataset.pageTitle;
   } else if (localStorage.getItem("lang") === "ko" && $title.dataset.pageTitleKo) {
-    title = capitalize($title.dataset.pageTitleKo);
+    title = $title.dataset.pageTitleKo;
   } else if (localStorage.getItem("lang") === "en" && $title.dataset.pageName) {
-    title = capitalize(String($title.dataset.pageName));
+    title = $title.dataset.pageName;
   } else if (localStorage.getItem("lang") === "ko" && $title.dataset.pageNameKo){
-    title = capitalize(String($title.dataset.pageNameKo));
+    title = $title.dataset.pageNameKo;
   } else if ($title.dataset.pageDefaultTitle) {
-    title = capitalize(String($title.dataset.pageDefaultTitle));
+    title = $title.dataset.pageDefaultTitle;
   } else {
     title = document.title;
   }
@@ -763,7 +763,7 @@ function getPageTitleAndParentIndexName() {
     parentIndexName = "homepage";
   }
 
-  if (location.pathname.split("/").filter(path => path).length >= 3) {
+  if (location.pathname.split("/").filter(path => path && path != "en").length >= 3) {
     const lastSlashIndex = location.pathname.lastIndexOf("/");
     const currentPath = lastSlashIndex > 0 ? location.pathname.substring(0, lastSlashIndex) : "/";
     const currentPathLastSlashIndex = currentPath.lastIndexOf("/");

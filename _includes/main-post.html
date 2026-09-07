@@ -118,7 +118,7 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
         const formattedDate = new Date(postDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
         const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
         const nonUndefinedTitle = title ? title : post.title;
-        const capitalizedTitle = capitalize(String(nonUndefinedTitle));
+        const capitalizedTitle = nonUndefinedTitle;
         let postDescription = localStorage.getItem("lang") === "ko" ? localizeToKorean(post.category) : capitalize(String(post.category));
         if (post.subcategory && localStorage.getItem("lang") === "en") {
             postDescription = localizeToEnglish(post.subcategory);
