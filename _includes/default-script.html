@@ -47,6 +47,7 @@ function renderSimpleLayout() {
   const $searchResultBox =  document.getElementById("search-result-box");
   const $blogCategories =  document.getElementById("blog_categories");
   const $idxPathsBox =  document.getElementById("idx-paths-box");
+  const $pageInfoTitle =  document.getElementById("page-info-title");
 
   if ($blogInfo) $blogInfo.remove(); 
   if ($blogFooter) $blogFooter.remove(); 
@@ -54,13 +55,14 @@ function renderSimpleLayout() {
   if ($searchResultBox) $searchResultBox.remove(); 
   if ($blogCategories) $blogCategories.remove(); 
   if ($idxPathsBox) $idxPathsBox.remove(); 
+  if ($pageInfoTitle) $pageInfoTitle.remove(); 
 
   setBlogDefaultConfigs();
   configHTMLElements();
   fetchBlogInfo();
   notFoundInSimpleLayout();
-  const [title, parentIndexName] = getPageTitleAndParentIndexName();
-  printBlogInfoInSimpleLayout(title, parentIndexName);
+  const [title, parentIndexName, pageDesc] = getPageInfo();
+  printBlogInfoInSimpleLayout(title, parentIndexName, pageDesc);
   printUseofAITranslating();
   setGoToTop();
 }
@@ -78,7 +80,7 @@ function notFoundInSimpleLayout() {
   }
 }
 
-function printBlogInfoInSimpleLayout(title, parentIndexName) {
+function printBlogInfoInSimpleLayout(title, parentIndexName, pageDesc) {
   if (document.getElementById("simple-layout-info-box")) return;
   const $infoBox = document.createElement("header");
   $infoBox.id = "simple-layout-info-box";
@@ -295,12 +297,17 @@ function printBlogInfoInSimpleLayout(title, parentIndexName) {
       let $pageInfoGuide = document.getElementById("page_info_guide");
       if (!$idxDescriptionBox) {
         $idxDescriptionBox = document.createElement("div");
+        const $currentIdxBox = document.createElement("pre");
         $pageInfoGuide = document.createElement("pre");
         $idxDescriptionBox.id = "idx_description_box";
         $idxDescriptionBox.classList.add("index-description-simple-layout");
+        $currentIdxBox.id = "current_idx_box";
+        $currentIdxBox.style.marginBlockStart = "0";
+        $currentIdxBox.style.marginBlockEnd = "0";
         $pageInfoGuide.id = "page_info_guide";
         $pageInfoGuide.style.marginBlockStart = "0";
         $pageInfoGuide.style.marginBlockEnd = "0";
+        $idxDescriptionBox.appendChild($currentIdxBox);
         $idxDescriptionBox.appendChild($pageInfoGuide);
         document.body.appendChild($idxDescriptionBox);
       }
@@ -343,6 +350,8 @@ function printBlogInfoInSimpleLayout(title, parentIndexName) {
     const $updateDate = document.createElement("div");
     $dateBox.classList.add("date-box-simple-layout");
     $createDate.textContent = formattedCreateDate ? localStorage.getItem("lang") === "ko" ? formattedCreateDate + "에 작성되었습니다." : "It was written on " + formattedCreateDate : "";
+    console.log(formattedCreateDate);
+    if (document.getElementById("empty") || document.getElementById("empty-span")) $createDate.textContent = formattedCreateDate ? localStorage.getItem("lang") === "ko" ? formattedCreateDate + "에 작성될 뻔했습니다." : "It almost ended up being written on  " + formattedCreateDate : "";
     $updateDate.textContent = formattedUpdateDate ? localStorage.getItem("lang") === "ko" ? formattedUpdateDate + "에 마지막으로 수정되었습니다." : "Last updated on " + formattedUpdateDate : "";
     $dateBox.appendChild($createDate);
     $dateBox.appendChild($updateDate);
@@ -381,6 +390,11 @@ function printBlogInfoInSimpleLayout(title, parentIndexName) {
   } else if (window.matchMedia('(max-width: 960px)').matches && location.pathname === "/") {
     printIdxDescriptionInMobile();
   }
+
+  const $currentIdxBox = document.getElementById("current_idx_box");
+  if ($currentIdxBox && pageDesc && pageDesc !== "null") {
+    $currentIdxBox.textContent = pageDesc;
+  }
   
   const $MainContent = document.getElementsByClassName("main-content");
   if ($MainContent && $MainContent[0]) {
@@ -396,6 +410,7 @@ function printIdxDescription() {
   const $pageInfoGuide = document.createElement("pre");
   $idxDescriptionBox.id = "idx_description_box";
   $idxDescriptionBox.classList.add("index-description-simple-layout");
+  $currentIdx.id = "current_idx_box";
   $currentIdx.style.marginBlockStart = "0";
   $currentIdx.style.marginBlockEnd = "0";
   $pageInfoGuide.id = "page_info_guide";
@@ -741,8 +756,8 @@ function markBlogSettingsInVerboseLayout() {
     !localStorage.getItem("layout") || localStorage.getItem("layout") === "simple" ? printSimpleLayout() : printVerboseLayout();
 }
 
-function getPageTitleAndParentIndexName() {
-  let title = "", parentIndexName = "";
+function getPageInfo() {
+  let title = "", parentIndexName = "", pageDesc;
   const $title = document.querySelector("title");
   if (localStorage.getItem("lang") === "en" && $title.dataset.pageTitle) {
     title = $title.dataset.pageTitle;
@@ -790,7 +805,9 @@ function getPageTitleAndParentIndexName() {
     }
   }
 
-  return [title, parentIndexName];
+  const desc = localStorage.getItem("lang") === "ko" ? $title.dataset.pageDescKo : $title.dataset.pageDesc;
+
+  return [title, parentIndexName, desc];
 }
 
 function configHTMLElements() {
@@ -830,12 +847,17 @@ function configHTMLElements() {
 
           if (!document.getElementById("idx_description_box")) {
             const $idxDescriptionBox = document.createElement("div");
+            const $currentIdxBox = document.createElement("pre");
             const $pageInfoGuide = document.createElement("pre");
             $idxDescriptionBox.id = "idx_description_box";
             $idxDescriptionBox.classList.add("index-description-simple-layout");
+            $currentIdxBox.id = "current_idx_box"
+            $currentIdxBox.style.marginBlockStart = "0";
+            $currentIdxBox.style.marginBlockEnd = "0";
             $pageInfoGuide.id = "page_info_guide";
             $pageInfoGuide.style.marginBlockStart = "0";
             $pageInfoGuide.style.marginBlockEnd = "0";
+            $idxDescriptionBox.appendChild($currentIdxBox);
             $idxDescriptionBox.appendChild($pageInfoGuide);
             document.body.appendChild($idxDescriptionBox);
           }
