@@ -620,6 +620,11 @@ body::-webkit-scrollbar {
   justify-content: flex-start;
 }
 
+.archive-text {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-color);

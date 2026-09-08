@@ -27,20 +27,57 @@
 const $texts = document.querySelectorAll(".archive-text");
 
 $texts.forEach($text => {
-  let desc;
+  const desc = $text.dataset.desc;
+  const descKo = $text.dataset.descKo;
 
-  if (localStorage.getItem("lang") === "ko") {
-    desc = $text.dataset.descKo;
-  } else {
-    desc = $text.dataset.desc;
-  }
+//   if (localStorage.getItem("lang") === "ko") {
+//     desc = $text.dataset.descKo;
+//   } else {
+//     desc = $text.dataset.desc;
+//   }
 
-  if (desc) {
-    const $textDesc = document.createElement("div");
-    $textDesc.classList.add("archive-text-desc");
-    $textDesc.textContent = desc;
-    $text.after($textDesc);
-  }
+//   if (desc) {
+//     const $textDesc = document.createElement("div");
+//     $textDesc.classList.add("archive-text-desc");
+//     $textDesc.textContent = desc;
+//     $text.after($textDesc);
+//   }
+
+  if (desc || descKo) {
+        const descriptions = localStorage.getItem("lang") === "ko"
+            ? descKo
+            : desc;
+
+        console.log(descriptions);
+
+        const nextLineIdxs = [];
+        let index = descriptions.indexOf("\\n");
+
+        while (index !== -1) {
+            nextLineIdxs.push(index);
+            index = descriptions.indexOf("\\n", index + 1);
+        }
+
+        if (nextLineIdxs.length === 0) {
+            const $desc = document.createElement("div");
+            $desc.textContent = descriptions;
+            $text.appendChild($desc);
+        } else {
+            let start = 0;
+            for (let i = 0; i < nextLineIdxs.length; i++) {
+                const $desc = document.createElement("div");
+                const idx = nextLineIdxs[i];
+                const slices = descriptions.slice(start, idx);
+                $desc.textContent += (slices + " ");
+                start = idx + 2;
+                $text.appendChild($desc);
+            }
+            const slices = descriptions.slice(start);
+            const $desc = document.createElement("div");
+            $desc.textContent += (slices + " ");
+            $text.appendChild($desc);
+        }
+    }
 });
 
 </script>
