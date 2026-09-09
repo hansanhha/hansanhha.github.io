@@ -89,10 +89,6 @@ body::-webkit-scrollbar {
     color: #A287E1;
   }
 
-  a:hover {
-    cursor: pointer;
-  }
-
   hr {
     width: 100%;
     margin: 10px 0;
@@ -134,10 +130,6 @@ body::-webkit-scrollbar {
 
   a {
       text-decoration-line: none;
-  }
-
-  a:hover {
-    cursor: pointer;
   }
 
   hr {
@@ -182,10 +174,18 @@ body::-webkit-scrollbar {
     cursor: default;
     font-weight: 800;
   }
+
+  a:hover {
+    cursor: default;
+  }
 }
 
 :root[data-layout="verbose"] {
   h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
+    cursor: pointer;
+  }
+
+  a:hover {
     cursor: pointer;
   }
 }
@@ -204,10 +204,6 @@ body::-webkit-scrollbar {
     color: #A287E1;
   }
 
-
-  a:hover {
-    cursor: pointer;
-  }
 
   hr {
     width: 100%;
@@ -248,10 +244,6 @@ body::-webkit-scrollbar {
 
   a {
       text-decoration-line: none;
-  }
-
-  a:hover {
-    cursor: pointer;
   }
 
   hr {
@@ -710,12 +702,6 @@ p {
   margin-block-end: 0.6em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-}
-
-
-
-a:hover {
-  cursor: pointer;
 }
 
 a[target="_blank"]::after {
