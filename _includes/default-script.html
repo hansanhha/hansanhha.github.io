@@ -129,12 +129,12 @@ function printBlogInfoInSimpleLayout(title, parentIndexName, pageDesc) {
   $light.addEventListener("click", () => changeTheme("light"));
   $dark.addEventListener("click", () => changeTheme("dark"));
 
-  $ko.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("한국어로 전환합니다.", "Switch to Korean."));
-  $en.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("영어로 전환합니다.", "Switch to English."));
-  $simple.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("단순한 인터페이스로 전환합니다.", "Switch to Simple Interface."));
-  $verbose.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("상세한 인터페이스로 전환합니다.", "Switch to Verbose Interface."));
-  $light.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("밝은 화면으로 전환합니다.", "Switch to Light mode."));
-  $dark.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("어두운 화면으로 전환합니다.", "Switch to Dark mode."));
+  $ko.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("한국어로 전환합니다", "Switch to Korean"));
+  $en.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("영어로 전환합니다", "Switch to English"));
+  $simple.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("단순한 인터페이스로 전환합니다", "Switch to Simple Interface"));
+  $verbose.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("상세한 인터페이스로 전환합니다", "Switch to Verbose Interface"));
+  $light.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("밝은 화면으로 전환합니다", "Switch to Light mode"));
+  $dark.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("어두운 화면으로 전환합니다", "Switch to Dark mode"));
 
   $ko.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
   $en.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
@@ -197,7 +197,7 @@ function printBlogInfoInSimpleLayout(title, parentIndexName, pageDesc) {
     $utilityBox.appendChild($homepage);
     $homepage.addEventListener("click", () => location.href = "/");
     $homepage.classList.add("cursor-pointer", "hover-font-weight-800");
-    $homepage.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("홈페이지로 이동합니다.", "Go to the Homepage."));
+    $homepage.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("홈페이지로 이동합니다", "Go to the Homepage"));
     $homepage.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
   }
   $layoutBox.appendChild($simple);
@@ -235,9 +235,9 @@ function printBlogInfoInSimpleLayout(title, parentIndexName, pageDesc) {
     $aboutBlog.textContent = localStorage.getItem("lang") === "ko" ? "이 블로그에 대하여" : "About this blog";
     $aboutBlog.href = localStorage.getItem("lang") === "ko" ? window.origin + "/projects/blog" : window.origin + "/projects/en/blog";
     $aboutBlog.style.color = "var(--text-color)";
-    $instagram.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("한산하 인스타그램으로 이동합니다.", "Go to the hansanhha Instagram."));
-    $rss.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("RSS 페이지를 새로운 탭에서 엽니다.", "Open RSS page in new tab."));
-    $aboutBlog.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("블로그를 소개하는 페이지로 이동합니다.", "Go to the Blog Introduction page."));
+    $instagram.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("한산하 인스타그램으로 이동합니다", "Go to the hansanhha Instagram"));
+    $rss.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("RSS 페이지를 새로운 탭에서 엽니다", "Open RSS page in new tab"));
+    $aboutBlog.addEventListener("mouseover", () => displayPageInfoGuideTextContentOnlyDesktop("블로그를 소개하는 페이지로 이동합니다", "Go to the Blog Introduction page"));
     $instagram.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
     $rss.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
     $aboutBlog.addEventListener("mouseleave", () => emptyPageInfoGuideTextContent());
@@ -314,13 +314,13 @@ function printBlogInfoInSimpleLayout(title, parentIndexName, pageDesc) {
 
       if (parentIndexName) {
         $pageInfoGuide.textContent = localStorage.getItem("lang") === "ko"
-          ? parentIndexName === "홈페이지" ?  parentIndexName + "로 이동합니다." : parentIndexName + " 인덱스 페이지로 이동합니다."
-          : parentIndexName === "Homepage" ? "Go to the " + parentIndexName + "." : "Go to the " + parentIndexName + " index page.";
+          ? parentIndexName === "홈페이지" ?  parentIndexName + "로 이동합니다" : parentIndexName + " 인덱스 페이지로 이동합니다"
+          : parentIndexName === "Homepage" ? "Go to the " + parentIndexName : "Go to the " + parentIndexName + " index page";
 
         if (location.pathname.startsWith("/sunrise/") && (location.pathname !== "/sunrise/" || location.pathname !== "/sunrise/index.html")) {
           $pageInfoGuide.textContent = localStorage.getItem("lang") === "ko"
-            ? parentIndexName === "해맞이" ? "해맞이 인덱스 페이지로 이동합니다." : "해맞이 " + parentIndexName + " 인덱스 페이지로 이동합니다."
-            : parentIndexName === "Sunrise" ? "Go to the Sunrise index page." : "Go to the Sunrise " + parentIndexName + " index page.";
+            ? parentIndexName === "해맞이" ? "해맞이 인덱스 페이지로 이동합니다" : "해맞이 " + parentIndexName + " 인덱스 페이지로 이동합니다"
+            : parentIndexName === "Sunrise" ? "Go to the Sunrise index page" : "Go to the Sunrise " + parentIndexName + " index page";
         }
       }
     });
@@ -350,7 +350,6 @@ function printBlogInfoInSimpleLayout(title, parentIndexName, pageDesc) {
     const $updateDate = document.createElement("div");
     $dateBox.classList.add("date-box-simple-layout");
     $createDate.textContent = formattedCreateDate ? localStorage.getItem("lang") === "ko" ? formattedCreateDate + "에 작성되었습니다." : "It was written on " + formattedCreateDate : "";
-    console.log(formattedCreateDate);
     if (document.getElementById("empty") || document.getElementById("empty-span")) $createDate.textContent = formattedCreateDate ? localStorage.getItem("lang") === "ko" ? formattedCreateDate + "에 작성될 뻔했습니다." : "It almost ended up being written on  " + formattedCreateDate : "";
     $updateDate.textContent = formattedUpdateDate ? localStorage.getItem("lang") === "ko" ? formattedUpdateDate + "에 마지막으로 수정되었습니다." : "Last updated on " + formattedUpdateDate : "";
     $dateBox.appendChild($createDate);
@@ -419,8 +418,8 @@ function printIdxDescription() {
 
   if (location.pathname === "/") {
     $currentIdx.innerText = localStorage.getItem("lang") === "ko" 
-    ? "안녕하세요.\n이 곳은 제가 좋아하는 것들을 모아두거나 \n일상을 기록하는 곳입니다." 
-    : "Hello.\n This is a space to collect things I love \n and record my daily life."
+    ? "안녕하세요\n이 곳은 제가 좋아하는 것들을 모아두거나\n일상을 기록하는 곳입니다" 
+    : "Hello\nThis is a space to collect things I love\nand record my daily life"
   } else {
     $currentIdx.innerText = "";
   }
@@ -435,14 +434,14 @@ function printIdxDescription() {
           const $pageInfoGuide = document.getElementById("page_info_guide");
           if (link.dataset.layout && (link.dataset.layout === "auto-index" || link.dataset.layout === "index")) {
               $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
-              ? link.textContent + " 인덱스 페이지로 이동합니다."
-              : "Go to the " + link.textContent + " index page.";    
+              ? link.textContent + " 인덱스 페이지로 이동합니다"
+              : "Go to the " + link.textContent + " index page";    
           } else {
               $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
               ? location.pathname.startsWith("/sunrise/") || location.pathname.startsWith("/sunrise/index.html") 
-                ? "해맞이 " + link.textContent + " 인덱스 페이지로 이동합니다." :  link.textContent + " 페이지로 이동합니다."
+                ? "해맞이 " + link.textContent + " 인덱스 페이지로 이동합니다" :  link.textContent + " 페이지로 이동합니다"
               : location.pathname.startsWith("/sunrise/") || location.pathname.startsWith("/sunrise/index.html") 
-                ? "Go to the Sunrise " + link.textContent + " index page." : "Go to the " + link.textContent + " page.";
+                ? "Go to the Sunrise " + link.textContent + " index page" : "Go to the " + link.textContent + " page";
           }
       });
       link.addEventListener("mouseleave", () => {
@@ -461,8 +460,8 @@ function printIdxDescriptionInMobile() {
   const $idxDescriptionBox = document.createElement("div");
   const $currentIdx = document.createElement("pre");
   $currentIdx.innerText = localStorage.getItem("lang") === "ko" 
-    ? " 안녕하세요. 이 곳은 제가 좋아하는 것들을 모아두거나 일상을 기록하는 곳입니다." 
-    : " Hello. This is a space to collect things I love nor record my daily life."
+    ? " 안녕하세요 이 곳은 제가 좋아하는 것들을 모아두거나 일상을 기록하는 곳입니다" 
+    : " Hello This is a space to collect things I love nor record my daily life"
   $idxDescriptionBox.classList.add("index-description-simple-layout-mobile");
   $currentIdx.style.marginBlockStart = "0";
   $currentIdx.style.marginBlockEnd = "0";
@@ -509,7 +508,7 @@ function setGoToTop() {
     window.addEventListener("load", () => {
         if (document.documentElement.scrollHeight > window.innerHeight) {
             $goToTopBox.style.display = "block";
-            $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "go to top ↑";
+            $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "Go to top ↑";
         } else {
             $goToTopBox.style.display = "none";
         }
@@ -555,7 +554,8 @@ async function fetchBlogInfo() {
       }
     }
 
-    if (location.pathname === "/projects/blog" || location.pathname === "/projects/blog.html") {
+    if (location.pathname === "/projects/blog" || location.pathname === "/projects/blog.html"
+        || location.pathname === "/projects/en/blog" || location.pathname === "/projects/en/blog.html") {
       const $blogUpdateInfo = document.getElementById("blog-update-info");
       if ($blogUpdateInfo) {
           try {
@@ -650,7 +650,14 @@ function setBlogDefaultConfigs() {
       localStorage.setItem("lang", "en");
   }
 
-  if (!localStorage.getItem("layout")) localStorage.setItem("layout", "simple");
+  if (!localStorage.getItem("layout")) { 
+    localStorage.setItem("layout", "simple");
+    document.documentElement.setAttribute("data-layout", "simple");
+  } else if (localStorage.getItem("layout") === "simple") {
+    document.documentElement.setAttribute("data-layout", "simple");
+  } else if (localStorage.getItem("layout") === "verbose") {
+    document.documentElement.setAttribute("data-layout", "verbose");
+  }
 
   const fontSize = localStorage.getItem("fontSize");
   const contentLineHeight = localStorage.getItem("content-line-height");
@@ -782,7 +789,7 @@ function getPageInfo() {
     parentIndexName = "homepage";
   }
 
-  if (location.pathname.split("/").filter(path => path && path != "en").length >= 3) {
+  if (location.pathname.split("/").filter(path => path && path !== "" && path !== "en").length >= 3) {
     const lastSlashIndex = location.pathname.lastIndexOf("/");
     const currentPath = lastSlashIndex > 0 ? location.pathname.substring(0, lastSlashIndex) : "/";
     const currentPathLastSlashIndex = currentPath.lastIndexOf("/");
@@ -863,28 +870,13 @@ function configHTMLElements() {
           }
 
           if (window.matchMedia('(max-width: 960px)').matches) {
-              link.addEventListener("touchstart", () => {
-                const $pageInfoGuide = document.getElementById("page_info_guide");
-                $pageInfoGuide.style.backgroundColor = "var(--bg-color)";
-                $pageInfoGuide.style.color = "var(--text-color)";
-                $pageInfoGuide.style.paddingLeft = "1px";
-                $pageInfoGuide.style.paddingRight = "1px";
-                $pageInfoGuide.style.zIndex = "9999";
-                $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
-                    ? link.textContent + " 단락으로 이동합니다."
-                    : "Go to the " + link.textContent + " paragraph.";    
-
-                setTimeout(() => {
-                    const $pageInfoGuide = document.getElementById("page_info_guide");
-                    $pageInfoGuide.innerText = "";
-                }, 1000);
-            });
+              return;
           } else {
             link.addEventListener("mouseover", () => {
               const $pageInfoGuide = document.getElementById("page_info_guide");
                 $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
-                    ? link.textContent + " 단락으로 이동합니다."
-                    : "Go to the " + link.textContent + " paragraph.";    
+                    ? link.textContent + " 단락으로 이동합니다"
+                    : "Go to the " + link.textContent + " paragraph";    
             });
             link.addEventListener("mouseleave", () => {
                 const $pageInfoGuide = document.getElementById("page_info_guide");
@@ -986,6 +978,7 @@ function changeFontSize(delta) {
 function changeLayout(layout) {
   if (localStorage.getItem("layout") && localStorage.getItem("layout") === layout) return;
   localStorage.setItem("layout", layout);
+  document.documentElement.setAttribute("data-layout", layout);
   location.reload();  
 }
 
@@ -1728,7 +1721,7 @@ function toggleGoToTopByResizing() {
     const scrollHeight = document.documentElement.scrollHeight;
     const adjustedHeight = scrollHeight;
     const exceeds = adjustedHeight > (window.innerHeight + 10);
-    $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "go to top ↑";
+    $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "Go to top ↑";
     $goToTopBox.style.display = exceeds ? "block" : "none";
 }
 

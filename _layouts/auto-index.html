@@ -114,12 +114,12 @@ async function loadIndexInSimpleLayout() {
                 const $pageInfoGuide = document.getElementById("page_info_guide");
                 if (link.dataset.layout && (link.dataset.layout === "auto-index" || link.dataset.layout === "index")) {
                     $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
-                    ? link.dataset.linkName + " 인덱스 페이지로 이동합니다."
-                    : "Go to the " + link.dataset.linkName + " index page.";    
+                    ? link.dataset.linkName + " 인덱스 페이지로 이동합니다"
+                    : "Go to the " + link.dataset.linkName + " index page";    
                 } else {
                     $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
-                    ? link.dataset.linkName + " 페이지로 이동합니다."
-                    : "Go to the " + link.dataset.linkName + " page.";
+                    ? link.dataset.linkName + " 페이지로 이동합니다"
+                    : "Go to the " + link.dataset.linkName + " page";
                 }
 
                 // if (link.dataset.category && link.dataset.thumbnail !== "null") {

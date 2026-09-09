@@ -98,15 +98,16 @@ body::-webkit-scrollbar {
 
   .link-simple-layout {
     color: var(--text-color);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .link-simple-layout:visited {
     color: var(--text-color);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .link-simple-layout:hover {
+    cursor: default !important;
     font-weight: 800;
   }
 }
@@ -149,16 +150,30 @@ body::-webkit-scrollbar {
 
   .link-simple-layout {
     color: var(--text-color);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .link-simple-layout:visited {
     color: var(--text-color);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .link-simple-layout:hover {
+    cursor: default !important;
     font-weight: 800;
+  }
+}
+
+:root[data-layout="simple"] {
+  h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
+    cursor: default;
+    font-weight: 800;
+  }
+}
+
+:root[data-layout="verbose"] {
+  h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
+    cursor: pointer;
   }
 }
 
@@ -199,15 +214,16 @@ body::-webkit-scrollbar {
 
   .link-simple-layout {
     color: var(--text-color);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .link-simple-layout:visited {
     color: var(--text-color);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .link-simple-layout:hover {
+    cursor: default !important;
     font-weight: 800;
   }
 }
@@ -243,15 +259,16 @@ body::-webkit-scrollbar {
 
   .link-simple-layout {
     color: var(--text-color);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .link-simple-layout:visited {
     color: var(--text-color);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .link-simple-layout:hover {
+    cursor: default !important;
     font-weight: 800;
   }
 }
@@ -314,7 +331,7 @@ body::-webkit-scrollbar {
   }
 
   .index-description-simple-layout {
-    max-width: 55%;
+    max-width: 60%;
   }
 
   .utiltiy-box-simple-layout {
@@ -412,6 +429,7 @@ body::-webkit-scrollbar {
   white-space: normal;
   margin-top: 12px;
   margin-left: var(--layout-margin-left);
+  margin-right: var(--layout-margin-right);
 }
 
 .index-description-simple-layout-mobile > pre {
@@ -432,6 +450,7 @@ body::-webkit-scrollbar {
   max-width: 100%;
   margin-top: 8px;
   margin-left: var(--layout-margin-left);
+  margin-right: var(--layout-margin-right);
 }
 
 .date-box-simple-layout {
@@ -453,6 +472,7 @@ body::-webkit-scrollbar {
 }
 
 .hover-font-weight-800:hover {
+  cursor: default !important;
   font-weight: 800;
 }
 
@@ -719,15 +739,6 @@ h5 {
 
 h1, h2, h3, h4, h5 {
   scroll-margin-top: 20px;
-}
-
-h1:hover, 
-h2:hover, 
-h3:hover,
-h4:hover,
-h5:hover {
-  cursor: pointer;
-  font-weight: 800;
 }
 
 .text-underline-black {
