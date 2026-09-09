@@ -1,5 +1,6 @@
 ---
 layout: default
+page-name: Java Virtual Machine
 createDate: 2026-06-08
 translatedByAI: true
 ---
