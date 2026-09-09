@@ -1,9 +1,5 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');*/
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -16,6 +12,23 @@ body::-webkit-scrollbar {
   display: none;
   width: 0;
   height: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;    
+
+    scrollbar-color: transparent transparent; 
+}
+
+*::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  -webkit-appearance: none;
 }
 
 :root {
