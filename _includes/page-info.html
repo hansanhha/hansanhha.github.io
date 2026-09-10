@@ -12,8 +12,8 @@
 
 <div id="page-update-date" data-update-date="{{ page.updateDate}}"  style="display: none;"></div>
 
-{% if page.layout != "sunrise" and page.title-name != nil or page.title-name-ko != nil %}
-    <div id="page-info-title" class="text-left-align" style="margin-top: 4px; margin-bottom: 4px;" data-title-name="{{ page.title-name }}" data-title-name-ko="{{ page.title-name-ko }}"></div>
+{% if page.layout != "sunrise" and page.page-desc != nil or page.page-desc-ko != nil %}
+    <div id="page-desc-info" class="text-left-align" style="margin-top: 4px; margin-bottom: 4px;" data-page-desc="{{ page.page-desc }}" data-page-desc-ko="{{ page.page-desc-ko }}"></div>
 {% endif %}
 
 <script>
@@ -42,7 +42,7 @@ function printCategories() {
         : localStorage.getItem("lang") === "en" ? "en" : "ko";
 
     const $pageUpdateDate = document.getElementById("page-update-date");
-    const $pageInfoTitle = document.getElementById("page-info-title");
+    const $pageDescInfo = document.getElementById("page-desc-info");
     const $pageInfoDate = document.getElementById("page-info-date");
 
     if ($pageUpdateDate.dataset.updateDate) {
@@ -62,8 +62,8 @@ function printCategories() {
         $pageUpdateDate.style.display = "none";
     }
 
-    if ($pageInfoTitle) {
-    $pageInfoTitle.textContent = userLang === "ko" ? $pageInfoTitle.dataset.titleNameKo ? $pageInfoTitle.dataset.titleNameKo : $pageInfoTitle.dataset.titleName : $pageInfoTitle.dataset.titleName;
+    if ($pageDescInfo) {
+    $pageDescInfo.textContent = userLang === "ko" ? $pageDescInfo.dataset.pageDescKo ? $pageDescInfo.dataset.pageDescKo : $pageDescInfo.dataset.pageDesc : $pageDescInfo.dataset.pageDesc;
     }
 
     document.querySelectorAll("#blog_categories li a").forEach((category) => {

@@ -12,3 +12,5 @@ page-name-ko: 아카이브
 <a href="./videos" data-display-ko="동영상">Videos</a>
 
 <a href="./web%20pages" data-display-ko="웹 페이지">Web Pages</a>
+
+<a href="./music" data-display-ko="음악">Music</a>

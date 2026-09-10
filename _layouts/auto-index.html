@@ -83,8 +83,8 @@ async function loadIndexInSimpleLayout() {
             `
                 <div class='post-link-simple-layout'>
                     <div class='post-link' style="width: 100%;">
-                            <a class='post-link-hover' href="${post.url}" style="color: var(--text-color); display: inline-block; width: 100%" data-layout="${post.layout}" data-link-name="${capitalizedTitle}" data-category="${post.category}" data-subcategory="${post.subcategory}" data-thumbnail="${post.thumbnail}"> 
-                                ${capitalizedTitle}
+                            <a class='post-link-hover' href="${post.url}" style="color: var(--text-color); display: inline-block; width: 100%" data-layout="${post.layout}" data-link-name="${nonUndefinedTitle}" data-category="${post.category}" data-subcategory="${post.subcategory}" data-thumbnail="${post.thumbnail}"> 
+                                ${nonUndefinedTitle}
                             </a>
                     </div>
                 </div>
@@ -271,9 +271,9 @@ function printGroupedIndexes(pageName, pageNameKo, indexes, locale, options) {
     const nullGroup = groupedIndexes["null"];
     if (nullGroup) {
         let groupName = "";
-        if (pageName.toLowerCase() === "daily" || pageNameKo === "일상") {
-            groupName = localStorage.getItem("lang") === "ko" ? "뒤돌아보고, 멈추고, 앞으로 가고" : "Looking Back, Stopping, Going Forward";
-        }
+        // if (pageName.toLowerCase() === "daily" || pageNameKo === "일상") {
+        //     groupName = localStorage.getItem("lang") === "ko" ? "뒤돌아보고, 멈추고, 앞으로 가고" : "Looking Back, Stopping, Going Forward";
+        // }
         const $group = document.createElement("div");
         const $groupName = document.createElement("div");
         $groupName.innerText = groupName;

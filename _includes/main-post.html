@@ -84,7 +84,7 @@ function listPostsInVerboseLayout($latestPostsBox, jsonData, locale, options) {
                 const capitalizedTitle = capitalize(nonUndefinedTitle);
 
                 $post.innerHTML = `
-                    <span class='post-link'><a href="${post.url}">${capitalizedTitle}</a></span>
+                    <span class='post-link'><a href="${post.url}">${nonUndefinedTitle}</a></span>
                 `;
                 $category.appendChild($post);
         });

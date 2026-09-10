@@ -415,7 +415,7 @@ body::-webkit-scrollbar {
   flex-direction: column;
   position: fixed;
   z-index: 9998;
-  top: 20px;
+  top: 10px;
   right: 20px;
   font-size: 32px;
   font-weight: 600;
@@ -428,7 +428,7 @@ body::-webkit-scrollbar {
 .index-description-simple-layout-mobile {
   font-size: 24px;
   font-weight: 600;
-  width: 99%;
+  width: 98%;
   overflow-wrap: break-word;
   word-break: break-word;
   white-space: normal;
@@ -444,9 +444,12 @@ body::-webkit-scrollbar {
 }
 
 #page_info_guide {
-  word-break: break-word;
-  overflow-wrap: break-word;
-  white-space: pre-wrap;
+  /* word-break: break-word; */
+  /* overflow-wrap: break-word; */
+  /* white-space: pre-wrap; */
+  background-color: var(--bg-color);
+  width: fit-content;
+  align-self: flex-end;
 }
 
 #simple-layout-info-box {
