@@ -252,6 +252,10 @@ function getCategorisedIndexes(idxName, indexes, category, sort) {
 // }
 
 function filterIndexesByLocale(indexes) {
+    if (location.pathname.startsWith("/archive/")) {
+        return indexes;
+    }
+
     if (localStorage.getItem("lang") === "en") return indexes.filter((post) => post.url.includes("/en/"));
     return indexes.filter((post) => !post.url.includes("/en/"));
 }

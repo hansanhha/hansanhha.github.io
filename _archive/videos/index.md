@@ -1,14 +1,10 @@
 ---
-layout: index
+layout: auto-index
+# layout: index
+idx-sort: asc
+idx-name: archive
+category-name: archive
 createDate: 2023-12-22
 page-name: Videos
 page-name-ko: 동영상
 ---
-
-<a href="./sky" data-display-ko="하늘">Sky</a>
-
-<a href="./wave" data-display-ko="물결">Wave</a>
-
-<a href="./forest" data-display-ko="숲 속">Forest</a>
-
-<a href="./objects" data-display-ko="사물">Objects</a>
