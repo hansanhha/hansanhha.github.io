@@ -271,7 +271,7 @@ function printBlogInfoInSimpleLayout(title, parentIndexName, pageDesc) {
 
     if (location.pathname.includes("/en/")) {
       pathname = location.pathname.slice(0, location.pathname.indexOf("/en/"));
-      if (pathname.split("/").length >= 4) {
+      if (pathname.split("/").length >= 4 || location.pathname.endsWith("/index.html")) {
         const lastSlashIndex = pathname.lastIndexOf("/");
         const parentPath = lastSlashIndex > 0 ? pathname.substring(0, lastSlashIndex) : "/";
         $indexPageBtn.href = parentPath === '/' ? window.origin : window.origin + parentPath;
@@ -763,7 +763,7 @@ function getPageInfo() {
     parentIndexName = "homepage";
   }
 
-  if (location.pathname.split("/").filter(path => path && path !== "" && path !== "en").length >= 3) {
+  if (location.pathname.split("/").filter(path => path && path !== "" && path !== "en" && path !== "index.html").length >= 3) {
     const lastSlashIndex = location.pathname.lastIndexOf("/");
     const currentPath = lastSlashIndex > 0 ? location.pathname.substring(0, lastSlashIndex) : "/";
     const currentPathLastSlashIndex = currentPath.lastIndexOf("/");

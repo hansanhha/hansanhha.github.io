@@ -92,6 +92,7 @@ function printPaths() {
     if (localStorage.getItem("lang") === "en" && link.dataset.pageTitle) linkname = link.dataset.pageTitle;
     if (localStorage.getItem("lang") === "ko" && link.dataset.pageTitleKo) linkname = link.dataset.pageTitleKo;
 
+    linkname = getLinknameAlternative(linkname);
     link.textContent = "/" + capitalize(linkname);
   });
 
@@ -129,6 +130,21 @@ function printPaths() {
     });
   }
 }
+
+function getLinknameAlternative(linkname) {
+  let alternative = "";
+
+  switch (linkname.toLowerCase()) {
+    case "til":
+      alternative = "학습한 것들에 대한 간단한 기록"
+      break;
+    default:
+      alternative = linkname;
+      break;
+  }
+
+  return alternative;
+} 
 
 function capitalize(str) {
   return str

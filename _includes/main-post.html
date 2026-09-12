@@ -130,7 +130,11 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
             postDescription = localStorage.getItem("lang") === "ko" ? "인덱스" : "Index";
         }
         if (post.category === "daily" && post.group) {
-            postDescription = post.group;
+            if ((post.url.endsWith("/index.html") && post.category != "archive") ||  post.title === "Index" && (post.category !== "archive" || post.url.endsWith("/archive/index.html"))) {
+                postDescription = localStorage.getItem("lang") === "ko" ? post.group + ", 인덱스" : post.group + ", Index";
+            } else {
+                postDescription = post.group;
+            }
         }
         if (post.category === "sunrise" && post.title !== "Index") {
             postDescription = postDescription + " " + post.createDate.slice(0, 4);

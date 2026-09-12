@@ -78,8 +78,23 @@ async function loadIndexInSimpleLayout() {
             const title = locale === "ko-KR" ? post.pagenameKo ? post.pagenameKo : post.pagename : post.pagename;
             const nonUndefinedTitle = title ? title : post.title;
             const capitalizedTitle = nonUndefinedTitle;
-
-            $post.innerHTML = 
+            const indexIndicator = localStorage.getItem("lang") === "ko" 
+                ? "인덱스"
+                : "Index";
+            if (!(location.pathname.includes("archive") || location.pathname.includes("sunrise"))
+                    && post.url.endsWith("/index.html")) {
+                $post.innerHTML = 
+            `
+                <div class='post-link-simple-layout'>
+                    <div class='post-link' style="width: 100%;">
+                            <a class='post-link-hover' href="${post.url}" style="color: var(--text-color); display: inline-block; width: 100%" data-layout="${post.layout}" data-link-name="${nonUndefinedTitle}" data-category="${post.category}" data-subcategory="${post.subcategory}" data-thumbnail="${post.thumbnail}"> 
+                                ${nonUndefinedTitle} (${indexIndicator})
+                            </a>
+                    </div>
+                </div>
+            `;
+            } else {
+                $post.innerHTML = 
             `
                 <div class='post-link-simple-layout'>
                     <div class='post-link' style="width: 100%;">
@@ -89,6 +104,7 @@ async function loadIndexInSimpleLayout() {
                     </div>
                 </div>
             `;
+            }
             $pageContentWrapper.appendChild($post);
         })
     } catch (error) {
