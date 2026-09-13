@@ -25,7 +25,11 @@ function handleEmptyContent() {
   } else if (window.location.pathname !== "/" && $pageContentWrapper && $pageContentWrapper.childElementCount === 0) {
       const $span = document.createElement("div");
       $span.id = "empty-span";
-      $span.classList.add("page-guide-font-simple-layout");
+      if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "simple") {
+        $span.classList.add("page-guide-font-simple-layout");
+      } else {
+        $span.classList.remove("page-guide-font-simple-layout");  
+      }
       $span.style.marginBottom = "3px";
       $span.textContent = localStorage.getItem("lang") === "ko" ? "아직 아무것도 작성되지 않았습니다." : "It's completely blank";
       $pageContentWrapper.innerHTML = "";
@@ -33,7 +37,11 @@ function handleEmptyContent() {
   } else if ($mainContent && $mainContent[0] && $mainContent[0].childElementCount === 0) {
       const $span = document.createElement("div");
       $span.id = "empty-span";
-      $span.classList.add("page-guide-font-simple-layout");
+      if (!localStorage.getItem("layout") || localStorage.getItem("layout") === "simple") {
+        $span.classList.add("page-guide-font-simple-layout");
+      } else {
+        $span.classList.remove("page-guide-font-simple-layout");  
+      }
       $span.textContent = localStorage.getItem("lang") === "ko" ? "아직 아무것도 작성되지 않았습니다." : "It's completely blank";
       $mainContent[0].innerHTML = "";
       $mainContent[0].appendChild($span);
@@ -765,7 +773,8 @@ function getPageInfo() {
 
   if (location.pathname.split("/").filter(path => path && path !== "" && path !== "en" && path !== "index.html").length >= 3) {
     const lastSlashIndex = location.pathname.lastIndexOf("/");
-    const currentPath = lastSlashIndex > 0 ? location.pathname.substring(0, lastSlashIndex) : "/";
+    let currentPath = lastSlashIndex > 0 ? location.pathname.substring(0, lastSlashIndex) : "/";
+    if (currentPath.includes("/en")) currentPath = currentPath.substring(0, currentPath.indexOf("/en"));
     const currentPathLastSlashIndex = currentPath.lastIndexOf("/");
     parentIndexName = currentPath.slice(currentPathLastSlashIndex + 1);
   }
@@ -848,21 +857,21 @@ function configHTMLElements() {
             const $pageInfoGuide = document.getElementById("page_info_guide");
             if (location.pathname === "/sunrise/" || location.pathname === "/sunrise/index.html") {
               $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko"
-                  ? "해맞이 " + link.textContent + " 인덱스 페이지로 이동합니다." 
+                  ? "해맞이 " + link.textContent + " 인덱스 페이지로 이동합니다" 
                   : "Go to the Sunrise " + link.textContent + " index page"
             } else if (!link.attributes.target) {
               $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko"
                 ? link.dataset.linkDescKo  
-                  ? link.dataset.linkDescKo + " 페이지로 이동합니다." 
-                  : link.textContent + " 페이지로 이동합니다."
+                  ? link.dataset.linkDescKo + " 페이지로 이동합니다" 
+                  : link.textContent + " 페이지로 이동합니다"
                 : link.dataset.linkDesc 
                   ? "Go to the " + link.dataset.linkDesc + " page"
                   : "Go to the " + link.textContent + " page"
             } else {
               $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko"
                 ? link.dataset.linkDescKo  
-                  ? link.dataset.linkDescKo + josa(link.dataset.linkDescKo, "으로/로") + " 이동합니다." 
-                  : link.textContent + josa(link.textContent, "으로/로") + " 이동합니다."
+                  ? link.dataset.linkDescKo + josa(link.dataset.linkDescKo, "으로/로") + " 이동합니다" 
+                  : link.textContent + josa(link.textContent, "으로/로") + " 이동합니다"
                 : link.dataset.linkDesc 
                   ? "Go to the " + link.dataset.linkDesc 
                   : "Go to the " + link.textContent;
@@ -1028,7 +1037,7 @@ function changeTheme(theme) {
   }
 }
 
-const autoIndexesMenu = ["projects", "code", "daily"];
+const autoIndexesMenu = ["projects", "code", "daily", "archive", "sunrise"];
 function changeLang(lang) {
     if (lang === "en") {
         if (localStorage.getItem("lang") === "en") return;
@@ -1390,7 +1399,7 @@ function localize(category) {
     if (localStorage.getItem("lang") !== "ko") return category;
 
     let localized;
-    switch(category) {
+    switch(category.toLowerCase()) {
         case "homepage":
         localized = "홈페이지";
         break;
@@ -1409,6 +1418,10 @@ function localize(category) {
 
         case "daily":
         localized = "일상";
+        break;
+
+        case "til":
+        localized = "학습한 것들에 대한 간단한 기록";
         break;
 
         case "archive":
@@ -1435,10 +1448,9 @@ function localize(category) {
 }
 
 function localizeToEnglish(category) {
-    if (localStorage.getItem("lang") !== "en") return category;
-
     let localized;
-    switch(category) {
+
+    switch(category.toLowerCase()) {
         case "홈페이지":
         localized = "homepage";
         break;
@@ -1457,6 +1469,10 @@ function localizeToEnglish(category) {
 
         case "일상":
         localized = "daily";
+        break;
+
+        case "til":
+        localized = "A Brife Record of What I've Learned";
         break;
 
         case "아카이브":
@@ -1723,7 +1739,7 @@ function printUseofAITranslating() {
     const $usingAI = document.createElement("p");
     $usingAI.textContent = localStorage.getItem("lang") === "ko"
       ? "※ 이 글은 AI를 사용하여 번역한 글입니다."
-      : "※ Originally written in Korean and translated into English with AI. AI for translation only.";
+      : "※ Originally written in Korean and translated into English with AI.";
     $usingAI.style.fontWeight = "600";
     $usingAI.style.textDecoration = "underline";
     $usingAI.style.textDecorationThickness = "2px";

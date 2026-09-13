@@ -92,7 +92,9 @@ function printPaths() {
     if (localStorage.getItem("lang") === "en" && link.dataset.pageTitle) linkname = link.dataset.pageTitle;
     if (localStorage.getItem("lang") === "ko" && link.dataset.pageTitleKo) linkname = link.dataset.pageTitleKo;
 
-    linkname = getLinknameAlternative(linkname);
+    linkname = localStorage.getItem("lang") === "ko" 
+      ? getAlternativeKorean(linkname) 
+      : getAlternativeEnglish(linkname);
     link.textContent = "/" + capitalize(linkname);
   });
 
@@ -131,7 +133,7 @@ function printPaths() {
   }
 }
 
-function getLinknameAlternative(linkname) {
+function getAlternativeKorean(linkname) {
   let alternative = "";
 
   switch (linkname.toLowerCase()) {
@@ -145,6 +147,21 @@ function getLinknameAlternative(linkname) {
 
   return alternative;
 } 
+
+function getAlternativeEnglish(linkname) {
+  let alternative = "";
+
+  switch (linkname.toLowerCase()) {
+    case "til":
+      alternative = "A Brief Record of What I’ve Learned"
+      break;
+    default:
+      alternative = linkname;
+      break;
+  }
+
+  return alternative;
+}
 
 function capitalize(str) {
   return str

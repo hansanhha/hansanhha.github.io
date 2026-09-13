@@ -15,7 +15,7 @@
             </div>
             {% include go-to-top.html %}
             <div id="page-sort" style="display: none;" data-idx-sort="{{ page.idx-sort }}"></div>
-            <div id="page-category" style="display: none;" data-category="{{ page.category-name }}"></div>
+            <div id="page-category-name" style="display: none;" data-category-name="{{ page.category-name }}"></div>
             <div id="page-idx-name" style="display: none;" data-idx-name="{{ page.idx-name }}"></div>
             <div id="page-page-name" style="display: none;" data-page-name="{{ page.page-name }}"></div>
             <div id="page-page-name-ko" style="display: none;" data-page-name-ko="{{ page.page-name-ko }}"></div>
@@ -31,14 +31,14 @@ else loadIndexByCategoryInVerboseLayout();
 
 async function loadIndexInSimpleLayout() {
     const $pageContentWrapper = document.getElementById("page-content-wrapper");
-    const $pageCategory = document.getElementById("page-category");
+    const $pageCategoryName = document.getElementById("page-category-name");
     const $pageSort = document.getElementById("page-sort");
     const $pageIdxName = document.getElementById("page-idx-name");
     const $pagePageName = document.getElementById("page-page-name");
     const $pagePageNameKo = document.getElementById("page-page-name-ko");
 
     const sort = $pageSort.dataset.idxSort;
-    const category = $pageCategory.dataset.category;
+    const categoryName = $pageCategoryName.dataset.categoryName;
     const idxName = $pageIdxName.dataset.idxName;
     const pageName = $pagePageName.dataset.pageName;
     const pageNameKo = $pagePageNameKo.dataset.pageNameKo;
@@ -50,9 +50,9 @@ async function loadIndexInSimpleLayout() {
         const textData = await response.text();
         const jsonData = JSON.parse(textData);
 
-        const categorisedIndexes = category === "sunrise"
-            ? getCategorisedIndexes(idxName, jsonData, category, sort)
-            : filterNestedIndexes(pageName, filterIndexesByLocale(getCategorisedIndexes(idxName, jsonData, category, sort)));
+        const categorisedIndexes = categoryName === "sunrise"
+            ? getCategorisedIndexes(idxName, jsonData, categoryName, sort)
+            : filterNestedIndexes(pageName, filterIndexesByLocale(getCategorisedIndexes(idxName, jsonData, categoryName, sort)));
 
         if (categorisedIndexes.length === 0) {
             const $none = document.createElement("div");
@@ -172,7 +172,7 @@ async function loadIndexInSimpleLayout() {
 async function loadIndexByCategoryInVerboseLayout() {
     const $pageContentWrapper = document.getElementById("page-content-wrapper");
     const $pageSort = document.getElementById("page-sort");
-    const $pageCategory = document.getElementById("page-category");
+    const $pageCategoryName = document.getElementById("page-category-name");
     const $pageIdxName = document.getElementById("page-idx-name");
     const $pagePageName = document.getElementById("page-page-name");
     const $pagePageNameKo = document.getElementById("page-page-name-ko");
@@ -181,7 +181,7 @@ async function loadIndexByCategoryInVerboseLayout() {
     $pageContentWrapper.style.display = "block";
 
     const sort = $pageSort.dataset.idxSort;
-    const category = $pageCategory.dataset.category;
+    const categoryName = $pageCategoryName.dataset.categoryName;
     const idxName = $pageIdxName.dataset.idxName;
     const pageName = $pagePageName.dataset.pageName;
     const pageNameKo = $pagePageNameKo.dataset.pageNameKo;
@@ -194,9 +194,9 @@ async function loadIndexByCategoryInVerboseLayout() {
         const textData = await response.text();
         const jsonData = JSON.parse(textData);
 
-        const categorisedIndexes = category === "sunrise"
-            ? getCategorisedIndexes(idxName, jsonData, category, sort)
-            : filterNestedIndexes(pageName, filterIndexesByLocale(getCategorisedIndexes(idxName, jsonData, category, sort)));
+        const categorisedIndexes = categoryName === "sunrise"
+            ? getCategorisedIndexes(idxName, jsonData, categoryName, sort)
+            : filterNestedIndexes(pageName, filterIndexesByLocale(getCategorisedIndexes(idxName, jsonData, categoryName, sort)));
 
         if (categorisedIndexes.length === 0) {
             const $none = document.createElement("p");
@@ -239,25 +239,25 @@ async function loadIndexByCategoryInVerboseLayout() {
             });
         }
 
-        printIndexByCategory(category);
+        printIndexByCategory(categoryName);
 
     } catch (error) {
         $pageContentWrapper.style.display = "none";
     }
 }
 
-function getCategorisedIndexes(idxName, indexes, category, sort) {
+function getCategorisedIndexes(idxName, indexes, categoryName, sort) {
     return indexes
           .filter((post) => !(post.url.toLowerCase().includes(idxName.toLowerCase() + "/index.html")
                             || post.url.toLowerCase().includes(idxName.toLowerCase() + "/en/index.html"))
                           && !post.url.includes("/legacy/"))
-          .filter((post) => post.category.toLowerCase() === category)
-          .filter((post) => post.url.includes(idxName.toLowerCase()))
+          .filter((post) => post.category.toLowerCase() === categoryName)
+          .filter((post) => post.url.toLowerCase().includes(idxName.toLowerCase()))
           .sort((a, b) => {
               const aDate = a.createDate ? a.createDate : a.date;
               const bDate = b.createDate ? b.createDate : b.date;
 
-              if ((sort && sort === "asc") || category === "sunrise")  return new Date(aDate.replace(/-/g, '/')) - new Date(bDate.replace(/-/g, '/'));
+              if ((sort && sort === "asc") || categoryName === "sunrise")  return new Date(aDate.replace(/-/g, '/')) - new Date(bDate.replace(/-/g, '/'));
               else return new Date(bDate.replace(/-/g, '/')) - new Date(aDate.replace(/-/g, '/'));
           });
 }
@@ -280,6 +280,7 @@ function printGroupedIndexes(pageName, pageNameKo, indexes, locale, options) {
     const $pageContentWrapper = document.getElementById("page-content-wrapper");
     const groupedIndexes = groupIndexes(indexes, "group");
 
+    const requireAddingPostGroupClass  = Object.keys(groupedIndexes).length > 1;
     const defaultGroup = groupedIndexes["default"];
     if (defaultGroup) {
         const $group = document.createElement("div");
@@ -313,7 +314,8 @@ function printGroupedIndexes(pageName, pageNameKo, indexes, locale, options) {
       $groupName.innerText = group;
       $groupName.classList.add("post-group-name");
       $group.appendChild($groupName);
-      $group.classList.add("post-group");
+      if (requireAddingPostGroupClass) $group.classList.add("post-group");
+      else $group.style.marginTop = "0.6em";
 
       const groupedPosts = organizeGroup(groupedIndexes[group], $group, locale, options);
       $pageContentWrapper.appendChild(groupedPosts);
