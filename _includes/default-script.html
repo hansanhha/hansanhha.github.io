@@ -1044,7 +1044,7 @@ function changeLang(lang) {
 
         localStorage.setItem("lang", "en");
         localStorage.setItem("updateLang", "true");
-        if (window.location.href === window.location.origin + "/") {
+        if (window.location.href === window.location.origin + "/" || location.pathname === "/") {
           location.reload();
           return;
         }
