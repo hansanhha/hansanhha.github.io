@@ -25,14 +25,16 @@
 const $webPageLinks = document.querySelectorAll(".webpage-link");
 
 $webPageLinks.forEach(link => {
-  let linkDesc, linkURL, linkTags;
+  let linkDesc, linkURL, linkTags, linkAdditionalTags;
 
   if (localStorage.getItem("lang") === "ko") {
     linkDesc = link.dataset.descKo;
     linkTags = link.dataset.tagsKo;
+    linkAdditionalTags = link.dataset.additionalTagsKo;
   } else {
     linkDesc = link.dataset.desc;
     linkTags = link.dataset.tags;
+    linkAdditionalTags = link.dataset.additionalTags;
   }
 
   const $linkDescBox = document.createElement("div");
@@ -48,6 +50,12 @@ $webPageLinks.forEach(link => {
     const $linkTags = document.createElement("div");
     $linkTags.textContent = "└ " + linkTags;
     $linkDescBox.appendChild($linkTags);
+  }
+
+  if (linkAdditionalTags) {
+    const $linkAdditionalTags = document.createElement("div");
+    $linkAdditionalTags.textContent = "└ " + linkAdditionalTags;
+    $linkDescBox.appendChild($linkAdditionalTags);
   }
 
   link.after($linkDescBox);

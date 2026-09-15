@@ -1037,7 +1037,7 @@ function changeTheme(theme) {
   }
 }
 
-const autoIndexesMenu = ["projects", "code", "daily", "archive", "sunrise"];
+const autoIndexesAndEnPages = ["projects", "code", "daily"];
 function changeLang(lang) {
     if (lang === "en") {
         if (localStorage.getItem("lang") === "en") return;
@@ -1050,7 +1050,7 @@ function changeLang(lang) {
         }
 
         originHref = window.location.href;
-        if (autoIndexesMenu.some(menu => originHref.includes(menu)))  {
+        if (autoIndexesAndEnPages.some(menu => originHref.includes(menu)))  {
           const lastIdx = originHref.lastIndexOf("/");
           location.href = originHref.substring(0, lastIdx) + "/en/" + originHref.substring(lastIdx + 1);
         } else {
@@ -1067,7 +1067,7 @@ function changeLang(lang) {
       }
 
       originHref = window.location.href;
-      if (autoIndexesMenu.some(menu => originHref.includes(menu))) {
+      if (autoIndexesAndEnPages.some(menu => originHref.includes(menu))) {
         const lastIdx = originHref.lastIndexOf("/en/");
         if (lastIdx === -1) {
           location.reload();
