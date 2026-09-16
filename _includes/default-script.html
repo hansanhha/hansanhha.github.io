@@ -321,14 +321,14 @@ function printBlogInfoInSimpleLayout(title, parentIndexName, pageDesc) {
       }
 
       if (parentIndexName) {
-        $pageInfoGuide.textContent = localStorage.getItem("lang") === "ko"
-          ? parentIndexName === "홈페이지" ?  parentIndexName + "로 이동합니다" : parentIndexName + " 인덱스 페이지로 이동합니다"
-          : parentIndexName === "Homepage" ? "Go to the " + parentIndexName : "Go to the " + parentIndexName + " index page";
-
-        if (location.pathname.startsWith("/sunrise/") && (location.pathname !== "/sunrise/" || location.pathname !== "/sunrise/index.html")) {
+        if (location.pathname.startsWith("/sunrise/") && (location.pathname !== "/sunrise/" && location.pathname !== "/sunrise/index.html")) {
           $pageInfoGuide.textContent = localStorage.getItem("lang") === "ko"
-            ? parentIndexName === "해맞이" ? "해맞이 인덱스 페이지로 이동합니다" : "해맞이 " + parentIndexName + " 인덱스 페이지로 이동합니다"
-            : parentIndexName === "Sunrise" ? "Go to the Sunrise index page" : "Go to the Sunrise " + parentIndexName + " index page";
+            ? parentIndexName === "해맞이" ? "해맞이 인덱스 페이지로 이동합니다" : "해맞이 " + parentIndexName + " 페이지로 이동합니다"
+            : parentIndexName === "Sunrise" ? "Go to the Sunrise index page" : "Go to the Sunrise " + parentIndexName + " page";
+        } else {
+          $pageInfoGuide.textContent = localStorage.getItem("lang") === "ko"
+            ? parentIndexName === "홈페이지" ?  "홈페이지로 이동합니다" : parentIndexName + " 인덱스 페이지로 이동합니다"
+            : parentIndexName === "Homepage" ? "Go to the Homepage" : "Go to the " + parentIndexName + " index page";
         }
       }
     });
@@ -869,8 +869,8 @@ function configHTMLElements() {
             const $pageInfoGuide = document.getElementById("page_info_guide");
             if (location.pathname === "/sunrise/" || location.pathname === "/sunrise/index.html") {
               $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko"
-                  ? "해맞이 " + link.textContent + " 인덱스 페이지로 이동합니다" 
-                  : "Go to the Sunrise " + link.textContent + " index page"
+                  ? "해맞이 " + link.textContent + " 페이지로 이동합니다" 
+                  : "Go to the Sunrise " + link.textContent + " page"
             } else if (!link.attributes.target) {
               $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko"
                 ? link.dataset.linkDescKo  

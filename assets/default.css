@@ -336,7 +336,7 @@ body::-webkit-scrollbar {
   }
 
   .index-description-simple-layout {
-    max-width: 70%;
+    max-width: 80%;
   }
 
   .utiltiy-box-simple-layout {
@@ -450,6 +450,7 @@ body::-webkit-scrollbar {
   background-color: var(--bg-color);
   width: fit-content;
   align-self: flex-end;
+  padding-left: 10px; 
 }
 
 #simple-layout-info-box {
