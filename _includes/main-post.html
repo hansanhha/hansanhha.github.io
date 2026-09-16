@@ -144,7 +144,7 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
         $post.innerHTML = `
             <div class='post-link-simple-layout'>
                 <div class='post-link' style="width: 100%;">
-                        <a class='post-link-hover' href="${post.url}" style="color: var(--text-color); display: inline-block; width: 100%" data-layout="${post.layout}" data-link-name="${capitalizedTitle}" data-category="${post.category}" data-subcategory="${post.subcategory}" data-thumbnail="${post.thumbnail}"> 
+                        <a class='post-link-hover' href="${post.url}" style="color: var(--text-color); display: inline-block; width: 100%" data-layout="${post.layout}" data-link-name="${capitalizedTitle}" data-category="${post.category}" data-subcategory="${post.subcategory}" data-thumbnail="${post.thumbnail}" data-post-description="${postDescription}"> 
                             ${capitalizedTitle} <span>(${postDescription})</span>
                         </a>
                 </div>
@@ -164,9 +164,13 @@ function listPostsInSimpleLayout($latestPostsBox, jsonData, locale, options) {
                     ? link.dataset.linkName + " 인덱스 페이지로 이동합니다"
                     : "Go to the " + link.dataset.linkName + " index page";    
                 } else {
-                    $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
-                    ? link.dataset.linkName + " 페이지로 이동합니다"
-                    : "Go to the " + link.dataset.linkName + " page";
+                    $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko"
+                    ? link.dataset.category === "sunrise"
+                        ? link.dataset.postDescription + " " + link.dataset.linkName + " 페이지로 이동합니다"
+                        : link.dataset.linkName + " 페이지로 이동합니다"
+                    : link.dataset.category === "sunrise"
+                        ? "Go to the " + link.dataset.postDescription + " " + link.dataset.linkName + " page"
+                        : "Go to the " + link.dataset.linkName + " page";
                 }
                 // if (link.dataset.category && link.dataset.thumbnail !== "null") {
                 //     const $idxDescriptionBox = document.getElementById("idx_description_box");

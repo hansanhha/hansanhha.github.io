@@ -133,9 +133,14 @@ async function loadIndexInSimpleLayout() {
                     ? link.dataset.linkName + " 인덱스 페이지로 이동합니다"
                     : "Go to the " + link.dataset.linkName + " index page";    
                 } else {
-                    $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko" 
-                    ? link.dataset.linkName + " 페이지로 이동합니다"
-                    : "Go to the " + link.dataset.linkName + " page";
+                    $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko"
+                    ?
+                      location.pathname.startsWith("/sunrise/") 
+                        ? location.pathname.slice(location.pathname.indexOf("/sunrise/")+9, location.pathname.lastIndexOf("/sunrise/")+13) + "년 " + link.dataset.linkName + " 페이지로 이동합니다"
+                        : link.dataset.linkName + " 페이지로 이동합니다"
+                    : location.pathname.startsWith("/sunrise/") 
+                        ? "Go to the " + location.pathname.slice(location.pathname.indexOf("/sunrise/")+9, location.pathname.lastIndexOf("/sunrise/")+13) + " "+ link.dataset.linkName + " page"
+                        : "Go to the " + link.dataset.linkName + " page";
                 }
 
                 // if (link.dataset.category && link.dataset.thumbnail !== "null") {

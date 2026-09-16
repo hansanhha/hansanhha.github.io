@@ -293,11 +293,11 @@ body::-webkit-scrollbar {
   }
 
   .error-box-simple-layout {
-    font-size: 40px;
+    font-size: 32px;
   }
 
   .page-guide-font-simple-layout {
-    font-size: 40px;
+    font-size: 32px;
     font-weight: 500;
   }
 
@@ -336,7 +336,7 @@ body::-webkit-scrollbar {
   }
 
   .index-description-simple-layout {
-    max-width: 60%;
+    max-width: 70%;
   }
 
   .utiltiy-box-simple-layout {
@@ -344,11 +344,11 @@ body::-webkit-scrollbar {
   }
   
   .error-box-simple-layout {
-    font-size: 56px;
+    font-size: 40px;
   }
 
   .page-guide-font-simple-layout {
-    font-size: 56px;
+    font-size: 40px;
     font-weight: 500;
   }
 
@@ -446,7 +446,7 @@ body::-webkit-scrollbar {
 #page_info_guide {
   /* word-break: break-word; */
   /* overflow-wrap: break-word; */
-  /* white-space: pre-wrap; */
+  white-space: pre-wrap;
   background-color: var(--bg-color);
   width: fit-content;
   align-self: flex-end;
