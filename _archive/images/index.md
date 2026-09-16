@@ -4,8 +4,10 @@ title-name:
 page-name-ko: 이미지
 page-name: Images
 createDate: 2023-12-20
-updateDate: 2026-08-05
-tags: objects film room season weeknd paintings henry matisse utagawa ando hiroshige impressionism ukiyoe after hours 사물 영화 계절 그림 공간 위켄드 앙리 마티스 우키요에 우타가와 안도 히로시게 인상주의
+updateDate: 2026-09-16
+tags: objects film room season weeknd paintings henry matisse utagawa ando hiroshige impressionism ukiyoe after hours 사물 영화 계절 그림 공간 위켄드 앙리 마티스 우키요에 우타가와 안도 히로시게 인상주의 봄 여름 가을 겨울
+latest-update-history: Added the two film images. Farewell My Concubine and Decision to Leave
+latest-update-history-ko: 두 개의 영화 이미지가 추가되었습니다. 패왕별희와 헤어질 결심
 ---
 
 <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -86,6 +88,10 @@ tags: objects film room season weeknd paintings henry matisse utagawa ando hiros
         <img src="./data/the shawshank redemption.jpg" alt="The Shawshank Redemption.jpg" data-desc="Title: The Shawshank Redemption \n Genre: Drama \n Director: Frank Darabont \n Starring: Tim Robbins, Morgan Freeman \n Release Date: September 23, 1994 \n Running Time: 142 minutes" data-desc-ko="제목: 쇼생크 탈출 \n 장르: 드라마 \n 감독: 프랭크 다라본트 \n 주연: 팀 로빈스, 모건 프리먼 \n 개봉일: 1994년 9월 23일 \n 상영 시간: 142분"/>
         
         <img src="./data/Princess Mononoke.jpg" alt="Princess Mononoke.jpg" data-desc="Title: Princess Mononoke \n Genre: Adventure \n Director: Hayao Miyazaki \n Starring: Ashitaka, San \n Release Date: July 12, 1997 \n Running Time: 133 minutes" data-desc-ko="제목: 모노노케 히메 \n 장르: 어드벤처 \n 감독: 미야자키 하야오 \n 주연: 아시타카, 산 \n 개봉일: 1997년 7월 12일 \n 상영 시간: 133분"/>
+
+        <img src="./data/farewell-my-concubine.jpg" alt="farewell-my-concubine.jpg" data-desc="Title: Farewell My Concubine \n Genre: Drama, Peking opera \n Director: Chen, Kaige \n Starring: Leslie Cheung, Gong Li, Zhang Fengyi \n Release Date: December 23, 1993 \n Running Time: 171 minutes" data-desc-ko="제목: 패왕별희 \n 장르: 드라마, 경극 \n 감독: 천카이거 \n 주연: 장국영, 공리, 장풍의 \n 개봉일: 1993년 12월 23일 \n 상영 시간: 171분"/>
+
+        <img src="./data/decision-to-leave.jpg" alt="decision-to-leave.jpg" data-desc="Title: Decision to Leave \n Genre: Romance, Thriller \n Director: Park Chan-wook \n Starring: Tang wei, Park Hae-il \n Release Date: June 29, 2022 \n Running Time: 138 minutes" data-desc-ko="제목: 헤어질 결심 \n 장르: 로맨스, 스릴러 \n 감독: 박찬욱 \n 주연: 탕웨이, 박해일 \n 개봉일: 2022년 6월 29일 \n 상영 시간: 138분"/>
     </div>
 
     <h2 id="the-weeknd"></h2>
