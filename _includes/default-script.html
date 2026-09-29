@@ -500,7 +500,7 @@ function setGoToTop() {
       $goToTop.classList.add("hover-font-weight-800");
     }
     window.addEventListener("load", () => {
-        if (document.documentElement.scrollHeight > window.innerHeight) {
+        if (document.documentElement.scrollHeight > window.innerHeight + 100) {
             $goToTopBox.style.display = "block";
             $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "Go to top ↑";
         } else {
@@ -1785,7 +1785,7 @@ function toggleGoToTopByResizing() {
     if (!$goToTopBox) return;
     const scrollHeight = document.documentElement.scrollHeight;
     const adjustedHeight = scrollHeight;
-    const exceeds = adjustedHeight > (window.innerHeight + 10);
+    const exceeds = adjustedHeight > (window.innerHeight + 100);
     $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "Go to top ↑";
     $goToTopBox.style.display = exceeds ? "block" : "none";
 }
