@@ -10,7 +10,7 @@
     {% include path.html %}
 </div>
 
-<div id="page-update-date" data-update-date="{{ page.updateDate}}"  style="display: none;"></div>
+<!-- <div id="page-update-date" data-update-date="{{ page.updateDate}}"  style="display: none;"></div> -->
 
 {% if page.layout != "sunrise" and page.page-desc != nil or page.page-desc-ko != nil %}
     <div id="page-desc-info" class="text-left-align" style="margin-top: 4px; margin-bottom: 4px;" data-page-desc="{{ page.page-desc }}" data-page-desc-ko="{{ page.page-desc-ko }}"></div>
@@ -41,26 +41,26 @@ function printCategories() {
         ? navigator.language.startsWith("en") ? "en" : "ko"
         : localStorage.getItem("lang") === "en" ? "en" : "ko";
 
-    const $pageUpdateDate = document.getElementById("page-update-date");
+    // const $pageUpdateDate = document.getElementById("page-update-date");
     const $pageDescInfo = document.getElementById("page-desc-info");
     const $pageInfoDate = document.getElementById("page-info-date");
 
-    if ($pageUpdateDate.dataset.updateDate) {
-        const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
-        const options = {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                weekday: 'long'
-            };
-        const formattedDate = new Date($pageUpdateDate.dataset.updateDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
-        $pageUpdateDate.innerText = localStorage.getItem("lang") === "ko" 
-            ? "수정일: " + formattedDate
-            : "Updated on: " + formattedDate;
-        $pageUpdateDate.style.display = "block";
-    } else {
-        $pageUpdateDate.style.display = "none";
-    }
+    // if ($pageUpdateDate.dataset.updateDate) {
+    //     const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
+    //     const options = {
+    //             year: 'numeric',
+    //             month: 'long',
+    //             day: 'numeric',
+    //             weekday: 'long'
+    //         };
+    //     const formattedDate = new Date($pageUpdateDate.dataset.updateDate.replace(/-/g, '/')).toLocaleDateString(locale, options);
+    //     $pageUpdateDate.innerText = localStorage.getItem("lang") === "ko" 
+    //         ? "수정일: " + formattedDate
+    //         : "Updated on: " + formattedDate;
+    //     $pageUpdateDate.style.display = "block";
+    // } else {
+    //     $pageUpdateDate.style.display = "none";
+    // }
 
     if ($pageDescInfo) {
     $pageDescInfo.textContent = userLang === "ko" ? $pageDescInfo.dataset.pageDescKo ? $pageDescInfo.dataset.pageDescKo : $pageDescInfo.dataset.pageDesc : $pageDescInfo.dataset.pageDesc;

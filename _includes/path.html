@@ -16,6 +16,7 @@
               {% endif %}
               {% if page.name != "index.md" and page.createDate != nil and page.layout == "default" %}
                   <span id="page-info-date" data-create-date="{{ page.createDate }}"></span>
+                  <span id="page-update-date" data-update-date="{{ page.updateDate }}" style="display: none;"></span>
               {% endif %}
             {% else %}
               {% unless dir == "en" %}
@@ -55,18 +56,33 @@ if (localStorage.getItem("layout") === "verbose") {
 
 function printPaths() {
   const $createDate = document.querySelector("#page-info-date");
-  if ($createDate) {
-    const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
-
-    const createDate = new Date($createDate.dataset.createDate);
-    const dateInfo = createDate.toLocaleDateString(locale, {
+  const $updateDate = document.querySelector("#page-update-date");
+  const dateOption = {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
         weekday: 'long'
-    });
+  };
+  if ($createDate) {
+    const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
+
+    const createDate = new Date($createDate.dataset.createDate);
+    const dateInfo = createDate.toLocaleDateString(locale, dateOption);
 
     $createDate.innerText = "| " +  dateInfo;
+  }
+
+  if ($updateDate && $updateDate.dataset.updateDate) {
+    const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";
+
+    const updateDate = new Date($updateDate.dataset.updateDate);
+    const dateInfo = updateDate.toLocaleDateString(locale, dateOption);
+
+    $updateDate.innerText = " | 수정일: " +  dateInfo;
+    $updateDate.style.display = "inline-block";
+    $updateDate.style.marginLeft = "4px";
+  } else if ($updateDate && !$updateDate.dataset.updateDate) {
+    $updateDate.style.display = "none";
   }
 
   const archivePathLinks = document.querySelectorAll(".archive-path-link");
