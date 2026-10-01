@@ -5,7 +5,7 @@ page-name: Hello, Sunrise
 page-title-ko: Hello, Sunrise 해맞이에 대한 소개
 page-name-ko: Hello, Sunrise
 createDate: 2026-08-13
-updateDate: 2026-09-03
+updateDate: 2026-10-01
 description: 해맞이에 대한 소개
 ---
 
@@ -60,5 +60,7 @@ description: 해맞이에 대한 소개
 그라스정원 [2026년 8월](https://hansanhha.github.io/sunrise/2026/August)
 
 독립문 [2026년 9월](https://hansanhha.github.io/sunrise/2026/September)
+
+광화문 [2026년 10월](https://hansanhha.github.io/sunrise/2026/October)
 
 ---

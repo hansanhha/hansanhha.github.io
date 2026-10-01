@@ -1,7 +1,7 @@
 ---
 layout: sunrise
 prev-link: August
-next-link: 
+next-link: October
 page-name: September - Dongnimmun Arch
 page-name-ko: 9월 - 독립문
 nomiation: Dongnimmun Arch
