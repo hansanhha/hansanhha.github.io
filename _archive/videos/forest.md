@@ -1,7 +1,7 @@
 ---
 layout: video
 title-name: 
-prev-link: wave
+prev-link: index
 next-link: objects
 page-name: Forest
 page-name-ko: 숲 속

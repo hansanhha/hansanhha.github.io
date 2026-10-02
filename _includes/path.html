@@ -118,7 +118,9 @@ function printPaths() {
   pageIndexLinks.forEach((link) => {
     const lang = localStorage.getItem("lang");
     lang === "ko" ? link.textContent = "인덱스 페이지" : link.textContent = "Index";
-    link.href = link.dataset.prevPath.toLowerCase();
+    let indexLink = link.dataset.prevPath.toLowerCase();
+    if (indexLink === "index") indexLink = "index.html";
+    link.href = indexLink;
   });
 
   const pagePrevLinks = document.querySelectorAll(".page-prev-link");

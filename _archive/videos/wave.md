@@ -2,7 +2,7 @@
 layout: video
 title-name: 
 prev-link: sky
-next-link: objects
+next-link: movies
 page-name: Wave
 page-name-ko: 물결
 createDate: 2025-10-09

@@ -2,7 +2,7 @@
 layout: video
 title-name: 
 prev-link: forest
-next-link: 
+next-link: sky
 page-name: Objects
 page-name-ko: 사물
 createDate: 2024-12-01

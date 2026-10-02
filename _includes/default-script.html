@@ -343,7 +343,7 @@ function printBlogInfoInSimpleLayout(title, parentIndexName, pageDesc) {
     $infoBox.appendChild($indexPageWrapper);
   }
 
-  if (!location.pathname.endsWith("/index.html") && !location.pathname.endsWith("/")) {
+  if (!location.pathname.endsWith("/index.html") && !location.pathname.endsWith("/") && !location.pathname.startsWith("/archive")) {
     const createDate = document.querySelector('meta[createDate]').getAttribute("createDate");
     const updateDate = document.querySelector('meta[updateDate]').getAttribute("updateDate");
     const locale = localStorage.getItem("lang") === "ko" ? "ko-KR" : "en-US";

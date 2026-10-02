@@ -1,7 +1,7 @@
 ---
 layout: video
 title-name: 
-prev-link: index
+prev-link: objects
 next-link: wave
 page-name: Sky
 page-name-ko: 하늘
