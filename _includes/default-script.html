@@ -383,7 +383,7 @@ function printBlogInfoInSimpleLayout(title, parentIndexName, pageDesc) {
 
   const latestUpdateHiostry = document.querySelector('meta[latestUpdateHistory]').getAttribute("latestUpdateHistory");
   const latestUpdateHiostryKo = document.querySelector('meta[latestUpdateHistoryKo]').getAttribute("latestUpdateHistoryKo");
-  if (latestUpdateHiostry || latestUpdateHiostryKo) {
+  if ((latestUpdateHiostry || latestUpdateHiostryKo) && !location.pathname === "/projects/blog") {
     const $latestUpdateHiostry = document.createElement("div");
     $latestUpdateHiostry.textContent = localStorage.getItem("lang") === "ko"
       ? "최근 수정사항: " + latestUpdateHiostryKo
@@ -567,6 +567,14 @@ async function fetchBlogInfo() {
               const lastCommitDate = data[0].commit.committer.date;
               const formattedDate = formatToLongDate(lastCommitDate);
               $blogUpdateInfo.textContent = formattedDate;
+              const latestUpdateHiostry = document.querySelector('meta[latestUpdateHistory]').getAttribute("latestUpdateHistory");
+              const latestUpdateHiostryKo = document.querySelector('meta[latestUpdateHistoryKo]').getAttribute("latestUpdateHistoryKo");              
+              if (latestUpdateHiostry || latestUpdateHiostryKo) {
+                const blogUpdateInfoLatestUpdateHistory= localStorage.getItem("lang") === "ko"
+                  ? " (" + latestUpdateHiostryKo + ")"
+                  : " (" + latestUpdateHiostry + ")"
+                $blogUpdateInfo.textContent = formattedDate + blogUpdateInfoLatestUpdateHistory;  
+              }
               localStorage.setItem("lastUpdateDate", formattedDate);
           } catch (error) {
               if (localStorage.getItem("lastUpdateDate")) $blogUpdateInfo.textContent = localStorage.getItem("lastUpdateDate");
