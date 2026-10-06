@@ -7,7 +7,6 @@ page-title-ko: 블로그에 대한 소개
 createDate: 2026-08-09
 updateDate: 2026-09-04
 description: 블로그에 대한 소개
-latest-update-history-ko: 카렐 차페크의 책 평범한 인생에 대한 글을 작성하였습니다
 ---
 
 좋아하는 것들을 모아두거나 기록하는 공간

@@ -8,7 +8,6 @@ createDate: 2026-08-09
 updateDate: 2026-09-04
 description: Blog Introduction
 translatedByAI: true
-latest-update-history: Wrote a post about Karel Capek's book, An Ordinary Life
 ---
 
 A place to collect and record the things I like.
