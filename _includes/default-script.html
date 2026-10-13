@@ -383,7 +383,7 @@ function printBlogInfoInSimpleLayout(title, parentIndexName, pageDesc) {
 
   const latestUpdateHiostry = document.querySelector('meta[latestUpdateHistory]').getAttribute("latestUpdateHistory");
   const latestUpdateHiostryKo = document.querySelector('meta[latestUpdateHistoryKo]').getAttribute("latestUpdateHistoryKo");
-  if ((latestUpdateHiostry || latestUpdateHiostryKo) && !location.pathname === "/projects/blog") {
+  if ((latestUpdateHiostry || latestUpdateHiostryKo) && location.pathname !== "/projects/blog") {
     const $latestUpdateHiostry = document.createElement("div");
     $latestUpdateHiostry.textContent = localStorage.getItem("lang") === "ko"
       ? "최근 수정사항: " + latestUpdateHiostryKo
@@ -499,7 +499,7 @@ function setGoToTop() {
       $goToTopBox.style.fontWeight = "500";
       $goToTop.classList.add("hover-font-weight-800");
     }
-    window.addEventListener("load", () => {
+    document.addEventListener("DOMContentLoaded", () => {
         if (document.documentElement.scrollHeight > window.innerHeight + 100) {
             $goToTopBox.style.display = "block";
             $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "Go to top ↑";

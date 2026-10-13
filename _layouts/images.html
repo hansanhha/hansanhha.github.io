@@ -31,6 +31,18 @@
 <script>
 const originalImgs = [];
 
+function toggleGoToTopByResizing() {
+    if (location.pathname === "/") return;
+    const $goToTopBox = document.getElementById("go-to-top-box");
+    const $goToTop = document.getElementById("go-to-top");
+    if (!$goToTopBox) return;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const adjustedHeight = scrollHeight;
+    const exceeds = adjustedHeight > (window.innerHeight + 100);
+    $goToTop.textContent = localStorage.getItem("lang") === "ko" ? "위로 가기 ↑ " : "Go to top ↑";
+    $goToTopBox.style.display = exceeds ? "block" : "none";
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     const $empty = document.getElementById("empty");
     if ($empty != undefined) {
@@ -41,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         return;
     }
+    toggleGoToTopByResizing();
 
     const $imageContainer = document.getElementById("image-container");
     const images = Array.from($imageContainer.querySelectorAll("img"));
