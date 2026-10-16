@@ -4,10 +4,10 @@ title-name:
 page-name-ko: 이미지
 page-name: Images
 createDate: 2023-12-20
-updateDate: 2026-09-16
+updateDate: 2026-10-16
 tags: objects film room season weeknd paintings henry matisse utagawa ando hiroshige impressionism ukiyoe after hours 사물 영화 계절 그림 공간 위켄드 앙리 마티스 우키요에 우타가와 안도 히로시게 인상주의 봄 여름 가을 겨울
-latest-update-history: Added the two film images. Farewell My Concubine and Decision to Leave
-latest-update-history-ko: 두 개의 영화 이미지가 추가되었습니다. 패왕별희와 헤어질 결심
+latest-update-history: 7 cat images have been added.
+latest-update-history-ko: 7장의 고양이 이미지가 추가되었습니다. 
 ---
 
 <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -22,6 +22,24 @@ latest-update-history-ko: 두 개의 영화 이미지가 추가되었습니다. 
         <img src="./data/autumn.jpeg" alt="" data-desc="Seoul Arts Center \n November 8, 2025" data-desc-ko="서울 예술의 전당 \n 2025년 11월 8일" />
         
         <img src="./data/winter.JPG" alt="" data-desc="Seoul Boramae Park \n December 20, 2023" data-desc-ko="서울 보라매공원 \n 2023년 12월 20일"/>
+    </div>
+
+    <h2 id="cats"></h2>
+    
+    <div id="images-cats-list" class="images-list">
+        <img src="./data/cat_1.jpeg" alt="" data-desc="Place: Country \n Date: October 9, 2025 \n " data-desc-ko="장소: 시골집 \n 시기: 2025년 10월 9일  \n ">
+
+        <img src="./data/cat_2.jpeg" alt="" data-desc="Place: Country \n Date: September 26, 2026 \n " data-desc-ko="장소: 시골집 \n 시기: 2026년 9월 26일  \n ">
+
+        <img src="./data/cat_3.jpeg" alt="" data-desc="Place: Gahoe-dong, Bukchon Hanok Village \n Date: August 19, 2026 \n " data-desc-ko="장소: 가회동 북촌한옥마을 \n 시기: 2026년 8월 19일  \n ">
+
+        <img src="./data/cat_4.jpeg" alt="" data-desc="Place: Seokjojeon Hall of Deoksugung Palace \n Date: August 21, 2026 \n " data-desc-ko="장소: 덕수궁 석조전 뒤편 \n 시기: 2026년 8월 21일  \n ">
+
+        <img src="./data/cat_5.jpeg" alt="" data-desc="Place: Yongbongsan Mountain Summit in Chungnam \n Date: May 30, 2026 \n " data-desc-ko="장소: 충남 용봉산 정상 \n 시기: 2026년 5월 30일  \n ">
+
+        <img src="./data/cat_6.jpeg" alt="" data-desc="Place: Jeongdok Library \n Date: August 19, 2026 \n " data-desc-ko="장소: 정독도서관 \n 시기: 2026년 8월 19일  \n ">
+
+        <img src="./data/cat_7.jpeg" alt="" data-desc="Place: Dorimcheon \n Date: July 8, 2026 \n Nickname: Chunjang" data-desc-ko="장소: 도림천 \n 시기: 2026년 7월 8일  \n 별명: 춘장이">
     </div>
 
     <h2 id="objects"></h2>

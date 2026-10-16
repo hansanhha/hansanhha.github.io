@@ -86,6 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const $imageRoom = document.getElementById("room");
     const $imageWeeknd = document.getElementById("the-weeknd");
     const $imagePaintings = document.getElementById("paintings");
+    const $imageCats = document.getElementById("cats");
 
     const $imageObjectTextContent = document.createElement("div");
     const $imageSeasonTextContent = document.createElement("div");
@@ -93,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const $imageRoomTextContent = document.createElement("div");
     const $imageWeekndTextContent = document.createElement("div");
     const $imagePaintingsTextContent = document.createElement("div");
+    const $imageCatsTextContent = document.createElement("div");
 
     if (localStorage.getItem("lang") === "ko") {
       $imageObjectTextContent.textContent = "사물";
@@ -101,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function() {
       $imageRoomTextContent.textContent = "공간";
       $imageWeekndTextContent.textContent = "위켄드";
       $imagePaintingsTextContent.textContent = "미술";
+      $imageCatsTextContent.textContent = "고양이";
     } else {
       $imageObjectTextContent.textContent = "Objects";
       $imageSeasonTextContent.textContent = "Season";
@@ -108,10 +111,11 @@ document.addEventListener("DOMContentLoaded", function() {
       $imageRoomTextContent.textContent = "Room";
       $imageWeekndTextContent.textContent = "The Weeknd";
       $imagePaintingsTextContent.textContent = "Art";
+      $imageCatsTextContent.textContent = "Cats";
     }
 
     const imageTextContents = new Array();
-    imageTextContents.push($imageObjectTextContent, $imageSeasonTextContent, $imageFilmTextContent, $imageRoomTextContent, $imageWeekndTextContent, $imagePaintingsTextContent);
+    imageTextContents.push($imageObjectTextContent, $imageSeasonTextContent, $imageFilmTextContent, $imageRoomTextContent, $imageWeekndTextContent, $imagePaintingsTextContent, $imageCatsTextContent);
     imageTextContents.forEach(($imageTextContent) => {
       $imageTextContent.style.fontSize = "20px";
     });
@@ -122,9 +126,10 @@ document.addEventListener("DOMContentLoaded", function() {
     $imageRoom.appendChild($imageRoomTextContent);
     $imageWeeknd.appendChild($imageWeekndTextContent);
     $imagePaintings.appendChild($imagePaintingsTextContent);
+    $imageCats.appendChild($imageCatsTextContent);
 
     const imageTitles = new Array();
-    imageTitles.push($imageObjects, $imageSeason, $imageFilm, $imageRoom, $imageWeeknd, $imagePaintings);
+    imageTitles.push($imageObjects, $imageSeason, $imageFilm, $imageRoom, $imageWeeknd, $imagePaintings, $imageCats);
     imageTitles.forEach(($imageTitle) => {
         if (($imageTitle.textContent === "사물" || $imageTitle.textContent === "Objects")) {
             $imageTitle.style.marginTop = "8px";
@@ -166,6 +171,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 break;
             case ($imageTitle.textContent === "미술" || $imageTitle.textContent === "Art"):
                 $imageList = document.querySelector("#images-paintings-list");
+                break;
+            case ($imageTitle.textContent === "고양이" || $imageTitle.textContent === "Cats"):
+                $imageList = document.querySelector("#images-cats-list");
                 break;
         }
 
