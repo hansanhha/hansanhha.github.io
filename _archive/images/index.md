@@ -4,10 +4,10 @@ title-name:
 page-name-ko: 이미지
 page-name: Images
 createDate: 2023-12-20
-updateDate: 2026-10-16
+updateDate: 2026-10-25
 tags: objects film room season weeknd paintings henry matisse utagawa ando hiroshige impressionism ukiyoe after hours 사물 영화 계절 그림 공간 위켄드 앙리 마티스 우키요에 우타가와 안도 히로시게 인상주의 봄 여름 가을 겨울
-latest-update-history: 7 cat images have been added.
-latest-update-history-ko: 7장의 고양이 이미지가 추가되었습니다. 
+latest-update-history: A film image has been added. Loving Vincent
+latest-update-history-ko: 한 개의 영화 이미지가 추가되었습니다. 러빙 빈센트
 ---
 
 <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -110,6 +110,8 @@ latest-update-history-ko: 7장의 고양이 이미지가 추가되었습니다.
         <img src="./data/farewell-my-concubine.jpg" alt="farewell-my-concubine.jpg" data-desc="Title: Farewell My Concubine \n Genre: Drama, Peking opera \n Director: Chen, Kaige \n Starring: Leslie Cheung, Gong Li, Zhang Fengyi \n Release Date: December 23, 1993 \n Running Time: 171 minutes" data-desc-ko="제목: 패왕별희 \n 장르: 드라마, 경극 \n 감독: 천카이거 \n 주연: 장국영, 공리, 장풍의 \n 개봉일: 1993년 12월 23일 \n 상영 시간: 171분"/>
 
         <img src="./data/decision-to-leave.jpg" alt="decision-to-leave.jpg" data-desc="Title: Decision to Leave \n Genre: Romance, Thriller \n Director: Park Chan-wook \n Starring: Tang wei, Park Hae-il \n Release Date: June 29, 2022 \n Running Time: 138 minutes" data-desc-ko="제목: 헤어질 결심 \n 장르: 로맨스, 스릴러 \n 감독: 박찬욱 \n 주연: 탕웨이, 박해일 \n 개봉일: 2022년 6월 29일 \n 상영 시간: 138분"/>
+
+        <img src="./data/loving_vincent.png" alt="loving-vincent.png" data-desc="Title: Loving Vincent \n Genre: Mystery, Animation \n Director: Dorota Kobiela, Hugh Welchman \n Starring: Vincent van Gogh, Armand Roulin \n Release Date: November 9, 2017 \n Running Time: 95 minutes" data-desc-ko="제목: 러빙 빈센트 \n 장르: 미스터리, 애니메이션 \n 감독: 도로타 코비엘라, 휴 웰치먼 \n 주연: 빈센트 반 고흐, 아르망 룰랭 \n 개봉일: 2017년 11월 9일 \n 상영 시간: 95분"/>
     </div>
 
     <h2 id="the-weeknd"></h2>
