@@ -890,8 +890,8 @@ function configHTMLElements() {
             } else {
               $pageInfoGuide.innerText = localStorage.getItem("lang") === "ko"
                 ? link.dataset.linkDescKo  
-                  ? link.dataset.linkDescKo + josa(link.dataset.linkDescKo, "으로/로") + " 이동합니다" 
-                  : link.textContent + josa(link.textContent, "으로/로") + " 이동합니다"
+                  ? link.dataset.linkDescKo + josa(link.dataset.linkDescKo, " 으로/로") + " 이동합니다" 
+                  : link.textContent + josa(link.textContent, " 으로/로") + " 이동합니다"
                 : link.dataset.linkDesc 
                   ? "Go to the " + link.dataset.linkDesc 
                   : "Go to the " + link.textContent;
