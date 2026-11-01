@@ -1,7 +1,7 @@
 ---
 layout: sunrise
 prev-link: September
-next-link: 
+next-link: November
 page-name: October - Gwanghwamun
 page-name-ko: 10월 - 광화문
 nomiation: Gwanghwamun

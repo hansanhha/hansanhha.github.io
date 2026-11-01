@@ -3,7 +3,7 @@ layout: default
 page-name: Hello, Sunrise
 page-name-ko: Hello, Sunrise
 createDate: 2026-08-13
-updateDate: 2026-09-03
+updateDate: 2026-11-01
 ---
 
 At the start of each month, I watch the rising sun and the sky to welcome a new beginning. I record these first moments and pause to reflect on the passage of time and the start of another month.
@@ -16,7 +16,7 @@ Address: <a href="https://hansanhha.github.io/sunrise" target="_blank" rel="noop
 
 ---
 
-25 Times, 20 Places
+27 Times, 22 Places
 
 Seoul Mongchontoseong Earthen Fortification [January 2024](https://hansanhha.github.io/sunrise/2024/January) [June 2026](https://hansanhha.github.io/sunrise/2026/June)
 
@@ -57,5 +57,9 @@ Umyeonsan [July 2026](https://hansanhha.github.io/sunrise/2026/July)
 Grass Garden [August 2026](https://hansanhha.github.io/sunrise/2026/August)
 
 Dongnimmun Arch [September 2026](https://hansanhha.github.io/sunrise/2026/September)
+
+Gwanghwamun [October 2026](https://hansanhha.github.io/sunrise/2026/October)
+
+Noeul Park [November 2026](https://hansanhha.github.io/sunrise/2026/November)
 
 ---

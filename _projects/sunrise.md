@@ -5,7 +5,7 @@ page-name: Hello, Sunrise
 page-title-ko: Hello, Sunrise 해맞이에 대한 소개
 page-name-ko: Hello, Sunrise
 createDate: 2026-08-13
-updateDate: 2026-10-01
+updateDate: 2026-11-01
 description: 해맞이에 대한 소개
 ---
 
@@ -19,7 +19,7 @@ description: 해맞이에 대한 소개
 
 ---
 
-25차례, 20곳
+27차례, 22곳
 
 몽촌토성공원 [2024년 1월](https://hansanhha.github.io/sunrise/2024/January) [2026년 6월](https://hansanhha.github.io/sunrise/2026/June)
 
@@ -62,5 +62,7 @@ description: 해맞이에 대한 소개
 독립문 [2026년 9월](https://hansanhha.github.io/sunrise/2026/September)
 
 광화문 [2026년 10월](https://hansanhha.github.io/sunrise/2026/October)
+
+노을공원 [2026년 11월](https://hansanhha.github.io/sunrise/2026/November)
 
 ---
